@@ -2,14 +2,20 @@
     "name": "magento/project-enterprise-edition",
     "description": "eCommerce Platform for Growth (Enterprise Edition)",
     "type": "project",
-    "version": "2.3.4",
+    "version": "2.4.4",
     "license": [
         "OSL-3.0",
         "AFL-3.0"
     ],
     "config": {
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "magento/magento-composer-installer": true,
+            "magento/inventory-composer-installer": true,
+            "laminas/laminas-dependency-plugin": true,
+            "magento/composer-dependency-version-audit-plugin": true
+        }
     },
     "repositories": {
         "repo": {
@@ -18,7 +24,8 @@
         }
     },
     "require": {
-        "magento/magento-cloud-metapackage": ">=2.3.4 <2.3.5"
+        "magento/magento-cloud-metapackage": "2.4.4",
+        "magento/product-enterprise-edition": "2.4.4"
     },
     "suggest": {
         "ext-pcntl": "Need for run processes in parallel mode"

@@ -6,9 +6,12 @@
 name: mymagento
 
 # The toolstack used to build the application.
-type: php:7.3
+type: php:8.1
 build:
-    flavor: composer
+    flavor: none
+dependencies:
+    php:
+        composer/composer: '2.2.4'
 
 # Enable extensions required by Magento 2
 runtime:
@@ -65,7 +68,7 @@ web:
 
 
 # The size of the persistent disk of the application (in MB).
-disk: 2048
+disk: 5120
 
 # The mounts that will be performed when the package is deployed.
 mounts:
@@ -78,14 +81,19 @@ hooks:
     # We run build hooks before your application has been packaged.
     build: |
         set -e
-        php ./vendor/bin/ece-tools build:generate
-        php ./vendor/bin/ece-tools build:transfer
+        composer install
+        php ./vendor/bin/ece-tools run scenario/build/generate.xml
+        php ./vendor/bin/ece-tools run scenario/build/transfer.xml
+        curl -O https://files.magerun.net/n98-magerun2.phar \
+              && mv n98-magerun2.phar bin/n98-magerun2 \
+              && chmod +x bin/n98-magerun2 \
+              && echo "alias n98='~/bin/n98-magerun2'" >> ~/.bash_profile
     # We run deploy hook after your application has been deployed and started.
     deploy: |
-        php ./vendor/bin/ece-tools deploy
+        php ./vendor/bin/ece-tools run scenario/deploy.xml
     # We run post deploy hook to clean and warm the cache. Available with ECE-Tools 2002.0.10.
     post_deploy: |
-        php ./vendor/bin/ece-tools post-deploy
+        php ./vendor/bin/ece-tools run scenario/post-deploy.xml
 
 # Default Magento 2 cron jobs
 crons:
