@@ -441,6 +441,7 @@ return [
         'Fastly_Cdn' => 1,
         'PayPal_Braintree' => 1,
         'PayPal_BraintreeGraphQl' => 1,
-        'Temando_ShippingRemover' => 1
+        'Temando_ShippingRemover' => 1,
+        'Wagento_ImportData' => 1
     ]
 ];
