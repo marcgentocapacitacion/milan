@@ -2,31 +2,53 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Wagento\ImportData\Api\ProductInterface" type="Wagento\ImportData\Model\Product"/>
+    <preference for="Wagento\ImportData\Api\CustomerInterface" type="Wagento\ImportData\Model\Customer"/>
     <type name="Magento\Framework\Console\CommandListInterface">
         <arguments>
             <argument name="commands" xsi:type="array">
                 <item name="product" xsi:type="object">Wagento\ImportData\Console\Command\ImportProductCommand</item>
+                <item name="customer" xsi:type="object">Wagento\ImportData\Console\Command\ImportCustomerCommand</item>
             </argument>
         </arguments>
     </type>
 
-    <!-- Logger Begin -->
-    <virtualType name="Wagento\Framework\Logger\Handler\Base" type="Magento\Framework\Logger\Handler\Base">
+    <!-- Logger Product Begin -->
+    <virtualType name="Wagento\Product\Logger\Handler\Base" type="Magento\Framework\Logger\Handler\Base">
         <arguments>
             <argument name="fileName" xsi:type="string">/var/log/importDataProduct.log</argument>
         </arguments>
     </virtualType>
-    <virtualType name="Wagento\Framework\Logger\Monolog" type="Magento\Framework\Logger\Monolog">
+    <virtualType name="Wagento\Product\Logger\Monolog" type="Magento\Framework\Logger\Monolog">
         <arguments>
             <argument name="handlers" xsi:type="array">
-                <item name="debug" xsi:type="object">Wagento\Framework\Logger\Handler\Base</item>
+                <item name="debug" xsi:type="object">Wagento\Product\Logger\Handler\Base</item>
             </argument>
         </arguments>
     </virtualType>
     <type name="Wagento\ImportData\Model\Product">
         <arguments>
-            <argument name="logger" xsi:type="object">Wagento\Framework\Logger\Monolog</argument>
+            <argument name="logger" xsi:type="object">Wagento\Product\Logger\Monolog</argument>
         </arguments>
     </type>
-    <!-- Logger End -->
+    <!-- Logger Product End -->
+
+    <!-- Logger Customer Begin -->
+    <virtualType name="Wagento\Customer\Logger\Handler\Base" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="fileName" xsi:type="string">/var/log/importDataCustomer.log</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Wagento\Customer\Logger\Monolog" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="debug" xsi:type="object">Wagento\Customer\Logger\Handler\Base</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Wagento\ImportData\Model\Customer">
+        <arguments>
+            <argument name="logger" xsi:type="object">Wagento\Customer\Logger\Monolog</argument>
+        </arguments>
+    </type>
+    <!-- Logger Customer End -->
 </config>

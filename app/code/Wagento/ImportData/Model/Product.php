@@ -6,9 +6,7 @@ use Magento\Eav\Model\AttributeRepository;
 use Magento\Eav\Model\Entity\Attribute\Source\Table;
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\App\State;
-use Magento\Framework\DataObject;
 use Magento\Framework\Filesystem;
-use Magento\ImportExport\Model\Import\Source\Csv;
 use Magento\ImportExport\Model\Import\Source\CsvFactory;
 use Psr\Log\LoggerInterface;
 use Wagento\ImportData\Api\ProductInterface;
@@ -18,42 +16,12 @@ use Wagento\ImportData\Model\Import\Product as ProductImport;
 /**
  * Class Product
  */
-class Product extends DataObject implements ProductInterface
+class Product extends AbstractImport implements ProductInterface
 {
-    /**
-     * @var CsvFactory
-     */
-    protected CsvFactory $csvFactory;
-
-    /**
-     * @var AttributeRepository
-     */
-    protected AttributeRepository $attributeRepository;
-
-    /**
-     * @var Table
-     */
-    protected Table $attributeTable;
-
-    /**
-     * @var LoggerInterface
-     */
-    protected LoggerInterface $logger;
-
-    /**
-     * @var State
-     */
-    protected State $state;
-
     /**
      * @var string|null
      */
     protected ?string $file;
-
-    /**
-     * @var Filesystem
-     */
-    protected Filesystem $filesystem;
 
     /**
      * @var Countryofmanufacture
@@ -78,6 +46,7 @@ class Product extends DataObject implements ProductInterface
      * @param State                $state
      * @param Filesystem           $filesystem
      * @param Countryofmanufacture $countryofmanufacture
+     * @param ProductImport        $productImport
      * @param array                $data
      */
     public function __construct(
@@ -91,13 +60,15 @@ class Product extends DataObject implements ProductInterface
         ProductImport $productImport,
         array $data = []
     ) {
-        parent::__construct($data);
-        $this->csvFactory = $csvFactory;
-        $this->attributeRepository = $attributeRepository;
-        $this->attributeTable = $attributeTable;
-        $this->logger = $logger;
-        $this->state = $state;
-        $this->filesystem = $filesystem;
+        parent::__construct(
+            $csvFactory,
+            $attributeRepository,
+            $attributeTable,
+            $logger,
+            $state,
+            $filesystem,
+            $data
+        );
         $this->countryofmanufacture = $countryofmanufacture;
         $this->productImport = $productImport;
     }
@@ -130,15 +101,8 @@ class Product extends DataObject implements ProductInterface
             $this->productImport->importData();
             $this->productImport->getDataSourceModel()->cleanBunches();
             $errors = $this->productImport->getErrorAggregator()->getAllErrors();
-            if ($errors) {
-                $errorMessage = '----------------------------------------------------------------';
-                foreach ($errors as $error) {
-                    $errorMessage .= "Line: " . $error->getRowNumber() . "\n";
-                    $errorMessage .= "Column: " . $error->getColumnName() . "\n";
-                    $errorMessage .= "Message: " . $error->getErrorMessage() . "\n";
-                }
-                $errorMessage .= '----------------------------------------------------------------';
-                throw new \Exception($errorMessage);
+            if ($errors && ($formatError = $this->formatMessageError($errors))) {
+                throw new \Exception($formatError);
             }
             return true;
         } catch (\Exception $e) {
@@ -147,30 +111,6 @@ class Product extends DataObject implements ProductInterface
             );
             return false;
         }
-    }
-
-    /**
-     * @return Csv
-     * @throws \Exception
-     */
-    protected function getFile(): Csv
-    {
-        if (!$this->file) {
-            throw new \Exception(__('File is required.'));
-        }
-
-        return $this->csvFactory->create([
-            'file' => $this->file,
-            'directory' => $this->filesystem->getDirectoryRead(DirectoryList::ROOT),
-        ]);
-    }
-
-    /**
-     * @param string $file
-     */
-    public function setFile(string $file): void
-    {
-        $this->file = $file;
     }
 
     /**
