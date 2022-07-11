@@ -1,0 +1,19 @@
+<!--
+/**
+ * Rutavity theme Magento_Theme default layout
+ * @package Milan_Rutavity
+ * @author Rudie Wang <rudi.wang@wagento.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_file" xsi:type="string">images/assets/rutavity-ch.png</argument>
+                <argument name="logo_width" xsi:type="number">190</argument>
+                <argument name="logo_height" xsi:type="number">42</argument>
+                <argument name="logo_alt" xsi:type="string">Rutavity</argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

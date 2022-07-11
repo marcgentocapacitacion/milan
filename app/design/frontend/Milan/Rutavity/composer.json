@@ -1,0 +1,22 @@
+{
+    "name": "milan/theme-rutavity",
+    "description": "Rutavity theme for Bicicletas Milan by Wagento",
+    "config": {
+        "sort-packages": true
+    },
+    "require": {
+        "php": "~7.4.0||~8.1.0",
+        "magento/framework": "103.0.*",
+        "magento/theme-frontend-luma": "100.4.*"
+    },
+    "type": "magento2-theme",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ]
+    }
+}
