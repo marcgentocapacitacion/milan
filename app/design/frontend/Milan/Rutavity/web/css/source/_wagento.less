@@ -32,4 +32,49 @@
     .action.primary, .action-primary {
         font-family: 'Avenir', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
+
+    .rt-icon {
+        &:before {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-family: @icon-font;
+            vertical-align: top;
+            display: inline-block;
+            font-weight: normal;
+            font-style: normal;
+            overflow: hidden;
+            speak: none;
+            text-align: center;
+        }
+
+        &.rt-icon-cart:before {
+            color: @color-white;
+            content: @icon-rutavity-cart;
+        }
+
+        &.rt-icon-cart-plus:before {
+            color: @color-white;
+            content: @icon-rutavity-cart-plus;
+        }
+
+        &.rt-icon-casa:before {
+            color: @color-white;
+            content: @icon-rutavity-casa;
+        }
+
+        &.rt-icon-heart:before {
+            color: @color-white;
+            content: @icon-rutavity-heart;
+        }
+
+        &.rt-icon-login:before {
+            color: @color-white;
+            content: @icon-rutavity-login;
+        }
+
+        &.rt-icon-search:before {
+            color: @color-white;
+            content: @icon-rutavity-search;
+        }
+    }
 }

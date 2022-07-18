@@ -7,6 +7,7 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
+        <!-- Header section modification -->
         <referenceBlock name="logo">
             <arguments>
                 <argument name="logo_file" xsi:type="string">images/assets/rutavity-ch.png</argument>
@@ -15,5 +16,6 @@
                 <argument name="logo_alt" xsi:type="string">Rutavity</argument>
             </arguments>
         </referenceBlock>
+        <referenceBlock name="register-link" remove="true"/>
     </body>
 </page>
