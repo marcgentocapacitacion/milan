@@ -230,7 +230,80 @@
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
     .block-search {
-        margin-top: @indent__s;
+        input {
+            position: static;
+            margin: 0;
+            height: 47px;
+            background: #fff;
+            box-shadow: 3px 9px 11px #00000069;
+            border-radius: 24px;
+            opacity: 1;
+            padding: 0;
+        }
+
+        .label {
+            position: absolute;
+            top: 20px;
+            right: 65px;
+
+            &:before {
+                color: @color-white;
+                font-size: 28px;
+            }
+            &:hover:before {
+                color: @color-white-smoke;
+            }
+
+            &.active {
+                + .control {
+                    width: 100%;
+                    padding: 17px 30px;
+
+                    input {
+                        position: static;
+                        padding: 8px 48px 8px 26px;
+                    }
+                }
+            }
+        }
+
+        .control {
+            position: absolute;
+            left: 0;
+            right: 0;
+            width: 0;
+            top: 0;
+            height: @header-mobile-height;
+            background: @header-gradient__background-color;
+            padding: 0;
+            box-sizing: border-box;
+            margin: 0;
+            z-index: 15;
+        }
+
+        .action.search {
+            .lib-button-icon(
+                @_icon-font-content: @icon-remove,
+                @_icon-font-size: 18px,
+                @_icon-font-text-hide: true,
+                @_icon-font-color: @color-black,
+                @_icon-font-color-hover: @color-black_dark,
+                @_icon-font-line-height: 47px
+            );
+            .lib-button-reset();
+            position: absolute;
+            right: 0;
+            top: 0;
+            text-align: center;
+            display: none;
+        }
+
+        .minisearch.active .action.search {
+            display: inline-block;
+            top: 17px;
+            right: 50px;
+            z-index: 16;
+        }
     }
 }
 
@@ -292,6 +365,7 @@
             opacity: 1;
             padding: 8px 48px 8px 26px;
             width: 75px;
+            max-width: 95vw;
             border: none;
             position: absolute;
             right: 0;

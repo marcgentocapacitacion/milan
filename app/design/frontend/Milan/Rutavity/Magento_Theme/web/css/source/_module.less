@@ -31,7 +31,9 @@
 @header-icons-color: @color-white;
 @header-icons-color-hover: @color-white-smoke;
 @header-height: 253px;
+@header-mobile-height: 82px;
 @header-sticky-height: 127px;
+@header-gradient__background-color: linear-gradient(90deg, @color-rutavity-purple 0%, @color-rutavity-blue 100%);
 @customer-welcome__z-index: @dropdown-list__z-index + 1;
 
 @header-customer__font-size: 17px;
@@ -427,18 +429,6 @@
         display: none;
     }
 
-    .nav-sections .switcher-trigger strong:after {
-        .lib-font-size(16);
-        right: -25px;
-        top: -2px;
-    }
-
-    .navigation .parent .level-top:after {
-        .lib-font-size(16);
-        right: 10px;
-        top: 7px;
-    }
-
     .page-footer .footer.content {
         .switcher-store {
             .lib-css(background, @footer__background-color);
@@ -480,13 +470,6 @@
     }
 }
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
-    .logo {
-        margin-bottom: 13px;
-        margin-top: 4px;
-    }
-}
-
 //
 //  Mobile
 //  _____________________________________________
@@ -506,6 +489,44 @@
 
     .cms-content .data-table {
         .lib-table-responsive();
+    }
+
+    .page-wrapper {
+        padding-top: @header-mobile-height;
+    }
+
+    .page-header {
+        &:before {
+            display: none;
+        }
+
+        .mini-logos {
+            display: none;
+        }
+    }
+
+    .header {
+        &.content {
+            background: @color-rutavity-purple;
+            background: @header-gradient__background-color;
+            box-shadow: 3px 6px 9px #0000005F;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 0 @indent__base;
+            box-sizing: border-box;
+            height: @header-mobile-height;
+        }
+    }
+
+    .logo {
+        margin: 0 auto;
+    }
+
+    .nav-toggle {
+        top: 21px;
+        left: @indent__l;
     }
 }
 
@@ -532,6 +553,14 @@
         }
     }
 
+    .page-wrapper {
+        padding-top: @header-height;
+
+        .cms-index-index & {
+            padding: 0;
+        }
+    }
+
     .page-header {
         border: 0;
         margin-bottom: 0;
@@ -551,7 +580,7 @@
 
             .panel.wrapper {
                 background: @color-rutavity-purple;
-                background: linear-gradient(90deg, @color-rutavity-purple 0%, @color-rutavity-blue 100%);
+                background: @header-gradient__background-color;
             }
         }
 

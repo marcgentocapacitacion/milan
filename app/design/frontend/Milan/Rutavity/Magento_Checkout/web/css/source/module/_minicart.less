@@ -11,7 +11,7 @@
 @minicart__border-color: @color-gray80;
 @minicart__padding-horizontal: @indent__base;
 
-@minicart-qty__height: 24px;
+@minicart-qty__height: 22px;
 
 //
 //  Common
@@ -127,7 +127,7 @@
             @_dropdown-list-item-padding: false,
             @_dropdown-list-item-hover: false,
             @_icon-font-position: before,
-            @_icon-font-size: 22px,
+            @_icon-font-size: 26px,
             @_icon-font-line-height: 28px,
             @_icon-font-color: @minicart-icons-color,
             @_icon-font-color-hover: @minicart-icons-color-hover,
@@ -193,14 +193,16 @@
                     .lib-css(color, @page__background-color);
                     .lib-css(height, @minicart-qty__height);
                     .lib-css(line-height, @minicart-qty__height);
-                    border-radius: 2px;
+                    border-radius: 11px;
                     display: inline-block;
-                    margin: 3px 0 0;
                     min-width: 18px;
                     overflow: hidden;
-                    padding: 0 3px;
+                    padding: 0 2px;
                     text-align: center;
                     white-space: normal;
+                    position: absolute;
+                    top: -@indent__s;
+                    right: -@indent__s;
 
                     &.empty {
                         display: none;
@@ -431,6 +433,11 @@
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
     .minicart-wrapper {
         margin-top: @indent__s;
+        position: absolute;
+        z-index: 1;
+        right: @indent__l;
+        top: @indent__base;
+
         .lib-clearfix();
         .product {
             .actions {
@@ -441,6 +448,10 @@
         .update-cart-item {
             float: right;
             margin-left: 0;
+        }
+
+        .action.showcart:before {
+            opacity: 1;
         }
     }
 }

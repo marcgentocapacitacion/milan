@@ -65,9 +65,10 @@
                 position: relative;
 
                 &:after {
+                    .lib-font-size(16);
                     position: absolute;
-                    right: 7px;
-                    top: -8px;
+                    right: 10px;
+                    top: 13px;
                 }
 
                 &.ui-state-active {
@@ -78,17 +79,42 @@
                 }
             }
         }
+
+        .level0.submenu {
+            &:not(:first-child) {
+                padding-top: @indent__m;
+                padding-bottom: @indent__m;
+
+                > li > a {
+                    padding-left: @submenu__padding-left;
+                    text-decoration: underline;
+                }
+
+                .active > a {
+                    border: none;
+                    font-family: 'Avenir Black';
+                }
+                .level1 {
+                    font-weight: normal;
+
+                    &.active > a {
+                        padding-left: @submenu__padding-left;
+                    }
+                }
+            }
+        }
     }
 
     .nav-sections {
         -webkit-overflow-scrolling: touch;
-        .lib-css(transition, left .3s, 1);
-        height: 100%;
-        left: calc(~'-1 * (100% - @{active-nav-indent})');
+        .lib-css(transition, height .3s, 1);
+        height: 0;
         overflow: auto;
         position: fixed;
-        top: 0;
-        width: calc(~'100% - @{active-nav-indent}');
+        top: @header-mobile-height;
+        left: 0;
+        width: 100%;
+        background: @color-black;
 
         .switcher {
             border-top: 1px solid @color-gray82;
@@ -118,9 +144,10 @@
                 position: relative;
 
                 &:after {
+                    .lib-font-size(16);
                     position: absolute;
-                    right: -40px;
-                    top: -16px;
+                    right: -25px;
+                    top: -2px;
                 }
             }
 
@@ -202,27 +229,21 @@
     }
 
     .nav-open {
-        .page-wrapper {
-            left: calc(~'100% - @{active-nav-indent}');
-        }
-
         .nav-sections {
-            @_shadow: 0 0 5px 0 rgba(50, 50, 50, .75);
-            .lib-css(box-shadow, @_shadow, 1);
+            height: calc(~'1 * (100% - @{header-mobile-height})');
             left: 0;
             z-index: 99;
         }
 
         .nav-toggle {
             &:after {
-                background: rgba(0, 0, 0, @overlay__opacity);
                 content: '';
                 display: block;
-                height: 100%;
                 position: fixed;
                 right: 0;
                 top: 0;
                 width: 100%;
+                height: @header-mobile-height;
                 z-index: 1;
             }
         }
