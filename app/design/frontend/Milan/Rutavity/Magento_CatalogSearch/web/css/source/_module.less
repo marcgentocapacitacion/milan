@@ -321,7 +321,7 @@
         .action.search {
             display: inline-block;
             .lib-button-icon(
-                @_icon-font-content: @icon-rutavity-search,
+                @_icon-font-content: @icon-remove,
                 @_icon-font-size: 24px,
                 @_icon-font-text-hide: true,
                 @_icon-font-color: @color-black,
@@ -342,12 +342,9 @@
             -o-transition: opacity @search-transition-speed;
             transition: opacity @search-transition-speed;
 
-            .minisearch.active & {
-                opacity: 1;
-            }
-
             &:before {
                 overflow: visible;
+                font-weight: bold;
             }
 
             &:focus {
@@ -355,6 +352,10 @@
                     .lib-css(color, @color-black);
                 }
             }
+        }
+
+        .minisearch.active .action.search {
+            opacity: 1;
         }
     }
 

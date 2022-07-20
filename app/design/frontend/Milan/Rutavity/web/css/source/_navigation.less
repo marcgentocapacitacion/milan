@@ -9,6 +9,7 @@
 //  _____________________________________________
 
 @active-nav-indent: 54px;
+@navigation-hover__transition: 0.3s ease-in-out;
 
 //
 //  Common
@@ -309,6 +310,42 @@
         .links,
         .switcher {
             display: inline-block;
+        }
+    }
+
+    .navigation {
+        li.level0 {
+            padding: 15px 0;
+
+            &:hover,
+            &.has-active,
+            &.active {
+                > .level-top {
+                    border: none;
+
+                    &:after {
+                        width: 100%;
+                    }
+                }
+            }
+
+            > .level-top {
+                text-shadow: 0px 3px 6px #00000071;
+                position: relative;
+
+                &:after {
+                    content: '';
+                    width: 0;
+                    height: 4px;
+                    background: @color-white;
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    margin: 0 auto;
+                    top: 45px;
+                    transition: width @navigation-hover__transition;
+                }
+            }
         }
     }
 }
