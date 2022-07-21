@@ -5,11 +5,6 @@
 
 & when (@media-common = true) {
     .page-footer {
-        background: url('@{baseDir}images/assets/footer-background.png') no-repeat center;
-        background-size: cover;
-        margin-bottom: 0px;
-        padding-bottom: 0px;
-
         .footer-content-block {
             .row {
                 .links {
@@ -161,6 +156,19 @@
                 }
             }
         }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .page-footer {
+        background: url('@{baseDir}images/assets/footer-background.png') no-repeat center;
+        background-size: cover;
+        margin-bottom: 0px;
+        padding-bottom: 0px;
     }
 }
 
