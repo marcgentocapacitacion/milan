@@ -9,7 +9,7 @@
 //  _____________________________________________
 
 @active-nav-indent: 54px;
-@navigation-hover__transition: 0.3s ease-in-out;
+@navigation-hover__transition-speed: 0.3s ease-in-out;
 
 //
 //  Common
@@ -364,7 +364,7 @@
                     right: 0;
                     margin: 0 auto;
                     top: 45px;
-                    transition: width @navigation-hover__transition;
+                    .lib-css(transition, width @navigation-hover__transition-speed, 1);
                 }
             }
         }

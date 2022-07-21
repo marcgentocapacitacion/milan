@@ -5,6 +5,11 @@
 //  */
 
 //
+//  Variables
+//  _____________________________________________
+@homepage-location-banner__width: 350px;
+
+//
 //  Common
 //  _____________________________________________
 
@@ -32,10 +37,8 @@
     .action.primary, .action-primary {
         font-family: 'Avenir', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
-    .action.primary, .action-primary {
-        background: @header-gradient__background-color;
-    }
 
+    // Icon
     .rt-icon {
         &:before {
             -webkit-font-smoothing: antialiased;
@@ -94,6 +97,101 @@
         &.rt-icon-linkedin:before {
             color: @color-white;
             content: @icon-rutavity-linkedin;
+        }
+    }
+
+    // Global styles
+    * {
+        box-sizing: border-box;
+    }
+    body {
+        color: @color-black;
+    }
+    .action.primary, .action-primary {
+        background: @header-gradient__background-color;
+    }
+
+    // Homepage styles
+    .homepage-category-banner {
+        height: 278px;
+        background-color: @color-rutavity-gray;
+        border-radius: 68px;
+        margin-top: @indent__xl;
+        margin-bottom: @indent__xl;
+        padding-left: 80px;
+        padding-right: 80px;
+
+        &-left {
+            position: relative;
+
+            .homepage-category-banner-title-shadow {
+                left: 0;
+            }
+        }
+
+        &-right {
+            position: relative;
+
+            .homepage-category-banner-title-shadow {
+                right: 0;
+            }
+        }
+
+        &-title {
+            font-family: 'Avenir black';
+            margin-top: 85px;
+            z-index: 1;
+
+            &-shadow {
+                position: absolute;
+                top: 80px
+            }
+        }
+    }
+
+    .homepage-location-banner {
+        margin: 0 auto;
+
+        &-wide {
+            width: 800px;
+            background: @color-black;
+            border-radius: 175px;
+            position: relative;
+
+            .pagebuilder-poster-content {
+                position: absolute;
+                width: @homepage-location-banner__width;
+                left: 120%;
+            }
+        }
+
+        .pagebuilder-banner-wrapper {
+            width: @homepage-location-banner__width;
+        }
+
+        .pagebuilder-poster-content {
+            text-shadow: 0px 6px 11px #000000b1;
+        }
+    }
+
+    .homepage-btns {
+        .pagebuilder-button-primary {
+            cursor: default;
+            background: @color-white;
+            color: @theme__color__primary;
+            border: none;
+            width: 128px;
+            height: @indent__xl;
+            border-radius: 47px;
+            font-size: @indent__base;
+            padding: 8px;
+
+            &:hover {
+                border: none;
+                color: @color-white;
+                background: @theme__color__primary;
+                background: @header-gradient__background-color;
+            }
         }
     }
 }

@@ -33,7 +33,7 @@
 @header-height: 253px;
 @header-mobile-height: 82px;
 @header-sticky-height: 127px;
-@header-gradient__background-color: linear-gradient(90deg, @color-rutavity-purple 0%, @color-rutavity-blue 100%);
+@header-gradient__background-color: linear-gradient(90deg, @theme__color__primary 0%, @theme__color__primary-alt 100%);
 @customer-welcome__z-index: @dropdown-list__z-index + 1;
 
 @header-customer__font-size: 17px;
@@ -507,7 +507,7 @@
 
     .header {
         &.content {
-            background: @color-rutavity-purple;
+            background: @theme__color__primary;
             background: @header-gradient__background-color;
             box-shadow: 3px 6px 9px #0000005F;
             display: flex;
@@ -579,7 +579,7 @@
             }
 
             .panel.wrapper {
-                background: @color-rutavity-purple;
+                background: @theme__color__primary;
                 background: @header-gradient__background-color;
             }
         }

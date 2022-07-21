@@ -337,10 +337,7 @@
             right: 0;
             z-index: 2;
 
-            -webkit-transition: opacity @search-transition-speed;
-            -moz-transition: opacity @search-transition-speed;
-            -o-transition: opacity @search-transition-speed;
-            transition: opacity @search-transition-speed;
+            .lib-css(transition, opacity @search-transition-speed, 1);
 
             &.active {
                 opacity: 0;
@@ -371,10 +368,7 @@
             right: 0;
             box-sizing: border-box;
 
-            -webkit-transition: width @search-transition-speed;
-            -moz-transition: width @search-transition-speed;
-            -o-transition: width @search-transition-speed;
-            transition: width @search-transition-speed;
+            .lib-css(transition, width @search-transition-speed, 1);
         }
 
         input {
@@ -411,10 +405,7 @@
             text-align: center;
             opacity: 0;
 
-            -webkit-transition: opacity @search-transition-speed;
-            -moz-transition: opacity @search-transition-speed;
-            -o-transition: opacity @search-transition-speed;
-            transition: opacity @search-transition-speed;
+            .lib-css(transition, opacity @search-transition-speed, 1);
 
             &:before {
                 overflow: visible;
