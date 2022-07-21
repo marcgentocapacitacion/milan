@@ -1,0 +1,203 @@
+.page-footer {
+    background: url('@{baseDir}images/assets/footer-background.png') no-repeat;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    .footer-content-block {
+        .row {
+            .links {
+                hr {
+                    display: none;
+                }
+                float: left;
+                .category-label {
+                    display: none;
+                }
+                .link {
+                    float: left;
+                    box-sizing: border-box;
+                    flex-wrap: nowrap;
+                    width: auto;
+                    margin-right: 50px;
+                    h4 {
+                        text-align: left;
+                        font: normal normal 900 17px/42px Avenir;
+                        letter-spacing: 0px;
+                        color: #FFFFFF;
+                        text-transform: uppercase;
+                        i {
+                            display: none;
+                            float: right;
+                        }
+                    }
+                    ul {
+                        list-style: none;
+                        margin: 0px;
+                        padding: 0px;
+                        li {
+                            margin-bottom: 1px;
+                            a {
+                                text-decoration: none;
+                                text-align: left;
+                                font: normal normal 17px/42px Avenir;
+                                letter-spacing: 0px;
+                                color: #FFFFFF;
+                            }
+                        }
+                    }
+                }
+                .link:last-child{
+                    margin-right: 0px;
+                }
+            }
+            .logo-social-logos {
+                float: right;
+                .logo-footer {
+                    width: 290px;
+                    height: 60px;
+                    background: transparent linear-gradient(90deg, #623093 0%, #1F73BB 100%) 0% 0% no-repeat padding-box;
+                    border-radius: 47px;
+                    opacity: 1;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    img {
+                        width: 161px;
+                        height: 36px;
+                    }
+                }
+                .social-logos {
+                    ul {
+                        list-style: none;
+                        margin: 12% 0px 0px 0px;
+                        padding: 0px;
+                        li {
+                            display: inline;
+                            padding: 8%;
+                            font-size: 44px;
+                            color: #797878;
+                            i.fa-facebook:hover {
+                                color: #385898;
+                                cursor: pointer;
+                            }
+
+                            i.fa-twitter-square:hover {
+                                color: #00acee;
+                                cursor: pointer;
+                            }
+
+                            i.fa-linkedin:hover {
+                                color: #0e76a8;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+                .phone {
+                    text-align: center;
+                    margin-top: 30px;
+                    label {
+                        text-align: center;
+                        font: normal normal 900 28px/26px Avenir;
+                        letter-spacing: 0px;
+                        color: #FFFFFF;
+                    }
+                    p {
+                        text-align: center;
+                        font: normal normal 900 20px/26px Avenir;
+                        letter-spacing: 0px;
+                        color: #FFFFFF;
+                    }
+                }
+                .email {
+                    margin-top: 40px;
+                    p {
+                        text-align: center;
+                        font: normal normal 20px/57px Avenir;
+                        letter-spacing: 0px;
+                        color: #FFFFFF;
+                        opacity: 1;
+                    }
+                }
+            }
+            .copyright-footer {
+                clear: both;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font: normal normal medium 17px/34px Avenir;
+                letter-spacing: 0px;
+                color: #FFFFFF;
+                opacity: 1;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1180px){
+    .page-footer {
+        background: url('@{baseDir}images/assets/footer-background-mobile.png') center no-repeat;
+        background-size: cover;
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+        .footer-content-block {
+            .row {
+                .links {
+                    float: initial;
+                    hr.link {
+                        color: #ffffff;
+                        margin-left: 0px;
+                        margin-right: 0px;
+                        width: 90vw;
+                    }
+                    .link {
+                        display: none;
+                        margin-left: 20px;
+                        float: initial;
+                        h4 {
+                            i.fa-caret-left {
+                                display: block;
+                            }
+                        }
+                        ul {
+                            display: none;
+                            margin-left: 60px;
+                        }
+                    }
+                    .category {
+                        margin-left: 70px;
+                        ul {
+                            margin-left: 70px;
+                        }
+                    }
+                    .link:first-child {
+                        display: block;
+                    }
+                    .active {
+                        display: block;
+                    }
+                    .category-label {
+                        display: block;
+                    }
+                }
+                .logo-social-logos {
+                    float: initial;
+                    .logo-footer {
+                        margin: auto;
+                    }
+                    .social-logos {
+                        ul {
+                            list-style: none;
+                            margin: 12% 0px 0px 10%;
+                        }
+                    }
+                    .email {
+                        margin-top: 10px;
+                    }
+                }
+            }
+        }
+        .logo-social-logos {
+            float: initial;
+        }
+    }
+}

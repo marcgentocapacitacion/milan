@@ -6,6 +6,9 @@
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="css/source/lib/fontawesome/css/all.css"/>
+    </head>
     <body>
         <referenceBlock name="logo">
             <arguments>
@@ -15,5 +18,24 @@
                 <argument name="logo_alt" xsi:type="string">Rutavity</argument>
             </arguments>
         </referenceBlock>
+        <referenceContainer name="footer-container">
+            <referenceContainer name="footer">
+                <block class="Magento\Cms\Block\Block" name="footer-content" before="-">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer-content</argument>
+                    </arguments>
+                </block>
+            </referenceContainer>
+        </referenceContainer>
+        <referenceContainer name="footer">
+            <referenceBlock name="form.subscribe">
+                <block class="Magento\Cms\Block\Block" name="footer-social" after="-">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer-social</argument>
+                    </arguments>
+                </block>
+            </referenceBlock>
+        </referenceContainer>
+        <referenceContainer name="footer_links" remove="true" />
     </body>
 </page>
