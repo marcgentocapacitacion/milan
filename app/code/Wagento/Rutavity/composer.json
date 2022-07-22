@@ -1,0 +1,22 @@
+{
+    "name": "wagento/module-swiper",
+    "description": "Rutavity Theme custom extension by Wagento",
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Rudie Wang",
+            "email": "rudi.wang@wagento.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Wagento\\Rutavity\\": ""
+        }
+    }
+}

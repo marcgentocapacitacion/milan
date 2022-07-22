@@ -8,6 +8,9 @@
 //  Variables
 //  _____________________________________________
 @homepage-location-banner__width: 350px;
+@homepage-product-slider__width: 302px;
+@homepage-product-slider__height: 223px;
+@homepage-slider-bullet__size: 21px;
 
 //
 //  Common
@@ -145,6 +148,184 @@
             &-shadow {
                 position: absolute;
                 top: 80px
+            }
+        }
+    }
+
+    .homepage-products-banner {
+        height: 480px;
+        position: relative;
+
+        [class].swiper-button-prev,
+        [class].swiper-button-next {
+            background: none;
+            width: 70px;
+            height: auto;
+            margin-top: -65px;
+
+            &:before {
+                font-family: 'ruavity-icons';
+                font-size: 70px;
+                color: @color-rutavity-gray;
+            }
+        }
+
+        [class].swiper-button-prev {
+            left: -100px;
+
+            &:before {
+                content: '\e617';
+            }
+        }
+
+        [class].swiper-button-next {
+            right: -100px;
+
+            &:before {
+                content: '\e608';
+            }
+        }
+
+        .swiper-container {
+            .swiper-pagination {
+                .swiper-pagination-bullet {
+                    width: @homepage-slider-bullet__size;
+                    height: @homepage-slider-bullet__size;
+
+                    &-active {
+                        background: @theme__color__primary;
+                    }
+                }
+            }
+
+            .swiper-slide {
+                display: flex;
+                align-items: center;
+                min-height: 450px;
+            }
+        }
+    }
+
+    .homepage-products-slider {
+        background: #E5E8ED;
+        border-radius: 68px;
+        height: 550px;
+        padding: 40px;
+        margin-top: -300px;
+        margin-bottom: 100px;
+
+        h4 {
+            font-size: 52px;
+            font-weight: 900;
+            text-align: center;
+        }
+
+        .product-info {
+            width: 300px;
+            margin: 0 auto;
+            text-align: left;
+            font-size: 24px;
+
+            .product-image {
+                > img {
+                    width: @homepage-product-slider__width;
+                    height: @homepage-product-slider__height;
+                }
+            }
+
+            .product-name,
+            .product-brand,
+            .product-price {
+                display: block;
+            }
+        }
+
+        .swiper-container {
+            padding: 0 40px 70px;
+
+            .swiper-slide {
+                text-align: center;
+            }
+
+            .swiper-button-prev,
+            .swiper-button-next {
+                background: none;
+                width: 70px;
+                height: auto;
+                margin-top: -125px;
+
+                &:before {
+                    font-family: 'ruavity-icons';
+                    font-size: 70px;
+                    color: @color-white;
+                }
+            }
+
+            .swiper-button-prev {
+                left: 0;
+
+                &:before {
+                    content: '\e617';
+                }
+            }
+
+            .swiper-button-next {
+                right: 0;
+
+                &:before {
+                    content: '\e608';
+                }
+            }
+
+            .swiper-pagination {
+                .swiper-pagination-bullet {
+                    width: @homepage-slider-bullet__size;
+                    height: @homepage-slider-bullet__size;
+
+                    &-active {
+                        background: @theme__color__primary;
+                    }
+                }
+            }
+        }
+    }
+
+    .homepage-blog-banner {
+        .post-list-container {
+            > .row {
+                display: flex;
+            }
+
+            .post-item-wraper {
+                border: none;
+
+                &:hover {
+                    border: none;
+                    box-shadow: none;
+                }
+            }
+
+            .post-image img.img-responsive {
+                position: static;
+                border-radius: 50%;
+            }
+
+            .post-link-title {
+                font-size: 28px;
+                font-weight: 900;
+                color: @color-black;
+            }
+
+            .post-short-description {
+                font-size: 20px;
+            }
+
+            .mp-post-info {
+                display: none;
+            }
+
+            .mp-read-more {
+                font-size: 17px;
             }
         }
     }
