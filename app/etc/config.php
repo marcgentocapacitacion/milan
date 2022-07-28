@@ -439,8 +439,11 @@ return [
         'Magento_WishlistGiftCardGraphQl' => 1,
         'Magento_GiftCardGraphQl' => 1,
         'Fastly_Cdn' => 1,
+        'ITM_Main' => 1,
+        'ITM_MagB1' => 1,
         'PayPal_Braintree' => 1,
         'PayPal_BraintreeGraphQl' => 1,
-        'Temando_ShippingRemover' => 1
+        'Temando_ShippingRemover' => 1,
+        'Wagento_ImportData' => 1
     ]
 ];

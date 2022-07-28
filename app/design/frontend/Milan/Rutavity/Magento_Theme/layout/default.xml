@@ -1,0 +1,55 @@
+<!--
+/**
+ * Rutavity theme Magento_Theme default layout
+ * @package Milan_Rutavity
+ * @author Rudie Wang <rudi.wang@wagento.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="css/source/lib/fontawesome/css/all.min.css"/>
+    </head>
+    <body>
+        <!-- Header section modification -->
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_file" xsi:type="string">images/assets/rutavity-ch.png</argument>
+                <argument name="logo_width" xsi:type="number">190</argument>
+                <argument name="logo_height" xsi:type="number">42</argument>
+                <argument name="logo_alt" xsi:type="string">Rutavity</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceContainer name="header.panel">
+            <block class="Magento\Framework\View\Element\Template" name="mini-logos" template="Magento_Theme::html/mini-logos.phtml" before="-">
+                <arguments>
+                    <argument name="logo_file" xsi:type="string">images/assets/logos-ch.png</argument>
+                    <argument name="logo_alt" translate="true" xsi:type="string">Mini logos</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceBlock name="register-link" remove="true"/>
+        <move element="navigation.sections" destination="header-wrapper" after="logo"/>
+        <move element="minicart" destination="header.panel" before="top.links"/>
+        <move element="compare-link-wrapper" destination="header.panel" after="mini-logos"/>
+        <referenceContainer name="footer-container">
+            <referenceContainer name="footer">
+                <block class="Magento\Cms\Block\Block" name="footer-content" before="-">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer-content</argument>
+                    </arguments>
+                </block>
+            </referenceContainer>
+        </referenceContainer>
+        <referenceContainer name="footer">
+            <referenceBlock name="form.subscribe">
+                <block class="Magento\Cms\Block\Block" name="footer-social" after="-">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer-social</argument>
+                    </arguments>
+                </block>
+            </referenceBlock>
+        </referenceContainer>
+        <referenceContainer name="footer_links" remove="true" />
+        <referenceContainer name="copyright" remove="true" />
+    </body>
+</page>

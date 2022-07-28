@@ -1,0 +1,82 @@
+<?php
+/**
+ * Rutavity homepage product slider
+ * @package Wagento_Rutavity
+ * @author Rudie Wang <rudi.wang@wagento.com>
+ */
+
+/**
+ * @var \Magento\Framework\View\Element\Template $block
+ */
+?>
+<div id="homepage-product-slider" class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <div class="swiper-lazy-preloader"></div>
+            <a href="#" class="product-image">
+                <img class="swiper-lazy" data-src="<?= $block->getUrl('media/wysiwyg/products') . 'Prod-dest-1.png' ?>" alt=""/>
+            </a>
+            <div class="product-info">
+                <strong class="product-name">Casco In Mold New Crater</strong>
+                <span class="product-brand">Optimus</span>
+                <span class="product-brand">Precio: $999.999</span>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="swiper-lazy-preloader"></div>
+            <a href="#" class="product-image">
+                <img class="swiper-lazy" data-src="<?= $block->getUrl('media/wysiwyg/products') . 'Prod-dest-2.png' ?>" alt=""/>
+            </a>
+            <div class="product-info">
+                <strong class="product-name">Gafas Para Mtb 6A</strong>
+                <span class="product-brand">Optimus</span>
+                <span class="product-brand">Precio: $999.999</span>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="swiper-lazy-preloader"></div>
+            <a href="#" class="product-image">
+                <img class="swiper-lazy" data-src="<?= $block->getUrl('media/wysiwyg/products') . 'Prod-dest-3.png' ?>" alt=""/>
+            </a>
+            <div class="product-info">
+                <strong class="product-name">Zapatillas Para Mtb 6A</strong>
+                <span class="product-brand">Optimus</span>
+                <span class="product-brand">Precio: $999.999</span>
+            </div>
+        </div>
+    </div>
+    <div id="homepage_products_slider_prev" class="swiper-button-next swiper-button-black"></div>
+    <div id="homepage_products_slider_next" class="swiper-button-prev swiper-button-black"></div>
+    <div id="homepage_products_slider_pagination" class="swiper-pagination"></div>
+</div>
+<script type="text/x-magento-init">
+{
+    "#homepage-product-slider": {
+        "Wagento_Rutavity/js/swiper": {
+            "lazy": true,
+            "slidesPerView": 3,
+            "freeMode": true,
+            "loop": true,
+            "autoplay": false,
+            "navigation": {
+                "prevEl": "#homepage_products_slider_next",
+                "nextEl": "#homepage_products_slider_prev"
+            },
+            "pagination": {
+                "el": "#homepage_products_slider_pagination"
+            },
+            "breakpoints": {
+                "480": {
+                    "slidesPerView": 1
+                },
+                "600": {
+                    "slidesPerView": 1
+                },
+                "768": {
+                    "slidesPerView": 2
+                }
+            }
+        }
+    }
+}
+</script>
