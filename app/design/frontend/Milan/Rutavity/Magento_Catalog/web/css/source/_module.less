@@ -321,6 +321,113 @@
         .block {
             margin-top: 80px;
 
+            &.review-list {
+                margin: 0;
+            }
+
+            &.review-add {
+                margin: 0 0 40px;
+
+                .block-title {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-bottom: 30px;
+                }
+
+                .review {
+                    &-score {
+                        font-size: 40px;
+                        font-weight: 900;
+                    }
+
+                    &-count {
+                        font-size: 15px;
+
+                        &:before {
+                            content: '(';
+                        }
+                        &:after {
+                            content: ')';
+                        }
+                    }
+
+                    &-toggle-btn {
+                        height: 40px;
+                        border: none;
+                        border-radius: 20px;
+                        padding: 0 30px;
+                    }
+                }
+            }
+
+            .rating-summary {
+                display: none;
+
+                &-avg {
+                    display: block;
+                }
+            }
+
+            .review {
+                &-items {
+                    list-style: none;
+                    padding: 0;
+                }
+
+                &-item {
+                    border: 1px solid @color-rutavity-gray03;
+                    padding: 20px;
+                    border-radius: 15px;
+                    margin-bottom: 20px;
+                }
+
+                &-ratings {
+                    float: left;
+                    margin-bottom: 0;
+                    min-width: 200px;
+                    padding-right: 40px;
+                }
+
+                &-author {
+                    display: none;
+                }
+
+                &-date {
+                    font-size: 15px;
+                }
+
+                &-title {
+                    margin: 10px 0;
+                    font-size: 20px;
+                }
+
+                &-content {
+                    font-size: 15px;
+                }
+
+                &-form {
+                    .action.submit.primary {
+                        background: @header-gradient__background-color;
+                        border: none;
+                        color: @color-white;
+                        width: 180px;
+                        height: 40px;
+                        border-radius: 20px;
+
+                        &:hover {
+                            background: @theme__color__primary-alt;
+                            border: none;
+                            color: @color-white;
+                        }
+                    }
+                }
+
+                &-toolbar {
+                    border: none;
+                }
+            }
+
             .title {
                 margin-bottom: 60px;
                 text-align: center;
@@ -792,6 +899,10 @@
                 border: none;
                 background: @color-white;
             }
+
+            .fotorama__active .fotorama__dot {
+                background: @color-rutavity-purple;
+            }
         }
 
         .product-info-main {
@@ -864,6 +975,25 @@
 
         .block {
             margin: 0 -15px;
+
+            &.review-add {
+                .block-title {
+                    flex-direction: column;
+
+                    .review {
+                        &-summary {
+                            text-align: center;
+                        }
+                        &-count {
+                            display: block;
+                        }
+                    }
+                }
+
+                .review-toggle-btn {
+                    margin: 20px 0;
+                }
+            }
 
             .title {
                 text-align: left;

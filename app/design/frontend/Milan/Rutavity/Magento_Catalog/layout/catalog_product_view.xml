@@ -18,6 +18,12 @@
             </container>
         </referenceContainer>
 
+        <referenceBlock name="product.info.product_additional_data.wrapper">
+            <arguments>
+                <argument name="hide_title" xsi:type="boolean">false</argument>
+            </arguments>
+        </referenceBlock>
+
         <move element="product.info.details" destination="product.additional.main" before="-"/>
         <move element="content.aside" destination="product.additional.main" after="-"/>
     </body>
