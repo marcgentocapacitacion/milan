@@ -165,12 +165,9 @@ class Product extends AbstractImport implements ProductInterface
      */
     public function getImagePath(string $path): ?string
     {
-        $imagePath = DIRECTORY_SEPARATOR . 'import';
-        $imagePath .= DIRECTORY_SEPARATOR . 'catalog';
-        $imagePath .= DIRECTORY_SEPARATOR . 'product';
-        $productMediaPath = $this->filesystem->getDirectoryRead(DirectoryList::VAR_DIR);
-        if ($productMediaPath->isExist($imagePath)) {
-            return $productMediaPath->getAbsolutePath($imagePath);
+        $productMediaPath = $this->filesystem->getDirectoryRead(DirectoryList::MEDIA);
+        if ($productMediaPath->isExist('import/' . $path)) {
+            return $path;
         }
 
         return null;
