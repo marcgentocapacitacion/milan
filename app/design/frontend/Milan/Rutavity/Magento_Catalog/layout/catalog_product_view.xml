@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Rutavity theme Magento_Catalog product view layout
+ * @package Milan_Rutavity
+ * @author Rudie Wang <rudi.wang@wagento.com>
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <move element="product.info.stock.sku" destination="product.info.main" after="page.main.title"/>
+        <move element="product.info.overview" destination="product.info.main" after="product.info.review"/>
+
+        <referenceContainer name="page.wrapper">
+            <container name="product.additional.wrapper" htmlTag="div" htmlClass="product additional-wrapper" after="main.content">
+                <container name="product.additional.main" htmlTag="div" htmlClass="page-main">
+                </container>
+            </container>
+        </referenceContainer>
+
+        <move element="product.info.details" destination="product.additional.main" before="-"/>
+        <move element="content.aside" destination="product.additional.main" after="-"/>
+    </body>
+</page>
