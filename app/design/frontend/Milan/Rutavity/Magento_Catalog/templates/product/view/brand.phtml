@@ -1,0 +1,13 @@
+<?php
+/**
+ * Rutavity product brand logo template
+ * @package Milan_Rutavity
+ * @author Rudie Wang <rudi.wang@wagento.com>
+ */
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php $_product = $block->getProduct(); ?>
+<div class="product-brand">
+    <img class="product-brand-logo" src="<?= $block->getViewFileUrl('images/assets/tucana-logo.png') ?>" alt="">
+</div>

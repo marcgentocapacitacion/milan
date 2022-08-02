@@ -8,14 +8,19 @@
 -->
 <page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <move element="product.info.stock.sku" destination="product.info.main" after="page.main.title"/>
-        <move element="product.info.overview" destination="product.info.main" after="product.info.review"/>
-
         <referenceContainer name="page.wrapper">
             <container name="product.additional.wrapper" htmlTag="div" htmlClass="product additional-wrapper" after="main.content">
                 <container name="product.additional.main" htmlTag="div" htmlClass="page-main">
                 </container>
             </container>
+        </referenceContainer>
+
+        <referenceContainer name="product.info.main">
+            <block class="Magento\Catalog\Block\Product\View\Details" name="product.info.brand" template="Magento_Catalog::product/view/brand.phtml" before="-" />
+        </referenceContainer>
+
+        <referenceContainer name="product.info.stock.sku">
+            <block class="Magento\Catalog\Block\Product\View\Details" name="product.info.share" template="Magento_Catalog::product/view/share.phtml" after="-" />
         </referenceContainer>
 
         <referenceBlock name="product.info.product_additional_data.wrapper">
@@ -24,6 +29,9 @@
             </arguments>
         </referenceBlock>
 
+        <move element="product.info.stock.sku" destination="product.info.main" after="page.main.title"/>
+        <move element="product.info.overview" destination="product.info.main" after="product.info.review"/>
+        <move element="product.info.brand" destination="product.info.main" before="-"/>
         <move element="product.info.details" destination="product.additional.main" before="-"/>
         <move element="content.aside" destination="product.additional.main" after="-"/>
     </body>
