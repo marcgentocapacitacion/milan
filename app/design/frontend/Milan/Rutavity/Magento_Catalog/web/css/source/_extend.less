@@ -1,0 +1,80 @@
+//
+//  common
+//  ---------------------------------------------
+& when (@media-common = true) {
+    .page-products {
+        .columns {
+            .column {
+                > .toolbar-products {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    background: @color-background-toolbar 0% 0% no-repeat padding-box;
+                    padding: 15px 25px;
+                    font-size: 14px;
+                    line-height: 35px;
+
+                    & ~ .toolbar-products:not(first-child) {
+                        position: initial;
+                    }
+
+                    .modes {
+                        float: right;
+                        margin-right: 0;
+
+                        .modes-label {
+                            float: left;
+                            width: auto;
+                            height: auto;
+                            clip: auto;
+                            position: initial;
+                            margin-right: 10px;
+                            font-weight: 900;
+                            line-height: 26px;
+                        }
+
+                        .modes-mode {
+                            background: no-repeat;
+                            border: none;
+                            box-shadow: none;
+                            padding: 4px 0;
+
+                            &.mode-grid {
+                                margin-right: 30px;
+                            }
+                        }
+                    }
+
+                    .toolbar-amount {
+                        display: inline-block;
+                        float: none;
+                    }
+
+                    .toolbar-sorter {
+                        float: left;
+                    }
+
+                    .sorter-label {
+                        font-weight: 900;
+                    }
+                }
+
+                > .products {
+                    margin-top: 115px;
+                }
+            }
+
+            .sidebar-main {
+                margin-top: 115px;
+            }
+        }
+    }
+}
+
+//
+//Mobile
+//
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+}

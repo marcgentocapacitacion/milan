@@ -1,0 +1,46 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .breadcrumbs {
+        .lib-breadcrumbs();
+
+        margin-bottom: 37px;
+
+        .item:not(:last-child) {
+            &:after {
+                content: '>>';
+                margin: 0;
+                font: normal normal normal 15px/15px 'Avenir';
+                color: @color-rutavity-blue;
+            }
+        }
+
+        a,
+        strong {
+            font: normal normal normal 15px/10px 'Avenir';
+            text-transform: capitalize;
+            letter-spacing: 0px;
+        }
+
+        strong {
+            color: @color-breadcrumbs-current;
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .breadcrumbs {
+        display: none;
+    }
+}
