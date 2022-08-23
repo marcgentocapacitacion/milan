@@ -1,0 +1,10 @@
+<?php
+/** @var \Magento\Checkout\Block\Cart\Totals $block */
+?>
+<?php if(isset($block->getTotals()['grand_total'])) {?>
+    <div class="grandtotal-container">
+        <table>
+            <?=$block->renderTotal($block->getTotals()['grand_total']);?>
+        </table>
+    </div>
+<?php }?>

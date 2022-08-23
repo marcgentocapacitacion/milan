@@ -1,0 +1,219 @@
+.cart-container {
+    .form-cart {
+        width: 100%;
+        margin-top: 50px;
+        .title-my-cart {
+            width: 100%;
+            background-color: #E6E6E6;
+            padding: 15px;
+            margin-top: 15px;
+            span {
+                font-size: 20px;
+            }
+            span:last-child {
+                float: right;
+            }
+        }
+        .cart {
+            &.table-wrapper {
+                .cart {
+                    tbody {
+                        .item-info {
+                            td {
+                                display: flex;
+                                div {
+                                    display: flex;
+                                    align-items: center;
+                                    > .product-item-details {
+                                        flex-direction: column;
+                                        align-items: baseline;
+                                        > .product-item-name {
+                                            a {
+                                                font-weight: bold;
+                                            }
+                                        }
+                                    }
+                                    &.price {
+                                        span {
+                                            display: initial;
+                                        }
+                                        .price-excluding-tax {
+                                            .price {
+                                                font-weight: 100;
+                                            }
+                                        }
+                                    }
+                                    &.qty > .qty > .qty {
+                                        > label {
+                                            display: flex;
+                                            > div.mage-error {
+                                                order: 3;
+                                                position: relative;
+                                                top: 30px;
+                                                left: -100px;
+                                            }
+                                            > input[type=button] {
+                                                height: 36px;
+                                                margin-top: -7px;
+                                                text-align: center;
+                                                border: 1px solid #bdbdbd;
+                                                background: #ffffff;
+                                                font-weight: bold;
+                                                &.add-qty {
+                                                    border-left: 0px;
+                                                }
+                                                &.del-qty {
+                                                    border-right: 0px;
+                                                }
+                                                &:focus {
+                                                    box-shadow: none;
+                                                    border: 1px solid #bdbdbd;
+                                                    &.add-qty {
+                                                        border-left: 0px;
+                                                    }
+                                                    &.del-qty {
+                                                        border-right: 0px;
+                                                    }
+                                                }
+                                            }
+                                            > .input-text.qty {
+                                                border-right: 0px;
+                                                border-left: 0px;
+                                                &:focus {
+                                                    box-shadow: none;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    &.subtotal {
+                                        span {
+                                            display: initial;
+                                        }
+
+                                        &:before {
+                                            content: attr(data-th);
+                                            padding-bottom: 0px;
+                                            padding-right: 3px;
+                                            font-size: initial;
+                                            font-weight: bold;
+                                        }
+                                    }
+                                    .product-item-photo {
+                                        width: auto;
+                                    }
+                                }
+                                div:nth-col(2) {
+                                    flex: 2;
+                                }
+                            }
+                        }
+                    }
+                    .actions-toolbar {
+                        margin-top: 15px;
+                        > .action-delete {
+                            .lib-icon-font-symbol(
+                                @_icon-font-content: @icon-remove
+                            );
+                            color: #333333;
+                            margin-right: 10px;
+                        }
+                        > .action-delete:before{
+                            color: #333333;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.block_discount {
+    form {
+        .coupon {
+            display: flex;
+            margin-top: 40px;
+            border: 1px solid #000;
+            border-radius: 10px;
+            align-items: center;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            justify-content: center;
+            width: 80%;
+            > div {
+                flex: 2;
+                margin: 20px;
+                .control {
+                    > .input-text {
+                        box-shadow: 0px 1px 10px -2px;
+                        border: 1px solid #000;
+                        font-size: 20px;
+                        font-weight: bold;
+                        color: #2962ff;
+                        text-align: center;
+                    }
+                }
+
+                .actions-field-coupon {
+                    > div {
+                        .cancel {
+                            float: right;
+                            margin-top: 16px;
+                            background: #fff;
+                            border: 0px;
+                            color: #d50000;
+                            font-size: 16px;
+                            font-family: Arial;
+                            margin-right: 10px;
+                        }
+
+                        .edit {
+                            float: left;
+                            margin-top: 16px;
+                            background: #fff;
+                            border: 0px;
+                            color: #000;
+                            font-size: 16px;
+                            font-family: Arial;
+                            margin-left: 10px;
+                        }
+                    }
+                }
+
+                &.grandtotal-container {
+                    table {
+                        background: #e0e0e0;
+                        border-radius: 5px 5px;
+                        height: 60px;
+                        tbody {
+                            tr {
+                                th.mark {
+                                    display: none;
+                                }
+                                td.amount {
+                                    text-align: center;
+                                    vertical-align: middle;
+                                    font-size: 20px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+ul.checkout-methods-items {
+    clear: both;
+    li {
+        list-style: none;
+        button.action.primary {
+            border: 1px solid #000;
+            border-radius: 50px 50px;
+            background: #000;
+        }
+    }
+}
+
+@import "_cart_extend_mobile.less";
+@import "_cart_extend_desktop.less";

@@ -1,0 +1,63 @@
+<?php
+/**
+ * @var \Magento\Framework\View\Element\AbstractBlock $block
+ */
+
+// We should use strlen function because coupon code could be "0", converted to bool will lead to false
+$hasCouponCode = $block->getCouponCode() !== null && strlen($block->getCouponCode()) > 0;
+?>
+<div class="block_discount">
+    <form id="discount-coupon-form"
+          action="<?= $block->escapeUrl($block->getUrl('checkout/cart/couponPost')) ?>"
+          method="post"
+          data-mage-init='{"discountCode":{"couponCodeSelector": "#coupon_code",
+                                               "removeCouponSelector": "#remove-coupon",
+                                               "applyButton": "button.action.apply",
+                                               "cancelButton": "button.action.cancel"},
+                                               "editDiscountCode": {"editButton": "button.action.edit",
+                                               "applyButton": "button.action.apply",
+                                               "textCode": "#coupon_code"
+                                               }}'>
+        <div class="fieldset coupon<?= $hasCouponCode ? ' applied' : '' ?>">
+            <input type="hidden" name="remove" id="remove-coupon" value="0" />
+            <div class="field-coupon">
+                <div class="control">
+                    <input type="text"
+                           class="input-text"
+                           id="coupon_code"
+                           name="coupon_code"
+                           value="<?= $block->escapeHtmlAttr($block->getCouponCode()) ?>"
+                           placeholder="<?= $block->escapeHtmlAttr(__('Discount code')) ?>"
+                        <?php if ($hasCouponCode): ?>
+                            disabled="disabled"
+                        <?php endif; ?>
+                    />
+                </div>
+                <div class="actions-field-coupon">
+                    <div class="primary">
+                        <button <?=!$hasCouponCode ? 'disabled="disabled"' : '';?> type="button" class="action edit primary"
+                                value="<?= $block->escapeHtmlAttr(__('Edit')) ?>">
+                            <span><?= $block->escapeHtml(__('Edit')) ?></span>
+                        </button>
+                        <button <?=!$hasCouponCode ? 'disabled="disabled"' : '';?> type="button" class="action cancel primary"
+                                 value="- <?= $block->escapeHtmlAttr(__('Delete')) ?>">
+                            <span>- <?= $block->escapeHtml(__('Delete')) ?></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <button <?=$hasCouponCode ? 'disabled="disabled"' : '';?> class="action apply primary" type="button"
+                            value="<?= $block->escapeHtmlAttr(__('Apply')) ?>">
+                        <span><?= $block->escapeHtml(__('Apply')) ?></span>
+                    </button>
+                </div>
+            </div>
+            <?=$block->getChildHtml('cart.totals.grandtotal') ?>
+        </div>
+        <?php if (!$hasCouponCode): ?>
+            <?= /* @noEscape */ $block->getChildHtml('captcha') ?>
+        <?php endif; ?>
+    </form>
+</div>

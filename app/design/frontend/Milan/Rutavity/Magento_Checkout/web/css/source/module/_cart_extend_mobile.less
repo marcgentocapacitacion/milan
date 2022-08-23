@@ -1,0 +1,176 @@
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .block_discount {
+        form {
+            .coupon {
+                display: flex;
+                flex-direction: column;
+                margin: auto;
+                > div {
+                    .control {
+                        > .input-text {
+                            width: 70vw;
+                        }
+                    }
+                    &.actions-toolbar {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        flex: 1;
+                        > div > .apply {
+                            border-radius: 25px 25px;
+                            background: #43a047;
+                            border: 0px;
+                            padding: 20px 45px;
+                            width: 55vw;
+                            font-size: 20px;
+                            opacity: initial;
+                        }
+                    }
+                    &.grandtotal-container {
+                        table {
+                            width: 70vw;
+                        }
+                        &:before {
+                            content: 'Total';
+                            font-size: 20px;
+                            font-weight: bold;
+                            align-items: center;
+                            justify-content: center;
+                            display: flex;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .cart-container {
+        margin: 0px 20px 0px 20px;
+        .form-cart {
+            .cart {
+                &.table-wrapper {
+                    .cart {
+                        tbody {
+                            .item-info {
+                                td {
+                                    flex-direction: column;
+                                    div:first-child {
+                                        display: initial;
+                                    }
+
+                                    div {
+                                        margin: auto;
+                                        width: auto;
+                                        &.price {
+                                            &:before {
+                                                content: 'P/U: ';
+                                                padding-bottom: 0px;
+                                                padding-right: 3px;
+                                                font-size: initial;
+                                                font-weight: 100;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .subtotal-container {
+        display: flex;
+        flex-direction: column;
+        margin: 0px 20px 0px 20px;
+        table {
+            width: auto;
+            tbody {
+                tr {
+                    th {
+                        display: none;
+                    }
+                    td {
+                        padding: 0px;
+                        &.amount {
+                            padding: 17px;
+                            border: 2px #000 solid;
+                            font-weight: bold;
+                            margin: auto;
+                            font-size: 22px;
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+        }
+        &:after {
+            content: 'Subtotal';
+            padding-top: 8px;
+            text-align: center;
+            font-size: 18px;
+        }
+    }
+
+    ul.checkout-methods-items {
+        margin: 20px 20px 0px 20px;
+        padding: 0px;
+        li {
+            text-align: center;
+            button.action.primary {
+                width: 80vw;
+                padding: 20px;
+                font-size: 25px;
+            }
+        }
+    }
+
+    .actions-cart {
+        .actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            .action {
+                font-size: 15px;
+                padding: 11px 35px;
+                border: 1px solid #039be5;
+                border-radius: 50px 50px;
+                background: #039be5;
+                font-weight: bold;
+                color: #fff;
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    .discount-container {
+        display: flex;
+        flex-direction: column;
+        margin: 40px 20px 0px 20px;
+        table {
+            width: auto;
+            tbody {
+                tr {
+                    th {
+                        padding: 0px;
+                        display: none;
+                    }
+                    td {
+                        padding: 0px;
+                        .price {
+                            padding: 18px 40px;
+                            border: 2px #000 solid;
+                            font-weight: bold;
+                            margin-left: 35px;
+                            background: #e0e0e0;
+                            &:before {
+                                content: 'Descuento:  ';
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

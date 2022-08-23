@@ -1,0 +1,10 @@
+<?php
+/** @var \Magento\Checkout\Block\Cart\Totals $block */
+?>
+<?php if(isset($block->getTotals()['discount'])) {?>
+    <div class="discount-container">
+        <table>
+            <?=$block->renderTotal($block->getTotals()['discount']);?>
+        </table>
+    </div>
+<?php }?>

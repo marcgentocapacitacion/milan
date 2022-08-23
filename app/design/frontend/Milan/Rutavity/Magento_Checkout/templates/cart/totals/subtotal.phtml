@@ -1,0 +1,10 @@
+<?php
+/** @var \Magento\Checkout\Block\Cart\Totals $block */
+?>
+<?php if(isset($block->getTotals()['subtotal'])) {?>
+    <div class="subtotal-container">
+        <table>
+            <?=$block->renderTotal($block->getTotals()['subtotal']);?>
+        </table>
+    </div>
+<?php }?>

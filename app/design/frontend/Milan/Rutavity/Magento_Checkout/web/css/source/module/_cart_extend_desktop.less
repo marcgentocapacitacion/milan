@@ -1,0 +1,199 @@
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .block_discount {
+        form {
+            .coupon {
+                display: flex;
+                flex-direction: row;
+                float: right;
+                margin-right: 4%;
+                > div {
+                    &.field-coupon {
+                        position: relative;
+                        top: 20px;
+                    }
+                    .actions-field-coupon {
+                        > div {
+                            .cancel {
+                                opacity: 0.65;
+                                transition: opacity 1s;
+
+                                &:hover {
+                                    opacity: initial;
+                                }
+                            }
+
+                            .edit {
+                                opacity: 0.65;
+                                transition: opacity 1s;
+
+                                &:hover {
+                                    opacity: initial;
+                                }
+                            }
+                        }
+                    }
+
+                    &.actions-toolbar {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        flex: 1;
+                        > div > .apply {
+                            border-radius: 25px 25px;
+                            background: #43a047;
+                            border: 0px;
+                            padding: 12px 45px;
+                            opacity: 0.50;
+                            transition: opacity 1s;
+
+                            &:hover {
+                                opacity: initial;
+                            }
+                        }
+                    }
+
+                    &.grandtotal-container {
+                        table {
+                            tbody {
+                                tr {
+                                    td.amount {
+                                        &:before {
+                                            content: 'Total';
+                                            font-size: 20px;
+                                            font-weight: bold;
+                                            margin-right: 15px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .cart-container {
+        .form-cart {
+            .cart {
+                &.table-wrapper {
+                    .cart {
+                        tbody {
+                            .item-info {
+                                td {
+                                    div {
+                                        &.price {
+                                            &:before {
+                                                content: attr(data-th);
+                                                padding-right: 3px;
+                                                font-weight: 100;
+                                            }
+                                        }
+                                        &.subtotal {
+                                            &:before {
+                                                font-weight: bold;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .subtotal-container {
+        display: flex;
+        justify-content: end;
+        padding-right: 4%;
+        table {
+            width: auto;
+            tbody {
+                tr {
+                    th {
+                        padding: 0px;
+                    }
+                    td {
+                        padding: 0px;
+                        .price {
+                            padding: 18px 40px;
+                            border: 2px #000 solid;
+                            font-weight: bold;
+                            margin-left: 35px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .discount-container {
+        display: flex;
+        justify-content: end;
+        padding-right: 4%;
+        margin-top: 50px;
+        table {
+            width: auto;
+            tbody {
+                tr {
+                    th {
+                        padding: 0px;
+                        display: none;
+                    }
+                    td {
+                        padding: 0px;
+                        .price {
+                            padding: 18px 40px;
+                            border: 2px #000 solid;
+                            font-weight: bold;
+                            margin-left: 35px;
+                            background: #e0e0e0;
+                            &:before {
+                                content: 'Descuento:  ';
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    ul.checkout-methods-items {
+        li {
+            text-align: right;
+            margin-right: 4%;
+            button.action.primary {
+                font-size: 20px;
+                padding: 20px 70px;
+                opacity: 0.70;
+                transition: opacity 1s;
+
+                &:hover {
+                    opacity: initial;
+                }
+            }
+        }
+    }
+
+    .actions-cart {
+        .actions {
+            display: flex;
+            align-items: end;
+            justify-content: center;
+            flex-direction: column;
+            margin-right: 4%;
+            .action {
+                font-size: 15px;
+                padding: 11px 35px;
+                border: 1px solid #039be5;
+                border-radius: 50px 50px;
+                background: #039be5;
+                font-weight: bold;
+                color: #fff;
+                margin-right: 5px;
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
