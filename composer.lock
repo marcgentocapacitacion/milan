@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d7d2dafe2423f7a83ccca755a2edc621",
+    "content-hash": "21ae04b688fc4a85f81393dee1abfa6d",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -1566,6 +1566,41 @@
                 "source": "https://github.com/ezimuel/ringphp/tree/1.2.0"
             },
             "time": "2021-11-16T11:51:30+00:00"
+        },
+        {
+            "name": "fasaro/magento2-es_co-language-pack",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fasaro/magento2-es_co-language-pack.git",
+                "reference": "a19499ce9b37d5791b00e5481cdcd45b2ee8f772"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fasaro/magento2-es_co-language-pack/zipball/a19499ce9b37d5791b00e5481cdcd45b2ee8f772",
+                "reference": "a19499ce9b37d5791b00e5481cdcd45b2ee8f772",
+                "shasum": ""
+            },
+            "require": {
+                "magento/framework": "*"
+            },
+            "default-branch": true,
+            "type": "magento2-language",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Spanish (Colombia) language package for Magento 2",
+            "support": {
+                "issues": "https://github.com/fasaro/magento2-es_co-language-pack/issues",
+                "source": "https://github.com/fasaro/magento2-es_co-language-pack/tree/master"
+            },
+            "time": "2021-01-09T22:39:43+00:00"
         },
         {
             "name": "fastly/magento2",
@@ -26822,7 +26857,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "alpha",
-    "stability-flags": [],
+    "stability-flags": {
+        "fasaro/magento2-es_co-language-pack": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],
