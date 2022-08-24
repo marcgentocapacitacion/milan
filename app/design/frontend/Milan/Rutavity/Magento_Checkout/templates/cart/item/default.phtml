@@ -17,7 +17,7 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
     </tr>
     <tr class="item-info">
         <td colspan="5">
-            <div data-th="<?= $block->escapeHtml(__('Item')) ?>" class="col item">
+            <div data-th="<?=$block->escapeHtml(__('Item')) ?>" class="col item">
                 <div>
                     <?php if ($block->hasProductUrl()): ?>
                         <a href="<?= $block->escapeUrl($block->getProductUrl()) ?>"
