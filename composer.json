@@ -26,8 +26,8 @@
     },
     "require": {
         "fasaro/magento2-es_co-language-pack": "dev-master",
-        "magento/magento-cloud-metapackage": "2.4.4",
-        "magento/product-enterprise-edition": "2.4.4",
+        "magento/magento-cloud-metapackage": ">2.4.4 <=2.4.5",
+        "magento/product-enterprise-edition": "2.4.5",
         "mageplaza/magento-2-blog-extension": "^4.1"
     },
     "suggest": {
