@@ -1,0 +1,71 @@
+<div class="block-customer-login">
+    <div class="field note">
+        <span>
+            <!-- ko i18n: 'Login' --><!-- /ko -->
+        </span>
+    </div>
+    <div class="field username">
+        <label class="label" for="username">
+            <span>
+                <!-- ko i18n: 'User' --><!-- /ko -->
+            </span>
+        </label>
+        <div class="control">
+            <input name="username"
+                   id="username" type="email" class="input-text"
+                   data-bind="attr: {title: $t('User'), autocomplete: autocomplete}, value: username"
+                   data-mage-init='{"mage/trim-input":{}}'
+                   data-validate="{required:true, 'validate-email':true}">
+        </div>
+        <div class="field password">
+            <label for="pass" class="label">
+                <span>
+                    <!-- ko i18n: 'Password' --><!-- /ko -->
+                </span>
+            </label>
+            <div class="control">
+                <input name="login[password]" type="password"
+                       id="password"
+                       class="input-text"
+                       id="pass"
+                       data-bind="attr: {title: $t('Password'), autocomplete: autocomplete}, value: password"
+                       data-validate="{required:true}">
+            </div>
+        </div>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button class="action login primary"
+                        click= "login"
+                >
+                <span><!-- ko i18n: 'Sign In' --><!-- /ko --></span>
+                </button>
+            </div>
+            <div class="primary">
+                <button class="action login primary"
+                        click= "login"
+                >
+                    <span><!-- ko i18n: 'Sign Up' --><!-- /ko --></span>
+                </button>
+            </div>
+        </div>
+        <div class="forgot-password">
+            <div class="secondary">
+                <a class="action remind" data-bind="attr: {href: customerForgotPasswordUrl}">
+                    <span><!-- ko i18n: 'Forgot Your Password?' --><!-- /ko --></span>
+                </a>
+            </div>
+        </div>
+        <div class="social-login">
+            <div class="label">
+                <div>
+                    <span><!-- ko i18n: 'Login' --><!-- /ko --></span>
+                    <span><!-- ko i18n: 'With Your Social Network' --><!-- /ko --></span>
+                </div>
+            </div>
+            <div class="icons">
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-instagram"></i>
+            </div>
+        </div>
+    </div>
+</div>

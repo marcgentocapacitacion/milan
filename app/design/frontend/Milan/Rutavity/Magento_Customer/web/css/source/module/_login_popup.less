@@ -1,0 +1,95 @@
+.authorization-link {
+    cursor: pointer;
+}
+
+.modal-popup.popup-authentication {
+    .modal-inner-wrap {
+        border-radius: 12px;
+        .modal-content {
+            .login-form {
+                width: 100%;
+                display: none;
+                .field {
+                    margin-top: 20px;
+                }
+                .note {
+                    text-align: center;
+                    font-size: 25px;
+                    font-weight: bold;
+                }
+
+                .username, .password {
+                    label {
+                        font-weight: bold;
+                    }
+                    .control > input {
+                        border: 1px solid #eceff1;
+                        background: #e0e0e0;
+                        height: 3em;
+                        border-radius: 5px;
+                        font-size: 17px;
+                        font-weight: 400;
+                        &:focus {
+                            box-shadow: none;
+                        }
+                    }
+                }
+
+                .actions-toolbar {
+                    margin-top: 30px;
+                    display: flex;
+                    justify-content: center;
+                    .primary {
+                        .login {
+                            padding: 12px 35px;
+                            border-radius: 30px;
+                            font-size: 15px;
+                            border: 0px;
+                            background-image: linear-gradient( to right, #5e35b1, #1e88e5 );
+                            margin: 0px;
+                            opacity: 0.8;
+                            transition: opacity 1s;
+
+                            &:hover {
+                                opacity: initial;
+                            }
+                        }
+                    }
+                }
+
+                .forgot-password {
+                    margin-top: 20px;
+                    .secondary {
+                        text-align: center;
+                    }
+                }
+
+                .social-login {
+                    margin-top: 40px;
+                    .icons {
+                        font-size: 40px;
+                        margin-top: 25px;
+                        text-align: center;
+                        .fa-facebook {
+                            color: @color-rutavity-facebook;
+                            margin-right: 20px;
+
+                            &:hover {
+                                cursor: pointer;
+                            }
+                        }
+                        .fa-instagram {
+                            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent;
+
+                            &:hover {
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

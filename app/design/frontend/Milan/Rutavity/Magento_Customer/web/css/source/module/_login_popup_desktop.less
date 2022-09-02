@@ -1,0 +1,31 @@
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .modal-popup.popup-authentication {
+        top: 20%;
+        .modal-inner-wrap {
+            width: 25%;
+            min-width: 500px;
+            .modal-content {
+                .login-form {
+                    .social-login {
+                        .label {
+                            text-align: center;
+                            div {
+                                background: #1e88e5;
+                                opacity: 0.5;
+                                padding: 10px 30px;
+                                border-radius: 30px;
+                                margin-right: 60px;
+                                margin-left: 60px;
+                                span {
+                                    color: #fff;
+                                    font-size: 15px;
+                                    font-weight: bold;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,22 @@
+<?php
+/** @var \Magento\Customer\Block\Account\AuthenticationPopup $block */
+?>
+<div id="login-form" class="login-form" data-bind="scope:'authenticationAjax'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+<script type="text/x-magento-init">
+    {
+        "#login-form": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "authenticationAjax": {
+                        "component": "Magento_Customer/js/authentication-ajax",
+                        "form": "#login-form",
+                        "elementClick": "#do-login",
+                        "config": <?=$block->getSerializedConfig()?>
+                    }
+                }
+            }
+        }
+    }
+</script>
