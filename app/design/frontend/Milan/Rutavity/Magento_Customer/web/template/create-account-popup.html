@@ -1,0 +1,112 @@
+<form   class="form create account form-create-account form-create-account-popup"
+        id="form-validate"
+        enctype="multipart/form-data"
+        data-bind="attr: {action: urlPost}"
+        data-mage-init='{"Magento_Customer/js/block-submit-on-send": {"formId": "form-validate"},"validation": {}}'
+        method="POST"
+        novalidate="novalidate"
+        >
+    <div class="field note">
+        <span>
+            <!-- ko i18n: 'Creat your account' --><!-- /ko -->
+        </span>
+    </div>
+    <div class="username">
+        <label class="label" for="email">
+            <span>
+                <!-- ko i18n: 'Email' --><!-- /ko -->
+            </span>
+        </label>
+        <div class="control">
+            <input name="email"
+                   id="email" type="email" class="input-text"
+                   data-bind="attr: {title: $t('Email')}"
+                   data-mage-init='{"mage/trim-input":{}}'
+                   data-validate="{required:true, 'validate-email':true}">
+        </div>
+    </div>
+    <div class="name">
+        <div>
+            <label class="label" for="firstname">
+                <span>
+                    <!-- ko i18n: 'Name' --><!-- /ko -->
+                </span>
+            </label>
+            <div class="control">
+                <input name="firstname"
+                       id="firstname" type="text" class="input-text"
+                       data-bind="attr: {title: $t('Name')}"
+                       class="input-text"
+                       data-mage-init='{"mage/trim-input":{}}'
+                       data-validate="{required:true}">
+            </div>
+        </div>
+        <div>
+            <label class="label" for="lastname">
+                <span>
+                    <!-- ko i18n: 'Last Name' --><!-- /ko -->
+                </span>
+            </label>
+            <div class="control">
+                <input name="lastname"
+                       id="lastname" type="text" class="input-text"
+                       data-bind="attr: {title: $t('Nickname')}"
+                       data-mage-init='{"mage/trim-input":{}}'
+                       data-validate="{required:true}">
+            </div>
+        </div>
+    </div>
+    <div class="field password required" data-mage-init='{"Magento_Customer/js/password-strength-indicator": {"formSelector": "form.form-create-account"}}'>
+        <label class="label" for="password">
+            <span>
+                <span>
+                    <!-- ko i18n: 'Password' --><!-- /ko -->
+                </span>
+            </span>
+        </label>
+        <div class="control">
+            <input name="password"
+                   id="password" type="password" class="input-text"
+                   data-bind="attr: {title: $t('Password'),
+                        'data-password-min-length': minimumPasswordLength,
+                        'data-password-min-character-sets': requiredCharacterClassesNumber
+                   }, value: password"
+                   data-validate='{required:true,"validate-customer-password":true}'
+                   autocomplete="off">
+            <div id="password-strength-meter-container" data-role="password-strength-meter" aria-live="polite">
+                <div id="password-strength-meter" class="password-strength-meter">
+                    <!-- ko i18n: 'Password Strength' --><!-- /ko -->:
+                    <span id="password-strength-meter-label" data-role="password-strength-meter-label">
+                        <!-- ko i18n: 'No Password' --><!-- /ko -->
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="field password-confirmation confirmation required">
+        <label class="label" for="password_confirmation">
+            <span>
+                <span>
+                    <!-- ko i18n: 'Confirm Password' --><!-- /ko -->
+                </span>
+            </span>
+        </label>
+        <div class="control">
+            <input name="password_confirmation"
+                   id="password_confirmation"
+                   type="password"
+                   data-bind="attr: {title: $t('Confirm Password')}, value: passwordConfirmation"
+                   class="input-text"
+                   data-validate='{required:true, equalTo:"#password"}'
+                   autocomplete="off">
+        </div>
+    </div>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button class="action register primary"
+                    type="submit">
+                <span data-bind="text: $t('Register')"></span>
+            </button>
+        </div>
+    </div>
+</form>

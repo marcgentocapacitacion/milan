@@ -1,0 +1,72 @@
+.create-accout-form {
+    display: none;
+}
+
+.popup-create-account {
+    .modal-inner-wrap {
+        border-radius: 12px;
+        .modal-content {
+            .create-accout-form {
+                .form-create-account-popup {
+                    > div {
+                        margin-bottom: 15px;
+                    }
+                    .note {
+                        text-align: center;
+                        font-size: 25px;
+                        font-weight: bold;
+                    }
+                    .name {
+                        display: flex;
+                        div {
+                            flex: 2;
+                            &:first-child {
+                                margin-right: 15px;
+                            }
+                        }
+                    }
+                    .username, .name > div, .password, .password-confirmation {
+                        label {
+                            font-weight: bold;
+                        }
+                        .control > input {
+                            border: 1px solid #eceff1;
+                            background: #e0e0e0;
+                            height: 3em;
+                            border-radius: 5px;
+                            font-size: 17px;
+                            font-weight: 400;
+                            &:focus {
+                                box-shadow: none;
+                            }
+                        }
+                    }
+
+                    .actions-toolbar {
+                        margin-top: 30px;
+                        display: flex;
+                        justify-content: center;
+                        .primary {
+                            .register {
+                                padding: 12px 35px;
+                                border-radius: 30px;
+                                font-size: 15px;
+                                border: 0px;
+                                background-image: linear-gradient( to right, #5e35b1, #1e88e5 );
+                                margin: 0px;
+                                opacity: 0.8;
+                                transition: opacity 1s;
+
+                                &:hover {
+                                    opacity: initial;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@import "_create_account_popup_desktop";

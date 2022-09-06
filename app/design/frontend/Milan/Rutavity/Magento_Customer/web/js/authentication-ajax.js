@@ -7,8 +7,9 @@ define([
     'Magento_Customer/js/model/authentication-popup',
     'Magento_Customer/js/action/login',
     'Magento_Ui/js/modal/alert',
-    'mage/translate'
-], function ($, ko, Component, messageContainer, authenticationPopup, loginAction, alert, $t) {
+    'mage/translate',
+    'Magento_Customer/js/create-account-popup'
+], function ($, ko, Component, messageContainer, authenticationPopup, loginAction, alert, $t, createAccountAjax) {
     'use strict';
 
     return Component.extend({
@@ -54,7 +55,6 @@ define([
          * Login with ajax
          */
         login: function () {
-            console.log()
             var loginData = {},
                 login
             ;
@@ -64,6 +64,15 @@ define([
             this.isLoading(true);
             login = loginAction(loginData, window.location.href, '*', messageContainer);
             this.prepareMessage(login);
+        },
+
+        /**
+         * Open popup Create account
+         */
+        register: function () {
+            createAccountAjax({
+                "form": "#create-accout-form"
+            }).showModal();
         },
 
         /**

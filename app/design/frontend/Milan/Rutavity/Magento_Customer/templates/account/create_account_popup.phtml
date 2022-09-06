@@ -1,0 +1,24 @@
+<?php
+/** @var \Magento\Customer\Block\Form\Register $block */
+/** @var \Magento\Framework\Escaper $escaper */
+?>
+<div id="create-accout-form" class="create-accout-form" data-bind="scope: 'createAccountPopup'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+<script type="text/x-magento-init">
+    {
+        "#create-accout-form": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "createAccountPopup": {
+                        "component": "Magento_Customer/js/create-account-popup",
+                        "form": "#create-accout-form",
+                        "urlPost": "<?= $escaper->escapeUrl($block->getPostActionUrl());?>",
+                        "minimumPasswordLength": "<?=$escaper->escapeHtmlAttr($block->getMinimumPasswordLength()) ?>",
+                        "requiredCharacterClassesNumber": "<?= $escaper->escapeHtmlAttr($block->getRequiredCharacterClassesNumber()) ?>"
+                    }
+                }
+            }
+        }
+    }
+</script>
