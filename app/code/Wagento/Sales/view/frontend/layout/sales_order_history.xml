@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account"/>
+    <body>
+        <referenceBlock name="page.main.title" remove="true"/>
+        <referenceContainer name="content">
+            <block name="order.title" template="Wagento_Sales::order/title_filter.phtml" before="-"/>
+            <block class="Wagento\Sales\Block\Order\History" name="sales.order.history" template="Wagento_Sales::order/history.phtml" cacheable="false">
+                <block class="Wagento\Sales\Block\Order\History\Orders"
+                       template="Wagento_Sales::order/history/orders.phtml"
+                       name="sales.order.history.orders"/>
+                <block class="Wagento\Sales\Block\Order\History\CancelledOrders"
+                       template="Wagento_Sales::order/history/cancelled_orders.phtml"
+                       name="sales.order.history.cancelled.orders"/>
+                <block class="Wagento\Sales\Block\Order\History\ReorderProducts"
+                       template="Wagento_Sales::order/history/reorder_products.phtml"
+                       name="sales.order.history.reorders.products"/>
+                <container name="sales.order.history.info" as="info" label="Order History Info"/>
+                <container name="sales.order.history.extra.column.header" as="extra.column.header" label="Order History Extra Column Header"/>
+                <block class="Magento\Sales\Block\Order\History\Container"
+                       name="sales.order.history.extra.container" as="extra.container">
+                    <block class="Magento\Framework\View\Element\Template"
+                           name="sales.order.history.extra.container.data" as="extra.container.data"/>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

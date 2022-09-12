@@ -1,0 +1,37 @@
+<?php
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+?>
+<?php /** @var $block \Magento\Sales\Block\Order\Info */ ?>
+<?php $_order = $block->getOrder() ?>
+<div class="order-details-info">
+    <div class="block-title">
+        <strong><?= $block->escapeHtml(__('Order Information')) ?></strong>
+    </div>
+    <div class="block-content">
+        <div class="box box-order-payment-shippingaddress">
+            <div class="payment">
+                <strong class="box-title">
+                    <span><?= $block->escapeHtml(__('Payment Method')) ?></span>
+                </strong>
+                <div class="box-content">
+                    <?= $block->getPaymentInfoHtml() ?>
+                </div>
+            </div>
+            <div class="shippingaddress">
+                <div class="box box-order-shipping-address">
+                    <strong class="box-title"><span><?= $block->escapeHtml(__('Shipping Address')) ?></span></strong>
+                    <div class="box-content">
+                        <address><?= /* @noEscape */ $block->getFormattedAddress($_order->getShippingAddress()) ?></address>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="totals">
+            <table>
+                <?=$this->getChildHtml('order_totals');?>
+            </table>
+        </div>
+    </div>
+</div>

@@ -450,9 +450,9 @@ return [
         'PayPal_Braintree' => 1,
         'PayPal_BraintreeGraphQl' => 1,
         'Temando_ShippingRemover' => 1,
-        'Wagento_Customer' => 1,
         'Wagento_ImportData' => 1,
         'Wagento_Rutavity' => 1,
+        'Wagento_Sales' => 1,
         'Wagento_SelectCustom' => 1
     ]
 ];

@@ -1,0 +1,33 @@
+<?php
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+/** @var \Magento\Sales\Block\Order\Items $block */
+?>
+<div class="order-items">
+    <div class="title">
+        <span><?=__('Order Details');?>:</span>
+        <span><?=$block->formatDate($block->getOrder()->getCreatedAt(), \IntlDateFormatter::LONG);?></span>
+    </div>
+    <div class="content-data">
+        <div class="customer">
+            <span><?=__('Recipient');?>:</span>
+            <span><?=$block->escapeHtml($block->getOrder()->getCustomerName());?></span>
+        </div>
+        <table class="item">
+            <thead>
+                <tr>
+                    <th><?=__('Order Articles');?></th>
+                    <th><?=__('Price');?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $items = $block->getItems(); ?>
+                <?php foreach ($items as $item) :?>
+                    <?php if ($item->getParentItem()) {continue;}?>
+                    <?= $block->getItemHtml($item);?>
+                <?php endforeach;?>
+            </tbody>
+        </table>
+    </div>
+</div>

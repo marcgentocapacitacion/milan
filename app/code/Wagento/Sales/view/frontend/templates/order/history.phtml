@@ -1,0 +1,48 @@
+<?php
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+/** @var \Wagento\Sales\Block\Order\History $block */
+
+use Wagento\Sales\Block\Order\History;
+
+?>
+<?= $block->getChildHtml('info') ?>
+
+<div class="table-wrapper orders-history">
+    <div class="tabs">
+        <span class="<?=$block->isOrder() ? 'active' : '';?>">
+            <a href="<?=$block->getUrl('sales/order/history/', ['history_page' => History::HISTORY_PAGE_ORDER]);?>">
+                <?=__('Orders');?>
+            </a>
+        </span>
+        <span class="<?=$block->isReorderProducts() ? 'active' : '';?>">
+            <a href="<?=$block->getUrl('sales/order/history/', ['history_page' => History::HISTORY_PAGE_REORDER_PRODUCTS]);?>">
+                <?=__('Order again');?>
+            </a>
+        </span>
+        <span class="<?=$block->isCancelledOrder() ? 'active' : '';?>">
+            <a href="<?=$block->getUrl('sales/order/history/', ['history_page' => History::HISTORY_PAGE_CANCELLED_ORDER]);?>">
+                <?=__('Cancelled Orders');?>
+            </a>
+        </span>
+    </div>
+
+    <?php if ($block->isOrder()):?>
+        <div class="orders" id="orders">
+            <?= $block->getChildHtml('sales.order.history.orders') ?>
+        </div>
+    <?php endif;?>
+
+    <?php if ($block->isReorderProducts()):?>
+        <div class="reorder" id="reorder">
+            <?= $block->getChildHtml('sales.order.history.reorders.products') ?>
+        </div>
+    <?php endif;?>
+
+    <?php if ($block->isCancelledOrder()):?>
+        <div class="cancelled_orders" id="cancelled_orders">
+            <?= $block->getChildHtml('sales.order.history.cancelled.orders') ?>
+        </div>
+    <?php endif;?>
+</div>
