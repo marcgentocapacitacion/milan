@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Rutavity theme Magento_Checkout onepage checkout layout
+ * @package Milan_Rutavity
+ * @author Rudie Wang <rudi.wang@wagento.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="checkout.root">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="checkout" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <!-- Checkout header title section -->
+                                <item name="check-header-title" xsi:type="array">
+                                    <item name="component" xsi:type="string">Magento_Checkout/js/view/checkout-header-title</item>
+                                    <item name="displayArea" xsi:type="string">authentication</item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>
