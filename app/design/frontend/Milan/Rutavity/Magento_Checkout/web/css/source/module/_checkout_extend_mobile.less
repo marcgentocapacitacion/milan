@@ -15,7 +15,27 @@
 }
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    #checkout {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #opc-sidebar {
+        -ms-flex-order: 1;
+        -webkit-order: 1;
+        order: 1;
+    }
+
+    .opc-estimated-wrapper {
+        display: none;
+    }
+
     .opc-wrapper {
+        -ms-flex-order: 2;
+        -webkit-order: 2;
+        order: 2;
+
         #shipping-new-address-form {
             > .field {
                 flex: 100%;

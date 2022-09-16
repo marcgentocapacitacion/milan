@@ -20,8 +20,21 @@
         }
     }
 
-    .opc-sidebar {
+    #opc-sidebar {
         margin: 56px 0 20px;
+        width: 33.33333333%;
+        float: right;
+        -ms-flex-order: 2;
+        -webkit-order: 2;
+        order: 2;
+    }
+
+    .table-checkout-shipping-method {
+        tbody {
+            tr {
+                padding-right: 50px;
+            }
+        }
     }
 
     .checkout-payment-method {
@@ -34,6 +47,15 @@
         .billing-address-same-as-shipping-block {
             font-size: 22px;
             font-weight: bold;
+
+            label {
+                height: 50px;
+                line-height: 50px;
+            }
+
+            .action-toolbar {
+                float: right;
+            }
         }
 
         .field-select-billing,
@@ -50,5 +72,10 @@
                 }
             }
         }
+    }
+
+
+    .actions-toolbar-trigger {
+        text-align: right;
     }
 }
