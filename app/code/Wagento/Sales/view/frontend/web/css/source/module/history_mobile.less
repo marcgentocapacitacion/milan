@@ -1,0 +1,74 @@
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .sidebar.sidebar-main {
+        .block.block-collapsible-nav {
+            top: 0;
+        }
+    }
+
+    .table-wrapper.title-filter {
+        border-bottom: 0px;
+        .title-my-orders {
+            width: 100%;
+            background-color: rgba(224, 224, 224, 0.2);
+            padding: 20px;
+            margin-top: 15px;
+            span {
+                font-size: 20px;
+                margin-left: 5vw;
+            }
+        }
+    }
+
+    .page-main {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+
+    .page-footer {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .table-wrapper.orders-history {
+        .tabs {
+            flex-direction: column;
+            width: 100vw;
+            margin: 0px;
+            span {
+                width: 90vw;
+                border-bottom: 1px solid #000;
+                padding: 20px;
+                &.active {
+                    > a {
+                        margin-left: 5vw;
+                    }
+                    border-bottom: 0px;
+                    background-color: rgba(224, 224, 224, 0.8);
+                    width: 100vw;
+                }
+            }
+        }
+        .cancelled_orders {
+            margin-top: 30px;
+        }
+        .orders, .cancelled_orders {
+            padding-right: 15px;
+            padding-left: 15px;
+            .content-data {
+                .row {
+                    .order_items {
+                        .row {
+                            .data {
+                                overflow: hidden;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .reorder {
+            margin-top: 30px;
+        }
+    }
+}

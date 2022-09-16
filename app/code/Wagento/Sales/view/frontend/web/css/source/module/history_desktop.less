@@ -1,0 +1,27 @@
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .table-wrapper.title-filter {
+        border-bottom: 0px;
+        .title-my-orders {
+            width: 100%;
+            background-color: rgba(224, 224, 224, 0.2);
+            padding: 10px;
+            margin-top: 15px;
+            span {
+                font-size: 20px;
+            }
+        }
+    }
+
+    .table-wrapper.orders-history {
+        .tabs {
+            margin: 20px;
+            border-bottom: 1px solid #000;
+            span {
+                padding: 20px 40px 0px 40px;
+                &.active {
+                    border-bottom: 3px solid;
+                }
+            }
+        }
+    }
+}

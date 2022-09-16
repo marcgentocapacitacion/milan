@@ -30,7 +30,8 @@
                         <button type="submit"
                                 title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
                                 class="action tocart primary">
-                            <span><?= $escaper->escapeHtml(__('Add to Cart')) ?></span>
+                            <span><?= $escaper->escapeHtml(__('Add')) ?></span>
+                            <img src="<?=$block->getViewFileUrl('images/assets/cart-green.svg');?>">
                     </form>
                 </div>
             </div>

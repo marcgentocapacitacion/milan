@@ -11,19 +11,6 @@
     }
 }
 
-.table-wrapper.title-filter {
-    border-bottom: 0px;
-    .title-my-orders {
-        width: 100%;
-        background-color: rgba(236, 239, 241, 0.6);
-        padding: 10px;
-        margin-top: 15px;
-        span {
-            font-size: 20px;
-        }
-    }
-}
-
 .items.order-links {
     display: none;
 }
@@ -34,15 +21,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 20px;
-        border-bottom: 1px solid #000;
         span {
             font-size: 22px;
             font-weight: bold;
-            padding: 20px 40px 0px 40px;
-            &.active {
-                border-bottom: 3px solid;
-            }
 
             > a:hover {
                 text-decoration: none;
@@ -167,17 +148,30 @@
                 .reorder {
                     margin: auto 0px 15px 0px;
                     form > .tocart.primary {
+                        display: flex;
+                        align-items: center;
                         padding: 12px 35px;
                         border-radius: 30px;
-                        font-size: 15px;
+                        font-size: 20px;
                         border: 0px;
                         background-image: linear-gradient( to right, #5e35b1, #1e88e5 );
                         margin: 0px 10px 0px 0px;
-                        opacity: 0.8;
-                        transition: opacity 1s;
+                        opacity: 1;
+                        transition: opacity 1s ease-in-out;
+                        span {
+                            margin-right: 10px;
+                        }
+
+                        @keyframes change-color {
+                            100%   {opacity: 1}
+                            0% {opacity: 0}
+                        }
 
                         &:hover {
-                            opacity: initial;
+                            transition: opacity 1s ease-in-out;
+                            animation-name: change-color;
+                            animation-duration: 2s;
+                            background-image: linear-gradient( to right, #000000, #000000 );
                         }
                     }
                 }
