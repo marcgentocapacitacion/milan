@@ -1,0 +1,63 @@
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .checkout-success {
+        border-radius: 16px;
+        padding: 40px 20px;
+        margin: 40px 0;
+
+        &-title {
+            font-size: 33px;
+        }
+    }
+
+    .success-invoice-form {
+        padding: 0;
+
+        .fieldset {
+            padding: 20px 0;
+        }
+    }
+
+    .success-order-items {
+        .items {
+            .item {
+                tr {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                }
+
+                th {
+                    padding: 10px 20px;
+                    text-align: left;
+                }
+
+                td {
+                    padding: 20px;
+                    text-align: left;
+                }
+
+                tfoot td {
+                    background: @color-white;
+                }
+            }
+        }
+        .total {
+            tr {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            &-label {
+                text-align: left;
+                font-size: 20px;
+                padding: 10px 20px 0;
+            }
+            &-value {
+                text-align: left;
+                font-size: 24px;
+                padding: 0 20px 10px;
+            }
+        }
+    }
+}
