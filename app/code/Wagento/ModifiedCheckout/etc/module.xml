@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Rutavity checkout customization
+ * @package Wagento_ModifiedCheckout
+ * @author Rudie Wang <rudi.wang@wagento.com>
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Wagento_ModifiedCheckout" setup_version="2.0.0">
+        <sequence>
+            <module name="Magento_Checkout"/>
+        </sequence>
+    </module>
+</config>

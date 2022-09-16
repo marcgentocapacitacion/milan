@@ -57,9 +57,18 @@
     }
 
     .step-content {
-        padding: 25px;
-        border-radius: 16px;
-        border: 2px solid @color-rutavity-gray-border;
+        &#checkout-step-shipping,
+        #checkout-shipping-method-load,
+        .checkout-billing-address,
+        .payment-group-content {
+            padding: 25px;
+            border-radius: 16px;
+            border: 2px solid @color-rutavity-gray-border;
+        }
+
+        .checkout-billing-address {
+            border: 2px solid @color-blue-title;
+        }
     }
 }
 
@@ -141,6 +150,203 @@
                 padding-left: 12px;
             }
         }
+    }
+
+    .table-totals-wrapper {
+        padding: 0 30px;
+        margin-bottom: 30px;
+
+        .table-totals {
+            border-top: solid 2px @color-blue-title;
+            border-bottom: solid 2px @color-blue-title;
+
+            tbody,
+            tfoot {
+                .mark {
+                    padding: 30px 20px 0 20px;
+                    font-size: 16px;
+                    font-weight: bold;
+                }
+                .amount {
+                    padding: 30px 20px 0 20px;
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+            }
+
+            .grand {
+                .mark {
+                    border: none;
+                    padding: 25px 20px;
+                }
+                .amount {
+                    border: none;
+                    font-size: 24px;
+                    padding: 20px;
+                }
+            }
+        }
+    }
+}
+
+.opc-block-shipping-information {
+    margin-top: 60px;
+    padding: 0;
+
+    .shipping-information-title {
+        border-bottom: solid 2px @color-blue-title;
+        font-size: 23px;
+        font-weight: 900;
+    }
+
+    .shipping-information-content {
+        font-size: 17px;
+        line-height: 30px;
+    }
+
+    .ship-to,
+    .ship-via {
+        margin: 0 0 40px;
+    }
+}
+
+.checkout-shipping-method {
+    .actions-toolbar .action.primary.button {
+        width: 360px;
+        height: 70px;
+        background: @color-black;
+        font-size: 24px;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin: 30px 0;
+        border-radius: 36px;
+    }
+}
+
+.table-checkout-shipping-method {
+    width: 100%;
+    font-size: 20px;
+
+    tbody {
+        display: flex;
+
+        tr {
+            padding-right: 50px;
+
+            > td {
+                display: none;
+
+                &.col-method:first-child,
+                &.col-carrier {
+                    display: table-cell;
+                    border: none;
+                }
+            }
+        }
+    }
+}
+
+.checkout-payment-method {
+    .checkout-billing-address {
+        border: solid 2px @color-blue-title;
+
+        input[type="checkbox"] {
+            display: none;
+        }
+    }
+
+    .billing-address-same-as-shipping-block {
+        label {
+            height: 50px;
+            line-height: 50px;
+        }
+
+        .action-toolbar {
+            float: right;
+
+            .is-same-action {
+                background: @color-rutavity-gray-input;
+                color: @color-blue-title;
+                border-radius: 7px;
+                border: none;
+                width: 80px;
+                height: 50px;
+                font-size: 18px;
+                cursor: pointer;
+                display: inline-block;
+                text-align: center;
+                line-height: 50px;
+
+                &._active {
+                    background: @color-blue-title;
+                    color: @color-rutavity-gray-input;
+                }
+            }
+        }
+    }
+}
+
+.opc-payment {
+    .payment-method {
+        min-height: 70px;
+        background: #f2f5fa;
+        color: #908F8F;
+        border-radius: 7px;
+        padding: 5px 30px;
+        margin-bottom: 20px;
+
+        &._active {
+            background: @color-blue-title;
+            color: @color-white;
+
+            .payment-method-title {
+                font-weight: bold;
+            }
+        }
+
+        &-title {
+            border: none !important;
+            font-size: 15px;
+            padding: 0;
+
+            input[type="radio"] {
+                display: none;
+            }
+
+            label {
+                display: block;
+                width: 100%;
+                padding: 20px 0;
+                cursor: pointer;
+            }
+        }
+
+        &-content {
+            padding: 0;
+
+            p {
+                margin: 0;
+            }
+
+            .action.primary.checkout {
+                display: none;
+            }
+        }
+    }
+}
+
+.actions-toolbar-trigger {
+    text-align: right;
+
+    .button.action.primary {
+        width: 360px;
+        height: 70px;
+        background: @color-black;
+        font-size: 24px;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin: 30px 0;
+        border-radius: 36px;
     }
 }
 

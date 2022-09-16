@@ -4,6 +4,12 @@
         .form-shipping-address,
         .methods-shipping {
             background: @color-white;
+            border: none;
+        }
+
+        .methods-shipping {
+            margin-top: 0;
+            padding-top: 0;
         }
     }
 }
@@ -16,5 +22,51 @@
                 padding-right: 0;
             }
         }
+
+        .step-title {
+            margin-bottom: 15px;
+        }
+    }
+
+    .table-checkout-shipping-method {
+        tbody {
+            tr {
+                padding-right: 0;
+                display: flex;
+                flex-wrap: wrap-reverse;
+                justify-content: center;
+
+                > td {
+                    padding: 0;
+                }
+            }
+        }
+    }
+
+    .checkout-payment-method {
+        .payment-methods {
+            margin: 40px 0 0;
+        }
+
+        .billing-address-same-as-shipping-block {
+            label {
+                display: block;
+                font-size: 20px;
+                font-weight: bold;
+                line-height: 30px;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .action-toolbar {
+                float: none;
+                display: flex;
+                justify-content: space-evenly;
+            }
+        }
+    }
+
+    .actions-toolbar-trigger {
+        text-align: center;
     }
 }
