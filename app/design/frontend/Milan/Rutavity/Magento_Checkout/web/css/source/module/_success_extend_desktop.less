@@ -1,0 +1,45 @@
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .checkout-success {
+        margin: 80px auto;
+        border-radius: 68px;
+        padding: 70px;
+
+        &-title {
+            font-size: 50px;
+        }
+    }
+
+    .success-invoice-form {
+        padding: 0 40px;
+
+        .fieldset {
+            padding: 20px 40px;
+        }
+    }
+
+    .success-order-items {
+        .items {
+            table.item {
+                th {
+                    padding: 5px 40px;
+                    text-align: right;
+                }
+                td {
+                    padding: 5px 40px;
+                    text-align: right;
+                }
+            }
+        }
+
+        .total {
+            &-label {
+                padding: 0 20px;
+                text-align: right;
+            }
+            &-value {
+                padding: 0 40px;
+                text-align: right;
+            }
+        }
+    }
+}

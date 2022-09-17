@@ -1,0 +1,52 @@
+<?php
+/**
+ * Rutavity checkout success page customization
+ * @package Milan_Rutavity
+ * @author Rudie Wang <rudi.wang@wagento.com>
+ */
+
+?>
+<?php /** @var $block \Magento\Checkout\Block\Onepage\Success */ ?>
+<div class="checkout-success">
+    <h1 class="checkout-success-title"><?= $block->escapeHtml(__('Thank you for your purchase!')) ?></h1>
+    <?php if ($block->getOrderId()) :?>
+        <?php if ($block->getCanViewOrder()) :?>
+            <p class="order-number"><?= $block->escapeHtml(__('Your order number is: %1.', sprintf('<a href="%s" class="order-number"><strong>%s</strong></a>', $block->escapeUrl($block->getViewOrderUrl()), $block->getOrderId())), ['a', 'strong']) ?></p>
+        <?php  else :?>
+            <p class="order-number"><?= $block->escapeHtml(__('Your order # is: <span>%1</span>.', $block->getOrderId()), ['span']) ?></p>
+        <?php endif;?>
+        <p class="order-date"><?= $block->escapeHtml(__('Created on <span>%1</span>', $block->getOrderDate()), ['span']) ?></p>
+
+        <div class="order-details">
+            <div class="information billing-information">
+                <p class="information-title"><?= $block->escapeHtml(__('Billing Information')) ?></p>
+                <div class="information-content">
+                    <span class="information-name"><?= $block->getBillingName() ?></span>
+                    <span class="information-street"><?= $block->getBillingStreet() ?></span>
+                    <span class="information-street"><?= $block->getBillingCityCountry() ?></span>
+                    <span class="information-phone"><?= $block->getBillingPhone() ?></span>
+                </div>
+            </div>
+
+            <div class="information shipping-information">
+                <p class="information-title"><?= $block->escapeHtml(__('Shipping Information')) ?></p>
+                <div class="information-content">
+                    <span class="information-name"><?= $block->getShippingName() ?></span>
+                    <span class="information-street"><?= $block->getShippingStreet() ?></span>
+                    <span class="information-street"><?= $block->getShippingCityCountry() ?></span>
+                    <span class="information-phone"><?= $block->getShippingPhone() ?></span>
+                </div>
+            </div>
+
+            <div class="information payment-information">
+                <p class="information-title"><?= $block->escapeHtml(__('Payment Information')) ?></p>
+                <div class="information-content">
+                    <span class="information-payment"><?= $block->getPaymentTitle() ?></span>
+                    <span class="information-additional"><?= $block->getPaymentAddtional() ?></span>
+                </div>
+            </div>
+        </div>
+    <?php endif;?>
+</div>
+
+<?= $block->getAdditionalInfoHtml() ?>

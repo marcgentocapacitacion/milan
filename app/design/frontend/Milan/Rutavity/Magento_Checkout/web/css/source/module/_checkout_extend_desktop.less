@@ -1,0 +1,81 @@
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .opc-wrapper {
+        .step-title {
+            padding-left: 30px;
+        }
+
+        .form-login,
+        .form-shipping-address {
+            max-width: initial;
+        }
+
+        #shipping-new-address-form {
+            display: flex;
+            flex-wrap: wrap;
+
+            > .field {
+                flex: 50%;
+                padding-right: 15px;
+            }
+        }
+    }
+
+    #opc-sidebar {
+        margin: 56px 0 20px;
+        width: 33.33333333%;
+        float: right;
+        -ms-flex-order: 2;
+        -webkit-order: 2;
+        order: 2;
+    }
+
+    .table-checkout-shipping-method {
+        tbody {
+            tr {
+                padding-right: 50px;
+            }
+        }
+    }
+
+    .checkout-payment-method {
+        .checkout-billing-address {
+            .checkout-container & {
+                margin-bottom: 40px;
+            }
+        }
+
+        .billing-address-same-as-shipping-block {
+            font-size: 22px;
+            font-weight: bold;
+
+            label {
+                height: 50px;
+                line-height: 50px;
+            }
+
+            .action-toolbar {
+                float: right;
+            }
+        }
+
+        .field-select-billing,
+        .billing-address-form {
+            max-width: initial;
+
+            .fieldset.address {
+                display: flex;
+                flex-wrap: wrap;
+
+                > .field {
+                    flex: 50%;
+                    padding-right: 15px;
+                }
+            }
+        }
+    }
+
+
+    .actions-toolbar-trigger {
+        text-align: right;
+    }
+}

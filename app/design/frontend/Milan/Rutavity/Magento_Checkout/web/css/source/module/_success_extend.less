@@ -1,0 +1,192 @@
+
+@success-form-width: 640px;
+
+.checkout-onepage-success {
+    .page-title-wrapper {
+        background: @color-background-toolbar;
+        margin: 30px 0;
+        height: 60px;
+        display: flex;
+        padding-left: 30px;
+
+        .page-title {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 900;
+        }
+    }
+}
+
+.checkout-success {
+    background: @color-background-toolbar;
+    max-width: 1000px;
+    text-align: center;
+    font-size: 18px;
+
+    &-title {
+        font-weight: bold;
+        margin-bottom: 80px;
+    }
+
+    .order {
+        &-number {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        &-date {
+            font-size: 24px;
+        }
+
+        &-details {
+            max-width: @success-form-width;
+            margin: 40px auto 0;
+            border-top: solid 2px @color-blue-title;
+            padding-top: 60px;
+        }
+    }
+
+    .information {
+
+        &:after {
+            content: '';
+            display: inline-block;
+            height: 1px;
+            width: 300px;
+            background: #908F8F;
+            margin: 40px 0;
+        }
+
+        &.payment-information {
+            &:after {
+                display: none;
+            }
+        }
+
+        &-title {
+            font-size: 26px;
+            font-weight: bold;
+        }
+        &-content {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+        }
+    }
+}
+
+.success-order-items {
+    max-width: @success-form-width;
+    margin: 0 auto;
+
+    &:after {
+        content: '';
+        width: 100%;
+        height: 3px;
+        background: #F7B951;
+        display: block;
+        margin: 60px 0;
+    }
+
+    .items {
+        table.item {
+            margin-bottom: 40px;
+
+            thead, tfoot {
+                background: #DDDDDD;
+            }
+            th {
+                font-size: 20px;
+                font-weight: normal;
+                vertical-align: middle;
+            }
+            td {
+                font-size: 17px;
+                font-weight: bold;
+                vertical-align: middle;
+            }
+            thead, tfoot {
+                th {
+                    text-align: left;
+                }
+            }
+            tbody {
+                td {
+                    padding: 15px 30px;
+                    text-align: left;
+                }
+            }
+        }
+    }
+
+    .total {
+        font-size: 18px;
+
+        &-value {
+            width: 175px;
+        }
+    }
+}
+
+.success-invoice-form {
+    max-width: @success-form-width;
+    margin: 0 auto;
+
+    .legend {
+        font-size: 28px;
+        text-align: center;
+        padding-bottom: 40px;
+        margin-bottom: 30px;
+    }
+
+    .actions-toolbar {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-top: 40px;
+
+        .action {
+            width: 275px;
+            height: 53px;
+            font-size: 20px;
+            border-radius: 0;
+            margin: 10px 0;
+            line-height: 35px;
+
+            &.primary {
+                background: @color-black;
+            }
+
+            &.secondary {
+                background: @color-blue-title;
+                color: @color-white;
+                font-weight: bold;
+                line-height: 53px;
+            }
+        }
+    }
+
+    input[type="text"], input[type="password"], input[type="url"], input[type="tel"], input[type="search"], input[type="number"], input[type*="date"], input[type="email"] {
+        background: @color-gray94;
+        border: none;
+        height: 43px;
+    }
+
+    textarea {
+        background: @color-gray94;
+        border: none;
+        height: 120px;
+    }
+
+    p {
+        font-size: 14px;
+        text-align: center;
+        font-style: italic;
+    }
+}
+
+@import "_success_extend_desktop.less";
+@import "_success_extend_mobile.less";

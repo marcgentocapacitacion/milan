@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Rutavity theme Magento_Checkout onepage checkout layout
+ * @package Milan_Rutavity
+ * @author Rudie Wang <rudi.wang@wagento.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="checkout.root">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="checkout" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <!-- Checkout header title section -->
+                                <item name="check-header-title" xsi:type="array">
+                                    <item name="component" xsi:type="string">Magento_Checkout/js/view/checkout-header-title</item>
+                                    <item name="displayArea" xsi:type="string">authentication</item>
+                                </item>
+                                <!-- Hide discount / gift section -->
+                                <item name="steps" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="billing-step" xsi:type="array">
+                                            <item name="component" xsi:type="string">uiComponent</item>
+                                            <item name="children" xsi:type="array">
+                                                <item name="payment" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="afterMethods" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="discount" xsi:type="array">
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="componentDisabled" xsi:type="boolean">true</item>
+                                                                    </item>
+                                                                </item>
+                                                                <item name="giftCardAccount" xsi:type="array">
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="componentDisabled" xsi:type="boolean">true</item>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                                <!-- Move sidebar summary total to bottom section -->
+                                <item name="sidebar" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="summary" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="itemsBefore" xsi:type="array">
+                                                    <item name="sortOrder" xsi:type="string">10</item>
+                                                </item>
+                                                <item name="cart_items" xsi:type="array">
+                                                    <item name="sortOrder" xsi:type="string">20</item>
+                                                </item>
+                                                <item name="itemsAfter" xsi:type="array">
+                                                    <item name="sortOrder" xsi:type="string">30</item>
+                                                </item>
+                                                <item name="totals" xsi:type="array">
+                                                    <item name="sortOrder" xsi:type="string">40</item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

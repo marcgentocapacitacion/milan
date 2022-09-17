@@ -1,0 +1,92 @@
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .opc-wrapper {
+        .form-login,
+        .form-shipping-address,
+        .methods-shipping {
+            background: @color-white;
+            border: none;
+        }
+
+        .methods-shipping {
+            margin-top: 0;
+            padding-top: 0;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    #checkout {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #opc-sidebar {
+        -ms-flex-order: 1;
+        -webkit-order: 1;
+        order: 1;
+    }
+
+    .opc-estimated-wrapper {
+        display: none;
+    }
+
+    .opc-wrapper {
+        -ms-flex-order: 2;
+        -webkit-order: 2;
+        order: 2;
+
+        #shipping-new-address-form {
+            > .field {
+                flex: 100%;
+                padding-right: 0;
+            }
+        }
+
+        .step-title {
+            margin-bottom: 15px;
+        }
+    }
+
+    .table-checkout-shipping-method {
+        tbody {
+            tr {
+                padding-right: 0;
+                display: flex;
+                flex-wrap: wrap-reverse;
+                justify-content: center;
+
+                > td {
+                    padding: 0;
+                }
+            }
+        }
+    }
+
+    .checkout-payment-method {
+        .payment-methods {
+            margin: 40px 0 0;
+        }
+
+        .billing-address-same-as-shipping-block {
+            label {
+                display: block;
+                font-size: 20px;
+                font-weight: bold;
+                line-height: 30px;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .action-toolbar {
+                float: none;
+                display: flex;
+                justify-content: space-evenly;
+            }
+        }
+    }
+
+    .actions-toolbar-trigger {
+        text-align: center;
+    }
+}

@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Rutavity checkout customization
+ * @package Wagento_ModifiedCheckout
+ * @author Rudie Wang <rudi.wang@wagento.com>
+ */
+ -->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="checkout" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="checkout.root">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="checkout" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="steps" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="billing-step" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <!-- Terms & Condition -->
+                                                <item name="agreements" xsi:type="array">
+                                                    <item name="component" xsi:type="string">Magento_CheckoutAgreements/js/view/checkout-agreements</item>
+                                                    <item name="sortOrder" xsi:type="string">100</item>
+                                                    <item name="displayArea" xsi:type="string">before-place-order</item>
+                                                    <item name="dataScope" xsi:type="string">checkoutAgreements</item>
+                                                    <item name="provider" xsi:type="string">checkoutProvider</item>
+                                                </item>
+                                                <item name="agreements-validator" xsi:type="array">
+                                                    <item name="component" xsi:type="string">Magento_CheckoutAgreements/js/view/agreement-validation</item>
+                                                </item>
+                                                <!-- Checkout place order button -->
+                                                <item name="check-header-title" xsi:type="array">
+                                                    <item name="component" xsi:type="string">Wagento_ModifiedCheckout/js/view/place-order</item>
+                                                    <item name="config" xsi:type="array">
+                                                        <item name="sortOrder" xsi:type="string">200</item>
+                                                        <item name="template" xsi:type="string">Wagento_ModifiedCheckout/place-order</item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>
