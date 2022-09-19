@@ -125,13 +125,30 @@
                 max-width: 300px;
                 min-width: 300px;
                 margin: 0px auto 30px auto;
-                border: 1px solid #9e9e9e;
+                border: 2px solid rgba(158, 158, 158, 0.5);
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 border-radius: 15px;
                 padding: 10px 25px 10px 25px;
-                box-shadow: 0px 0px 4px;
+                transition: box-shadow 0.2s linear, border 0.2s linear, opacity 1s linear;
+
+                @keyframes change-color {
+                    100%   {opacity: 1}
+                    0% {opacity: 0}
+                }
+
+                &:hover {
+                    border: 2px solid rgba(0, 0, 0, 1);
+                    box-shadow: 0px 0px 5px;
+                    .reorder {
+                        form > .tocart.primary {
+                            animation-name: change-color;
+                            animation-duration: 1.2s;
+                            background-image: linear-gradient( to right, #000000, #000000 );
+                        }
+                    }
+                }
                 .data {
                     text-align: initial;
                     margin-bottom: 20px;
@@ -157,21 +174,8 @@
                         background-image: linear-gradient( to right, #5e35b1, #1e88e5 );
                         margin: 0px 10px 0px 0px;
                         opacity: 1;
-                        transition: opacity 1s ease-in-out;
                         span {
                             margin-right: 10px;
-                        }
-
-                        @keyframes change-color {
-                            100%   {opacity: 1}
-                            0% {opacity: 0}
-                        }
-
-                        &:hover {
-                            transition: opacity 1s ease-in-out;
-                            animation-name: change-color;
-                            animation-duration: 2s;
-                            background-image: linear-gradient( to right, #000000, #000000 );
                         }
                     }
                 }
