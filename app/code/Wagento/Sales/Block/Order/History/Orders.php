@@ -10,16 +10,43 @@ use Magento\Framework\View\Element\Template\Context;
 use Magento\Sales\Model\Order\Config;
 use Magento\Sales\Model\Order\Item as OrderItem;
 use Magento\Sales\Model\ResourceModel\Order\CollectionFactory;
+use Magento\Sales\Model\ResourceModel\Order\Collection as OrderCollection;
+use Magento\Sales\Model\ResourceModel\Order\CollectionFactoryInterface;
 
 /**
  * Class Orders
  */
-class Orders extends \Magento\Sales\Block\Order\History
+class Orders extends \Magento\Framework\View\Element\Template
 {
     /**
      * @var ImageFactory
      */
     protected ImageFactory $imageFactory;
+
+    /**
+     * @var CollectionFactory
+     */
+    protected CollectionFactory $_orderCollectionFactory;
+
+    /**
+     * @var Session
+     */
+    protected Session $_customerSession;
+
+    /**
+     * @var Config
+     */
+    protected Config $_orderConfig;
+
+    /**
+     * @var Collection|null
+     */
+    protected $orders = null;
+
+    /**
+     * @var CollectionFactoryInterface
+     */
+    protected CollectionFactoryInterface $orderCollectionFactory;
 
     /**
      * @param Context           $context
@@ -39,11 +66,11 @@ class Orders extends \Magento\Sales\Block\Order\History
     ) {
         parent::__construct(
             $context,
-            $orderCollectionFactory,
-            $customerSession,
-            $orderConfig,
             $data
         );
+        $this->orderCollectionFactory = $orderCollectionFactory;
+        $this->_customerSession = $customerSession;
+        $this->_orderConfig = $orderConfig;
         $this->imageFactory = $imageFactory;
     }
 
@@ -53,15 +80,68 @@ class Orders extends \Magento\Sales\Block\Order\History
     protected function _prepareLayout()
     {
         if ($this->getOrders()) {
-            $pager = $this->getLayout()->createBlock(
-                \Magento\Theme\Block\Html\Pager::class,
-                'sales.order.history.order.pager'
-            )->setCollection(
-                $this->getOrders()
-            );
-            $this->setChild('pager-order', $pager);
+            $this->getOrders()->setCurPage($this->getCurrentPage());
+            $this->getOrders()->setPageSize($this->getPageLimite());
             $this->getOrders()->load();
         }
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPageLimite(): int
+    {
+        return 10;
+    }
+
+    /**
+     * Return current page
+     *
+     * @return int
+     */
+    public function getCurrentPage()
+    {
+        return (int)$this->getRequest()->getParam('p', 1);
+    }
+
+    /**
+     * Get customer orders
+     *
+     * @return bool|\Magento\Sales\Model\ResourceModel\Order\Collection
+     */
+    public function getOrders()
+    {
+        if (!($customerId = $this->_customerSession->getCustomerId())) {
+            return false;
+        }
+        if (!$this->orders) {
+            $this->orders = $this->getOrderCollectionFactory()->create($customerId)->addFieldToSelect(
+                '*'
+            )->addFieldToFilter(
+                'status',
+                ['in' => $this->_orderConfig->getVisibleOnFrontStatuses()]
+            )->setOrder(
+                'created_at',
+                'desc'
+            );
+        }
+        return $this->orders;
+    }
+
+    public function getShowItems()
+    {
+        return $this->hasData('show_items') ? $this->getData('show_items') : true;
+    }
+
+    /**
+     * @param OrderCollection $orders
+     *
+     * @return $this
+     */
+    public function setOrders(OrderCollection $orders)
+    {
+        $this->orders = $orders;
         return $this;
     }
 
@@ -72,7 +152,7 @@ class Orders extends \Magento\Sales\Block\Order\History
      */
     public function getPagerHtml()
     {
-        return $this->getChildHtml('pager-order');
+        return $this->getChildHtml('pager');
     }
 
     /**
@@ -158,5 +238,26 @@ class Orders extends \Magento\Sales\Block\Order\History
     public function getCreditMemoUrl($order)
     {
         return $this->getUrl('sales/order/creditmemo', ['order_id' => $order->getId()]);
+    }
+
+    /**
+     * Provide order collection factory
+     *
+     * @return CollectionFactoryInterface
+     */
+    protected function getOrderCollectionFactory()
+    {
+        return $this->orderCollectionFactory;
+    }
+
+    /**
+     * Get order view URL
+     *
+     * @param object $order
+     * @return string
+     */
+    public function getViewUrl($order)
+    {
+        return $this->getUrl('sales/order/view', ['order_id' => $order->getId()]);
     }
 }

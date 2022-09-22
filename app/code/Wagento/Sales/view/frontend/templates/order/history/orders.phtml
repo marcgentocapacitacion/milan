@@ -24,71 +24,41 @@
     </select>
 </div>
 <?php if ($orders && count($orders)) : ?>
-    <data class="content-data">
+    <data class="content-data" id="content-data">
         <?php /** @var \Magento\Sales\Model\Order $order */?>
-        <?php foreach ($orders as $order) : ?>
-            <div class="row">
-                <div class="order_data">
-                    <div class="date">
-                        <span><?=__('Placed Order');?></span>
-                        <span><?=$block->formatDate($order->getCreatedAt(), \IntlDateFormatter::LONG);?></span>
-                    </div>
-                    <div class="total">
-                        <span><?=__('Total');?></span>
-                        <span><?= /* @noEscape */ $order->formatPrice($order->getGrandTotal()) ?></span>
-                    </div>
-                    <div class="number-actions">
-                        <span><?=__('Order #');?><?=$block->escapeHtml($order->getRealOrderId());?></span>
-                        <div class="actions">
-                            <a href="<?= $block->escapeUrl($block->getViewUrl($order)) ?>" class="action view">
-                                <span><?= $block->escapeHtml(__('Order Details')) ?></span>
-                            </a>
-
-                            <?php if ($order->hasInvoices()):?>
-                                <a href="<?= $block->escapeUrl($block->getInvoiceUrl($order)) ?>" class="action view">
-                                    <span> | <?= $block->escapeHtml(__('Invoice')) ?></span>
-                                </a>
-                            <?php endif ?>
-
-                            <?php if ($order->hasCreditmemos()):?>
-                                <a href="<?= $block->escapeUrl($block->getCreditMemoUrl($order)) ?>" class="action view">
-                                    <span> | <?= $block->escapeHtml(__('Creditmemo')) ?></span>
-                                </a>
-                            <?php endif ?>
-                        </div>
-                    </div>
-                </div>
-                <div class="order_items">
-                    <?php /** @var \Magento\Sales\Model\Order\Item $item */ ?>
-                    <?php foreach ($order->getAllItems() as $item): ?>
-                        <?php if ($item->getHasChildren()) {continue;}?>
-                        <div class="row">
-                            <div class="image">
-                                <?=$block->getImage($item->getProduct(), 'cart_page_product_thumbnail')->toHtml();?>
-                            </div>
-                            <div class="data" >
-                                <div>
-                                    <span class="name"><?=$item->getName();?></span>
-                                    <?php
-                                    if ($options = $block->getItemOptions($item)) {
-                                        foreach ($options as $option) {
-                                            echo "<span class='options options_label'>{$option['label']}: </span>";
-                                            echo "<span class='options options_value'>{$option['value']}</span>";
-                                        }
-                                    }
-                                    ?>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        <?php endforeach; ?>
+        <?= $block->getChildBlock('sales.order.history.orders.items')
+            ->setOrders($orders)
+            ->toHtml();?>
     </data>
 
-    <?php if ($block->getPagerHtml()) : ?>
-        <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml() ?></div>
-    <?php endif ?>
+    <?php if ($block->getPageLimite() < $block->getOrders()->getSize()): ?>
+        <div class="pager-see-more" id="container-pager">
+            <hr/>
+            <div id="pagination" data-bind="scope: 'pagination'">
+                <!-- ko template: getTemplate() --><!-- /ko -->
+            </div>
+            <hr/>
+        </div>
+    <?php endif; ?>
 <?php else : ?>
-    <div class="message info empty"><span><?= $block->escapeHtml($block->getEmptyOrdersMessage()) ?></span></div>
+    <div class="message info empty">
+        <span><?=__('You have placed no orders.');?></span>
+    </div>
 <?php endif ?>
+
+<script type="text/x-magento-init">
+    {
+        "#pagination": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "pagination": {
+                        "component": "Wagento_Sales/js/pagination",
+                        "elementAppendData": "#content-data",
+                        "urlAjax": "<?=$block->getUrl('sales/history_page/orders');?>",
+                        "container": "#container-pager"
+                    }
+                }
+            }
+        }
+    }
+</script>

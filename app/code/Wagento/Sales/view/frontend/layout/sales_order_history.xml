@@ -13,13 +13,25 @@
             <block class="Wagento\Sales\Block\Order\History" name="sales.order.history" template="Wagento_Sales::order/history.phtml" cacheable="false">
                 <block class="Wagento\Sales\Block\Order\History\Orders"
                        template="Wagento_Sales::order/history/orders.phtml"
-                       name="sales.order.history.orders"/>
+                       name="sales.order.history.orders">
+                    <block class="Wagento\Sales\Block\Order\History\Orders"
+                           template="Wagento_Sales::order/history/orders/items.phtml"
+                           name="sales.order.history.orders.items"/>
+                </block>
                 <block class="Wagento\Sales\Block\Order\History\CancelledOrders"
                        template="Wagento_Sales::order/history/cancelled_orders.phtml"
-                       name="sales.order.history.cancelled.orders"/>
+                       name="sales.order.history.cancelled.orders">
+                    <block class="Wagento\Sales\Block\Order\History\CancelledOrders"
+                           template="Wagento_Sales::order/history/orders/items.phtml"
+                           name="sales.order.history.orders.cancelled.items"/>
+                </block>
                 <block class="Wagento\Sales\Block\Order\History\ReorderProducts"
                        template="Wagento_Sales::order/history/reorder_products.phtml"
-                       name="sales.order.history.reorders.products"/>
+                       name="sales.order.history.reorders.products">
+                    <block class="Wagento\Sales\Block\Order\History\ReorderProducts"
+                           template="Wagento_Sales::order/history/reorder/items.phtml"
+                           name="sales.order.history.reorders.products.items"/>
+                </block>
                 <container name="sales.order.history.info" as="info" label="Order History Info"/>
                 <container name="sales.order.history.extra.column.header" as="extra.column.header" label="Order History Extra Column Header"/>
                 <block class="Magento\Sales\Block\Order\History\Container"
