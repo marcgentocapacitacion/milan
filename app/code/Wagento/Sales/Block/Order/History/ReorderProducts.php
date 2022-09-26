@@ -5,6 +5,8 @@ namespace Wagento\Sales\Block\Order\History;
 use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Catalog\Helper\Output as OutputHelper;
 use Magento\Catalog\Model\Layer\Resolver;
+use Magento\Catalog\Model\Product;
+use Magento\Framework\App\ActionInterface;
 use Magento\Framework\Data\Helper\PostHelper;
 use Magento\Framework\Url\Helper\Data;
 use Wagento\Sales\Model\ResourceModel\Order\Item\CollectionFactory as CollectionItemFactory;
@@ -12,6 +14,7 @@ use Magento\Customer\Model\Session;
 use Magento\Catalog\Block\Product\Context;
 use Magento\Sales\Model\Order\Item;
 use Magento\Sales\Model\ResourceModel\Order\Item\Collection;
+use Magento\Framework\Url\EncoderInterface;
 
 /**
  * Class ReorderProducts
@@ -34,6 +37,11 @@ class ReorderProducts extends \Magento\Catalog\Block\Product\ListProduct
     protected $orderItems;
 
     /**
+     * @var EncoderInterface
+     */
+    protected EncoderInterface $urlEncoder;
+
+    /**
      * @param Context                     $context
      * @param CollectionItemFactory       $collectionFactory
      * @param Session                     $customerSession
@@ -52,11 +60,13 @@ class ReorderProducts extends \Magento\Catalog\Block\Product\ListProduct
         Resolver $layerResolver,
         CategoryRepositoryInterface $categoryRepository,
         Data $urlHelper,
+        EncoderInterface $urlEncoder,
         array $data = [],
         ?OutputHelper $outputHelper = null
     ) {
         $this->collectionFactory = $collectionFactory;
         $this->customerSession = $customerSession;
+        $this->urlEncoder = $urlEncoder;
         parent::__construct(
             $context,
             $postDataHelper,
@@ -111,6 +121,28 @@ class ReorderProducts extends \Magento\Catalog\Block\Product\ListProduct
     public function getCurrentPage()
     {
         return (int)$this->getRequest()->getParam('p', 1);
+    }
+
+    /**
+     * Get post parameters
+     *
+     * @param Product $product
+     * @return array
+     */
+    public function getAddToCartPostParams(Product $product)
+    {
+        $url = $this->getAddToCartUrl($product, [
+            '_escape' => false,
+            'useUencPlaceholder' => true
+        ]);
+        $url = str_replace('%25uenc%25', base64_encode($this->getUrl('sales/order/history')), $url);
+        return [
+            'action' => $url,
+            'data' => [
+                'product' => (int) $product->getEntityId(),
+                ActionInterface::PARAM_NAME_URL_ENCODED => $this->urlHelper->getEncodedUrl($url),
+            ]
+        ];
     }
 
     /**
