@@ -49,10 +49,12 @@ define([
         _events: function () {
             var self = this;
             $(self.options.elementSearch).click(function () {
+                self.isLoading(true);
                 self.load();
             });
 
             $(self.options.elementYear).change(function () {
+                self.isLoading(true);
                 self.load();
             });
 
@@ -103,6 +105,7 @@ define([
                 self.options.tabsClear.push(element.elementTabWihtData);
 
                 $(element.elementTab).click(function () {
+                    self.isLoading(true);
                     self.options.elementAddHtml(element.elementAddHtml);
                     self._clearTabs($(this).attr('id'))
                     $(element.elementTabWihtData).fadeIn(500);
