@@ -1,5 +1,4 @@
 .order-details-items.ordered {
-    padding: 0px;
     border: 0px;
     margin-top: 60px;
     .order-items {
@@ -15,21 +14,12 @@
         }
         .content-data {
             display: flex;
-            .customer {
-                flex: 1;
-                padding: 10px 0px 10px 15px;
-                font-size: 15px;
-                border-right: 2px solid #000000;
-                > span {
-                    display: block;
-                    &:first-child {
-                        font-weight: bold;
-                    }
-                }
-            }
             .item {
                 flex: 3;
             }
         }
     }
 }
+
+@import "_items_mobile";
+@import "_items_desktop";

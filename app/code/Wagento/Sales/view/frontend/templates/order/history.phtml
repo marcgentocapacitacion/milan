@@ -9,40 +9,92 @@ use Wagento\Sales\Block\Order\History;
 ?>
 <?= $block->getChildHtml('info') ?>
 
-<div class="table-wrapper orders-history">
+<div class="table-wrapper orders-history"
+     data-mage-init='{
+        "Wagento_Sales/js/filter": {
+            "elementYear": "#year",
+            "elementSearchText": "#search_text",
+            "elementSearch": "#search-history-orders",
+            "containerPager": "#container-pager",
+            "inputHiddenPageNumber": "#p",
+            "buttonPage": "#load-more",
+            "containerFilter": "#filter",
+            "tabs": [
+                {
+                    "default": "true",
+                    "urlAjax": "<?=$block->getUrl('sales/history_page/orders');?>",
+                    "elementAddHtml": "#content-data-order",
+                    "elementTabWihtData": "#orders",
+                    "elementTab": "#tab-order"
+                },
+                {
+                    "urlAjax": "<?=$block->getUrl('sales/history_page/reorder');?>",
+                    "elementAddHtml": "#content-data-reorder",
+                    "elementTabWihtData": "#reorder",
+                    "elementTab": "#tab-reorder"
+                },
+                {
+                    "urlAjax": "<?=$block->getUrl('sales/history_page/cancelled');?>",
+                    "elementAddHtml": "#content-data-cancelled",
+                    "elementTabWihtData": "#cancelled_orders",
+                    "elementTab": "#tab-cancelled"
+                }
+            ]
+        }
+     }'>
     <div class="tabs">
-        <span class="<?=$block->isOrder() ? 'active' : '';?>">
-            <a href="<?=$block->getUrl('sales/order/history/', ['history_page' => History::HISTORY_PAGE_ORDER]);?>">
+        <span id="tab-order" class="<?=$block->isOrder() ? 'active' : '';?>">
+            <a>
                 <?=__('Orders');?>
             </a>
+            <?php if ($block->isOrder()) :?>
+                <i class="fa-solid fa-minus"></i>
+            <?php else:?>
+                <i class="fa-solid fa-plus"></i>
+            <?php endif;?>
         </span>
-        <span class="<?=$block->isReorderProducts() ? 'active' : '';?>">
-            <a href="<?=$block->getUrl('sales/order/history/', ['history_page' => History::HISTORY_PAGE_REORDER_PRODUCTS]);?>">
+        <span id="tab-reorder" class="<?=$block->isReorderProducts() ? 'active' : '';?>">
+            <a>
                 <?=__('Order again');?>
             </a>
+            <?php if ($block->isReorderProducts()) :?>
+                <i class="fa-solid fa-minus"></i>
+            <?php else:?>
+                <i class="fa-solid fa-plus"></i>
+            <?php endif;?>
         </span>
-        <span class="<?=$block->isCancelledOrder() ? 'active' : '';?>">
-            <a href="<?=$block->getUrl('sales/order/history/', ['history_page' => History::HISTORY_PAGE_CANCELLED_ORDER]);?>">
+        <span id="tab-cancelled" class="<?=$block->isCancelledOrder() ? 'active' : '';?>">
+            <a>
                 <?=__('Cancelled Orders');?>
             </a>
+            <?php if ($block->isCancelledOrder()) :?>
+                <i class="fa-solid fa-minus"></i>
+            <?php else:?>
+                <i class="fa-solid fa-plus"></i>
+            <?php endif;?>
         </span>
     </div>
 
-    <?php if ($block->isOrder()):?>
-        <div class="orders" id="orders">
-            <?= $block->getChildHtml('sales.order.history.orders') ?>
-        </div>
-    <?php endif;?>
+    <div class="orders inactive" id="orders">
+        <?= $block->getChildHtml('sales.order.history.orders') ?>
+    </div>
 
-    <?php if ($block->isReorderProducts()):?>
-        <div class="reorder" id="reorder">
-            <?= $block->getChildHtml('sales.order.history.reorders.products') ?>
-        </div>
-    <?php endif;?>
+    <div class="reorder inactive" id="reorder">
+        <?= $block->getChildHtml('sales.order.history.reorders.products') ?>
+    </div>
 
-    <?php if ($block->isCancelledOrder()):?>
-        <div class="cancelled_orders" id="cancelled_orders">
-            <?= $block->getChildHtml('sales.order.history.cancelled.orders') ?>
+    <div class="cancelled_orders inactive" id="cancelled_orders">
+        <?= $block->getChildHtml('sales.order.history.cancelled.orders') ?>
+    </div>
+
+    <div class="pager-see-more" id="container-pager">
+        <hr/>
+        <div id="pagination-order">
+            <button type="button" class="load-more" id="load-more">
+                <span><?=__('See More');?></span>
+            </button>
+            <input type="hidden" id="p" name="p" />
         </div>
-    <?php endif;?>
+        <hr/>
+    </div>
 </div>

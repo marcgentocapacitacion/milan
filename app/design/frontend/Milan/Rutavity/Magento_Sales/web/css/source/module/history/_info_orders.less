@@ -1,5 +1,4 @@
 .order-details-info {
-    width: 100%;
     border: 2px solid #000000;
     border-radius: 15px;
     .block-title {
@@ -11,32 +10,19 @@
         background-color: rgba(236, 239, 241, 0.6);
     }
     .block-content {
-        display: flex;padding: 20px 0px 20px 15px;
-        .box.box-order-payment-shippingaddress {
-            flex: 3;
-        }
-
-        .totals {
-            flex: 2;
-            > div {
-                display: flex;
-                .mark {
-                    flex: 1;
-                }
-                .amount {
-                    flex: 1;
-                    text-align: right;
-                    padding-right: 25px;
-                }
-                &.subtotal {
-                    margin-bottom: 25px;
-                }
-                &.grand_total {
-                    margin-top: 10px;
-                    padding-top: 20px;
-                    border-top: 1px solid;
-                }
-            }
-        }
+        display: flex;
+        padding: 20px 0px 20px 15px;
     }
 }
+.gobackorders {
+    text-align: right;
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    &:before {
+        content: "<<<";
+    }
+}
+
+@import "_info_orders_desktop";
+@import "_info_orders_mobile";

@@ -11,6 +11,7 @@ use Wagento\Sales\Model\ResourceModel\Order\Item\CollectionFactory as Collection
 use Magento\Customer\Model\Session;
 use Magento\Catalog\Block\Product\Context;
 use Magento\Sales\Model\Order\Item;
+use Magento\Sales\Model\ResourceModel\Order\Item\Collection;
 
 /**
  * Class ReorderProducts
@@ -72,27 +73,44 @@ class ReorderProducts extends \Magento\Catalog\Block\Product\ListProduct
      */
     protected function _prepareLayout()
     {
+        $this->setData('size', $this->getOrdersItems()->getSize());
         if ($this->getOrdersItems()) {
-            $pager = $this->getLayout()->createBlock(
-                \Magento\Theme\Block\Html\Pager::class,
-                'sales.order.history.cancelled.reorder.pager'
-            )->setCollection(
-                $this->getOrdersItems()
-            );
-            $this->setChild('pager-reorder', $pager);
+            $this->getOrdersItems()->setCurPage($this->getCurrentPage());
+            $this->getOrdersItems()->setPageSize($this->getPageLimite());
             $this->getOrdersItems()->load();
+        }
+
+        if (!$this->getLayout()->getBlock('product.price.render.default')) {
+            $this->getLayout()->createBlock(
+                \Magento\Framework\Pricing\Render::class,
+                'product.price.render.default',
+                [
+                    'data' => [
+                        'price_render_handle' => 'catalog_product_prices',
+                        'use_link_for_as_low_as' => true
+                    ]
+                ]
+            );
         }
         return $this;
     }
 
     /**
-     * Get Pager child block output
-     *
-     * @return string
+     * @return int
      */
-    public function getPagerHtml()
+    public function getPageLimite(): int
     {
-        return $this->getChildHtml('pager-reorder');
+        return 10;
+    }
+
+    /**
+     * Return current page
+     *
+     * @return int
+     */
+    public function getCurrentPage()
+    {
+        return (int)$this->getRequest()->getParam('p', 1);
     }
 
     /**
@@ -111,8 +129,43 @@ class ReorderProducts extends \Magento\Catalog\Block\Product\ListProduct
                     'sales.created_at',
                     'desc'
                 );
+            $this->addFilterSearchText();
         }
 
         return $this->orderItems;
+    }
+
+    /**
+     * @return $this|void
+     */
+    protected function addFilterSearchText()
+    {
+        $search = $this->getRequest()->getParam('q');
+        if (!$search) {
+            return $this;
+        }
+
+        $this->orderItems
+            ->addFieldToFilter([
+                'sales.increment_id',
+                'main_table.sku',
+                'main_table.name'
+            ], [
+                ['like' => "%{$search}%"],
+                ['like' => "%{$search}%"],
+                ['like' => "%{$search}%"]
+            ])
+            ->getSelect()->group('main_table.item_id');
+    }
+
+    /**
+     * @param Collection $orderItems
+     *
+     * @return $this
+     */
+    public function setOrdersItems(Collection $orderItems)
+    {
+        $this->orderItems = $orderItems;
+        return $this;
     }
 }

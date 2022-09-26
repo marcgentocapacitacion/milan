@@ -5,41 +5,6 @@
 /** @var \Wagento\Sales\Block\Order\History\ReorderProducts $block */
 /** @var \Magento\Framework\Escaper $escaper */
 ?>
-<?php $ordersItems = $block->getOrdersItems(); ?>
-<?php if ($ordersItems && count($ordersItems)): ?>
-    <div class="content-data">
-        <?php /** @var \Magento\Sales\Model\Order\Item $ordersItem */ ?>
-        <?php foreach ($ordersItems as $ordersItem):?>
-        <?php $product = $ordersItem->getProduct();?>
-        <?php if ($ordersItem->getHasChildren()) {continue;}?>
-            <div class="product">
-                <div class="image">
-                    <?=$block->getImage($product, 'cart_page_product_thumbnail')->toHtml();?>
-                </div>
-                <div class="data">
-                    <span class="name"><?=$ordersItem->getName();?></span>
-                    <span class="price"><?=$block->getProductPrice($product);?></span>
-                </div>
-                <div class="reorder">
-                    <?php $postParams = $block->getAddToCartPostParams($product); ?>
-                    <form data-role="tocart-form"
-                          data-product-sku="<?= $escaper->escapeHtml($product->getSku()) ?>"
-                          action="<?= $escaper->escapeUrl($postParams['action']) ?>"
-                          method="post">
-                        <?= $block->getBlockHtml('formkey') ?>
-                        <button type="submit"
-                                title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
-                                class="action tocart primary">
-                            <span><?= $escaper->escapeHtml(__('Add')) ?></span>
-                            <img src="<?=$block->getViewFileUrl('images/assets/cart-green.svg');?>">
-                    </form>
-                </div>
-            </div>
-        <?php endforeach;?>
-    </div>
-    <?php if ($block->getPagerHtml()) : ?>
-        <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml() ?></div>
-    <?php endif ?>
-<?php else : ?>
-    <div class="message info empty"><span><?= $block->escapeHtml(__('You have placed no orders.')) ?></span></div>
-<?php endif;?>
+<div class="content-data" id="content-data-reorder">
+    <?= $block->getChildBlock('sales.order.history.reorders.products.items')->toHtml();?>
+</div>

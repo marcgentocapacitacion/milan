@@ -12,131 +12,35 @@ use Magento\Sales\Model\ResourceModel\Order\CollectionFactory;
 /**
  * Class CancelledOrders
  */
-class CancelledOrders extends \Magento\Framework\View\Element\Template
+class CancelledOrders extends \Wagento\Sales\Block\Order\History\Orders
 {
-    /**
-     * @var Collection|null
-     */
-    protected ?Collection $ordersCancelled = null;
-
-    /**
-     * @var Session
-     */
-    protected Session $customerSession;
-
-    /**
-     * @var CollectionFactoryInterface
-     */
-    protected CollectionFactoryInterface $orderCollectionFactory;
-
-    /**
-     * @param Context           $context
-     * @param CollectionFactory $orderCollectionFactory
-     * @param Session           $customerSession
-     * @param array             $data
-     */
-    public function __construct(
-        Context $context,
-        CollectionFactory $orderCollectionFactory,
-        Session $customerSession,
-        array $data = []
-    ) {
-        $this->orderCollectionFactory = $orderCollectionFactory;
-        $this->customerSession = $customerSession;
-        parent::__construct($context, $data);
-    }
-
-    /**
-     * Retrieve formatting date
-     *
-     * @param null|string|\DateTimeInterface $date
-     * @param int $format
-     * @param bool $showTime
-     * @param null|string $timezone
-     * @return string
-     */
-    public function formatDate(
-        $date = null,
-        $format = \IntlDateFormatter::SHORT,
-        $showTime = false,
-        $timezone = null
-    ) {
-        $date = $date instanceof \DateTimeInterface ? $date : new \DateTime($date ?? 'now');
-        return $this->_localeDate->formatDateTime(
-            $date,
-            $format,
-            $showTime ? $format : \IntlDateFormatter::NONE,
-            null,
-            $timezone,
-            'MMMM dd, YYYY'
-        );
-    }
-
-    /**
-     * @inheritDoc
-     */
-    protected function _prepareLayout()
-    {
-        if ($this->getOrdersCancelled()) {
-            $pager = $this->getLayout()->createBlock(
-                \Magento\Theme\Block\Html\Pager::class,
-                'sales.order.history.cancelled.order.pager'
-            )->setCollection(
-                $this->getOrdersCancelled()
-            );
-            $this->setChild('pager-cancelled-order', $pager);
-            $this->getOrdersCancelled()->load();
-        }
-        return $this;
-    }
-
-    /**
-     * Get Pager child block output
-     *
-     * @return string
-     */
-    public function getPagerHtml()
-    {
-        return $this->getChildHtml('pager-cancelled-order');
-    }
-
     /**
      * Get customer orders
      *
      * @return bool|\Magento\Sales\Model\ResourceModel\Order\Collection
      */
-    public function getOrdersCancelled()
+    public function getOrders()
     {
-        if (!($customerId = $this->customerSession->getCustomerId())) {
+        if (!($customerId = $this->_customerSession->getCustomerId())) {
             return false;
         }
 
-        if (!$this->ordersCancelled) {
-            $this->ordersCancelled = $this->orderCollectionFactory->create($customerId)->addFieldToSelect(
+        if (!$this->orders) {
+            $this->orders = $this->getOrderCollectionFactory()->create($customerId)->addFieldToSelect(
                 '*'
             )->addFieldToFilter(
-                Order::STATE,
+                'main_table.status',
                 ['in' => [
                     Order::STATE_CANCELED,
                     Order::STATE_CLOSED
                 ]]
             )->setOrder(
-                'created_at',
+                'main_table.created_at',
                 'desc'
             );
+            $this->addFilterSearchText();
         }
-        return $this->ordersCancelled;
-    }
-
-    /**
-     * Get message for no orders.
-     *
-     * @return \Magento\Framework\Phrase
-     * @since 102.1.0
-     */
-    public function getEmptyOrdersMessage()
-    {
-        return __('You have placed no orders.');
+        return $this->orders;
     }
 
     /**
