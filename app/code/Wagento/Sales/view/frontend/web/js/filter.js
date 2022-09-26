@@ -158,6 +158,12 @@ define([
                 },
                 success: function (response) {
                     self.isLoading(false);
+                    if (response.size) {
+                        $('#quatityhistoryorders').html(response.size);
+                    } else {
+                        $('#quatityhistoryorders').html('0');
+                    }
+
                     if (!response.html) {
                         $(self.options.containerPager).fadeOut(300);
                         $(self.options.elementAddHtml()).html($t('You have placed no orders.'))
