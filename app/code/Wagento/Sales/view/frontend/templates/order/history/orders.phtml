@@ -4,15 +4,16 @@
  */
 /** @var \Wagento\Sales\Block\Order\History\Orders $block */
 ?>
-<?php $orders = $block->getOrders(); ?>
 <div class="filters">
     <span class="qty">
         <span class="number">
-            <?=$block->getOrders()->getSize() . ' ' . __('Orders');?>
+            <?/*=$block->getOrders()->getSize() . ' ' . __('Orders');*/?>
         </span>
         <?=__('placed on');?>:
     </span>
     <select name="year" id="year">
+        <option value="30 days"><?=__('Last %1 Days', ['30']);?></option>
+        <option value="3 months"><?=__('%1 Months ago', ['3']);?></option>
         <option value="<?=date('Y');?>"><?=date('Y');?></option>
         <?php
         $initial = date('Y', strtotime('-1 year'));
@@ -23,42 +24,7 @@
         ?>
     </select>
 </div>
-<?php if ($orders && count($orders)) : ?>
-    <data class="content-data" id="content-data">
-        <?php /** @var \Magento\Sales\Model\Order $order */?>
-        <?= $block->getChildBlock('sales.order.history.orders.items')
-            ->setOrders($orders)
-            ->toHtml();?>
-    </data>
-
-    <?php if ($block->getPageLimite() < $block->getOrders()->getSize()): ?>
-        <div class="pager-see-more" id="container-pager">
-            <hr/>
-            <div id="pagination" data-bind="scope: 'pagination'">
-                <!-- ko template: getTemplate() --><!-- /ko -->
-            </div>
-            <hr/>
-        </div>
-    <?php endif; ?>
-<?php else : ?>
-    <div class="message info empty">
-        <span><?=__('You have placed no orders.');?></span>
-    </div>
-<?php endif ?>
-
-<script type="text/x-magento-init">
-    {
-        "#pagination": {
-            "Magento_Ui/js/core/app": {
-                "components": {
-                    "pagination": {
-                        "component": "Wagento_Sales/js/pagination",
-                        "elementAppendData": "#content-data",
-                        "urlAjax": "<?=$block->getUrl('sales/history_page/orders');?>",
-                        "container": "#container-pager"
-                    }
-                }
-            }
-        }
-    }
-</script>
+<data class="content-data" id="content-data-order">
+    <?php /** @var \Magento\Sales\Model\Order $order */?>
+    <?= $block->getChildBlock('sales.order.history.orders.items')->toHtml();?>
+</data>

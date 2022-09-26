@@ -29,15 +29,16 @@ class CancelledOrders extends \Wagento\Sales\Block\Order\History\Orders
             $this->orders = $this->getOrderCollectionFactory()->create($customerId)->addFieldToSelect(
                 '*'
             )->addFieldToFilter(
-                Order::STATE,
+                'main_table.status',
                 ['in' => [
                     Order::STATE_CANCELED,
                     Order::STATE_CLOSED
                 ]]
             )->setOrder(
-                'created_at',
+                'main_table.created_at',
                 'desc'
             );
+            $this->addFilterSearchText();
         }
         return $this->orders;
     }

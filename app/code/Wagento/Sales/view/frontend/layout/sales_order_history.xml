@@ -11,22 +11,19 @@
         <referenceContainer name="content">
             <block name="order.title" template="Wagento_Sales::order/title_filter.phtml" before="-"/>
             <block class="Wagento\Sales\Block\Order\History" name="sales.order.history" template="Wagento_Sales::order/history.phtml" cacheable="false">
-                <block class="Wagento\Sales\Block\Order\History\Orders"
-                       template="Wagento_Sales::order/history/orders.phtml"
+                <block template="Wagento_Sales::order/history/orders.phtml"
                        name="sales.order.history.orders">
                     <block class="Wagento\Sales\Block\Order\History\Orders"
                            template="Wagento_Sales::order/history/orders/items.phtml"
                            name="sales.order.history.orders.items"/>
                 </block>
-                <block class="Wagento\Sales\Block\Order\History\CancelledOrders"
-                       template="Wagento_Sales::order/history/cancelled_orders.phtml"
+                <block template="Wagento_Sales::order/history/cancelled_orders.phtml"
                        name="sales.order.history.cancelled.orders">
                     <block class="Wagento\Sales\Block\Order\History\CancelledOrders"
                            template="Wagento_Sales::order/history/orders/items.phtml"
                            name="sales.order.history.orders.cancelled.items"/>
                 </block>
-                <block class="Wagento\Sales\Block\Order\History\ReorderProducts"
-                       template="Wagento_Sales::order/history/reorder_products.phtml"
+                <block template="Wagento_Sales::order/history/reorder_products.phtml"
                        name="sales.order.history.reorders.products">
                     <block class="Wagento\Sales\Block\Order\History\ReorderProducts"
                            template="Wagento_Sales::order/history/reorder/items.phtml"

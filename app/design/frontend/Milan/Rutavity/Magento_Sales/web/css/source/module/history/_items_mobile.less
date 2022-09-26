@@ -1,0 +1,53 @@
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .order-details-items.ordered {
+        padding-left: 5vw;
+        padding-right: 5vw;
+        .order-items {
+            font-size: 1.2em;
+            .content-data {
+                flex-direction: column;
+                .customer {
+                    flex: 1;
+                    padding: 10px 0px 10px 15px;
+                    font-size: 15px;
+                    border-bottom: 2px solid #000000;
+                    > span {
+                        display: block;
+                        &:first-child {
+                            font-weight: bold;
+                        }
+                    }
+                }
+
+                .item {
+                    margin: 0vw 5vw 5vw 5vw;
+                    width: 70vw;
+                    thead {
+                        display: none;
+                    }
+                    tbody {
+                        tr {
+                            td {
+                                display: table-row;
+                                padding: 25px;
+                                &:before {
+                                    content: attr(data-th);
+                                    font-weight: bold;
+                                    display: block;
+                                    padding-top: 25px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .order-title {
+            display: none;
+        }
+    }
+
+    .sidebar.sidebar-additional {
+        display: none;
+    }
+}

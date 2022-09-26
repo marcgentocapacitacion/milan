@@ -4,42 +4,9 @@
  */
 /** @var \Wagento\Sales\Block\Order\History\CancelledOrders $block */
 ?>
-<?php $orders = $block->getOrders(); ?>
-
-<?php if ($orders && count($orders)) : ?>
-    <data class="content-data" id="content-data">
-        <?php /** @var \Magento\Sales\Model\Order $order */?>
-        <?= $block->getChildBlock('sales.order.history.orders.cancelled.items')
-            ->setOrders($orders)
-            ->setData('show_items', false)
-            ->toHtml();?>
-    </data>
-    <?php if ($block->getPageLimite() < $block->getOrders()->getSize()): ?>
-        <div class="pager-see-more" id="container-pager">
-            <hr/>
-            <div id="pagination" data-bind="scope: 'pagination'">
-                <!-- ko template: getTemplate() --><!-- /ko -->
-            </div>
-            <hr/>
-        </div>
-    <?php endif; ?>
-<?php else : ?>
-    <div class="message info empty"><span><?= $block->escapeHtml($block->getEmptyOrdersMessage()) ?></span></div>
-<?php endif ?>
-
-<script type="text/x-magento-init">
-    {
-        "#pagination": {
-            "Magento_Ui/js/core/app": {
-                "components": {
-                    "pagination": {
-                        "component": "Wagento_Sales/js/pagination",
-                        "elementAppendData": "#content-data",
-                        "urlAjax": "<?=$block->getUrl('sales/history_page/cancelled');?>",
-                        "container": "#container-pager"
-                    }
-                }
-            }
-        }
-    }
-</script>
+<data class="content-data" id="content-data-cancelled">
+    <?php /** @var \Magento\Sales\Model\Order $order */?>
+    <?= $block->getChildBlock('sales.order.history.orders.cancelled.items')
+        ->setData('show_items', false)
+        ->toHtml();?>
+</data>

@@ -6,8 +6,49 @@
             background-color: rgba(224, 224, 224, 0.2);
             padding: 10px;
             margin-top: 15px;
-            span {
+            display: flex;
+            > span {
                 font-size: 20px;
+                flex: 2;
+            }
+            .filter {
+                flex: 2;
+                display: flex;
+                align-items: center;
+                > button {
+                    margin-left: 5px;
+                    background-color: #000000;
+                    border-radius: 20px;
+                    > span {
+                        font-size: 15px;
+                        font-weight: bold;
+                        color: #fff;
+                        margin: 12px
+                    }
+                }
+
+                .text-search {
+                    flex: 2;
+                    padding-left: 15px;
+                    background-color: #ffffff;
+                    border-radius: 25px;
+                    display: flex;
+                    align-items: center;
+                    box-shadow: 0px 0px 20px #bdbdbd;
+                    > i {
+                        margin-left: 12px;
+                    }
+                    > input {
+                        border: 0px;
+                        font-weight: bold;
+                        border-radius: 25px;
+                        &:focus {
+                            border: 0px;
+                            box-shadow: none;
+                            box-shadow: none;
+                        }
+                    }
+                }
             }
         }
     }
@@ -21,23 +62,56 @@
                 &.active {
                     border-bottom: 3px solid;
                 }
+                > i {
+                    display: none;
+                }
             }
         }
 
-        .orders, .cancelled_orders, .reorder {
-            .pager-see-more {
-                display: flex;
-                align-items: center;
-                > hr {
-                    flex: 2;
-                }
+        .pager-see-more {
+            display: flex;
+            align-items: center;
+            > hr {
+                flex: 2;
+            }
 
-                .load-more {
-                    border: 0px;
-                    background: none;
-                    margin-left: 10px;
-                    margin-right: 10px;
-                    text-decoration: underline;
+            .load-more {
+                border: 0px;
+                background: none;
+                margin-left: 10px;
+                margin-right: 10px;
+                text-decoration: underline;
+            }
+        }
+
+        .orders, .cancelled_orders {
+            .content-data {
+                .row {
+                    .order_data {
+                        display: flex;
+                        padding: 25px 15px 25px 15px;
+                        border: 1px solid #000;
+                        border-radius: 10px;
+                        background-color: rgba(207, 216, 220, 0.5);
+                        > div {
+                            &.date {
+                                flex: 1;
+                            }
+
+                            &.total {
+                                flex: 3;
+                            }
+
+                            &.number-actions {
+                                flex: 2;
+                            }
+
+                            > span {
+                                display: block;
+                                font-weight: bold;
+                            }
+                        }
+                    }
                 }
             }
         }

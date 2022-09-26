@@ -1,5 +1,14 @@
 <div class="table-wrapper title-filter">
     <div class="title-my-orders">
         <span><b><?=__('My Orders');?></b></span>
+        <div class="filter" id="filter" style="display: none;">
+            <div class="text-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="search_text" name="search_text" placeholder="<?=__('Search all orders');?>">
+            </div>
+            <button type="button" id="search-history-orders">
+                <span><?=__('Search Orders');?></span>
+            </button>
+        </div>
     </div>
 </div>

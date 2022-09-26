@@ -4,8 +4,8 @@ namespace Wagento\Sales\Controller\History\Page;
 
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\ResponseInterface;
-use Magento\Framework\Controller\Result\Raw;
-use Magento\Framework\Controller\Result\RawFactory;
+use Magento\Framework\Controller\Result\Json;
+use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\View\LayoutInterface;
 
 /**
@@ -19,9 +19,9 @@ Abstract class Pager implements HttpGetActionInterface
     protected LayoutInterface $layout;
 
     /**
-     * @var RawFactory
+     * @var JsonFactory
      */
-    protected RawFactory $rawFactory;
+    protected JsonFactory $jsonFactory;
 
     /**
      * @var bool
@@ -30,14 +30,14 @@ Abstract class Pager implements HttpGetActionInterface
 
     /**
      * @param LayoutInterface $layout
-     * @param RawFactory      $rawFactory
+     * @param JsonFactory     $jsonFactory
      */
     public function __construct(
         LayoutInterface $layout,
-        RawFactory $rawFactory
+        JsonFactory $jsonFactory
     ) {
         $this->layout = $layout;
-        $this->rawFactory = $rawFactory;
+        $this->jsonFactory = $jsonFactory;
     }
 
     /**
@@ -59,9 +59,12 @@ Abstract class Pager implements HttpGetActionInterface
             $output = $block->toHtml();
         }
 
-        /** @var Raw $result */
-        $result = $this->rawFactory->create();
-        return $result->setContents($output);
+        /** @var Json $result */
+        $result = $this->jsonFactory->create();
+        return $result->setData([
+            'html' => $output,
+            'size' => $block->getSize()
+        ]);
     }
 
     /**

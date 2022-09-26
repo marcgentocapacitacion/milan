@@ -1,0 +1,33 @@
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .order-details-info {
+        width: 100%;
+        .block-content {
+            .box.box-order-payment-shippingaddress {
+                flex: 3;
+            }
+
+            .totals {
+                flex: 2;
+                > div {
+                    display: flex;
+                    .mark {
+                        flex: 1;
+                    }
+                    .amount {
+                        flex: 1;
+                        text-align: right;
+                        padding-right: 25px;
+                    }
+                    &.subtotal {
+                        margin-bottom: 25px;
+                    }
+                    &.grand_total {
+                        margin-top: 10px;
+                        padding-top: 20px;
+                        border-top: 1px solid;
+                    }
+                }
+            }
+        }
+    }
+}

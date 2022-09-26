@@ -73,6 +73,7 @@ class ReorderProducts extends \Magento\Catalog\Block\Product\ListProduct
      */
     protected function _prepareLayout()
     {
+        $this->setData('size', $this->getOrdersItems()->getSize());
         if ($this->getOrdersItems()) {
             $this->getOrdersItems()->setCurPage($this->getCurrentPage());
             $this->getOrdersItems()->setPageSize($this->getPageLimite());
@@ -128,9 +129,33 @@ class ReorderProducts extends \Magento\Catalog\Block\Product\ListProduct
                     'sales.created_at',
                     'desc'
                 );
+            $this->addFilterSearchText();
         }
 
         return $this->orderItems;
+    }
+
+    /**
+     * @return $this|void
+     */
+    protected function addFilterSearchText()
+    {
+        $search = $this->getRequest()->getParam('q');
+        if (!$search) {
+            return $this;
+        }
+
+        $this->orderItems
+            ->addFieldToFilter([
+                'sales.increment_id',
+                'main_table.sku',
+                'main_table.name'
+            ], [
+                ['like' => "%{$search}%"],
+                ['like' => "%{$search}%"],
+                ['like' => "%{$search}%"]
+            ])
+            ->getSelect()->group('main_table.item_id');
     }
 
     /**

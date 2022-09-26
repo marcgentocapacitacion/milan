@@ -5,41 +5,6 @@
 /** @var \Wagento\Sales\Block\Order\History\ReorderProducts $block */
 /** @var \Magento\Framework\Escaper $escaper */
 ?>
-<?php $ordersItems = $block->getOrdersItems(); ?>
-<?php if ($ordersItems && count($ordersItems)): ?>
-    <div class="content-data" id="content-data">
-        <?= $block->getChildBlock('sales.order.history.reorders.products.items')
-            ->setOrdersItems($ordersItems)
-            ->toHtml();?>
-    </div>
-    <?php if ($block->getPageLimite() < $block->getOrdersItems()->getSize()): ?>
-        <div class="pager-see-more" id="container-pager">
-            <hr/>
-            <div id="pagination" data-bind="scope: 'pagination'">
-                <!-- ko template: getTemplate() --><!-- /ko -->
-            </div>
-            <hr/>
-        </div>
-    <?php endif; ?>
-<?php else : ?>
-    <div class="message info empty">
-        <span><?= $block->escapeHtml(__('You have placed no orders.')) ?></span>
-    </div>
-<?php endif;?>
-
-<script type="text/x-magento-init">
-    {
-        "#pagination": {
-            "Magento_Ui/js/core/app": {
-                "components": {
-                    "pagination": {
-                        "component": "Wagento_Sales/js/pagination",
-                        "elementAppendData": "#content-data",
-                        "urlAjax": "<?=$block->getUrl('sales/history_page/reorder');?>",
-                        "container": "#container-pager"
-                    }
-                }
-            }
-        }
-    }
-</script>
+<div class="content-data" id="content-data-reorder">
+    <?= $block->getChildBlock('sales.order.history.reorders.products.items')->toHtml();?>
+</div>

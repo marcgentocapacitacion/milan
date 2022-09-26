@@ -1,0 +1,21 @@
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .order-details-items.ordered {
+        padding: 0px;
+        .order-items {
+            .content-data {
+                .customer {
+                    flex: 1;
+                    padding: 10px 0px 10px 15px;
+                    font-size: 15px;
+                    border-right: 2px solid #000000;
+                    > span {
+                        display: block;
+                        &:first-child {
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

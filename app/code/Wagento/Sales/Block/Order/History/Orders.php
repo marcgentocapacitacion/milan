@@ -79,6 +79,7 @@ class Orders extends \Magento\Framework\View\Element\Template
      */
     protected function _prepareLayout()
     {
+        $this->setData('size', $this->getOrders()->getSize());
         if ($this->getOrders()) {
             $this->getOrders()->setCurPage($this->getCurrentPage());
             $this->getOrders()->setPageSize($this->getPageLimite());
@@ -108,7 +109,7 @@ class Orders extends \Magento\Framework\View\Element\Template
     /**
      * Get customer orders
      *
-     * @return bool|\Magento\Sales\Model\ResourceModel\Order\Collection
+     * @return bool|OrderCollection
      */
     public function getOrders()
     {
@@ -119,12 +120,15 @@ class Orders extends \Magento\Framework\View\Element\Template
             $this->orders = $this->getOrderCollectionFactory()->create($customerId)->addFieldToSelect(
                 '*'
             )->addFieldToFilter(
-                'status',
+                'main_table.status',
                 ['in' => $this->_orderConfig->getVisibleOnFrontStatuses()]
             )->setOrder(
-                'created_at',
+                'main_table.created_at',
                 'desc'
             );
+
+            $this->addFilterDate();
+            $this->addFilterSearchText();
         }
         return $this->orders;
     }
@@ -259,5 +263,64 @@ class Orders extends \Magento\Framework\View\Element\Template
     public function getViewUrl($order)
     {
         return $this->getUrl('sales/order/view', ['order_id' => $order->getId()]);
+    }
+
+    /**
+     * @return $this|void
+     */
+    protected function addFilterSearchText()
+    {
+        $search = $this->getRequest()->getParam('q');
+        if (!$search) {
+            return $this;
+        }
+
+        $this->orders
+            ->join(
+                ['item' => $this->orders->getTable('sales_order_item')],
+                'item.order_id = main_table.entity_id'
+            )
+            ->addFieldToFilter([
+                'main_table.increment_id',
+                'item.sku',
+                'item.name'
+        ], [
+            ['like' => "%{$search}%"],
+            ['like' => "%{$search}%"],
+            ['like' => "%{$search}%"]
+        ])
+        ->getSelect()->group('main_table.entity_id');
+    }
+
+    /**
+     * @return $this
+     */
+    protected function addFilterDate()
+    {
+        $year = $this->getRequest()->getParam('year');
+        if (!$year) {
+            $year = '30 days';
+        }
+
+        if ($year == '30 days' || $year == '3 months') {
+            $date = date('Y-m-d', strtotime("-{$year}"));
+            $this->orders->addFieldToFilter(
+                'main_table.created_at',
+                ['gteq' => $date]
+            );
+            return $this;
+        }
+
+        $start = $year . '-01-01 00:00:00';
+        $end = $year . '-12-31 23:59:59';
+        $this->orders->addFieldToFilter(
+            'main_table.created_at',
+            ['gteq' => $start]
+        )
+        ->addFieldToFilter(
+            'main_table.created_at',
+            ['lteq' => $end]
+        );
+        return $this;
     }
 }
