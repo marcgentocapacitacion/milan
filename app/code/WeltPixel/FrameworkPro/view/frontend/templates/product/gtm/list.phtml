@@ -98,11 +98,6 @@ $gtmHelper = $this->helper('WeltPixel\GoogleTagManager\Helper\Data');
                                         <?php endif; ?>
                                     <?php endif; ?>
                                 </div>
-                                <div data-role="add-to-links" class="actions-secondary"<?php echo strpos($pos, $viewMode . '-secondary') ? $position : ''; ?>>
-                                    <?php if ($addToBlock = $block->getChildBlock('addto')): ?>
-                                        <?php echo $addToBlock->setProduct($_product)->getChildHtml(); ?>
-                                    <?php endif; ?>
-                                </div>
                             </div>
                             <?php if ($showDescription):?>
                                 <div class="product description product-item-description">
