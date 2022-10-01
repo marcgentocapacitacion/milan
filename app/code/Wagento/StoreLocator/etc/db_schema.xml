@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="store_locator" resource="default" engine="innodb" comment="Store locator">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Entity ID"/>
+        <column xsi:type="smallint" name="store_id"  unsigned="true" nullable="false" identity="false"
+                default="0" comment="Store ID"/>
+        <column xsi:type="varchar" name="code" length="150" nullable="true" comment="Code of Store"/>
+        <column xsi:type="varchar" name="name" length="255" nullable="true" comment="Name of Store"/>
+        <column xsi:type="varchar" name="fone" length="60" nullable="true" comment="Fone number"/>
+        <column xsi:type="varchar" name="full_address" length="255" nullable="false" comment="Address of Store"/>
+        <column xsi:type="varchar" name="longitude" length="60" nullable="false" comment="Longitude"/>
+        <column xsi:type="varchar" name="latitude" length="60" nullable="false" comment="Latitude"/>
+        <column xsi:type="tinyint" name="active" default="1" nullable="false" comment="1 actine and 0 inactive"/>
+        <constraint xsi:type="foreign" referenceId="STORE_LOCATOR_FOREIGN_STORE_ID"
+                    table="store_locator" column="store_id" referenceTable="store"
+                    referenceColumn="store_id" onDelete="CASCADE"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+</schema>

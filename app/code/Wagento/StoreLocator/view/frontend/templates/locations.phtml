@@ -1,0 +1,61 @@
+<?php
+/** @var \Wagento\StoreLocator\Block\Locations $block */
+/** @var \Magento\Framework\Escaper $escaper */
+?>
+
+<div>
+    <div class="table-wrapper title-filter">
+        <div class="title-locator">
+            <span><b><?=__('Locator / Selling Points');?></b></span>
+            <div class="filter-distance">
+                <label for="distance"><?=__('Distance');?></label>
+                <input type="number" name="distance" id="distance" placeholder="<?=__('Kilometers');?>"/>
+            </div>
+            <div class="filter-text">
+                <div class="text-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="search_text" name="search_text" placeholder="<?=__('Location Search');?>">
+                </div>
+                <button type="button" id="search-locators">
+                    <span><?=__('Search');?></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="content-data">
+        <div class="storeslocations" id="storeslocations" data-bind="scope: 'storeslocations'">
+            <!-- ko template: getTemplate() --><!-- /ko -->
+        </div>
+        <div class="map-locator" id="map" style="height: 500px;"></div>
+    </div>
+</div>
+<div class="pager-see-more" id="container-pager">
+    <hr/>
+    <div id="pagination-order">
+        <button type="button" class="load-more" id="load-more">
+            <span><?=__('See More');?></span>
+        </button>
+        <input type="hidden" id="p" name="p" />
+    </div>
+    <hr/>
+</div>
+<script type="text/x-magento-init">
+    {
+        "#storeslocations": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "storeslocations": {
+                        "component": "Wagento_StoreLocator/js/locations",
+                        "urlAjax": "<?= $escaper->escapeUrl($block->getUrl('locations/ajax/getlocators'));?>",
+                        "elementSearch": "#search-locators",
+                        "elementSearchText": "#search_text",
+                        "containerPager": "#container-pager",
+                        "inputHiddenPageNumber": "#p",
+                        "buttonPage": "#load-more",
+                        "elementFilterDistance": "#distance"
+                    }
+                }
+            }
+        }
+    }
+</script>

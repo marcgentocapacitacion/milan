@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Wagento\StoreLocator\Model\ResourceModel\StoreLocator\DataProvider\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">store_locator</argument>
+            <argument name="resourceModel" xsi:type="string">Wagento\StoreLocator\Model\ResourceModel\StoreLocator</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="locations_listing_data_source" xsi:type="string">Wagento\StoreLocator\Model\ResourceModel\StoreLocator\DataProvider\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
