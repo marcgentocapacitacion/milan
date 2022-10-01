@@ -1,0 +1,15 @@
+<!-- ko foreach: {data: storesLocations(), as: 'store'} -->
+<div>
+    <span class="name" data-bind="{html: store.name}"></span>
+    <span class="address" data-bind="{html: store.full_address}"></span>
+    <span class="fone">
+        <!-- ko i18n: 'Cel' --><!-- /ko -->:
+        <span class="number" data-bind="{html: store.fone}"></span>
+    </span>
+    <span class="seeinmap" data-bind="click: function(){$parent.centerStoreInMap(store.latitude, store.longitude)}">
+        <!-- ko i18n: 'See in map.' --><!-- /ko -->
+        <i class="fa-sharp fa-solid fa-map-location-dot"></i>
+    </span>
+</div>
+<!-- /ko -->
+

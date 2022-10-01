@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="wagento_extension" translate="label" sortOrder="10">
+            <label>Wagento Extensions</label>
+        </tab>
+        <section id="wagento_google_maps" translate="label" type="text" sortOrder="10"  showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Store Locator</label>
+            <tab>wagento_extension</tab>
+            <resource>Wagento_StoreLocator::config</resource>
+            <group id="google_maps" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="10">
+                <label>Google Maps</label>
+                <field id="api_key" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="10">
+                    <label>API Key</label>
+                    <comment>You need to get API key of the google maps and put here, else, your page won't work.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

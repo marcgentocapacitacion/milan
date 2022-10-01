@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Wagento_StoreLocator::storelocator" title="Locations" translate="title" module="Wagento_StoreLocator" sortOrder="1000" parent="Magento_Backend::stores" resource="Wagento_StoreLocator::storelocator"/>
+        <add id="Wagento_StoreLocator::manager" title="Manage Locations" translate="title" module="Wagento_StoreLocator" sortOrder="10" parent="Wagento_StoreLocator::storelocator" action="locations/manager/grid/" resource="Wagento_StoreLocator::manager"/>
+    </menu>
+</config>

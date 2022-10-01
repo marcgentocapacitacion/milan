@@ -451,8 +451,10 @@ return [
         'PayPal_BraintreeGraphQl' => 1,
         'Temando_ShippingRemover' => 1,
         'Wagento_ImportData' => 1,
+        'Wagento_ModifiedCheckout' => 0,
         'Wagento_Rutavity' => 1,
         'Wagento_Sales' => 1,
-        'Wagento_SelectCustom' => 1
+        'Wagento_SelectCustom' => 1,
+        'Wagento_StoreLocator' => 1
     ]
 ];

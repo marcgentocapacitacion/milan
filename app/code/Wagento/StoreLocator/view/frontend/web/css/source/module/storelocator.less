@@ -1,0 +1,31 @@
+.content-data {
+    display: flex;
+    .storeslocations {
+        padding: 0px 30px 0px 0px;
+        font-size: 1.2em;
+        > div {
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid #000;
+            padding: 25px 0px;
+            &:first-child {
+                border-top: 1px solid #000;
+            }
+            > span.name {
+                font-weight: bold;
+            }
+
+            > span.fone > .number {
+                font-weight: bold;
+                text-decoration: underline;
+            }
+
+            > span.seeinmap {
+                cursor: pointer;
+                font-weight: bold;
+            }
+        }
+    }
+}
+@import "storelocator_desktop";
+@import "storelocator_mobile";
