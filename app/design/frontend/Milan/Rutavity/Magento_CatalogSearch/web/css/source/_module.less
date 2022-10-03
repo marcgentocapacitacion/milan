@@ -422,6 +422,94 @@
         .minisearch.active .action.search {
             opacity: 1;
         }
+
+        .block {
+            .searchautocomplete {
+                right: 24px;
+                top: 47px;
+                width: ~"calc(100% - 50px)";
+                font-size: 18px;
+                box-shadow: inset 0px 9px 11px #00000069;
+
+                .separator {
+                    display: none;
+                }
+
+                .wpx-search-autocomplete {
+                    padding: 0 20px;
+                    margin: 30px 20px 0;
+
+                    ul li {
+                        margin: 15px 0;
+                    }
+                }
+
+                .container-autocomplete {
+                    padding: 0;
+
+                    .search-results-items,
+                    .more-results {
+                        display: none;
+                    }
+
+                    .product-list {
+                        li {
+                            padding: 15px 40px;
+                            margin: 0;
+
+                            &:first-child {
+                                border-top: solid 1px #000;
+                            }
+                        }
+
+                        .block-flex {
+                            .block-right {
+                                padding: 0 20px;
+                                flex: 1;
+                                align-self: center;
+
+                                .product-title,
+                                .price {
+                                    font-size: 18px;
+                                    font-weight: bold;
+                                }
+                            }
+                        }
+
+                        .product-details,
+                        .actions-primary {
+                            display: flex;
+                            justify-content: space-between;
+                        }
+
+                        .action.primary {
+                            border: none;
+                            height: 40px;
+                            line-height: 26px;
+                            border-radius: 20px;
+                            padding: 7px 20px;
+
+                            &:hover {
+                                border: none;
+                            }
+
+                            &.tocart {
+                                background: url('@{baseDir}images/assets/cart-ch.png');
+                                border: none;
+                                position: relative;
+                                width: 42px;
+                                height: 35px;
+                                border-radius: 0;
+
+                                span {
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     .search-autocomplete {
