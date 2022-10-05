@@ -372,7 +372,7 @@
             z-index: 16;
         }
 
-        .block .searchautocomplete {
+        .block.block-content .searchautocomplete {
             width: 100% !important;
             left: 0;
             right: 0;
@@ -385,11 +385,30 @@
 
             .separator:first-child,
             .wpx-search-autocomplete {
-                display: none;
+                display: none !important;
             }
 
-            .product-list li {
-                border-bottom: solid 2px #ccc !important;
+            .product-list {
+                .product-details {
+                    flex-direction: column;
+                }
+
+                .block-flex .block-right {
+                    .product-title {
+                        font-size: 16px;
+                        margin: 0;
+                    }
+
+                    .price {
+                        font-weight: normal;
+                    }
+                }
+
+                li {
+                    border-bottom: solid 2px #ccc;
+                    padding: 15px 0;
+                    border-top: none;
+                }
             }
         }
     }
