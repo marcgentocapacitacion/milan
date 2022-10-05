@@ -459,12 +459,12 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
             $this->inlineStyleOptions[] = 'body .nav-sections .navigation ul li.megamenu.level' . $childLevel
                 . ' ul.level' . $childLevel . '.submenu' . '.'
                 . (strpos($megaMenuClass, 'fullwidth') !== false ? $megaMenuClass . ' > li div.fullwidth-wrapper' : $megaMenuClass)
-                . ',' . 'body .nav-sections .navigation .megamenu .submenu'
+                //. ',' . 'body .nav-sections .navigation .megamenu .submenu'
                 . '{ background: ' . $backgroundColor . ' ;}';
-            $this->inlineStyleOptions[] = 'body .nav-sections .navigation ul li.megamenu.level' . $childLevel
-                . ' ul.level' . $childLevel . '.submenu' . '.'
-                . $megaMenuClass . ' li a'
-                . '{ background: ' . $backgroundColor . ' ;}';
+//            $this->inlineStyleOptions[] = 'body .nav-sections .navigation ul li.megamenu.level' . $childLevel
+//                . ' ul.level' . $childLevel . '.submenu' . '.'
+//                . $megaMenuClass . ' li a'
+//                . '{ background: ' . $backgroundColor . ' ;}';
         }
 
         if (strlen($mmFontColor)) {
@@ -507,9 +507,6 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
         if ($continuityTopLevelWithMegaMenu) {
             $this->inlineStyleOptions[] = 'body .nav-sections .navigation ul li.megamenu.level0.mm-has-children'
                 . ':hover > a { background:' . ($backgroundColor ? $backgroundColor : 'transparent') . ' ;}';
-        } else {
-            $this->inlineStyleOptions[] = 'body .page-wrapper .nav-sections .navigation ul li.megamenu.mm-first-item a.level-top'
-                . '{ padding-left: 0px ;}';
         }
 
         if (strlen($mmSubMenuPadding)) {
