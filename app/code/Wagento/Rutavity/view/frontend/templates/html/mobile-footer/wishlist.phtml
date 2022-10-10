@@ -1,0 +1,20 @@
+<?php
+/**
+ * Rutavity homepage mobile footer wishlist
+ * @package Wagento_Rutavity
+ * @author Rudie Wang <rudi.wang@wagento.com>
+ */
+
+/** @var $block \Wagento\Rutavity\Block\MobileFooter\Wishlist */
+?>
+
+<?php
+$count = $block->getWishlistCount();
+?>
+
+<a href="<?= $block->getUrl('wishlist') ?>" class="action wishlist">
+    <span class="text"><?php /* @escapeNotVerified */ echo __('WishList'); ?></span>
+    <span class="counter qty <?= ($count) ? '' : 'empty' ?>">
+        <span class="counter-number"><?= $count ?></span>
+    </span>
+</a>

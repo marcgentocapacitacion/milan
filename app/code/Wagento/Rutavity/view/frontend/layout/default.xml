@@ -11,4 +11,26 @@
     <head>
         <css src="Wagento_Rutavity::lib/swiper.css"/>
     </head>
+    <body>
+        <referenceContainer name="footer">
+            <block class="Magento\Framework\View\Element\Template" name="mobile-footer" template="Wagento_Rutavity::html/mobile-footer.phtml" after="-">
+                <block class="Magento\Checkout\Block\Cart\Sidebar" name="mobile-footer-cart" template="Wagento_Rutavity::html/mobile-footer/cart.phtml">
+                    <arguments>
+                        <argument name="jsLayout" xsi:type="array">
+                            <item name="types" xsi:type="array"/>
+                            <item name="components" xsi:type="array">
+                                <item name="minicart_content" xsi:type="array">
+                                    <item name="component" xsi:type="string">Magento_Checkout/js/view/minicart</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="template" xsi:type="string">Magento_Checkout/minicart/content</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </argument>
+                    </arguments>
+                </block>
+                <block class="Wagento\Rutavity\Block\MobileFooter\Wishlist" name="mobile-footer-wishlist" template="Wagento_Rutavity::html/mobile-footer/wishlist.phtml" />
+            </block>
+        </referenceContainer>
+    </body>
 </page>

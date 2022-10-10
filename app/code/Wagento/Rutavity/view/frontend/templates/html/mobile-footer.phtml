@@ -1,0 +1,36 @@
+<?php
+/**
+ * Rutavity homepage mobile footer
+ * @package Wagento_Rutavity
+ * @author Rudie Wang <rudi.wang@wagento.com>
+ */
+
+/**
+ * @var \Magento\Framework\View\Element\Template $block
+ */
+?>
+<div id="mobile-footer" class="mobile-footer sticky">
+    <div class="mobile-footer-content items">
+        <div class="item mobile-footer-home">
+            <a href="<?= $block->getUrl() ?>" class="action home">
+                <span class="text"><?php /* @escapeNotVerified */ echo __('Home'); ?></span>
+            </a>
+        </div>
+        <div class="item mobile-footer-wishlist">
+            <?= $block->getChildHtml('mobile-footer-wishlist') ?>
+        </div>
+        <div class="item mobile-footer-search">
+            <label class="action label" for="search" data-role="minisearch-label">
+                <span class="text"><?php /* @escapeNotVerified */ echo __('Search'); ?></span>
+            </label>
+        </div>
+        <div class="item mobile-footer-cart">
+            <?= $block->getChildHtml('mobile-footer-cart') ?>
+        </div>
+        <div class="item mobile-footer-account">
+            <a href="<?= $block->getUrl('customer/account') ?>" class="action myaccount">
+                <span class="text"><?php /* @escapeNotVerified */ echo __('My Account'); ?></span>
+            </a>
+        </div>
+    </div>
+</div>
