@@ -10,6 +10,7 @@
 @icon-rutavity-search: '\e909';
 
 @color-rutavity-red: #fc0d1b;
+@color-rutavity-gray-icon: #4D4D4D;
 
 //
 //  Common
@@ -35,7 +36,7 @@
         width: 100%;
         height: 65px;
         z-index: 10;
-        border-top: 2px solid @color-rutavity-gray04;
+        border-top: 2px solid @color-rutavity-gray-icon;
         padding: 0 20px;
 
         &-content {
@@ -56,7 +57,7 @@
                 speak: none;
                 text-align: center;
                 font-size: 30px;
-                color: @color-rutavity-gray04;
+                color: @color-rutavity-gray-icon;
             }
 
             .text {
@@ -73,34 +74,18 @@
         &-account .action:before {
             content: @icon-rutavity-login;
         }
-
-        &-wishlist .action {
-            position: relative;
-
-            &:before {
-                content: @icon-rutavity-heart;
-            }
-
-            .counter.qty.empty {
-                display: none;
-            }
+        &-wishlist .action:before {
+            content: @icon-rutavity-heart;
         }
-
-        &-cart .action {
-            position: relative;
-
-            &:before {
-                content: @icon-rutavity-cart;
-            }
-
-            .counter-label {
-                display: none;
-            }
+        &-cart .action:before {
+            content: @icon-rutavity-cart;
         }
 
         &-wishlist,
         &-cart {
             .action {
+                position: relative;
+
                 .counter.qty {
                     background: @color-rutavity-red;
                     color: @color-white;
@@ -115,6 +100,14 @@
                     position: absolute;
                     left: 20px;
                     top: 0;
+
+                    &.empty {
+                        display: none;
+                    }
+                }
+
+                .counter-label {
+                    display: none;
                 }
             }
         }
