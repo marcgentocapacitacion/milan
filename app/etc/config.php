@@ -451,10 +451,23 @@ return [
         'PayPal_BraintreeGraphQl' => 1,
         'Temando_ShippingRemover' => 1,
         'Wagento_ImportData' => 1,
-        'Wagento_ModifiedCheckout' => 0,
+        'Wagento_ModifiedCheckout' => 1,
         'Wagento_Rutavity' => 1,
         'Wagento_Sales' => 1,
         'Wagento_SelectCustom' => 1,
-        'Wagento_StoreLocator' => 1
+        'Wagento_StoreLocator' => 1,
+        'WeSupply_Toolbox' => 1,
+        'WeltPixel_Backend' => 1,
+        'WeltPixel_AjaxInfiniteScroll' => 1,
+        'WeltPixel_FrameworkPro' => 1,
+        'WeltPixel_FullPageScroll' => 1,
+        'WeltPixel_LayeredNavigation' => 1,
+        'WeltPixel_LazyLoading' => 1,
+        'WeltPixel_MobileDetect' => 1,
+        'WeltPixel_NavigationLinks' => 1,
+        'WeltPixel_QuickCart' => 1,
+        'WeltPixel_SearchAutoComplete' => 1,
+        'WeltPixel_Sitemap' => 1,
+        'WeltPixel_SocialLogin' => 1
     ]
 ];
