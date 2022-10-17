@@ -13,6 +13,11 @@ class History extends \Magento\Framework\View\Element\Template
     /**
      * @var string
      */
+    protected $_template = 'Wagento_Sales::order/history.phtml';
+
+    /**
+     * @var string
+     */
     public CONST HISTORY_PAGE_ORDER = 'order';
 
     /**
@@ -34,6 +39,17 @@ class History extends \Magento\Framework\View\Element\Template
             return true;
         }
         return $this->getRequest()->getParam('history_page') == self::HISTORY_PAGE_ORDER;
+    }
+
+    /**
+     * Set path to template used for generating block's output.
+     *
+     * @param string $template
+     * @return $this
+     */
+    public function setTemplate($template)
+    {
+        return $this;
     }
 
     /**
