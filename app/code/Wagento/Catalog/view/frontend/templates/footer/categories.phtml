@@ -1,0 +1,17 @@
+<?php /** @var \Wagento\Catalog\Block\Footer\Categories $block */ ?>
+<div class="link category-label"><h4>Categorias <i class="fa-solid fa-caret-left"></i><i class="fa-solid fa-caret-down"></i></h4></div>
+<?php /** @var \Magento\Catalog\Model\Category $category */?>
+<?php foreach ($block->getCategories() as $category):?>
+    <div class="link category">
+        <h4>
+            <a href="<?=$block->getCategoryUrl($category);?>"><?=$category->getName();?></a> <i class="fa-solid fa-caret-left"></i><i class="fa-solid fa-caret-down"></i>
+        </h4>
+        <ul>
+            <?php /** @var \Magento\Catalog\Model\Category $parentCategory */?>
+            <?php foreach ($category->getChildren()->getNodes() ?? [] as $parentCategory):?>
+                <li><a href="<?=$block->getCategoryUrl($parentCategory);?>"><?=$parentCategory->getName();?></a></li>
+            <?php endforeach;?>
+        </ul>
+    </div>
+<?php endforeach;?>
+<hr class="link category"/>
