@@ -12,6 +12,12 @@
 $path = $block->getLogoFile();
 $label = $block->getLogoAlt();
 ?>
-<a class="mini-logos" href="#">
-    <img src="<?= $block->escapeHtml($block->getViewFileUrl($path)) ?>" alt="<?= $block->escapeHtml($label) ?>" />
+<a class="mini-logos" href="<?=$block->getUrl('catalog/category/view/category/optimus/');?>">
+    <img src="<?= $block->escapeHtml($block->getViewFileUrl('images/assets/optimus.svg')) ?>" alt="<?= $block->escapeHtml($label) ?>" />
+</a>
+<a class="mini-logos" href="<?=$block->getUrl('catalog/category/view/category/profit/');?>">
+    <img src="<?= $block->escapeHtml($block->getViewFileUrl('images/assets/profit.svg')) ?>" alt="<?= $block->escapeHtml($label) ?>" />
+</a>
+<a class="mini-logos" href="<?=$block->getUrl('catalog/category/view/category/orbea/');?>">
+    <img src="<?= $block->escapeHtml($block->getViewFileUrl('images/assets/orbea.svg')) ?>" alt="<?= $block->escapeHtml($label) ?>" />
 </a>

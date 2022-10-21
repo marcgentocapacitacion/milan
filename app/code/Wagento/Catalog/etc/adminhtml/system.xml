@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="wagento_extension" translate="label" sortOrder="10">
+            <label>Wagento Extensions</label>
+        </tab>
+        <section id="wagento_catalog" translate="label" type="text" sortOrder="10"  showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Catalog</label>
+            <tab>wagento_extension</tab>
+            <resource>Wagento_StoreLocator::config</resource>
+            <group id="custom_pages_categories" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="10">
+                <label>Pages of the Custom Categories</label>
+                <field id="optimus" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="10">
+                    <label>Optimus's Categories</label>
+                    <comment>You need to put category_id separated per comma, for example: 1,2,3,4</comment>
+                </field>
+                <field id="optimus_title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="10">
+                    <label>Optimus Title's Page</label>
+                </field>
+                <field id="profit" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="10">
+                    <label>Profit's Categories</label>
+                    <comment>You need to put category_id separated per comma, for example: 1,2,3,4</comment>
+                </field>
+                <field id="profit_title" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="10">
+                    <label>Profit Title's Page</label>
+                </field>
+                <field id="orbea" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="0" showInStore="10">
+                    <label>Orbea's Categories</label>
+                    <comment>You need to put category_id separated per comma, for example: 1,2,3,4</comment>
+                </field>
+                <field id="orbea_title" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="0" showInStore="10">
+                    <label>Orbea Title's Page</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
