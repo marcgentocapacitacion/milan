@@ -1,0 +1,19 @@
+<!--
+/**
+ * Rutavity theme Magento_Theme default layout
+ * @package Milan_Rutavity
+ * @author Rudie Wang <rudi.wang@wagento.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="header.panel">
+            <block class="Wagento\Catalog\Block\MiniLogos" name="mini-logos" template="Wagento_Catalog::html/mini-logos.phtml" before="-">
+                <arguments>
+                    <argument name="logo_file" xsi:type="string">images/assets/logos-ch.png</argument>
+                    <argument name="logo_alt" translate="true" xsi:type="string">Mini logos</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

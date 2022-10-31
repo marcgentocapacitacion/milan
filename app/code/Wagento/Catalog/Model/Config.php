@@ -12,7 +12,7 @@ class Config extends \Magento\Framework\App\Config
     /**
      * @var string
      */
-    public const CONFIG_PATH = 'wagento_catalog/custom_pages_categories/';
+    public const CONFIG_PATH = 'wagento_catalog/custom_pages_categories/custom_pages_brands';
 
     /**
      * @var string
@@ -25,15 +25,25 @@ class Config extends \Magento\Framework\App\Config
     protected ?array $categories;
 
     /**
+     * @var string
+     */
+    protected string $title = '';
+
+    /**
      * @param string $page
      *
      * @return bool
      */
     public function setPage(string $page): bool
     {
-        $categories = $this->getValue(self::CONFIG_PATH . $page, ScopeInterface::SCOPE_STORE);
+        $categories = $this->getValue(self::CONFIG_PATH, ScopeInterface::SCOPE_STORE);
         if ($categories) {
-            $this->categories = explode(',', $categories);
+            $categories = \json_decode($categories, true);
+            if (!isset($categories[$page])) {
+                return false;
+            }
+            $this->categories = explode(',', $categories[$page]['categories'] ?? []);
+            $this->title = $categories[$page]['title'] ?? '';
             $this->configPath = self::CONFIG_PATH . $page;
             return true;
         }
@@ -48,9 +58,7 @@ class Config extends \Magento\Framework\App\Config
     public function getCategories(string $page = null): ?array
     {
         if (!$this->categories) {
-            $path = $this->configPath ?? self::CONFIG_PATH . $page;
-            $categories = $this->getValue($path, ScopeInterface::SCOPE_STORE) ?? [];
-            $this->categories = explode(',', $categories);
+            $this->setPage($page);
         }
 
         return $this->categories;
@@ -63,7 +71,9 @@ class Config extends \Magento\Framework\App\Config
      */
     public function getTitle(string $page = null): string
     {
-        $path = $this->configPath ?? self::CONFIG_PATH . $page;
-        return $this->getValue($path . '_title', ScopeInterface::SCOPE_STORE) ?? '';
+        if (!$this->title) {
+            $this->setPage($page);
+        }
+        return $this->title ?? '';
     }
 }

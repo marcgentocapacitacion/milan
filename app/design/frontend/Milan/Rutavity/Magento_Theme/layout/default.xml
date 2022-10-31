@@ -19,14 +19,6 @@
                 <argument name="logo_alt" xsi:type="string">Rutavity</argument>
             </arguments>
         </referenceBlock>
-        <referenceContainer name="header.panel">
-            <block class="Magento\Framework\View\Element\Template" name="mini-logos" template="Magento_Theme::html/mini-logos.phtml" before="-">
-                <arguments>
-                    <argument name="logo_file" xsi:type="string">images/assets/logos-ch.png</argument>
-                    <argument name="logo_alt" translate="true" xsi:type="string">Mini logos</argument>
-                </arguments>
-            </block>
-        </referenceContainer>
         <referenceBlock name="register-link" remove="true"/>
         <move element="navigation.sections" destination="header-wrapper" after="logo"/>
         <move element="minicart" destination="header.panel" before="top.links"/>
