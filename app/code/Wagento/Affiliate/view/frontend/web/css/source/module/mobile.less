@@ -1,0 +1,71 @@
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .affiliates {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        margin: 10px 10px;
+        .row {
+            display: flex;
+            margin: 10px 10px;
+            background-color: #000;
+            border-radius: 200px;
+            max-width: 60%;
+            max-height: 10em;
+            .image {
+                position: relative;
+                > h1 {
+                    line-height: 1.1;
+                    margin-top: 0rem;
+                    margin-bottom: 2rem;
+                    position: absolute;
+                    top: 30%;
+                    color: #fff;
+                    left: 30%;
+                    font-size: 3em;
+                    font-weight: bold;
+                    text-shadow: 4px 2px 7px #000;
+                }
+                > img {
+                    border-radius: 200px;
+                    min-width: 100%;
+                    cursor: pointer;
+                    max-width: 10em;
+                }
+            }
+
+            .info {
+                flex-direction: column;
+                align-items: normal;
+                justify-content: center;
+                margin: 0px 20px;
+                display: none;
+                .title {
+                    font-size: 1.5em;
+                    font-weight: bold;
+                    color: #ffffff;
+                }
+                .address, .phone {
+                    font-size: 1.1em;
+                    color: #ffffff;
+                }
+            }
+        }
+    }
+
+    .affiliates {
+        .active {
+            min-width: 100%;
+            .info {
+                display: flex;
+            }
+        }
+    }
+
+    .title-affiliate {
+        text-align: center;
+        > span {
+            font-size: 52px;
+        }
+    }
+}

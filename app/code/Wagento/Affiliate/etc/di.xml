@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Wagento\Affiliate\Model\ResourceModel\Affiliate\DataProvider\Collection"
+                type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">affiliate_entity</argument>
+            <argument name="resourceModel" xsi:type="string">Wagento\Affiliate\Model\ResourceModel\Affiliate</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="affiliate_listing_data_source" xsi:type="string">Wagento\Affiliate\Model\ResourceModel\Affiliate\DataProvider\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

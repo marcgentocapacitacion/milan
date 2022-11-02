@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Wagento_Affiliate::affiliate" title="Affiliate" translate="title" module="Wagento_Affiliate" sortOrder="1000" parent="Magento_Backend::stores" resource="Wagento_Affiliate::affiliate"/>
+        <add id="Wagento_Affiliate::manager" title="Manage Affiliate" translate="title" module="Wagento_Affiliate" sortOrder="10" parent="Wagento_Affiliate::affiliate" action="affiliate/manager/grid/" resource="Wagento_Affiliate::manager"/>
+    </menu>
+</config>
