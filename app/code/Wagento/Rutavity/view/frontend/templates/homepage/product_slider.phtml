@@ -6,44 +6,31 @@
  */
 
 /**
- * @var \Magento\Framework\View\Element\Template $block
+ * @var \Wagento\Rutavity\Block\ProductSlider $block
  */
 ?>
+<?php
+    $collection = $block->getProductCollection();
+?>
+
 <div id="homepage-product-slider" class="swiper-container">
     <div class="swiper-wrapper">
-        <div class="swiper-slide">
-            <div class="swiper-lazy-preloader"></div>
-            <a href="#" class="product-image">
-                <img class="swiper-lazy" data-src="<?= $block->getUrl('media/wysiwyg/products') . 'Prod-dest-1.png' ?>" alt=""/>
-            </a>
-            <div class="product-info">
-                <strong class="product-name">Casco In Mold New Crater</strong>
-                <span class="product-brand">Optimus</span>
-                <span class="product-brand">Precio: $999.999</span>
-            </div>
-        </div>
-        <div class="swiper-slide">
-            <div class="swiper-lazy-preloader"></div>
-            <a href="#" class="product-image">
-                <img class="swiper-lazy" data-src="<?= $block->getUrl('media/wysiwyg/products') . 'Prod-dest-2.png' ?>" alt=""/>
-            </a>
-            <div class="product-info">
-                <strong class="product-name">Gafas Para Mtb 6A</strong>
-                <span class="product-brand">Optimus</span>
-                <span class="product-brand">Precio: $999.999</span>
-            </div>
-        </div>
-        <div class="swiper-slide">
-            <div class="swiper-lazy-preloader"></div>
-            <a href="#" class="product-image">
-                <img class="swiper-lazy" data-src="<?= $block->getUrl('media/wysiwyg/products') . 'Prod-dest-3.png' ?>" alt=""/>
-            </a>
-            <div class="product-info">
-                <strong class="product-name">Zapatillas Para Mtb 6A</strong>
-                <span class="product-brand">Optimus</span>
-                <span class="product-brand">Precio: $999.999</span>
-            </div>
-        </div>
+        <?php if ($collection->getSize() > 0): ?>
+          <?php foreach ($collection as $product):?>
+            <?php $name = ucfirst(strtolower($product->getName())); ?>
+                <div class="swiper-slide">
+                    <div class="swiper-lazy-preloader"></div>
+                    <a href="<?= $escaper->escapeUrl($product->getProductUrl()) ?>" class="product-image">
+                        <img class="swiper-lazy" data-src="<?= $block->getProductImage($product) ?>" alt=""/>
+                    </a>
+                    <div class="product-info">
+                        <strong class="product-name"><?= /* @noEscape */ mb_strimwidth($name, 0, 45, "...") ?></strong>
+                        <span class="product-brand"><?= /* @noEscape */ $product->getSku() ?></span>
+                        <span class="product-brand"><?= /* @noEscape */ "Precio: ". $block->getFormattedPrice($product->getPrice()); ?></span>
+                    </div>
+                </div>
+            <?php endforeach ?>
+        <?php endif; ?>
     </div>
     <div id="homepage_products_slider_prev" class="swiper-button-next swiper-button-black"></div>
     <div id="homepage_products_slider_next" class="swiper-button-prev swiper-button-black"></div>
