@@ -1,0 +1,33 @@
+{
+    "company_custom_data": {
+        "column": {
+            "u_autorizadoTemporada": true,
+            "u_inicioTemporada": true,
+            "u_finTemporada": true,
+            "u_groupNumTemporada": true,
+            "u_discountTemporada": true,
+            "u_autorizadoTemporadaOPT": true,
+            "u_groupNUmTempoOPT": true,
+            "groupNum": true,
+            "u_discountContado": true,
+            "u_discountContadoOptimus": true,
+            "u_discountOptimus": true,
+            "u_groupNumOptimus": true,
+            "u_discountMilan": true,
+            "debitLine": true,
+            "u_fechaNacimiento": true,
+            "u_cliente_activo_hasta": true,
+            "u_phone1WP": true,
+            "phone2": true,
+            "u_phone2WP": true,
+            "cellular": true,
+            "u_cellularWP": true,
+            "frozen": true,
+            "slpCode": true,
+            "territory": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

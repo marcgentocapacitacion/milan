@@ -13,7 +13,7 @@
             <div class="row row-affiliate">
                 <div class="image">
                     <h1 class="short-name">
-                        <?=substr($item->getData('name'), 0, 2);?>
+                        <?=mb_substr($item->getData('name'), 0, 2);?>
                     </h1>
                     <img src="<?=$block->getImage($item->getData('image'));?>"/>
                 </div>

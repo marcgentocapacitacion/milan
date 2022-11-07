@@ -7,7 +7,6 @@ namespace Wagento\Affiliate\Model\ResourceModel;
  */
 class Affiliate extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 {
-
     /**
      * @inheritDoc
      */

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="company_custom_data" resource="default" engine="innodb" comment="Data of the Integration with ERP">
+        <column xsi:type="int" name="company_id" unsigned="true" nullable="false" identity="false"
+                comment="Company ID"/>
+        <column xsi:type="int" name="u_autorizadoTemporada" nullable="true" comment="Authorize Tempo MIL"/>
+        <column xsi:type="varchar" name="u_inicioTemporada" nullable="true" length="255" comment="Start Date Time"/>
+        <column xsi:type="varchar" name="u_finTemporada" nullable="true" length="255" comment="End Date Time"/>
+        <column xsi:type="varchar" name="u_groupNumTemporada" nullable="true" length="255" comment="Cod. AC Milan season"/>
+        <column xsi:type="varchar" name="u_discountTemporada" nullable="true" length="255" comment="% Dcto Season"/>
+        <column xsi:type="int" name="u_autorizadoTemporadaOPT" nullable="true" comment="Authorize Tempo OPT"/>
+        <column xsi:type="varchar" name="u_groupNUmTempoOPT" nullable="true" length="255" comment="Cod. OPTIMUS season"/>
+        <column xsi:type="int" name="groupNum" nullable="true" comment="Milan Payment Condition"/>
+        <column xsi:type="varchar" name="u_discountContado" nullable="true" length="255" comment="% Cash Discount"/>
+        <column xsi:type="varchar" name="u_discountContadoOptimus" nullable="true" length="255" comment="% Cash Discount Optimus"/>
+        <column xsi:type="varchar" name="u_discountOptimus" nullable="true" length="255" comment="% Discount Fact. Optimus"/>
+        <column xsi:type="varchar" name="u_groupNumOptimus" nullable="true" length="255" comment="Optimus Payment Condition"/>
+        <column xsi:type="varchar" name="u_discountMilan" nullable="true" length="255" comment="% Discount Fact. Milan"/>
+        <column xsi:type="varchar" name="debitLine" nullable="true" length="255" comment="Golden Quota"/>
+        <column xsi:type="date" name="u_fechaNacimiento" nullable="true" comment="Date of Birthr"/>
+        <column xsi:type="date" name="u_cliente_activo_hasta" nullable="true" comment="Date Active Until"/>
+        <column xsi:type="date" name="u_phone1WP" nullable="true" comment=""/>
+        <column xsi:type="varchar" name="phone2" nullable="true" length="255" comment="Phone 2"/>
+        <column xsi:type="int" name="u_phone2WP" nullable="true" comment=""/>
+        <column xsi:type="varchar" name="cellular" nullable="true" length="255" comment="Cell"/>
+        <column xsi:type="int" name="u_cellularWP" nullable="true" comment=""/>
+        <column xsi:type="int" name="frozen" nullable="true" comment="Inactive"/>
+        <column xsi:type="int" name="slpCode" nullable="true" comment="Seller"/>
+        <column xsi:type="int" name="territory" nullable="true" comment="Territory"/>
+        <constraint xsi:type="foreign" referenceId="COMPANY_CUSTOM_DATA_COMPANY_ID_COMPANY_ENTITY_ID" table="company_custom_data"
+                    column="company_id" referenceTable="company" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="company_id"/>
+        </constraint>
+    </table>
+</schema>

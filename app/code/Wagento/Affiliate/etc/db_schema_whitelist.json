@@ -1,0 +1,16 @@
+{
+    "affiliate_entity": {
+        "column": {
+            "entity_id": true,
+            "name": true,
+            "address": true,
+            "city": true,
+            "phone": true,
+            "image": true,
+            "active": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

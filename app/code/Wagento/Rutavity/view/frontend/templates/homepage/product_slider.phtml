@@ -13,57 +13,59 @@
     $collection = $block->getProductCollection();
 ?>
 
-<div id="homepage-product-slider" class="swiper-container">
-    <div class="swiper-wrapper">
-        <?php if ($collection->getSize() > 0): ?>
-          <?php foreach ($collection as $product):?>
-            <?php $name = ucfirst(strtolower($product->getName())); ?>
-                <div class="swiper-slide">
-                    <div class="swiper-lazy-preloader"></div>
-                    <a href="<?= $escaper->escapeUrl($product->getProductUrl()) ?>" class="product-image">
-                        <img class="swiper-lazy" data-src="<?= $block->getProductImage($product) ?>" alt=""/>
-                    </a>
-                    <div class="product-info">
-                        <strong class="product-name"><?= /* @noEscape */ mb_strimwidth($name, 0, 45, "...") ?></strong>
-                        <span class="product-brand"><?= /* @noEscape */ $product->getSku() ?></span>
-                        <span class="product-brand"><?= /* @noEscape */ "Precio: ". $block->getFormattedPrice($product->getPrice()); ?></span>
+<?php if ($collection):?>
+    <div id="homepage-product-slider" class="swiper-container">
+        <div class="swiper-wrapper">
+            <?php if ($collection->getSize() > 0): ?>
+              <?php foreach ($collection as $product):?>
+                <?php $name = ucfirst(strtolower($product->getName())); ?>
+                    <div class="swiper-slide">
+                        <div class="swiper-lazy-preloader"></div>
+                        <a href="<?= $escaper->escapeUrl($product->getProductUrl()) ?>" class="product-image">
+                            <img class="swiper-lazy" data-src="<?= $block->getProductImage($product) ?>" alt=""/>
+                        </a>
+                        <div class="product-info">
+                            <strong class="product-name"><?= /* @noEscape */ mb_strimwidth($name, 0, 45, "...") ?></strong>
+                            <span class="product-brand"><?= /* @noEscape */ $product->getSku() ?></span>
+                            <span class="product-brand"><?= /* @noEscape */ "Precio: ". $block->getFormattedPrice($product->getPrice()); ?></span>
+                        </div>
                     </div>
-                </div>
-            <?php endforeach ?>
-        <?php endif; ?>
+                <?php endforeach ?>
+            <?php endif; ?>
+        </div>
+        <div id="homepage_products_slider_prev" class="swiper-button-next swiper-button-black"></div>
+        <div id="homepage_products_slider_next" class="swiper-button-prev swiper-button-black"></div>
+        <div id="homepage_products_slider_pagination" class="swiper-pagination"></div>
     </div>
-    <div id="homepage_products_slider_prev" class="swiper-button-next swiper-button-black"></div>
-    <div id="homepage_products_slider_next" class="swiper-button-prev swiper-button-black"></div>
-    <div id="homepage_products_slider_pagination" class="swiper-pagination"></div>
-</div>
-<script type="text/x-magento-init">
-{
-    "#homepage-product-slider": {
-        "Wagento_Rutavity/js/swiper": {
-            "lazy": true,
-            "slidesPerView": 3,
-            "freeMode": true,
-            "loop": true,
-            "autoplay": false,
-            "navigation": {
-                "prevEl": "#homepage_products_slider_next",
-                "nextEl": "#homepage_products_slider_prev"
-            },
-            "pagination": {
-                "el": "#homepage_products_slider_pagination"
-            },
-            "breakpoints": {
-                "480": {
-                    "slidesPerView": 1
+    <script type="text/x-magento-init">
+    {
+        "#homepage-product-slider": {
+            "Wagento_Rutavity/js/swiper": {
+                "lazy": true,
+                "slidesPerView": 3,
+                "freeMode": true,
+                "loop": true,
+                "autoplay": false,
+                "navigation": {
+                    "prevEl": "#homepage_products_slider_next",
+                    "nextEl": "#homepage_products_slider_prev"
                 },
-                "600": {
-                    "slidesPerView": 1
+                "pagination": {
+                    "el": "#homepage_products_slider_pagination"
                 },
-                "768": {
-                    "slidesPerView": 2
+                "breakpoints": {
+                    "480": {
+                        "slidesPerView": 1
+                    },
+                    "600": {
+                        "slidesPerView": 1
+                    },
+                    "768": {
+                        "slidesPerView": 2
+                    }
                 }
             }
         }
     }
-}
-</script>
+    </script>
+<?php endif;?>

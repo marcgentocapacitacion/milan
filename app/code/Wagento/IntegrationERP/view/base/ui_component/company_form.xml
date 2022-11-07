@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="custom_attributes">
+        <settings>
+            <collapsible>true</collapsible>
+            <label translate="true">Custom Attributes</label>
+            <dataScope>company_custom_data</dataScope>
+        </settings>
+        <field name="extension_attributes.u_autorizadoTemporada" sortOrder="10" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">company_custom_data</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Autoriza Tempo MIL</label>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="boolean">false</map>
+                            <map name="true" xsi:type="boolean">true</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="extension_attributes.u_inicioTemporada" sortOrder="20" formElement="date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">company_custom_data</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="validate-date" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Start Date Time</label>
+                <visible>true</visible>
+            </settings>
+        </field>
+        <field name="extension_attributes.u_finTemporada" sortOrder="30" formElement="date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">company_custom_data</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="validate-date" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">End Date Time</label>
+                <visible>true</visible>
+            </settings>
+        </field>
+        <field name="extension_attributes.u_groupNumTemporada" sortOrder="40" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">company_custom_data</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">Cod. AC Milan season</label>
+            </settings>
+        </field>
+        <field name="extension_attributes.u_discountTemporada" sortOrder="50" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">company_custom_data</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">% Dcto Season</label>
+            </settings>
+        </field>
+        <field name="extension_attributes.u_autorizadoTemporadaOPT" sortOrder="60" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">company_custom_data</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Authorize Tempo OPT</label>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="boolean">false</map>
+                            <map name="true" xsi:type="boolean">true</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="extension_attributes.u_groupNUmTempoOPT" sortOrder="70" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">company_custom_data</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">Cod. OPTIMUS season</label>
+            </settings>
+        </field>
+        <field name="extension_attributes.groupNum" sortOrder="80" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">company_custom_data</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Milan Payment Condition</label>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="boolean">false</map>
+                            <map name="true" xsi:type="boolean">true</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="extension_attributes.u_discountContado" sortOrder="90" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">company_custom_data</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">% Cash Discount</label>
+            </settings>
+        </field>
+        <field name="extension_attributes.u_discountContadoOptimus" sortOrder="100" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">company_custom_data</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">% Cash Discount Optimus</label>
+            </settings>
+        </field>
+        <field name="extension_attributes.u_discountOptimus" sortOrder="110" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">company_custom_data</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">% Discount Fact. Optimus</label>
+            </settings>
+        </field>
+        <field name="extension_attributes.u_groupNumOptimus" sortOrder="120" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">company_custom_data</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">Optimus Payment Condition</label>
+            </settings>
+        </field>
+        <field name="extension_attributes.u_discountMilan" sortOrder="130" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">company_custom_data</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">% Discount Fact. Milan</label>
+            </settings>
+        </field>
+        <field name="extension_attributes.debitLine" sortOrder="140" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">company_custom_data</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">Golden Quota</label>
+            </settings>
+        </field>
+        <field name="extension_attributes.u_fechaNacimiento" sortOrder="150" formElement="date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">company_custom_data</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="validate-date" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Date of Birthr</label>
+                <visible>true</visible>
+                <dataScope>some_scope</dataScope>
+            </settings>
+        </field>
+        <field name="extension_attributes.u_cliente_activo_hasta" sortOrder="160" formElement="date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">company_custom_data</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="validate-date" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Date Active Until</label>
+                <visible>true</visible>
+                <dataScope>some_scope</dataScope>
+            </settings>
+        </field>
+        <field name="extension_attributes.phone2" sortOrder="170" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">company_custom_data</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">Phone 2</label>
+            </settings>
+        </field>
+        <field name="extension_attributes.cellular" sortOrder="180" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">company_custom_data</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">Cell</label>
+            </settings>
+        </field>
+        <field name="extension_attributes.frozen" sortOrder="190" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">company_custom_data</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Inactive</label>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="boolean">false</map>
+                            <map name="true" xsi:type="boolean">true</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="extension_attributes.slpCode" sortOrder="200" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">company_custom_data</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Seller</label>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="boolean">false</map>
+                            <map name="true" xsi:type="boolean">true</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="extension_attributes.territory" sortOrder="210" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">company_custom_data</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Territory</label>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="boolean">false</map>
+                            <map name="true" xsi:type="boolean">true</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

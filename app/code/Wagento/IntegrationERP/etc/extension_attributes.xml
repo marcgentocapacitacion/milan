@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Magento\Company\Api\Data\CompanyInterface">
+        <attribute code="u_autorizadoTemporada" type="int">
+            <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
+                <field>u_autorizadoTemporada</field>
+            </join>
+        </attribute>
+        <attribute code="u_inicioTemporada" type="string">
+            <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
+                <field>u_inicioTemporada</field>
+            </join>
+        </attribute>
+        <attribute code="u_finTemporada" type="string">
+            <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
+                <field>u_finTemporada</field>
+            </join>
+        </attribute>
+        <attribute code="u_groupNumTemporada" type="string">
+            <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
+                <field>u_groupNumTemporada</field>
+            </join>
+        </attribute>
+        <attribute code="u_discountTemporada" type="string">
+            <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
+                <field>u_discountTemporada</field>
+            </join>
+        </attribute>
+        <attribute code="u_autorizadoTemporadaOPT" type="string">
+            <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
+                <field>u_autorizadoTemporadaOPT</field>
+            </join>
+        </attribute>
+        <attribute code="u_groupNUmTempoOPT" type="string">
+            <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
+                <field>u_groupNUmTempoOPT</field>
+            </join>
+        </attribute>
+        <attribute code="groupNum" type="string">
+            <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
+                <field>groupNum</field>
+            </join>
+        </attribute>
+        <attribute code="u_discountContado" type="string">
+            <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
+                <field>u_discountContado</field>
+            </join>
+        </attribute>
+        <attribute code="u_discountContadoOptimus" type="string">
+            <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
+                <field>u_discountContadoOptimus</field>
+            </join>
+        </attribute>
+        <attribute code="u_discountOptimus" type="string">
+            <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
+                <field>u_discountOptimus</field>
+            </join>
+        </attribute>
+        <attribute code="u_groupNumOptimus" type="string">
+            <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
+                <field>u_groupNumOptimus</field>
+            </join>
+        </attribute>
+        <attribute code="u_discountMilan" type="string">
+            <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
+                <field>u_discountMilan</field>
+            </join>
+        </attribute>
+        <attribute code="debitLine" type="string">
+            <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
+                <field>debitLine</field>
+            </join>
+        </attribute>
+        <attribute code="u_fechaNacimiento" type="string">
+            <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
+                <field>u_fechaNacimiento</field>
+            </join>
+        </attribute>
+        <attribute code="u_cliente_activo_hasta" type="string">
+            <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
+                <field>u_cliente_activo_hasta</field>
+            </join>
+        </attribute>
+        <attribute code="u_phone1WP" type="string">
+            <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
+                <field>u_phone1WP</field>
+            </join>
+        </attribute>
+        <attribute code="phone2" type="string">
+            <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
+                <field>phone2</field>
+            </join>
+        </attribute>
+        <attribute code="u_phone2WP" type="string">
+            <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
+                <field>u_phone2WP</field>
+            </join>
+        </attribute>
+        <attribute code="cellular" type="string">
+            <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
+                <field>cellular</field>
+            </join>
+        </attribute>
+        <attribute code="u_cellularWP" type="string">
+            <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
+                <field>u_cellularWP</field>
+            </join>
+        </attribute>
+        <attribute code="frozen" type="string">
+            <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
+                <field>frozen</field>
+            </join>
+        </attribute>
+        <attribute code="slpCode" type="string">
+            <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
+                <field>slpCode</field>
+            </join>
+        </attribute>
+        <attribute code="territory" type="string">
+            <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
+                <field>territory</field>
+            </join>
+        </attribute>
+    </extension_attributes>
+</config>

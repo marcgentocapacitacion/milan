@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Company\Api\CompanyRepositoryInterface">
+        <plugin name="wagento_integration_erp_companyrepository"
+                type="Wagento\IntegrationERP\Plugin\Company\CompanyRepositoryPlugin"/>
+    </type>
+    <type name="Magento\Company\Model\SaveHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="company_custom_data" xsi:type="object">Wagento\IntegrationERP\Model\Company\SaveHandler\CompanyCustomData</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Company\Model\Company\DataProvider">
+        <plugin name="company_integrationERP_dataprovider" type="Wagento\IntegrationERP\Plugin\Company\DataProviderPlugin"/>
+    </type>
+</config>
