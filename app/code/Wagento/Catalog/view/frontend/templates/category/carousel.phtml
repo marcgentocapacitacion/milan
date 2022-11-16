@@ -1,0 +1,111 @@
+<?php
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+/**
+ * @var $block \Wagento\Catalog\Block\MiniLogos
+ * @var $escaper \Magento\Framework\Escaper
+ */
+
+use Magento\Framework\App\ActionInterface;
+?>
+<?php
+$collection = $block->getProductionCollection();
+?>
+<?php if ($collection):?>
+    <?php if ($collection->getSize() > 0): ?>
+        <div class="swiper-container carousel-promotion-custom-page" id="carousel-promotion-custom-page">
+            <div class="swiper-wrapper">
+                <?php foreach ($collection as $product):?>
+                    <?php if (!$product->isSalable() || !$product->isVisibleInSiteVisibility()) {
+                        continue;
+                    }
+                    ?>
+                    <div class="swiper-slide">
+                        <a href="<?=$escaper->escapeUrl($product->getProductUrl()) ?>" class="product-image">
+                            <?=$block->getImage($product, 'product_base_image')->toHtml();?>
+                        </a>
+                        <div class="product-info">
+                            <strong class="product-name">
+                                <?=$product->getName();?>
+                            </strong>
+                            <span class="product-price">
+                                <?=$block->getFormattedPrice($product->getFinalPrice()); ?>
+                            </span>
+                        </div>
+                        <div class="form-addToCart">
+                            <?php if (!$product->getTypeInstance()->isPossibleBuyFromList($product)):?>
+                                <button
+                                        class="action tocart primary"
+                                        data-mage-init='{
+                                            "redirectUrl": {
+                                                "url": "<?= $block->escapeUrl($block->getListProduct()->getAddToCartUrl($product)) ?>"
+                                            }
+                                        }'
+                                        type="button"
+                                        title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>"/>
+                            <?php else :?>
+                                <?php
+                                /** @var $viewModel PreparePostData */
+                                $viewModel = $block->getViewModel();
+                                $postArray = $viewModel->getPostData(
+                                    $escaper->escapeUrl($block->getAddToCartUrl($product)),
+                                    ['product' => $product->getEntityId()]
+                                );
+                                $value = $postArray['data'][ActionInterface::PARAM_NAME_URL_ENCODED];
+                                ?>
+                                <form data-role="tocart-form"
+                                      data-product-sku="<?= $escaper->escapeHtmlAttr($product->getSku()) ?>"
+                                      action="<?= $escaper->escapeUrl($block->getListProduct()->getAddToCartUrl($product)) ?>"
+                                      method="post">
+                                    <input type="hidden" name="product"
+                                           value="<?= /* @noEscape */ (int)$product->getEntityId() ?>">
+                                    <input type="hidden"
+                                           name="<?= /* @noEscape */ ActionInterface::PARAM_NAME_URL_ENCODED?>"
+                                           value="<?= /* @noEscape */ $value ?>">
+                                    <?= $block->getBlockHtml('formkey') ?>
+                                    <button type="submit"
+                                            title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
+                                            class="action tocart primary"/>
+                                </form>
+                            <?php endif;?>
+                        </div>
+                    </div>
+                <?php endforeach;?>
+            </div>
+            <div id="products_slider_prev" class="swiper-button-next swiper-button-black"></div>
+            <div id="products_slider_next" class="swiper-button-prev swiper-button-black"></div>
+            <div id="products_slider_pagination" class="swiper-pagination"></div>
+        </div>
+    <?php endif;?>
+<?php endif;?>
+
+<script type="text/x-magento-init">
+    {
+        "#carousel-promotion-custom-page": {
+            "Wagento_Rutavity/js/swiper": {
+                "slidesPerView": 4,
+                "loop": false,
+                "autoplay": true,
+                "navigation": {
+                    "prevEl": "#products_slider_next",
+                    "nextEl": "#products_slider_prev"
+                },
+                "pagination": {
+                    "el": "#products_slider_pagination"
+                },
+                "breakpoints": {
+                    "480": {
+                        "slidesPerView": 1
+                    },
+                    "600": {
+                        "slidesPerView": 1
+                    },
+                    "768": {
+                        "slidesPerView": 2
+                    }
+                }
+            }
+        }
+    }
+</script>

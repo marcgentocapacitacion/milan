@@ -1,0 +1,23 @@
+<?php
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+/**
+ * @var $block \Wagento\Catalog\Block\MiniLogos
+ * @var $escaper \Magento\Framework\Escaper
+ */
+?>
+<?php
+$banner  = $block->getConfigBanner();
+$_imgHtml   = '';
+if ($banner) {
+    $_imgHtml = '<div class="category-image"><img src="'
+        . $escaper->escapeUrl($banner)
+        . '" alt="'
+        . $escaper->escapeHtml($block->getConfigTitle())
+        . '" title="'
+        . $escaper->escapeHtml($block->getConfigTitle())
+        . '" class="image" /></div>';
+    /* @noEscape */ echo $_imgHtml;
+}
+?>

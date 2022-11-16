@@ -9,13 +9,13 @@
  * @var \Magento\Framework\Escaper $escaper
  */
 
-use Magento\Framework\App\Filesystem\DirectoryList;
-
 $path = $block->getLogoFile();
 $label = $block->getLogoAlt();
 ?>
 <?php foreach ($block->getConfigBrands() as $id => $page):?>
     <a class="mini-logos" href="<?=$block->getUrl('catalog/category/view/category/' . $id);?>">
-        <img src="<?= $block->escapeHtml($block->getUrl(DirectoryList::MEDIA . '/customPagesBrands/brands/').$page['image_brand']) ?>" alt="<?= $block->escapeHtml($page['title']) ?>" />
+        <img src="<?= $block->escapeHtml($block->getConfigUrlBrandsImages($page['image_brand']));?>"
+             alt="<?= $block->escapeHtml($page['title']) ?>"
+        />
     </a>
 <?php endforeach;?>

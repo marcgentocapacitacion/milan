@@ -1,0 +1,45 @@
+.carousel-promotion-custom-page {
+    margin: 80px 0px;
+    > .swiper-wrapper {
+        padding-bottom: 50px;
+        > .swiper-slide {
+            position: relative;
+            padding: 0px 50px;
+            > .product-info {
+                display: flex;
+                flex-direction: column;
+                > .product-name {
+                    font-weight: bold;
+                    font-size: 1.3em;
+                    color: #000000;
+                }
+
+                > .product-price {
+                    font-size: 1.2em;
+                }
+            }
+            > .form-addToCart {
+                 .action.tocart {
+                     border: none;
+                     position: absolute;
+                     top: 10px;
+                     z-index: 1;
+                     display: inline-block;
+                     position: absolute;
+                     top: 10px;
+                     right: 40px;
+                     width: 42px;
+                     height: 35px;
+                     font-size: 24px;
+                     margin-left: 20px;
+                     background: url('@{baseDir}images/assets/cart-ch.png');
+
+                     &:hover {
+                         top: 15px;
+                         right: 45px;
+                     }
+                }
+            }
+        }
+    }
+}

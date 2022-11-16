@@ -16,10 +16,21 @@ use Magento\Store\Model\StoreManagerInterface;
 class CustomCategoriesPages extends AbstractFieldArray
 {
     /**
+     * @var string
+     */
+    protected $_template = 'Wagento_Catalog::system/config/form/field/array.phtml';
+
+    /**
      * @var StoreManagerInterface
      */
     protected StoreManagerInterface $storeManager;
 
+    /**
+     * @param Context                 $context
+     * @param StoreManagerInterface   $storeManager
+     * @param array                   $data
+     * @param SecureHtmlRenderer|null $secureRenderer
+     */
     public function __construct(
         Context $context,
         StoreManagerInterface $storeManager,
@@ -41,7 +52,16 @@ class CustomCategoriesPages extends AbstractFieldArray
             'categories',
             [
                 'label'    => __('Categories'),
-                'class'    => 'input-text required-entry',
+                'class'    => 'input-text',
+                'style'    => 'width: 200px;'
+            ]
+        );
+
+        $this->addColumn(
+            'categories_carousel',
+            [
+                'label'    => __('Categories for Carousel'),
+                'class'    => 'input-text',
                 'style'    => 'width: 200px;'
             ]
         );
