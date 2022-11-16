@@ -174,29 +174,18 @@ class MiniLogos extends \Magento\Framework\View\Element\Template
             return false;
         }
 
-        $categoriesCarousel = explode(
+        $productsCarousel = explode(
             ',',
-            $this->getConfigBrands()[$page]['categories_carousel']
+            $this->getConfigBrands()[$page]['products_carousel']
         ) ?? false;
-        if (!$categoriesCarousel) {
+        if (!$productsCarousel) {
             return false;
-        }
-
-        $ids = [];
-        foreach ($categoriesCarousel as $category) {
-            try {
-                $categoryModel = $this->categoryRepository->get($category);
-                $ids[] = $categoryModel->getId();
-                $ids += $categoryModel->getAllChildren(true);
-            } catch (\Exception $exception) {
-                continue;
-            }
         }
 
         /** @var Collection $collection */
         $collection = $this->collectionFactory->create();
         $collection->addAttributeToSelect('*');
-        $collection->addCategoriesFilter(['in' => $ids]);
+        $collection->addFieldToFilter('entity_id', ['in' => $productsCarousel]);
         return $collection;
     }
 

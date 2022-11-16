@@ -42,6 +42,11 @@ class ArraySerialized extends \Magento\Config\Model\Config\Backend\Serialized
     protected UploaderFactory $uploaderFactory;
 
     /**
+     * @var Json
+     */
+    protected Json $serializer;
+
+    /**
      * @param Context               $context
      * @param Registry              $registry
      * @param ScopeConfigInterface  $config
@@ -66,8 +71,8 @@ class ArraySerialized extends \Magento\Config\Model\Config\Backend\Serialized
         UploaderFactory $uploaderFactory,
         AbstractResource $resource = null,
         AbstractDb $resourceCollection = null,
-        array $data = [],
-        Json $serializer = null
+        Json $serializer,
+        array $data = []
     ) {
         parent::__construct(
             $context,
@@ -83,6 +88,7 @@ class ArraySerialized extends \Magento\Config\Model\Config\Backend\Serialized
         $this->filesystem = $filesystem;
         $this->mediaDirectory = $filesystem->getDirectoryWrite(DirectoryList::MEDIA);
         $this->uploaderFactory = $uploaderFactory;
+        $this->serializer = $serializer;
     }
 
     /**
@@ -96,12 +102,42 @@ class ArraySerialized extends \Magento\Config\Model\Config\Backend\Serialized
         if (is_array($value)) {
             unset($value['__empty']);
         }
-        foreach ($value as $id => $item) {
-            $result[$id] = $this->prepareUploadFile('image_brand', $item,'customPagesBrands/brands');
-            $result[$id] = $this->prepareUploadFile('image_banner', $result[$id],'customPagesBrands/banner');
-            $this->setValue($result);
+        if ($value) {
+            foreach ($value as $id => $item) {
+                $result[$id] = $this->prepareUploadFile('image_brand', $item, 'customPagesBrands/brands');
+                $result[$id] = $this->prepareUploadFile('image_banner', $result[$id], 'customPagesBrands/banner');
+                $this->setValue($result);
+            }
+        } else {
+            $this->setValue(false);
         }
         return parent::beforeSave();
+    }
+
+    /**
+     * Processing object after load data
+     *
+     * @return void
+     */
+    protected function _afterLoad()
+    {
+        $value = $this->getValue();
+        if (!is_array($value)) {
+            try {
+                $array = $this->serializer->unserialize($value);
+                unset($array['__empty']);
+                $this->setValue(empty($value) ? false : ($array ?? false));
+            } catch (\Exception $e) {
+                $this->_logger->critical(
+                    sprintf(
+                        'Failed to unserialize %s config value. The error is: %s',
+                        $this->getPath(),
+                        $e->getMessage()
+                    )
+                );
+                $this->setValue(false);
+            }
+        }
     }
 
     /**

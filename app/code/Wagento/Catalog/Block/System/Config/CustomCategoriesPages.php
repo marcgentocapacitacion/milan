@@ -58,9 +58,9 @@ class CustomCategoriesPages extends AbstractFieldArray
         );
 
         $this->addColumn(
-            'categories_carousel',
+            'products_carousel',
             [
-                'label'    => __('Categories for Carousel'),
+                'label'    => __('Products for Carousel'),
                 'class'    => 'input-text',
                 'style'    => 'width: 200px;'
             ]
@@ -101,7 +101,7 @@ class CustomCategoriesPages extends AbstractFieldArray
         $this->addColumn(
             'image_banner',
             [
-                'label'    => __('Banner'),
+                'label'    => __('Image Banner'),
                 'class'    => 'input-text required-entry',
                 'renderer' => $block
             ]
