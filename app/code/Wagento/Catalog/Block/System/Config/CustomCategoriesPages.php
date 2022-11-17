@@ -49,6 +49,15 @@ class CustomCategoriesPages extends AbstractFieldArray
     protected function _prepareToRender()
     {
         $this->addColumn(
+            'root_category',
+            [
+                'label'    => __('Root Category'),
+                'class'    => 'input-text',
+                'style'    => 'width: 200px;'
+            ]
+        );
+
+        $this->addColumn(
             'categories',
             [
                 'label'    => __('Categories'),

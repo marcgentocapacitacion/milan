@@ -30,6 +30,11 @@ class Config extends \Magento\Framework\App\Config
     protected string $title = '';
 
     /**
+     * @var string
+     */
+    protected string $rootCategory = '';
+
+    /**
      * @param string $page
      *
      * @return bool
@@ -44,6 +49,7 @@ class Config extends \Magento\Framework\App\Config
             }
             $this->categories = explode(',', $categories[$page]['categories'] ?? []);
             $this->title = $categories[$page]['title'] ?? '';
+            $this->rootCategory = $categories[$page]['root_category'] ?? '';
             $this->configPath = self::CONFIG_PATH . $page;
             return true;
         }
@@ -62,6 +68,21 @@ class Config extends \Magento\Framework\App\Config
         }
 
         return $this->categories;
+    }
+
+    /**
+     * @param string|null $page
+     *
+     * @return array|null
+     */
+    public function getRootCategory(string $page = null): ?string
+    {
+        if (!$this->categories) {
+            $this->setPage($page);
+        }
+
+        $rootCategory = explode(',', $this->rootCategory) ?? false;
+        return $rootCategory[0] ?? $this->rootCategory;
     }
 
     /**

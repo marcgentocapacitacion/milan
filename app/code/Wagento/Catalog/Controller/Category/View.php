@@ -105,11 +105,23 @@ class View extends \Magento\Catalog\Controller\Category\View
             return $resultRedirect->setPath('');
         }
 
-        $rootCategoryId = $this->_storeManager->getStore()->getRootCategoryId();
+        if ($this->config->getRootCategory()) {
+            $rootCategoryId = $this->config->getRootCategory();
+        } else {
+            $rootCategoryId = $this->_storeManager->getStore()->getRootCategoryId();
+        }
         try {
             $category = $this->categoryRepository->get($rootCategoryId);
         } catch (NoSuchEntityException $e) {
-            return false;
+            if (!$this->config->getRootCategory()) {
+                return false;
+            }
+            try {
+                $rootCategoryId = $this->_storeManager->getStore()->getRootCategoryId();
+                $category = $this->categoryRepository->get($rootCategoryId);
+            } catch (NoSuchEntityException $e) {
+                return false;
+            }
         }
 
         $this->layerResolver->create(  'custom_category');
