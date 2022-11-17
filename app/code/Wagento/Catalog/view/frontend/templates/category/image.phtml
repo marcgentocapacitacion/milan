@@ -1,0 +1,30 @@
+<?php
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+?>
+<?php
+/**
+ * Category view template
+ *
+ * @var $block \Magento\Catalog\Block\Category\View
+ */
+?>
+<?php
+if (!$block->getCustomCategoryFilter()) {
+    $_category = $block->getCurrentCategory();
+    $_imgHtml = '';
+    if ($_imgUrl = $block->getImage()->getUrl($_category)) {
+        $_imgHtml = '<div class="category-image"><img src="'
+            . $block->escapeUrl($_imgUrl)
+            . '" alt="'
+            . $block->escapeHtmlAttr($_category->getName())
+            . '" title="'
+            . $block->escapeHtmlAttr($_category->getName())
+            . '" class="image" /></div>';
+        $_imgHtml = $block->getOutput()->categoryAttribute($_category, $_imgHtml, 'image');
+        /* @noEscape */
+        echo $_imgHtml;
+    }
+}
+?>
