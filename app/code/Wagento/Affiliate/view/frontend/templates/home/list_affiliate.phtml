@@ -10,7 +10,7 @@
             }
          }'>
         <?php foreach ($block->getAffiliate()->getItems() as $item):?>
-            <div class="row row-affiliate">
+            <div class="row row-affiliate" data-id="<?=$item->getId();?>">
                 <div class="image">
                     <h1 class="short-name">
                         <?=mb_substr($item->getData('name'), 0, 2);?>
