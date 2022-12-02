@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Catalog\Pricing\Render\FinalPriceBox" type="ITM\Pricing\Pricing\Render\FinalPriceBox"/>
+
+    <preference for="Magento\Quote\Model\Quote\Item" type="ITM\Pricing\Model\Quote\Item"/>
+
+    <preference for="ITM\Pricing\Api\CacheInterface" type="ITM\Pricing\Model\Api\Cache"/>
+
+    <preference for="ITM\Pricing\Api\UomInterface" type="ITM\Pricing\Model\Api\Uom"/>
+    <preference for="ITM\Pricing\Api\Data\UomDataInterface" type="ITM\Pricing\Model\Api\UomData"/>
+
+    <preference for="ITM\Pricing\Api\UomgroupInterface" type="ITM\Pricing\Model\Api\Uomgroup"/>
+    <preference for="ITM\Pricing\Api\Data\UomgroupDataInterface" type="ITM\Pricing\Model\Api\UomgroupData"/>
+
+    <preference for="ITM\Pricing\Api\UomgroupdetailsInterface" type="ITM\Pricing\Model\Api\Uomgroupdetails"/>
+    <preference for="ITM\Pricing\Api\Data\UomgroupdetailsDataInterface"
+                type="ITM\Pricing\Model\Api\UomgroupdetailsData"/>
+
+    <preference for="ITM\Pricing\Api\GrouppriceInterface" type="ITM\Pricing\Model\Api\Groupprice"/>
+    <preference for="ITM\Pricing\Api\Data\GrouppriceDataInterface" type="ITM\Pricing\Model\Api\GrouppriceData"/>
+
+    <preference for="ITM\Pricing\Api\CustomerpriceInterface" type="ITM\Pricing\Model\Api\Customerprice"/>
+    <preference for="ITM\Pricing\Api\Data\CustomerpriceDataInterface" type="ITM\Pricing\Model\Api\CustomerpriceData"/>
+
+    <preference for="ITM\Pricing\Api\GroupdiscountInterface" type="ITM\Pricing\Model\Api\Groupdiscount"/>
+    <preference for="ITM\Pricing\Api\Data\GroupdiscountDataInterface" type="ITM\Pricing\Model\Api\GroupdiscountData"/>
+
+    <preference for="ITM\Pricing\Api\CustomerdiscountInterface" type="ITM\Pricing\Model\Api\Customerdiscount"/>
+    <preference for="ITM\Pricing\Api\Data\CustomerdiscountDataInterface"
+                type="ITM\Pricing\Model\Api\CustomerdiscountData"/>
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="indexGroupTables" xsi:type="object">ITM\Pricing\Console\IndexGroupTables</item>
+                <item name="indexCustomerTables" xsi:type="object">ITM\Pricing\Console\IndexCustomerTables</item>
+                <item name="IndexFinalPriceTables" xsi:type="object">ITM\Pricing\Console\IndexFinalPriceTables</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\ConfigurableProduct\Pricing\Render\FinalPriceBox">
+        <plugin name="afterHasSpecialPrice" type="ITM\Pricing\Plugin\Pricing\Render\FinalPriceBox"
+                sortOrder="10" disabled="false"/>
+    </type>
+    <type name="Magento\Catalog\Block\Product\View">
+        <plugin name="afterGetJsonConfig" type="ITM\Pricing\Plugin\Block\Product\View"
+                sortOrder="10" disabled="false"/>
+    </type>
+
+    <type name="Magento\Quote\Model\Quote\Item\ToOrderItem">
+        <plugin name="HelloWorld_to_order_item" type="ITM\Pricing\Plugin\Magento\Quote\Model\Quote\Item\ToOrderItem"/>
+    </type>
+
+    <type name="Magento\Framework\App\PageCache\Identifier">
+        <plugin disabled="false" name="itm_pricing_plugin_magento_framework_app_pagecache_identifier"
+                sortOrder="10"
+                type="ITM\Pricing\Plugin\Magento\Framework\App\PageCache\Identifier"/>
+    </type>
+
+
+</config>

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+     <body>
+     <referenceBlock name="checkout.cart.form">
+			<action method="setOverriddenTemplates" ifconfig="itm_pricing_section/cart/enable_simple_uom_cart_item">
+				<argument xsi:type="array" name="itm_pricing_item_args">
+					<!-- list override templates -->
+					<item name="default" xsi:type="string">ITM_Pricing::cart/item/default.phtml</item>
+					<item name="simple" xsi:type="string">ITM_Pricing::cart/item/default.phtml</item>
+					<item name="virtual" xsi:type="string">ITM_Pricing::cart/item/default.phtml</item>
+					<item name="configurable" xsi:type="string">ITM_Pricing::cart/item/default.phtml</item>
+				</argument>
+			</action>
+		</referenceBlock>
+		<!-- 
+	     <referenceBlock name="checkout.cart.item.renderers">
+	      <block class="Magento\Checkout\Block\Cart\Item\Renderer" as="simple" template="ITM_Pricing::cart/item/default.phtml"  ifconfig='itm_pricing_section/cart/enable_simple_uom_cart_item'>
+				<block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions" name="itm.checkout.cart.item.renderers.default.actions" as="actions">
+					<block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions\Edit" name="itm.checkout.cart.item.renderers.default.actions.edit" template="Magento_Checkout::cart/item/renderer/actions/edit.phtml"/>
+					<block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions\Remove" name="itm.checkout.cart.item.renderers.default.actions.remove" template="Magento_Checkout::cart/item/renderer/actions/remove.phtml"/>
+				</block>
+			</block>
+			<block class="Magento\ConfigurableProduct\Block\Cart\Item\Renderer\Configurable" as="configurable" template="ITM_Pricing::cart/item/default.phtml" ifconfig='itm_pricing_section/cart/enable_configurable_uom_cart_item'>
+				<block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions" name="itm.c.checkout.cart.item.renderers.default.actions" as="actions">
+					<block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions\Edit" name="itm.checkout.cart.item.renderers.default.actions.edit" template="Magento_Checkout::cart/item/renderer/actions/edit.phtml"/>
+					<block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions\Remove" name="itm.c.checkout.cart.item.renderers.default.actions.remove" template="Magento_Checkout::cart/item/renderer/actions/remove.phtml"/>
+				</block>
+			</block>
+		</referenceBlock>
+		 -->
+    </body>
+</page>

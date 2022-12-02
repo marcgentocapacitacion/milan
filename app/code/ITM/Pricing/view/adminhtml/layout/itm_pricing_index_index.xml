@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+	 <update handle="editor"/>
+	<head>
+        <title>Pricing Index Page</title>
+        <!-- 
+		demo
+		<css src="ITM_Pricing::css/css.css"/>
+		<script src="ITM_Pricing::js/js.js"/>
+		<css src="jquery/fileUploader/css/jquery.fileupload-ui.css"/>
+		<script src="path/file.js" defer="defer"/>
+		<link src="http://url.com" src_type="url"/>
+		<remove src="path/remove/file.css"/>
+		-->
+    </head> 
+	<body>
+        <referenceContainer name="content">
+            <block class="ITM\Pricing\Block\Adminhtml\Index\Index" name="pricing_block_adminhtml_index_index"  />
+        </referenceContainer>
+    </body>
+</page>

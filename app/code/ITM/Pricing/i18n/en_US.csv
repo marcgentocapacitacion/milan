@@ -1,0 +1,101 @@
+Customerdiscount,Customerdiscount
+"Add New Entry","Add New Entry"
+"Save and Continue Edit","Save and Continue Edit"
+"Edit Item '%1'","Edit Item '%1'"
+"New Item","New Item"
+"Item Information","Item Information"
+Customer,Customer
+Website,Website
+"Attribute Code","Attribute Code"
+"Attribute Value","Attribute Value"
+"Start Date","Start Date"
+"End Date","End Date"
+Discount(%),Discount(%)
+discount,discount
+Status,Status
+Item,Item
+ID,ID
+"Start date","Start date"
+Delete,Delete
+"Are you sure?","Are you sure?"
+Customerprice,Customerprice
+SKU,SKU
+Qty,Qty
+UOM,UOM
+Price,Price
+Quantity,Quantity
+Uom,Uom
+Groupdiscount,Groupdiscount
+Group,Group
+"Customer Group","Customer Group"
+Groupprice,Groupprice
+"UOM Entry","UOM Entry"
+"UOM Code","UOM Code"
+"UOM Name","UOM Name"
+"UOM group","UOM group"
+"UGP Entry","UGP Entry"
+"UGP Code","UGP Code"
+"UGP Name","UGP Name"
+"Base UOM","Base UOM"
+"Base Uom","Base Uom"
+"UOM Group","UOM Group"
+"Unit Of Measurement","Unit Of Measurement"
+"Alt Qty","Alt Qty"
+"Base Qty","Base Qty"
+"You deleted the item.","You deleted the item."
+"We can\'t delete item right now. Please review the log and try again.","We can\'t delete item right now. Please review the log and try again."
+"We can\'t find a item to delete.","We can\'t find a item to delete."
+"This item no longer exists.","This item no longer exists."
+"Edit Customer Discount Entry","Edit Customer Discount Entry"
+"Add Customer Discount Entry","Add Customer Discount Entry"
+"Customer Discount","Customer Discount"
+ITM,ITM
+"Please select item(s).","Please select item(s)."
+"A total of %1 record(s) have been deleted.","A total of %1 record(s) have been deleted."
+"An error occurred while deleting record(s).","An error occurred while deleting record(s)."
+"The wrong item is specified.","The wrong item is specified."
+"You saved the item.","You saved the item."
+"Something went wrong while saving the item data. Please review the error log.","Something went wrong while saving the item data. Please review the error log."
+"Edit Customer Price Entry","Edit Customer Price Entry"
+"Add Customer Price Entry","Add Customer Price Entry"
+"Customer Price (Special Price)","Customer Price (Special Price)"
+"Edit Group Discount Entry","Edit Group Discount Entry"
+"Add Group Discount Entry","Add Group Discount Entry"
+"Customer Group Discount","Customer Group Discount"
+"Edit Group Price Entry","Edit Group Price Entry"
+"Add Group Price Entry","Add Group Price Entry"
+"Customer Group Price (Price List)","Customer Group Price (Price List)"
+"Edit Unit Of Measurement Entry","Edit Unit Of Measurement Entry"
+"Add Unit Of Measurement Entry","Add Unit Of Measurement Entry"
+Uomgroup,Uomgroup
+"Edit UOM Group Entry","Edit UOM Group Entry"
+"Add UOM Group Entry","Add UOM Group Entry"
+Uomgroupdetails,Uomgroupdetails
+"Edit UOM Group Details Entry","Edit UOM Group Details Entry"
+"Add UOM Group Details Entry","Add UOM Group Details Entry"
+"Uom Group Details","Uom Group Details"
+Default,Default
+Lowest,Lowest
+Highest,Highest
+Enabled,Enabled
+Disabled,Disabled
+". "" - "" .",". "" - "" ."
+All,All
+"See price before order confirmation.","See price before order confirmation."
+"What's this?","What's this?"
+Subtotal,Subtotal
+"Available Packages","Available Packages"
+"Each <strong>%1</strong> %2 contain <strong>%3</strong> %4","Each <strong>%1</strong> %2 contain <strong>%3</strong> %4"
+"Buy %1 for %2 each and <strong class=""benefit"">save<span class=""percent tier-%3"">&nbsp;%4</span>%</strong>","Buy %1 for %2 each and <strong class=""benefit"">save<span class=""percent tier-%3"">&nbsp;%4</span>%</strong>"
+"ITM Extensions","ITM Extensions"
+Pricing,Pricing
+General,General
+"Activation Code","Activation Code"
+"Ignore Websites","Ignore Websites"
+"Price Type","Price Type"
+"Another Modules Prices","Another Modules Prices"
+Cart,Cart
+"Enable Simple UOM Block in Cart Item","Enable Simple UOM Block in Cart Item"
+"Enable Configurable UOM Block in Cart Item","Enable Configurable UOM Block in Cart Item"
+"Product Page","Product Page"
+"Override Product Page","Override Product Page"

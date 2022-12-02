@@ -1,0 +1,11 @@
+<?php  // put this code in form.phtml echo $block->getChildHtml('product.itm.pricing.info'); ?>
+
+<?php
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+$_product = $block->getProduct();
+
+if ($_product->getTypeId()=="simple") {
+    echo $block->getChildHtml('product.itm.pricing.info.simple');
+} elseif ($_product->getTypeId()=="configurable") {
+    echo $block->getChildHtml('product.itm.pricing.info.configurable');
+}

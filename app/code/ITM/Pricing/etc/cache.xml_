@@ -1,0 +1,8 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Cache/etc/ cache.xsd">
+	<!--
+	<type name="itm_pricing" instance="ITM\Pricing\Model\Cache">
+		<label>ITM Pricing Custom Price (Beta)</label>
+		<description>Cache from pricing extension.</description>
+	</type>
+	-->
+</config>

@@ -1,0 +1,134 @@
+<?php $_helper = $this->helper('Magento\Catalog\Helper\Output'); ?>
+<?php $_product = $block->getProduct(); ?>
+
+
+<!-- <wh> -->
+<?php
+
+$available_uom = [];
+$getItmAvailableUom = $_product->getItmAvailableUom();
+if(!empty($getItmAvailableUom)) {
+    $getItmAvailableUom = trim($_product->getItmAvailableUom());
+}
+$available_uom_text = $getItmAvailableUom;
+
+
+if ($available_uom_text != "" && !empty($available_uom_text)) {
+    $available_uom = explode(",", $available_uom_text);
+}
+
+?>
+<?php if (!$block->hasOptions()) : ?>
+    <?php
+    $uom_group = $_product->getItmUgpEntry();
+    $om = \Magento\Framework\App\ObjectManager::getInstance();
+
+    $resource = $om->get('\Magento\Framework\App\ResourceConnection');
+
+
+    $uom_groupdetails_collection = $om->create('\ITM\Pricing\Model\ResourceModel\Uomgroupdetails\Collection');
+    $uom_groupdetails_collection->addFieldToFilter("main_table.ugp_entry", $uom_group);
+    $uom_groupdetails_collection->getSelect()->join(array(
+        'group' => $resource->getTableName('itm_pricing_uomgroup')
+    ), '`main_table`.ugp_entry=`group`.ugp_entry', array(
+        'group.base_uom'
+    ));
+    $uom_groupdetails_collection->getSelect()->join(array(
+        'uom' => $resource->getTableName('itm_pricing_uom')
+    ), '`group`.base_uom=`uom`.uom_entry', array(
+        'uom.uom_name',
+        'uom.uom_code'
+    ));
+
+    $uom_groupdetails_array = array();
+    foreach ($uom_groupdetails_collection as $item) {
+        $uom_groupdetails_array[$item->getUomEntry()] = $item->getData();
+    }
+
+    ?>
+
+    <?php if (count($available_uom) > 0) : ?>
+        <hr/>
+        <div class="itm_uom" style="background: #F0F0F0; padding: 10px;">
+            <h1><?php echo __('Available Packages') ?></h1>
+            <?php foreach ($available_uom as $uom_entry) : ?>
+                <?php
+
+                $uom_data = $om->create('\ITM\Pricing\Model\ResourceModel\Uom\Collection')
+                    ->addFieldToFilter("uom_entry", $uom_entry)
+                    ->getFirstItem();
+                $uom_name = "[" . $uom_data->getUomCode() . " - " . $uom_data->getUomName() . "]";
+
+                $uom_price = $_product->getFinalPrice();
+
+                $new_price = $this->helper('ITM\Pricing\Helper\Data')->getProductPrice($_product, $uom_entry);
+
+                if ($new_price > 0) {
+                    $uom_price = $new_price;
+                }
+
+                $format_price = $this->helper('Magento\Framework\Pricing\Helper\Data')
+                    ->currency($uom_price, true, false);
+
+                ?>
+                <div class="product-add-form">
+                    <h3><?php echo $uom_name; ?>: <?php echo $format_price; ?></h3>
+                    <form action="<?php echo $block->getSubmitUrl($_product) ?>"
+                          method="post" id="product_addtocart_form_<?=$uom_entry?>"
+                        <?php if ($_product->getOptions()) : ?>
+                            enctype="multipart/form-data"
+                        <?php endif; ?>>
+                        <input type="hidden" name="itm_uom_entry" value="<?php echo $uom_entry ?>"/> <input
+                                type="hidden" name="product" value="<?php /* @escapeNotVerified */
+                        echo $_product->getId() ?>"/>
+                        <input type="hidden" name="selected_configurable_option" value=""/>
+                        <input type="hidden" name="related_product" id="related-products-field" value=""/>
+                        <?php echo $block->getBlockHtml('formkey') ?>
+                        <?php echo $block->getChildHtml('form_top'); ?>
+                        <?php
+                            $block->getChildBlock('addtocart.itm.pricing.simple')->setData("uom_entry",$uom_entry);
+                            echo $block->getChildHtml('addtocart.itm.pricing.simple', false);
+                        ?>
+                    </form>
+                    <div>
+                        <?php if (isset($uom_groupdetails_array[$uom_entry])) : ?>
+                            <?php
+                            $alt_qty = number_format($uom_groupdetails_array[$uom_entry]["alt_qty"], 2);
+                            $base_qty = number_format($uom_groupdetails_array[$uom_entry]["base_qty"], 2);
+                            $base_uom_name = "[" . $uom_groupdetails_array[$uom_entry]["uom_code"] . " - " .
+                                $uom_groupdetails_array[$uom_entry]["uom_name"] . "]";
+
+                            if ($alt_qty < $base_qty) {
+                                echo __("Each <strong>%1</strong> %2 contain <strong>%3</strong> %4", $alt_qty, $uom_name, $base_qty, $base_uom_name);
+                            }
+                            if ($alt_qty > $base_qty) {
+                                echo __("Each <strong>%1</strong> %2 contain <strong>%3</strong> %4", $base_qty, $uom_name, $alt_qty, $base_uom_name);
+                            }
+                            ?>
+
+                        <?php endif; ?>
+                    </div>
+                    <?php
+                    $tierPrices = $this->helper('ITM\Pricing\Helper\Data')->getTierPrices($_product, $uom_entry, $uom_price);
+                    foreach ($tierPrices as $tierPrice) {
+                        $qty = (int)$tierPrice["price_qty"];
+                        $uom_format_price = $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($tierPrice["price"], true, false);
+                        $percent = $this->helper('ITM\Pricing\Helper\Data')->percentage($tierPrice["price"], $uom_price, 2);
+                        print "<div>";
+                        print __(
+                            'Buy %1 for %2 each and <strong class="benefit">save<span class="percent tier-%3">&nbsp;%4</span>%</strong>',
+                            $qty,
+                            $uom_format_price,
+                            444,
+                            $percent
+                        );
+                        print "</div>";
+                    }
+                    ?>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <hr/>
+    <?php endif; ?>
+<?php endif; ?>
+<!-- </wh> -->

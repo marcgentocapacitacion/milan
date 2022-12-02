@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- /** * Copyright © 2016 Magento. All rights reserved. * See COPYING.txt 
+	for license details. */ -->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+	<body>
+		<referenceBlock name="product.info">
+			<block class="Magento\Catalog\Block\Product\View" name="product.itm.pricing.info" template="ITM_Pricing::product/view/itm_uom_form.phtml" >
+				
+				<block class="Magento\Catalog\Block\Product\View" name="product.itm.pricing.info.simple" template="ITM_Pricing::product/view/itm_uom_form_simple.phtml" >
+						<block class="Magento\Catalog\Block\Product\View" name="product.info.addtocart.itm.pricing.simple"	as="addtocart.itm.pricing.simple" template="ITM_Pricing::product/view/addtocart.phtml"  />
+				</block>
+				
+				<block class="Magento\Catalog\Block\Product\View" name="product.itm.pricing.info.configurable" template="ITM_Pricing::product/view/itm_uom_form_configurable.phtml">
+					<container name="product.info.form.content_itm_pricing_configurable"	as="product_info_form_content_itm_pricing_configurable">
+						<block class="Magento\Catalog\Block\Product\View" name="product.info.addtocart.itm.pricing.configurable"	as="addtocart.itm.pricing.configurable" template="product/view/addtocart.phtml" />
+					</container>
+				</block> 
+								
+			</block>
+			<action method="setTemplate" ifconfig='itm_pricing_section/product_page/override_view'>
+				<argument name="template" xsi:type="string">ITM_Pricing::product/view/form.phtml</argument>
+			</action>
+		</referenceBlock>
+	</body>
+</page>

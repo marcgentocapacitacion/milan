@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+   <event name="catalog_product_load_after">
+       <observer name="itm_pricing_catalog_product_load_after" instance="ITM\Pricing\Model\Observer\Frontend" shared="true" />
+   </event>
+   <event name="catalog_product_collection_load_after">
+       <observer name="itm_pricing_catalog_product_collection_load_after" instance="ITM\Pricing\Model\Observer\Frontend" shared="true" />
+   </event>
+   <event name="checkout_cart_update_items_after">
+       <observer name="itm_pricing_checkout_cart_update_items_after" instance="ITM\Pricing\Model\Observer\Frontend" shared="true" />
+   </event>
+   <event name="checkout_cart_product_add_after">
+       <observer name="itm_pricing_checkout_cart_product_add_after" instance="ITM\Pricing\Model\Observer\Frontend" shared="true" />
+   </event>
+   <event name="pricing_groupprice_save_after">
+       <observer name="itm_pricing_pricing_groupprice_save_after" instance="ITM\Pricing\Model\Observer\Adminhtml" shared="true" />
+   </event>
+   
+   <event name="pricing_groupprice_delete_after">
+       <observer name="itm_pricing_pricing_groupprice_delete_after" instance="ITM\Pricing\Model\Observer\Adminhtml" shared="true" />
+   </event>
+   
+   <event name="pricing_customerprice_save_after">
+       <observer name="itm_pricing_pricing_customerprice_save_after" instance="ITM\Pricing\Model\Observer\Adminhtml" shared="true" />
+   </event>
+   
+   <event name="pricing_customerprice_delete_after">
+       <observer name="itm_pricing_pricing_customerprice_delete_after" instance="ITM\Pricing\Model\Observer\Adminhtml" shared="true" />
+   </event>
+   
+</config>

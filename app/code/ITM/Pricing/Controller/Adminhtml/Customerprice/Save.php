@@ -1,0 +1,72 @@
+<?php
+/**
+ * Copyright © 2015 ITM. All rights reserved.
+ */
+
+namespace ITM\Pricing\Controller\Adminhtml\Customerprice;
+
+class Save extends \ITM\Pricing\Controller\Adminhtml\Customerprice
+{
+    public function execute()
+    {
+        if ($this->getRequest()->getPostValue()) {
+            try {
+                $model = $this->_objectManager->create('ITM\Pricing\Model\Customerprice');
+                $data = $this->getRequest()->getPostValue();
+                $inputFilter = new \Zend_Filter_Input(
+                    [],
+                    [],
+                    $data
+                );
+                $data = $inputFilter->getUnescaped();
+                $id = $this->getRequest()->getParam('id');
+                $sku = $this->getRequest()->getParam('sku');
+                if ($id) {
+                    $model->load($id);
+                    if ($id != $model->getId()) {
+                        throw new \Magento\Framework\Exception\LocalizedException(__('The wrong item is specified.'));
+                    }
+                }
+                $model->setData($data);
+                $session = $this->_objectManager->get('Magento\Backend\Model\Session');
+                $session->setPageData($model->getData());
+                $model->save();
+                if (!empty($sku)) {
+                    try {
+                        $product = $this->productRepository->get($sku);
+                        $product->cleanCache();
+                        $this->eventManager->dispatch('clean_cache_by_tags', ['object' => $product]);
+                    } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
+
+                    }
+                }
+                $this->messageManager->addSuccess(__('You saved the item.'));
+                $session->setPageData(false);
+                if ($this->getRequest()->getParam('back')) {
+                    $this->_redirect('itm_pricing/*/edit', ['id' => $model->getId()]);
+                    return;
+                }
+                $this->_redirect('itm_pricing/*/');
+                return;
+            } catch (\Magento\Framework\Exception\LocalizedException $e) {
+                $this->messageManager->addError($e->getMessage());
+                $id = (int)$this->getRequest()->getParam('id');
+                if (!empty($id)) {
+                    $this->_redirect('itm_pricing/*/edit', ['id' => $id]);
+                } else {
+                    $this->_redirect('itm_pricing/*/new');
+                }
+                return;
+            } catch (\Exception $e) {
+                $this->messageManager->addError(
+                    __('Something went wrong while saving the item data. Please review the error log.')
+                );
+                $this->_objectManager->get('Psr\Log\LoggerInterface')->critical($e);
+                $this->_objectManager->get('Magento\Backend\Model\Session')->setPageData($data);
+                $this->_redirect('itm_pricing/*/edit', ['id' => $this->getRequest()->getParam('id')]);
+                return;
+            }
+        }
+        $this->_redirect('itm_pricing/*/');
+    }
+}

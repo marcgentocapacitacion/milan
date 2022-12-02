@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 ITM. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Backend/etc/menu.xsd">
+    <menu>
+        <!-- <add id="itm::base" title="ITM Development" module="ITM_Pricing" sortOrder="90" resource="ITM_Main::Base"/>  -->
+       
+        <add id="itm_pricing::pricing" title="Pricing" module="ITM_Pricing" sortOrder="0" parent="itm::base"  resource="ITM_Pricing::main"/>
+        <add id="itm_pricing::groupprice" title="Group Price" module="ITM_Pricing" sortOrder="10" parent="itm_pricing::pricing" action="itm_pricing/groupprice/" resource="ITM_Pricing::groupprice"/>
+        <add id="itm_pricing::customerprice" title="Customer Price" module="ITM_Pricing" sortOrder="11" parent="itm_pricing::pricing" action="itm_pricing/customerprice/" resource="ITM_Pricing::customerprice"/>
+        
+        <add id="itm_pricing::groupdiscount" title="Group Discount" module="ITM_Pricing" sortOrder="12" parent="itm_pricing::pricing" action="itm_pricing/groupdiscount/" resource="ITM_Pricing::groupdiscount"/>
+        <add id="itm_pricing::customerdiscount" title="Customer Discount" module="ITM_Pricing" sortOrder="13" parent="itm_pricing::pricing" action="itm_pricing/customerdiscount/" resource="ITM_Pricing::customerdiscount"/>
+
+        <add id="itm_pricing::uom" title="Unit Of Measurement" module="ITM_Pricing" sortOrder="10" parent="itm_pricing::pricing" action="itm_pricing/uom/" resource="ITM_Pricing::uom"/>
+        <add id="itm_pricing::uomgroup" title="UOM Group" module="ITM_Pricing" sortOrder="11" parent="itm_pricing::pricing" action="itm_pricing/uomgroup/" resource="ITM_Pricing::uom"/>
+        <add id="itm_pricing::uomgroupdetails" title="UOM Group Details" module="ITM_Pricing" sortOrder="12" parent="itm_pricing::pricing" action="itm_pricing/uomgroupdetails/" resource="ITM_Pricing::uom"/>
+        
+        <add id="itm_pricing::uomweight" title="UOM Weight" module="ITM_Pricing" sortOrder="30" parent="itm_pricing::pricing" action="itm_pricing/uomweight/" resource="ITM_Pricing::main"/>
+        <!--
+        <add id="itm_pricing::group" title="Group" module="ITM_Pricing" sortOrder="10" parent="itm_pricing::main_uom" action="itm_pricing/group/" resource="ITM_Pricing::group"/>
+        <add id="itm_pricing::definitionline" title="Definition line" module="ITM_Pricing" sortOrder="10" parent="itm_pricing::main_uom" action="itm_pricing/definitionline/" resource="ITM_Pricing::definitionline"/>
+        -->
+        <add id="itm_pricing::index" title="Pricing Index" module="ITM_Pricing" sortOrder="40" parent="itm_pricing::pricing" action="itm_pricing/index/" resource="ITM_Pricing::main"/>
+        <add id="itm_pricing::pricing_finalprice" title="Final price" module="ITM_Pricing" sortOrder="50" parent="itm_pricing::pricing" action="itm_pricing/finalprice/" resource="ITM_Pricing::main"/>
+        
+     
+        
+    </menu>
+</config>

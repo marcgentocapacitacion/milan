@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	 <default>
+            <itm_pricing_section>
+                <events>
+                    <disable_product_load_collection>customer_section_load
+checkout_cart_add
+checkout_cart_delete
+checkout_cart_index
+checkout_cart_updateItemQty
+checkout_cart_updatePost</disable_product_load_collection>
+                </events>
+            </itm_pricing_section>
+        </default>
+</config>

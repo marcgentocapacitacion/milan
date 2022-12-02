@@ -1,0 +1,232 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Location: magento2_root/app/code/Vendorname/Extensionname/etc/adminhtml/system.xml
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="itm_extension" translate="label" sortOrder="1000">
+            <label>ITM Extensions</label>
+        </tab>
+        <section id="itm_pricing_section" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Pricing</label>
+            <tab>itm_extension</tab>
+            <resource>ITM_Extensions::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="links" translate="label" type="label" sortOrder="5" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Information</label>
+                    <frontend_model>\ITM\Pricing\Block\System\Config\Information</frontend_model>
+                </field>
+                <field id="enabled" translate="label" type="select" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="use_new_price_as_price" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Use the new Price in group price table as price</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>  
+                    <comment><![CDATA[ This option will allow you to use the new price in the customer group price as a price instead of special price. ]]></comment>
+                </field>
+                <field id="set_price_when_special_higher" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Set the price equal to special price when the new price is higher</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[ Set the price equal to special price when the special price is higher than the original price. ]]></comment>
+                </field>
+                <field id="set_price_eq_special_price" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Set the price equal to special price always</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[ Set the price equal to special price always to not see the discount line. ]]></comment>
+                </field>
+                <field id="set_price_eq_special_price_groups" translate="label" type="multiselect" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Set the price equal to special price always to the selected groups</label>
+                    <depends>
+                        <field id="*/*/set_price_eq_special_price">1</field>
+                    </depends>
+                    <source_model>Magento\Customer\Model\Customer\Source\Group</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+           		<field id="ignore_websites" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Ignore Websites</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>  
+                    <comment><![CDATA[ if you want to use the tables for all website please choose "Yes", and the website value in the table should be "All" ]]></comment>
+                </field>
+                <field id="enable_weight" translate="label" type="select" sortOrder="25" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable Weight</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>  
+                    <comment><![CDATA[ if you want to enable weight for UOM please choose "Yes".]]></comment>
+                </field>
+                
+           		<field id="price_type" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Price Type</label>
+                    <source_model>ITM\Pricing\Model\System\Config\PriceType</source_model>  
+                    <comment><![CDATA[Please note that maximum price will not work if the price is higher than the price in the group price table with the default uom of the product and quantity = 1 .]]></comment>
+                </field>
+                
+                <field id="price_attributes" translate="label" type="multiselect" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Apply the special price on those attributes</label>
+                    <source_model>ITM\Pricing\Model\System\Config\PriceAttributes</source_model>  
+                    <comment><![CDATA[Select the attributes you want to change the price to the special price value.]]></comment>
+                </field>
+                 <field id="default_group_id" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Default Group ID</label>
+                    <comment><![CDATA[  ]]></comment>
+                </field>
+                
+                <field id="use_index_tables" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Use index tables</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>  
+                    <comment><![CDATA[ Select "Yes" in case you want to use indexing tables (this is useful for big data), Dont forget to execute this command <br/>"php bin/magento pricing:index-group-tables" <br/>"php bin/magento pricing:index-customer-tables" . ]]></comment>
+                </field>
+                
+               <field id="modules_prices" translate="label" type="textarea" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Another Modules Prices</label>
+                    <comment><![CDATA[In the Helper/Data file of your module you have to return the price, we provide to you in this function three parameters <strong>$product, $uom, $qty</strong>, Please create price function like this function :  <br/><strong>public function getPrice($product, $uom, $qty) {<br/><span style='padding-left:3em'>return 100;</span><br/>}</strong><br/><br/> if you want to ignore the price that coming from your module please return (-1) .]]></comment>
+                </field>
+                <field id="set_product_attributes" translate="label" type="textarea" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Set product attributes when special price found</label>
+                    <comment><![CDATA[You can set product attributes values when a special price is found by set the attribute code and the attribute value, Please add attributes in json format as below<br/> <strong>{<br/><span style='padding-left:2em'>"color":5,</span><br/><span style='padding-left:2em'>"product_in_sale":1,</span><br/><span style='padding-left:2em'>"title":"This product have a special price</span>"</br>}</strong><br/><strong>Note:</strong> please note that this value will not affect the layer navigation search.<br/> Display attributes depends on design theme.]]></comment>
+                </field>
+                 <field id="disable_pricebox_cache" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Disable PriceBox Cache</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>  
+                    <comment><![CDATA[ Select "Yes" if you want to disable PriceBox Block. ]]></comment>
+                </field>
+                <field id="cache_types" translate="label" type="multiselect" sortOrder="70" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Cache Types</label>
+                    <source_model>ITM\Pricing\Model\System\Config\CacheType</source_model>  
+                    <comment><![CDATA[Please select the cache type you want to clear once the module is clearing the cache .]]></comment>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="cache_pool_types" translate="label" type="multiselect" sortOrder="70" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Cache Pool Types</label>
+                    <source_model>ITM\Pricing\Model\System\Config\CachePoolType</source_model>
+                    <comment><![CDATA[Please select the frontend cache bool type you want to clear once the module is clearing the cache .]]></comment>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                 <field id="ignore_limit" translate="label" type="select" sortOrder="80" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Ignore Limit in the Queries</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>  
+                    <comment><![CDATA[ Select "Yes" in case you want to ignore limit in the queries, Please be sure that the group price/ customer price will not have more than one result in the table before set it to "Yes" . ]]></comment>
+                </field>
+                <field id="ignore_uom" translate="label" type="select" sortOrder="80" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Ignore UOM Logic (the default uom will be '-1')</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>  
+                    <comment><![CDATA[ Select "Yes" in case you want to use '-1' as uom for all products. ]]></comment>
+                </field>
+                <field id="clean_cache" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Clean Product Cache</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[ Select "Yes" if you want to clean the product cache after you modify the product price (applicable on group/customer price). ]]></comment>
+                </field>
+                <field id="allow_bundle" translate="label" type="select" sortOrder="100" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Allow Bundle Product</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[ Select "Yes" if you want to allow Bundle Product in the pricing logic. ]]></comment>
+                </field>
+                <field id="excluded_skus" translate="label" type="textarea" sortOrder="150" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Excluded SKUs</label>
+                    <comment><![CDATA[ Add here all SKUs that you want to ignore setting the price for]]></comment>
+                </field>
+                <field id="allow_currency" translate="label" type="select" sortOrder="170" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Allow Currency Switch</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[ Select "Yes" if you want to Support Currency Switch Logic. ]]></comment>
+                </field>
+            </group>
+            <group id="test_pricing" translate="label" type="text" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Test</label>
+                <field id="enable_test_date" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Test by Date</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[ Select "Yes" if you want to test the pricing in a specific date. ]]></comment>
+                </field>
+                <field id="test_date" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Testing Date</label>
+                    <comment><![CDATA[ Date format 'yyyy-mm-dd', type 'url' if you want to use the parameter in the URL like ?test_date=yyyy-mm-dd]]></comment>
+                    <depends>
+                        <field id="*/*/enable_test_date">1</field>
+                    </depends>
+                    <validate>validate-no-empty </validate>
+                </field>
+            </group>
+            <group id="events" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Actions</label>
+                <field id="disable_product_load_collection" translate="label" type="textarea" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Disable Collection/Product Load on the below actions</label>
+                    <comment><![CDATA[ Please add every action in one line <br/><pre><strong>customer_section_load</strong><br/><strong>checkout_cart_add</strong></pre> ]]></comment>
+                </field>
+            </group>
+            <group id="cart" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Cart</label>
+           		
+                <field id="enable_simple_uom_cart_item" translate="label" type="select" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable Simple UOM Block in Cart Item</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>  
+                    <comment><![CDATA[ if you do not want to let this extension override cart/item/default.phtml please add this code to the your template<br/><pre>&lt;?php <br><strong> echo $this->helper('ITM\Pricing\Helper\Data')->getItemUOMDetails($_item);</strong><br>?&gt;</pre> ]]></comment>
+                </field>
+                
+                <field id="enable_configurable_uom_cart_item" translate="label" type="select" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable Configurable UOM Block in Cart Item</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>  
+                    <comment><![CDATA[ if you do not want to let this extension override cart/item/default.phtml please add this code to the your template<br/><pre>&lt;?php <br><strong> echo $this->helper('ITM\Pricing\Helper\Data')->getItemUOMDetails($_item);</strong><br>?&gt;</pre> ]]></comment>
+                </field>
+            </group>
+             <group id="product_page" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product Page</label>
+           		
+                <field id="override_view" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Override Product Page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>  
+                    <comment><![CDATA[ if you do not want to let this extension override product/view/form.phtml please add this code to the your template<br/><pre>&lt;?php  <strong>echo $block->getChildHtml('product.itm.pricing.info');</strong> ?&gt;</pre> ]]></comment>
+                </field>
+            </group>
+            <group id="category_page" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Category Page</label>
+           		
+                <field id="override_product_list" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Override Product List</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>  
+                    <comment><![CDATA[ if you do not want to let this extension override product/list.phtml please add this code to the your template to render Tier Price in product list <br/><pre>&lt;?php  <br/><strong>$_itm_helper = $this->helper('ITM\Pricing\Helper\Output');<br/>echo $_itm_helper->getRenderProductTierPrice($_product);</strong><br/> ?&gt;</pre> ]]></comment>
+                </field>
+            </group>
+            <group id="pricing_tables" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Pricing Tables</label>
+
+                <field id="ignored_pricing_tables" translate="label" type="multiselect" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Ignore Selected Tables</label>
+                    <source_model>ITM\Pricing\Model\System\Config\PricingTables</source_model>
+                    <comment><![CDATA[  ]]></comment>
+                </field>
+            </group>
+          <!--   <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="dropdown_example" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Dropdown with custom source model example</label>
+                    <source_model>Vendorname\Extensionname\Model\Config\Source\Custom</source_model>  
+                </field>
+                <field id="text_example" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Text example</label>
+                </field>
+                <field id="logo" translate="label" type="image" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Image example (with a comment)</label>
+                     <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">logo</upload_dir>
+                    <base_url type="media" scope_info="1">logo</base_url>
+                    <comment><![CDATA[Allowed file types: jpeg, gif, png.]]></comment>
+                </field>
+                <field id="depends_example" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Dependant text field example with validation</label>
+                    <depends>
+                        <field id="*/*/dropdown_example">1</field>
+                    </depends>
+                    <validate>validate-no-empty</validate>
+                </field>
+                <field id="textarea_example" translate="label" type="textarea" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Textarea example</label>
+                </field>
+            </group>
+             -->
+        </section>
+    </system>
+</config>

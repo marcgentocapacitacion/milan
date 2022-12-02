@@ -1,0 +1,111 @@
+<?php $_helper = $this->helper('Magento\Catalog\Helper\Output'); ?>
+<?php $_pricing_helper = $this->helper('\ITM\Pricing\Helper\Data');    ?>
+<?php $_product = $block->getProduct(); ?>
+
+
+
+<?php //echo "Configurable grid comming soon"; ?>
+<?php
+
+$children = $_product->getTypeInstance()->getUsedProducts($_product);
+$attributes = $_product->getTypeInstance(true)->getConfigurableAttributes($_product);
+
+?>
+<?php
+
+/*
+ * foreach ($attributes as $attribute){
+ * // $attrValue = $product->getResource()->getAttribute($attribute
+ *                  ->getProductAttribute()->getAttributeCode())->getFrontend();
+ * $attrCode = $attribute->getProductAttribute()->getAttributeCode();
+ * $attrLabel = $attribute->getProductAttribute()->getStoreLabel();
+ * }
+ * //print_r($_attributes);
+ * foreach ($children as $product){
+ * //echo $product->getName()." - ".$product->getSku()."<br/>";
+ * }
+ */
+$attributes__data = [];
+foreach ($attributes as $attribute) {
+    $att_id = $attribute->getProductAttribute()->getAttributeId();
+    $attributes__data[$att_id] = [
+        "code" => $attribute->getProductAttribute()->getAttributeCode(),
+        "label" => $attribute->getProductAttribute()->getStoreLabel()
+    ];
+}
+
+$products_data = [];
+foreach ($children as $product) {
+    $item = [];
+    $item["product_id"] = $product->getEntityId();
+    $item["sku"] = $product->getSku();
+    
+    foreach ($attributes__data as $key => $attribute__data) {
+        $item["attributes"][] = [
+            "attribute_id" => $key,
+            "attribute_code" => $attribute__data["code"],
+            "attribute_value" => $product->getData($attribute__data["code"]),
+            "attribute_label" => $attribute__data["label"],
+            "attribute_option_label" => $product->getAttributeText($attribute__data["code"])
+        ];
+    }
+    $itm_available_uom = "";
+    if(!empty($product->getData("itm_available_uom"))){
+        $itm_available_uom = trim($product->getData("itm_available_uom"));
+    }
+
+    $itm_available_uom_array = [];
+    if($itm_available_uom !="" && $itm_available_uom !=0) {
+        $itm_available_uom_array = explode(",", $itm_available_uom);
+    }
+    
+    
+    foreach ($itm_available_uom_array as $uom) {
+        $item["price"] = $_pricing_helper->getItemPrice($product, $uom, 1);
+        $item["uom_entry"] = $uom;
+        if ($item["price"] != -1) {
+            $products_data[] = $item;
+        }
+    }
+}
+?>
+<?php 
+if(count($itm_available_uom_array) == 0) {
+    return;
+}
+?>
+
+<hr />
+
+<div class="itm_uom" style="background: #F0F0F0; padding: 10px;">
+    <h1>Avaliable UOM</h1>
+
+<?php foreach ($products_data as $product_data) : ?>
+<div>
+<?php
+foreach ($product_data["attributes"] as $attribute) {
+    echo sprintf("<h4>%1s :%2s</h4>", $attribute["attribute_label"], $attribute["attribute_option_label"]);
+}
+echo sprintf("<h4>UOM :%1s</h4>", $_pricing_helper->getItemUOMDetailsByEntry($product_data["uom_entry"]));
+$_price = $this->helper('Magento\Framework\Pricing\Helper\Data')->currency(number_format($product_data["price"], 2), true, false);
+echo sprintf("<h4>Price :%1s</h4>", $_price);
+?>
+    <form action="<?php echo $block->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"
+        <?php if ($_product->getOptions()) : ?>
+        enctype="multipart/form-data"
+        <?php endif; ?>>
+        <input type="hidden" name="itm_uom_entry" value="<?php echo $product_data["uom_entry"] ?>" />
+        <input type="hidden" name="product" value="<?php /* @escapeNotVerified */ echo $_product->getId() ?>" />
+        <input type="hidden" name="selected_configurable_option" value="<?php echo $product_data["product_id"] ?>" />
+        <input type="hidden" name="related_product" id="related-products-field" value="" />
+            <?php foreach ($product_data["attributes"] as $attribute) :?>
+                <input type="hidden" name="super_attribute[<?php echo $attribute["attribute_id"] ;?>]" value="<?php echo $attribute["attribute_value"]?>" />
+            <?php endforeach;?>
+            <?php echo $block->getBlockHtml('formkey')?>
+            <?php echo $block->getChildHtml('form_top'); ?>
+            <?php echo $block->getChildHtml('product_info_form_content_itm_pricing_configurable'); ?>
+         </form>
+<hr style="border: solid 1px #ddd" />
+</div>
+<?php endforeach; ?>
+</div>
