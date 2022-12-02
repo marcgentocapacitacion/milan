@@ -162,7 +162,7 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
                     if ($dynamicSubcategories) {
                         $liGroup = 0;
                         foreach ($columnGroups as $columnSum) {
-                            $liGroup += $columnSum;
+                            $liGroup += ($columnSum ?? 0);
                             if ($counter <= $liGroup) {
                                 break;
                             }
