@@ -494,6 +494,7 @@ return [
         'Temando_ShippingRemover' => 1,
         'Wagento_Affiliate' => 1,
         'Wagento_Catalog' => 1,
+        'Wagento_CompanyCredit' => 1,
         'Wagento_ImportData' => 1,
         'Wagento_IntegrationERP' => 1,
         'Wagento_ModifiedCheckout' => 1,

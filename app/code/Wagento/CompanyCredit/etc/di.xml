@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\CompanyCredit\Model\CompanyCreditPaymentConfigProvider">
+        <plugin name="wagento_companycreditpaymentconfigproviderplugin" type="Wagento\CompanyCredit\Plugin\Model\CompanyCreditPaymentConfigProviderPlugin"/>
+    </type>
+</config>
