@@ -278,14 +278,25 @@
             margin-top: 10px;
         }
 
+        > .product-item {
+            > .product {
+                > .product-item-details {
+                    > .product-item-name {
+                        font-size: 16px;
+                        line-height: 20px;
+                        > a {
+                            font-size: 16px;
+                            line-height: 20px;
+                        }
+                    }
+                }
+            }
+        }
         .product-item-name {
             font-weight: @font-weight__regular;
             margin: 0 0 @indent__s;
-
             a {
                 .lib-css(color, @link__color);
-                font-size: 16px;
-                line-height: 20px;
             }
         }
 
