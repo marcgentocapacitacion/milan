@@ -1,0 +1,24 @@
+diff --git a/lib/web/mage/menu.js b/lib/web/mage/menu.js
+index a47e2ef..61daf95 100644
+--- a/lib/web/mage/menu.js
++++ b/lib/web/mage/menu.js
+@@ -49,6 +49,7 @@ define([
+             }
+ 
+             if (this.options.responsive === true) {
++                this._toggleDesktopMode();
+                 mediaCheck({
+                     media: this.options.mediaBreakpoint,
+                     entry: $.proxy(function () {
+diff --git a/vendor/magento/magento2-base/lib/web/mage/menu.js b/vendor/magento/magento2-base/lib/web/mage/menu.js
+index a47e2ef..61daf95 100644
+--- a/vendor/magento/magento2-base/lib/web/mage/menu.js
++++ b/vendor/magento/magento2-base/lib/web/mage/menu.js
+@@ -49,6 +49,7 @@ define([
+             }
+ 
+             if (this.options.responsive === true) {
++                this._toggleDesktopMode();
+                 mediaCheck({
+                     media: this.options.mediaBreakpoint,
+                     entry: $.proxy(function () {
