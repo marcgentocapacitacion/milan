@@ -12,10 +12,11 @@
                 "components": {
                     "createAccountPopup": {
                         "component": "Magento_Customer/js/create-account-popup",
-                        "form": "#create-accout-form",
+                        "form": "[id=create-accout-form]",
                         "urlPost": "<?= $escaper->escapeUrl($block->getPostActionUrl());?>",
                         "minimumPasswordLength": "<?=$escaper->escapeHtmlAttr($block->getMinimumPasswordLength()) ?>",
-                        "requiredCharacterClassesNumber": "<?= $escaper->escapeHtmlAttr($block->getRequiredCharacterClassesNumber()) ?>"
+                        "requiredCharacterClassesNumber": "<?= $escaper->escapeHtmlAttr($block->getRequiredCharacterClassesNumber()) ?>",
+                        "elementLinkCreateAccount": "[id^=create_customer_link]"
                     }
                 }
             }

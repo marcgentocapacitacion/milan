@@ -2,17 +2,16 @@
 /**
  * Rutavity header top bar header links template
  * @package Milan_Rutavity
- * @author Rudie Wang <rudi.wang@wagento.com>
  */
 
 /**
- * @var \Magento\Theme\Block\Html\Header $block
+ * @var \Wagento\Theme\Block\Html\Header $block
  * @var \Magento\Framework\Escaper $escaper
  */
 $welcomeMessage = $block->getWelcome();
 ?>
 <?php if ($block->getShowPart() == 'welcome') : ?>
-    <li class="greet welcome" data-bind="scope: 'customer'">
+    <li class="greet welcome <?php if (!$block->isLoggedIn()){echo 'not-logged-in';}?>" data-bind="scope: 'customer'">
         <!-- ko if: customer().fullname  -->
         <span class="logged-in"
               data-bind="text: new String('<?= $escaper->escapeHtml(__('Welcome, %1!', '%1')) ?>').replace('%1', customer().fullname)">

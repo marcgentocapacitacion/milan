@@ -1,0 +1,12 @@
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .section-item-content {
+        ul.links {
+            > li.not-logged-in {
+                display: none;
+            }
+            > li {
+                text-align: center;
+            }
+        }
+    }
+}

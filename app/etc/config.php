@@ -502,6 +502,7 @@ return [
         'Wagento_Sales' => 1,
         'Wagento_SelectCustom' => 1,
         'Wagento_StoreLocator' => 1,
+        'Wagento_Theme' => 1,
         'WeSupply_Toolbox' => 1,
         'WeltPixel_Backend' => 1,
         'WeltPixel_AjaxInfiniteScroll' => 1,

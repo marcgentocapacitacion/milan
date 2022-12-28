@@ -18,7 +18,8 @@ define([
             form: '',
             urlPost: '',
             minimumPasswordLength: 8,
-            requiredCharacterClassesNumber: ''
+            requiredCharacterClassesNumber: '',
+            elementLinkCreateAccount: ''
         },
         password: ko.observable(''),
         passwordConfirmation: ko.observable(''),
@@ -56,6 +57,13 @@ define([
             this._super();
             this.createPopUp($(self.form));
             this.isLoading(false);
+
+            if (self.elementLinkCreateAccount) {
+                $(self.elementLinkCreateAccount).off('click').on('click', function (e) {
+                    e.preventDefault();
+                    self.showModal();
+                });
+            }
         },
 
         /**

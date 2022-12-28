@@ -23,5 +23,10 @@
                 </block>
             </block>
         </referenceBlock>
+        <referenceBlock name="register.customer.link">
+            <arguments>
+                <argument name="id" xsi:type="string" translate="true">create_customer_link</argument>
+            </arguments>
+        </referenceBlock>
     </body>
 </page>

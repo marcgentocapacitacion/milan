@@ -21,9 +21,10 @@ if ($block->isLoggedIn()) {
 <?php } else { ?>
     <li class="link authorization-link" data-label="<?= $escaper->escapeHtml(__('|')) ?>">
         <a id="do-login">
+            <?php echo $block->getBlockHtml('login-popup');?>
+            <?php echo $block->getBlockHtml('customer_form_popup');?>
             <i class="rt-icon rt-icon-login"></i>
         </a>
-        <?php echo $block->getBlockHtml('login-popup');?>
-        <?php echo $block->getBlockHtml('customer_form_popup');?>
+
     </li>
 <?php } ?>
