@@ -189,7 +189,7 @@
         background: url('@{baseDir}images/assets/footer-background-mobile.png') center no-repeat;
         background-size: cover;
         margin-bottom: 0px;
-        padding-bottom: 0px;
+        padding-bottom: 100px;
 
         .footer-content-block {
             .row {
@@ -209,8 +209,12 @@
                         float: initial;
 
                         h4 {
-                            i.fa-caret-left {
-                                display: block;
+                            i {
+                                margin-left: 15px;
+                                margin-top: 12px;
+                                &.fa-caret-left {
+                                    display: block;
+                                }
                             }
                         }
 

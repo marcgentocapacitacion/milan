@@ -44,6 +44,7 @@ define([
                 '</span>' +
                 '</li>',
             submitBtn: 'button[type="submit"]',
+            closeSearch: '#close-search',
             searchLabel: '[data-role=minisearch-label]',
             isExpandable: true,
             suggestionDelay: 300
@@ -59,6 +60,7 @@ define([
             this.searchForm = $(this.options.formSelector);
             this.submitBtn = this.searchForm.find(this.options.submitBtn)[0];
             this.searchLabel = this.searchForm.find(this.options.searchLabel);
+            this.closeSearch = this.searchForm.find(this.options.closeSearch);
             this.isExpandable = this.options.isExpandable;
 
             _.bindAll(this, '_onKeyDown', '_onPropertyChange', '_onSubmit');
@@ -83,6 +85,11 @@ define([
                     e.preventDefault();
                 }
             }.bind(this));
+
+            this.closeSearch.on('click', function () {
+                this.setActiveState(false);
+                return;
+            });
 
             this.element.on('blur', $.proxy(function () {
                 if (!this.searchLabel.hasClass('active')) {
