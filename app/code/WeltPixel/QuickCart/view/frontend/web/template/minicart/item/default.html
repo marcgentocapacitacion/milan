@@ -62,7 +62,9 @@
                 <div class="details-qty qty">
                     <label class="label" data-bind="i18n: 'Qty', attr: {
                     for: 'cart-item-'+item_id+'-qty'}"></label>
-                    <span class="item-minus qty-update"></span>
+                    <span class="item-minus qty-update">
+                        <i class="fa-regular fa-square-minus"></i>
+                    </span>
                     <input data-bind="attr: {
                        id: 'cart-item-'+item_id+'-qty',
                        'data-cart-item': item_id,
@@ -84,7 +86,9 @@
                             style="display: none">
                         <span data-bind="i18n: 'Update'"></span>
                     </button>
-                    <span class="item-plus qty-update"></span>
+                    <span class="item-plus qty-update">
+                        <i class="fa-regular fa-square-plus"></i>
+                    </span>
                 </div>
 
                 <!-- ko if: canApplyMsrp -->
