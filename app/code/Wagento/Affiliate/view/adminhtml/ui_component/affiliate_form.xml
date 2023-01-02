@@ -25,6 +25,7 @@
                 <class>save primary</class>
                 <label translate="true">Save</label>
             </button>
+            <button name="delete" class="Wagento\Affiliate\Block\Adminhtml\Edit\DeleteButton"/>
         </buttons>
         <namespace>affiliate_form</namespace>
         <dataScope>data</dataScope>

@@ -7,9 +7,9 @@ use Wagento\Affiliate\Model\ResourceModel\AffiliateFactory as ResourceModelAffil
 use Wagento\Affiliate\Model\AffiliateFactory as ModelAffiliate;
 
 /**
- * Class Save
+ * Class Delete
  */
-class Save extends \Magento\Backend\App\Action
+class Delete extends \Magento\Backend\App\Action
 {
     /**
      * Authorization level of a basic admin session
@@ -51,29 +51,21 @@ class Save extends \Magento\Backend\App\Action
         $resultRedirect = $this->resultRedirectFactory->create();
         $model = $this->model->create();
         try {
-            if ($this->getRequest()->getParam('entity_id')) {
+            if ($this->getRequest()->getParam('id')) {
                 $this->resource->create()->load(
                     $model,
-                    $this->getRequest()->getParam('entity_id'),
+                    $this->getRequest()->getParam('id'),
                     'entity_id'
                 );
+                $this->resource->create()->delete($model);
+                $this->messageManager->addSuccessMessage(__('You deleted the affiliate.'));
             }
-            $model->setData('name', $this->getRequest()->getParam('name'));
-            $model->setData('phone', $this->getRequest()->getParam('phone'));
-            $model->setData('address', $this->getRequest()->getParam('address'));
-            $model->setData('city', $this->getRequest()->getParam('city'));
-            $model->setData('active', $this->getRequest()->getParam('active'));
-            $model->setData('image', \json_encode($this->getRequest()->getParam('image')) ?? '');
-            $this->resource->create()->save($model);
-            $this->messageManager->addSuccessMessage(__('You saved the affiliate.'));
-            $resultRedirect->setPath('affiliate/manager/edit', [
-                'id' => $model->getId()
-            ]);
+            $resultRedirect->setPath('affiliate/manager/grid');
         } catch (\Exception $e) {
             $this->messageManager->addErrorMessage(
                 $e->getMessage()
             );
-            $resultRedirect->setPath('affiliate/manager/edit');
+            $resultRedirect->setPath('affiliate/manager/grid');
         }
         return $resultRedirect;
     }
