@@ -5,18 +5,21 @@ define([
 
     $.widget('mage.showInfoAffiliate', {
         options: {
-            elementClick: ''
+            elementClick: '',
+            elementInfo: ''
         },
         /** @inheritdoc */
         _create: function () {
             let self = this;
             $(this.options.elementClick).each(function () {
                 $(this).click(function () {
-                    self._removeActive($(this).attr('data-id'));
-                    if ($(this).hasClass('active')) {
-                        $(this).removeClass('active');
+                    let id = $(this).attr('data-id'),
+                        idElement = self.options.elementInfo + '[data-id=' + id + ']';
+                    self._removeActive(id);
+                    if ($(idElement).hasClass(self._getClassActive($(idElement)))) {
+                        $(idElement).removeClass(self._getClassActive($(idElement)));
                     } else {
-                        $(this).addClass('active');
+                        $(idElement).addClass(self._getClassActive($(idElement)));
                     }
                 });
             });
@@ -25,10 +28,27 @@ define([
         /**
          * @private
          */
+        _getClassActive: function (element) {
+            let width = element.width(),
+                position = element.position(),
+                screenSize = $(window).width(),
+                total = parseInt(width) + parseInt(position.left),
+                percentage = (total / screenSize) * 100;
+            if (percentage > 70) {
+                return 'active-invert';
+            }
+            return 'active';
+        },
+
+        /**
+         * @private
+         */
         _removeActive: function (id) {
-            $(this.options.elementClick).each(function () {
+            let self = this;
+            $(self.options.elementInfo).each(function () {
                 if ($(this).attr('data-id') != id) {
                     $(this).removeClass('active');
+                    $(this).removeClass('active-invert');
                 }
             });
         }

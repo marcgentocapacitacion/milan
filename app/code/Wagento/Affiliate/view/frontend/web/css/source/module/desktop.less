@@ -7,7 +7,6 @@
         .row {
             display: flex;
             margin: 10px 10px;
-            background-color: #000;
             border-radius: 200px;
             max-height: 350px;
             max-width: 60%;
@@ -52,10 +51,53 @@
     }
 
     .affiliates {
-        .active {
-            min-width: 60%;
-            .info {
-                display: flex;
+        > .row-affiliate-image-info {
+            position: relative;
+            display: flex;
+
+            &.active-invert {
+                > .row-affiliate {
+                    z-index: 2;
+                }
+
+                > .row-affiliate-info {
+                    min-width: 40vw;
+                    position: absolute;
+                    z-index: 1;
+                    right: 0;
+                    display: block;
+                    > .info {
+                        display: flex;
+                        margin: 130px 20vw 0px 0px;
+                        > div {
+                            text-align: end;
+                        }
+                    }
+                }
+            }
+
+            &.active {
+                > .row-affiliate {
+                    z-index: 2;
+                }
+
+                > .row-affiliate-info {
+                    min-width: 40vw;
+                    position: absolute;
+                    z-index: 1;
+                    display: block;
+                    > .info {
+                        display: flex;
+                        margin: 130px 0px 0px 20vw;
+                    }
+                }
+            }
+
+            > .row-affiliate-info {
+                height: 350px;
+                background-color: #000;
+                border-radius: 200px;
+                display: none;
             }
         }
     }

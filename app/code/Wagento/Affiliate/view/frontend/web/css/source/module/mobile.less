@@ -8,7 +8,6 @@
         .row {
             display: flex;
             margin: 10px 10px;
-            background-color: #000;
             border-radius: 200px;
             max-width: 60%;
             max-height: 10em;
@@ -54,10 +53,57 @@
     }
 
     .affiliates {
-        .active {
-            min-width: 100%;
-            .info {
-                display: flex;
+        > .row-affiliate-image-info {
+            position: relative;
+            display: flex;
+
+            > .row-affiliate-info {
+                display: none;
+            }
+
+            &.active-invert {
+                > .row-affiliate {
+                    z-index: 2;
+                }
+
+                > .row-affiliate-info {
+                    min-width: 85vw;
+                    position: absolute;
+                    z-index: 1;
+                    right: 0;
+                    display: block;
+                    > .info {
+                        display: flex;
+                        margin: 3vh 40vw 0px 0px;
+                        > div {
+                            text-align: end;
+                        }
+                    }
+                }
+            }
+
+            &.active {
+                > .row-affiliate {
+                    z-index: 2;
+                }
+
+                > .row-affiliate-info {
+                    min-width: 85vw;
+                    position: absolute;
+                    z-index: 1;
+                    display: block;
+                    > .info {
+                        display: flex;
+                        margin: 3vh 0px 0px 40vw;
+                    }
+                }
+            }
+
+            > .row-affiliate-info {
+                height: 350px;
+                background-color: #000;
+                border-radius: 200px;
+                display: none;
             }
         }
     }

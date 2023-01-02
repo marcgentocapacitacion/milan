@@ -6,21 +6,26 @@
     <div class="affiliates"
          data-mage-init='{
             "Wagento_Affiliate/js/show-info-affiliate": {
-                "elementClick": ".row-affiliate"
+                "elementClick": ".row-affiliate",
+                "elementInfo": ".row-affiliate-image-info"
             }
          }'>
         <?php foreach ($block->getAffiliate()->getItems() as $item):?>
-            <div class="row row-affiliate" data-id="<?=$item->getId();?>">
-                <div class="image">
-                    <h1 class="short-name">
-                        <?=mb_substr($item->getData('name'), 0, 2);?>
-                    </h1>
-                    <img src="<?=$block->getImage($item->getData('image'));?>"/>
+            <div class="row-affiliate-image-info" data-id="<?=md5($item->getId());?>">
+                <div class="row row-affiliate" data-id="<?=md5($item->getId());?>">
+                    <div class="image">
+                        <h1 class="short-name">
+                            <?=mb_substr($item->getData('name'), 0, 2);?>
+                        </h1>
+                        <img src="<?=$block->getImage($item->getData('image'));?>"/>
+                    </div>
                 </div>
-                <div class="info">
-                    <div class="title"><?=$item->getData('name');?></div>
-                    <div class="address"><?=$item->getData('address');?></div>
-                    <div class="phone">Cel. <?=$item->getData('phone');?></div>
+                <div class="row row-affiliate-info">
+                    <div class="info">
+                        <div class="title"><?=$item->getData('name');?></div>
+                        <div class="address"><?=$item->getData('address');?></div>
+                        <div class="phone">Cel. <?=$item->getData('phone');?></div>
+                    </div>
                 </div>
             </div>
         <?php endforeach; ?>
