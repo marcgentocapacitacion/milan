@@ -498,6 +498,7 @@ return [
         'Wagento_ImportData' => 1,
         'Wagento_IntegrationERP' => 1,
         'Wagento_ModifiedCheckout' => 1,
+        'Wagento_PurchaseOrder' => 1,
         'Wagento_Rutavity' => 1,
         'Wagento_Sales' => 1,
         'Wagento_SelectCustom' => 1,
