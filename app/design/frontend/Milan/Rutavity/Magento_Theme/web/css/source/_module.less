@@ -84,6 +84,7 @@
 
     .page-main {
         .lib-vendor-prefix-flex-grow(1);
+        margin-top: 100px;
     }
 
     .page-main {
@@ -106,7 +107,6 @@
         width: 100%;
         height: auto;
         box-shadow: 0px -5px 11px @color-black-opacity;
-        animation: scroll 0.3s ease-in-out;
 
         &:before {
             content: '';
@@ -182,6 +182,7 @@
         &.content:extend(.abs-add-clearfix all) {
             padding-top: @indent__s;
             position: relative;
+            max-height: 45px;
         }
     }
 
@@ -571,18 +572,11 @@
         padding: 0 8px;
     }
 
-    @keyframes scroll {
-        from {
-            top: -100%;
-        }
-        to {
-            top: 0px;
-        }
-    }
-
     .page-header {
         border: 0;
         margin-bottom: 0;
+        position: fixed !important;
+        transition: background .3s;
 
         &.sticky.active {
             position: fixed;
@@ -591,25 +585,26 @@
             width: 100%;
             height: auto;
             box-shadow: 0px -5px 11px @color-black-opacity;
-            animation: scroll 0.3s ease-in-out;
 
             &:before {
                 height: @header-sticky-height;
             }
 
             .panel.wrapper {
-                background: @theme__color__primary;
                 background: @header-gradient__background-color;
+                animation: background 0.5s, background-color 0.5s;
+
             }
         }
 
         .panel.wrapper {
             .lib-css(background-color, @header-panel__background-color);
+            animation: background 0.5s, background-color 0.5s;
         }
 
         .header.panel:extend(.abs-add-clearfix-desktop all) {
-            padding-bottom: @indent__s;
-            padding-top: @indent__s;
+            padding-bottom: 4px;
+            padding-top: 4px;
         }
 
         .switcher {
@@ -753,6 +748,7 @@
                 vertical-align: middle;
                 > img {
                     max-width: 140px;
+                    margin-top: 10px;
                 }
             }
         }
@@ -766,7 +762,7 @@
     }
 
     .logo {
-        margin: 0;
+        margin: 8px 0px 0px 0px;
 
         img {
             max-height: inherit;

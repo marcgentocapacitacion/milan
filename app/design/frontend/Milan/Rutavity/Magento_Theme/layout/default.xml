@@ -14,7 +14,7 @@
         <referenceBlock name="logo">
             <arguments>
                 <argument name="logo_file" xsi:type="string">images/assets/rutavity-ch.png</argument>
-                <argument name="logo_width" xsi:type="number">190</argument>
+                <argument name="logo_width" xsi:type="number">170</argument>
                 <argument name="logo_height" xsi:type="number">42</argument>
                 <argument name="logo_alt" xsi:type="string">Rutavity</argument>
             </arguments>
