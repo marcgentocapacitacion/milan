@@ -31,7 +31,7 @@
 @header-icons-color: @color-white;
 @header-icons-color-hover: @color-white-smoke;
 @header-height: 253px;
-@header-mobile-height: 82px;
+@header-mobile-height: 44px;
 @header-sticky-height: 127px;
 @header-gradient__background-color: linear-gradient(90deg, @theme__color__primary 0%, @theme__color__primary-alt 100%);
 @customer-welcome__z-index: @dropdown-list__z-index + 1;
@@ -553,8 +553,11 @@
     }
 
     .nav-toggle {
-        top: 21px;
+        top: 8px;
         left: @indent__l;
+        &:before {
+            font-size: 24px;
+        }
     }
 }
 
