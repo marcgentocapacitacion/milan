@@ -1,0 +1,27 @@
+<?php
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+
+use Magento\Framework\View\Helper\SecureHtmlRenderer;
+
+/**
+ * Create account form template
+ *
+ * @var Magento\Framework\View\Element\Template $block
+ * @var SecureHtmlRenderer $secureRenderer
+ */
+?>
+
+<div class="form-create-account-popup"
+     id="form-create-company-account-popup"
+     style="display: none;"
+     data-mage-init='{
+        "Wagento_Company/js/create-compay-account-popup": {
+            "formSubmit": "#form-validate",
+            "elementLinkCreateAccount": "[id^=create_company_link]"
+        }
+     }'
+>
+    <?=$block->getBlockHtml('company.account.create.wrapper');?>
+</div>
