@@ -8,6 +8,26 @@
 /** @var $block \Magento\Catalog\Block\Product\View */
 ?>
 <?php $_product = $block->getProduct(); ?>
-<div class="product-brand">
-    <img class="product-brand-logo" src="<?= $block->getViewFileUrl('images/assets/tucana-logo.png') ?>" alt="">
-</div>
+<?php
+$productFamilyImage = '';
+if ($_product->getCategoryIds()) {
+    $categories = $_product->getCategoryCollection()
+        ->addFieldToFilter(
+            'entity_id',
+            ['in' => $_product->getCategoryIds()]
+        )
+        ->addFieldToSelect('product_family_image')
+        ->load()
+        ->getItems();
+    foreach ($categories ?? [] as $category) {
+        if ($category->getProductFamilyImage()) {
+            $productFamilyImage = $category->getProductFamilyImage();
+        }
+    }
+}
+?>
+<?php if ($productFamilyImage): ?>
+    <div class="product-brand">
+        <img class="product-brand-logo" src="<?= $block->getUrl().$productFamilyImage;?>" alt="">
+    </div>
+<?php endif;?>

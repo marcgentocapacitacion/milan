@@ -16,7 +16,7 @@
         </referenceContainer>
 
         <referenceContainer name="product.info.main">
-            <block class="Magento\Catalog\Block\Product\View\Details" name="product.info.brand" template="Magento_Catalog::product/view/brand.phtml" before="-" />
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.brand" template="Magento_Catalog::product/view/brand.phtml" before="-" />
         </referenceContainer>
 
         <referenceContainer name="product.info.stock.sku">
