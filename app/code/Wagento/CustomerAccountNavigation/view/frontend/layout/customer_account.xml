@@ -14,6 +14,11 @@
                     <argument name="sortOrder" xsi:type="number">230</argument>
                 </arguments>
             </block>
+            <referenceBlock name="customer-account-navigation-account-link">
+                <arguments>
+                    <argument name="path" xsi:type="string">cliente/cuenta</argument>
+                </arguments>
+            </referenceBlock>
             <referenceBlock name="customer-account-navigation-delimiter-1">
                 <arguments>
                     <argument name="sortOrder" xsi:type="number">219</argument>
