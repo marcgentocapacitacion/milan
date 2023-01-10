@@ -496,6 +496,7 @@ return [
         'Wagento_Catalog' => 1,
         'Wagento_Company' => 1,
         'Wagento_CompanyCredit' => 1,
+        'Wagento_CustomerAccountNavigation' => 1,
         'Wagento_ImportData' => 1,
         'Wagento_IntegrationERP' => 1,
         'Wagento_ModifiedCheckout' => 1,

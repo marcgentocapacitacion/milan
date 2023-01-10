@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Wagento. All rights reserved.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="customer_account_navigation">
+            <block class="Wagento\CustomerAccountNavigation\Block\AllOrdersLink" name="itm_magb1_customer-account-navigation-account-allorderslink">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">My Company Orders</argument>
+                    <argument name="path" xsi:type="string">magb1/order/history</argument>
+                    <argument name="sortOrder" xsi:type="number">230</argument>
+                </arguments>
+            </block>
+            <referenceBlock name="customer-account-navigation-delimiter-1">
+                <arguments>
+                    <argument name="sortOrder" xsi:type="number">219</argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="customer-account-navigation-company-profile-link">
+                <arguments>
+                    <argument name="sortOrder" xsi:type="number">210</argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="customer-account-navigation-company-credit-history-link">
+                <arguments>
+                    <argument name="sortOrder" xsi:type="number">200</argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="customer-account-navigation-company-link">
+                <arguments>
+                    <argument name="sortOrder" xsi:type="number">189</argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="customer-account-navigation-company-users-link">
+                <arguments>
+                    <argument name="sortOrder" xsi:type="number">188</argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="customer-account-navigation-company-roles-link">
+                <arguments>
+                    <argument name="sortOrder" xsi:type="number">185</argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="customer-account-navigation-purchase-order-rule-link">
+                <arguments>
+                    <argument name="sortOrder" xsi:type="number">180</argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="customer-account-navigation-magento-invitation-link" remove="true"/>
+            <block class="Magento\Customer\Block\Account\SortLinkInterface"
+                   ifconfig="magento_invitation/general/enabled_on_front"
+                   name="wagento-customer-account-navigation-magento-invitation-link">
+                <arguments>
+                    <argument name="path" xsi:type="string">magento_invitation/</argument>
+                    <argument name="label" xsi:type="string">My Invitations</argument>
+                    <argument name="sortOrder" xsi:type="number">175</argument>
+                </arguments>
+            </block>
+            <referenceBlock name="customer-account-navigation-delimiter-2">
+                <arguments>
+                    <argument name="sortOrder" xsi:type="number">170</argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="customer-account-navigation-account-edit-link">
+                <arguments>
+                    <argument name="sortOrder" xsi:type="number">160</argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="customer-account-navigation-orders-link">
+                <arguments>
+                    <argument name="sortOrder" xsi:type="number">155</argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="company-customer-account-navigation-orders-link">
+                <arguments>
+                    <argument name="sortOrder" xsi:type="number">156</argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="customer-account-navigation-customer-balance-link">
+                <arguments>
+                    <argument name="sortOrder" xsi:type="number">150</argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="customer-account-navigation-my-credit-cards-link">
+                <arguments>
+                    <argument name="sortOrder" xsi:type="number">145</argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="customer-account-navigation-gift-card-link">
+                <arguments>
+                    <argument name="sortOrder" xsi:type="number">140</argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="customer-account-navigation-delimiter-container-b2b">
+                <arguments>
+                    <argument name="sortOrder" xsi:type="number">135</argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="customer-account-navigation-downloadable-products-link">
+                <arguments>
+                    <argument name="sortOrder" xsi:type="number">100</argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="customer-account-navigation-wish-list-link">
+                <arguments>
+                    <argument name="sortOrder" xsi:type="number">95</argument>
+                </arguments>
+            </referenceBlock>
+        </referenceBlock>
+    </body>
+</page>
