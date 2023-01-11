@@ -34,5 +34,7 @@
         <move element="product.info.brand" destination="product.info.main" before="-"/>
         <move element="product.info.details" destination="product.additional.main" before="-"/>
         <move element="content.aside" destination="product.additional.main" after="-"/>
+
+        <referenceBlock name="reviews.tab" remove="true" />
     </body>
 </page>

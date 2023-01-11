@@ -1,0 +1,17 @@
+<?php
+/**
+ * Rutavity header top bar mini-logo template
+ * @package Milan_Rutavity
+ * @author Rudie Wang <rudi.wang@wagento.com>
+ */
+
+/**
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$path = $block->getLogoFile();
+$label = $block->getLogoAlt();
+?>
+<a class="mini-logos" href="#">
+    <img src="<?= $block->escapeHtml($block->getViewFileUrl($path)) ?>" alt="<?= $block->escapeHtml($label) ?>" />
+</a>
