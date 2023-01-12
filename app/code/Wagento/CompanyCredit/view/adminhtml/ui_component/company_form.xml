@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Admin Company Edit form customization
+ * @package Wagento_CompanyCredit
+ * @author Rudie Wang <rudi.wang@wagento.com>
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd" component="Magento_CompanyCredit/js/form/form">
+    <fieldset name="company_credit" sortOrder="60">
+        <field name="credit_limit" class="Magento\CompanyCredit\Ui\Component\Form\AmountField" component="Magento_CompanyCredit/js/fields-with-currency" formElement="input">
+            <settings>
+                <validation>
+                    <rule name="validate-zero-or-greater" xsi:type="boolean">false</rule>
+                    <!-- Disable "validate-zero-or-greater" and add "validate-zero-or-greater-with-comma" that allows comma validation -->
+                    <rule name="validate-zero-or-greater-with-comma" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>price</dataType>
+                <label translate="true">Credit Limit 123</label>
+            </settings>
+        </field>
+    </fieldset>
+</form>
