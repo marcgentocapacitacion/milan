@@ -1,0 +1,13 @@
+diff --git a/vendor/magento/module-purchase-order/view/frontend/web/template/checkout/billing-address/details.html b/vendor/magento/module-purchase-order/view/frontend/web/template/checkout/billing-address/details.html
+index 4ad454a..1bc103a 100644
+--- a/vendor/magento/module-purchase-order/view/frontend/web/template/checkout/billing-address/details.html
++++ b/vendor/magento/module-purchase-order/view/frontend/web/template/checkout/billing-address/details.html
+@@ -10,7 +10,7 @@
+     <if args="currentBillingAddress().company">
+         <text args="currentBillingAddress().company"></text><br>
+     </if>
+-    <text args="currentBillingAddress().street.join(', ')"></text><br>
++    <text args="_.values(currentBillingAddress().street).join(', ')"/><br/>
+     <text args="currentBillingAddress().city "></text>, <span text="currentBillingAddress().region"></span> <text args="currentBillingAddress().postcode"></text><br>
+     <text args="getCountryName(currentBillingAddress().countryId)"></text><br>
+     <a if="currentBillingAddress().telephone" attr="'href': 'tel:' + currentBillingAddress().telephone" text="currentBillingAddress().telephone"></a><br>
