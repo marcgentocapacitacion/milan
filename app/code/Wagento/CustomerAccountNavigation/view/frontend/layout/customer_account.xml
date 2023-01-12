@@ -76,12 +76,14 @@
             </referenceBlock>
             <referenceBlock name="customer-account-navigation-orders-link">
                 <arguments>
-                    <argument name="sortOrder" xsi:type="number">155</argument>
+                    <argument name="sortOrder" xsi:type="number">231</argument>
+                    <argument name="label" xsi:type="string" translate="true">Web Orders</argument>
                 </arguments>
             </referenceBlock>
             <referenceBlock name="company-customer-account-navigation-orders-link">
                 <arguments>
-                    <argument name="sortOrder" xsi:type="number">156</argument>
+                    <argument name="sortOrder" xsi:type="number">232</argument>
+                    <argument name="label" xsi:type="string" translate="true">Web Orders</argument>
                 </arguments>
             </referenceBlock>
             <referenceBlock name="customer-account-navigation-customer-balance-link">
