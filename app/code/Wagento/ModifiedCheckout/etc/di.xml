@@ -13,5 +13,5 @@
     </type>
     <!-- Override order success block -->
     <preference for="Magento\Checkout\Block\Onepage\Success" type="Wagento\ModifiedCheckout\Block\Onepage\Success" />
-
+    <preference for="Magento\PurchaseOrder\Block\PurchaseOrder\Success" type="Wagento\ModifiedCheckout\Block\PurchaseOrder\Success"/>
 </config>

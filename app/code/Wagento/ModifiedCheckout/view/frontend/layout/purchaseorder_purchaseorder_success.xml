@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Purchase Order Success Page</title>
+    </head>
+    <body>
+        <attribute name="class" value="checkout-onepage-success"/>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">Shipping Confirmation</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="po.checkout.success">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Wagento_ModifiedCheckout::po_success.phtml</argument>
+            </action>
+            <container name="order.success.additional.info" label="Order Success Additional Info">
+                <block class="Wagento\ModifiedCheckout\Block\PurchaseOrder\Success" name="checkout.success.items" template="Wagento_ModifiedCheckout::po_success/items.phtml" cacheable="false" before="-"/>
+                <block class="Wagento\ModifiedCheckout\Block\PurchaseOrder\Success" name="checkout.success.contact" template="Wagento_ModifiedCheckout::po_success/contact.phtml" cacheable="false" after="-"/>
+            </container>
+        </referenceBlock>
+    </body>
+</page>
