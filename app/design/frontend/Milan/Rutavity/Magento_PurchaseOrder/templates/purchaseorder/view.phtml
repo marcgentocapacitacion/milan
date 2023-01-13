@@ -39,7 +39,10 @@ if ($block->getNameInLayout() !== 'purchase.order.index.view') {
 </form>
 
 <div class="<?= $escaper->escapeHtmlAttr($htmlClass) ?>"
-     data-mage-init='{"negotiableQuoteTabs":{"openedState":"active", "saveState":true}}'>
+     data-mage-init='{"negotiableQuoteTabs":{"openedState":"active", "saveState":true}, "Magento_PurchaseOrder/js/animation-tabs":{}}'
+     id="details-items-tabs-data"
+     style="display: none;"
+    >
     <?php $layout = $block->getLayout();
     foreach ($block->getSortedChildNames() as $name):
         $html = $layout->renderElement($name);
