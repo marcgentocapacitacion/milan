@@ -48,9 +48,11 @@ class Success extends \Magento\PurchaseOrder\Block\PurchaseOrder\Success
     protected function _prepareLayout()
     {
         $order = $this->getPurchaseOrder()->getSnapshotQuote();
+        $day = date('d', strtotime($order->getCreatedAt())) ?? '';
+        $month = __(date('F', strtotime($order->getCreatedAt()))) ?? '';
         $this->addData(
             [
-                'order_date'  => date('d F Y h:i A', strtotime($order->getCreatedAt())) ?? '',
+                'order_date'  => __("%1 of %2", $day, $month) . date(' Y h:i A', strtotime($order->getCreatedAt())) ?? '',
                 'grand_total' => $this->getFormattedPrice($order->getGrandTotal()),
                 'subtotal' => $this->getFormattedPrice($order->getSubtotal()),
                 'discount_amount' => $this->getFormattedPrice($order->getDiscountAmount()),

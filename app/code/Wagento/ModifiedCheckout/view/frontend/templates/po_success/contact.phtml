@@ -9,33 +9,8 @@
 <?php /** @var $block \Magento\Checkout\Block\Onepage\Success */ ?>
 <div class="success-invoice-form">
     <form class="form form-invoice">
-        <h3 class="legend"><?= $block->escapeHtml(__('Do you require an invoice for your order?')) ?></h3>
-        <p><?= $block->escapeHtml(__('We will send you a confirmation email with the shipping details and information.')) ?></p>
         <fieldset class="fieldset invoice" data-hasrequired="<?= $block->escapeHtml(__('* Required Fields')) ?>">
-            <div class="field rfc required">
-                <label class="label" for="rfc"><span><?= $block->escapeHtml(__('R.F.C.')) ?></span></label>
-                <div class="control">
-                    <input name="invoice[rfc]"
-                           id="rfc" type="text" class="input-text"
-                           title="<?= $block->escapeHtmlAttr(__('R.F.C.')) ?>"
-                           data-mage-init='{"mage/trim-input":{}}'
-                           data-validate="{required:true}">
-                </div>
-            </div>
-            <div class="field address required">
-                <label class="label" for="address"><span><?= $block->escapeHtml(__('Address')) ?></span></label>
-                <div class="control">
-                    <textarea name="invoice[address]"
-                           id="address" type="text" class="input-text"
-                           title="<?= $block->escapeHtmlAttr(__('Address')) ?>"
-                           data-validate="{required:true}">
-                    </textarea>
-                </div>
-            </div>
             <div class="actions-toolbar">
-                <button type="submit" class="action invoice primary" name="send" id="send2">
-                    <span><?= $block->escapeHtml(__('Request My Invoice')) ?></span>
-                </button>
                 <a class="action secondary continue" href="<?= $block->escapeUrl($block->getContinueUrl()) ?>">
                     <span><?= $block->escapeHtml(__('Continue Shopping')) ?></span>
                 </a>

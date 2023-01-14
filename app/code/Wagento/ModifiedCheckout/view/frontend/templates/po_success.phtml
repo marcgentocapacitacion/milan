@@ -42,7 +42,7 @@
             <div class="information payment-information">
                 <p class="information-title"><?= $block->escapeHtml(__('Payment Information')) ?></p>
                 <div class="information-content">
-                    <span class="information-payment"><?=$block->getPurchaseOrder()->getSnapshotQuote()->getPayment()->getMethodInstance()->getTitle() ?? '';?></span>
+                    <span class="information-payment"><?=__($block->getPurchaseOrder()->getSnapshotQuote()->getPayment()->getMethodInstance()->getTitle()) ?? '';?></span>
                     <span class="information-additional"><?=implode('<br>', $block->getPurchaseOrder()->getSnapshotQuote()->getPayment()->getAdditionalData() ?? []);?></span>
                 </div>
             </div>
