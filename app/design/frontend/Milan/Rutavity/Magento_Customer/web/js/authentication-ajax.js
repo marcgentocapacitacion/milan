@@ -94,7 +94,7 @@ define([
             var error,
                 message;
 
-            $.when(login).done(function () {
+            $.when(login).done(function (params) {
                 error = messageContainer.getErrorMessages()();
                 message = '';
                 for (var i in error) {
@@ -111,6 +111,8 @@ define([
                         }
                     });
                     messageContainer.clear();
+                } else if(!params.errors && params.message){
+                    location.reload();
                 }
             });
         }
