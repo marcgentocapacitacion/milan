@@ -219,7 +219,6 @@
                 <dataType>text</dataType>
                 <label translate="true">Date of Birthr</label>
                 <visible>true</visible>
-                <dataScope>some_scope</dataScope>
             </settings>
         </field>
         <field name="extension_attributes.u_cliente_activo_hasta" sortOrder="160" formElement="date">
@@ -235,7 +234,6 @@
                 <dataType>text</dataType>
                 <label translate="true">Date Active Until</label>
                 <visible>true</visible>
-                <dataScope>some_scope</dataScope>
             </settings>
         </field>
         <field name="extension_attributes.phone2" sortOrder="170" formElement="input">

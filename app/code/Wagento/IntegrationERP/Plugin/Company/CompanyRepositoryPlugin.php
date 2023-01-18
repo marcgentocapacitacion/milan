@@ -71,7 +71,13 @@ class CompanyRepositoryPlugin
         CompanyRepositoryInterface $subject,
         CompanyInterface $company
     ) {
-        $company = $this->getCompanyCustomData($company);
+        $companyExtension = $company->getExtensionAttributes();
+        if ($companyExtension === null) {
+            $companyExtension = $this->companyExtensionFactory->create();
+        }
+
+        $company->setExtensionAttributes($companyExtension);
+
         return $company;
     }
 

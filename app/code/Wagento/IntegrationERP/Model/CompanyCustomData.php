@@ -288,7 +288,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function getDebitLine(): string
     {
-        return $this->getData('u_discountMilan');
+        return $this->getData('debitLine');
     }
 
     /**
@@ -298,7 +298,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function setDebitLine(string $value)
     {
-        $this->setData('u_discountMilan', $value);
+        $this->setData('debitLine', $value);
         return $this;
     }
 
