@@ -23,10 +23,10 @@
                         <div class="swiper-lazy-preloader"></div>
                         <a href="<?= $escaper->escapeUrl($product->getProductUrl()) ?>" class="product-image">
                             <img class="swiper-lazy" data-src="<?= $block->getProductImage($product) ?>" alt=""/>
+                            <div class="product-info">
+                                <strong class="product-name"><?= /* @noEscape */ mb_strimwidth($name, 0, 70, "...") ?></strong>
+                            </div>
                         </a>
-                        <div class="product-info">
-                            <strong class="product-name"><?= /* @noEscape */ mb_strimwidth($name, 0, 70, "...") ?></strong>
-                        </div>
                     </div>
                 <?php endforeach ?>
             <?php endif; ?>
