@@ -16,6 +16,7 @@ if ($block->isLoggedIn()) {
         <a <?= /* @noEscape */ $block->getLinkAttributes() ?>
             <?= /* @noEscape */ $dataPostParam ?>>
             <i class="rt-icon rt-icon-login"></i>
+            <span class="text-logout"><?=__('Logout');?></span>
         </a>
     </li>
 <?php } else { ?>
