@@ -41,6 +41,7 @@
             <div class="order_items">
                 <?php /** @var \Magento\Sales\Model\Order\Item $item */ ?>
                 <?php foreach ($order->getAllItems() as $item): ?>
+                    <?php if($item->getProduct()) {continue;} ?>
                     <?php if ($item->getHasChildren()) {continue;}?>
                     <div class="row">
                         <div class="image">
