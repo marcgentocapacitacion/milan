@@ -9,6 +9,7 @@
 <?php /** @var \Magento\Sales\Model\Order\Item $ordersItem */ ?>
 <?php foreach ($ordersItems as $ordersItem):?>
     <?php $product = $ordersItem->getProduct();?>
+    <?php if(!$ordersItem->getProduct()) {continue;} ?>
     <?php if ($ordersItem->getHasChildren()) {continue;}?>
     <div class="product">
         <div class="image">
