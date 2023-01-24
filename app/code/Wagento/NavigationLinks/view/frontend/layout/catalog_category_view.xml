@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="WeltPixel\NavigationLinks\Block\Subcategory\View"
+                   name="category.subcategories.products"
+                   template="Wagento_NavigationLinks::category/subcategories.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

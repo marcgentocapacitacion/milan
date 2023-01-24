@@ -1,0 +1,53 @@
+.catalog-category-view {
+    .wp-subcategories {
+        .wp-subcategories-grid {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0;
+            list-style: none;
+            padding: 0;
+            .wp-subcategories-item {
+                padding: 10px 10px 30px;
+                margin: 0;
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                text-align: center;
+                .wp-subcategory-name  {
+                    margin: 10px 12px;
+                    text-align: center;
+                    font-weight: 400;
+                    font-size: 1.2em;
+                    a {
+                        text-display: none;
+                    }
+                }
+            }
+            &.wp-subcategories-col-2 {
+                .wp-subcategories-item {
+                    width: 50%;
+                }
+            }
+            &.wp-subcategories-col-3 {
+                .wp-subcategories-item {
+                    width:33.33333333%;
+                }
+            }
+            &.wp-subcategories-col-4 {
+                .wp-subcategories-item {
+                    width:25%;
+                }
+            }
+            &.wp-subcategories-col-5 {
+                .wp-subcategories-item {
+                    width:20%;
+                }
+            }
+            &.wp-subcategories-col-6 {
+                .wp-subcategories-item {
+                    width:16.66666667%;
+                }
+            }
+        }
+    }
+}
