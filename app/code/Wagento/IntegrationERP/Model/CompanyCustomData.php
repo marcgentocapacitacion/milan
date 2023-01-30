@@ -153,9 +153,9 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
     /**
      * @return string
      */
-    public function getUGroupNUmTempoOPT(): string
+    public function getUGroupNumTempoOPT(): string
     {
-        return $this->getData('u_groupNUmTempoOPT');
+        return $this->getData('u_groupNumTempoOPT');
     }
 
     /**
@@ -163,9 +163,9 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      *
      * @return $this
      */
-    public function setUGroupNUmTempoOPT(string $value)
+    public function setUGroupNumTempoOPT(string $value)
     {
-        $this->setData('u_groupNUmTempoOPT', $value);
+        $this->setData('u_groupNumTempoOPT', $value);
         return $this;
     }
 

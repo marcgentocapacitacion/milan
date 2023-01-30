@@ -57,7 +57,7 @@ class DataProviderPlugin
         $model->setUGroupNumTemporada($extensionAttributes->getUGroupNumTemporada() ?? '');
         $model->setUDiscountTemporada($extensionAttributes->getUDiscountTemporada() ?? '');
         $model->setUAutorizadoTemporadaOPT((bool)$extensionAttributes->getUAutorizadoTemporadaOPT() ?? false);
-        $model->setUGroupNUmTempoOPT($extensionAttributes->getUGroupNUmTempoOPT() ?? '');
+        $model->setUGroupNumTempoOPT($extensionAttributes->getUGroupNumTempoOPT() ?? '');
         $model->setGroupNum((bool)$extensionAttributes->getGroupNum() ?? false);
         $model->setUDiscountContado($extensionAttributes->getUDiscountContado() ?? '');
         $model->setUDiscountContadoOptimus($extensionAttributes->getUDiscountContadoOptimus() ?? '');
