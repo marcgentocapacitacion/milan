@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="importdata_product_description" instance="Wagento\ImportData\Cron\UpdateProductDescription" method="execute">
+            <config_path>wagento_cron_import_data/cron_schedule/importdata_product_description</config_path>
+        </job>
+    </group>
+</config>

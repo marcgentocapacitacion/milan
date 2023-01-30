@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_ImportExport:etc/import.xsd">
+    <entity name="catalog_product_description"
+            label="Product Description"
+            model="Wagento\ImportData\Model\Import\ProductDescription"
+            behaviorModel="Wagento\ImportData\Model\Source\Import\Behavior\Custom"/>
+</config>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <wagento_cron_import_data>
+            <cron_schedule>
+                <importdata_product_description>*/5 * * * *</importdata_product_description>
+            </cron_schedule>
+        </wagento_cron_import_data>
+    </default>
+</config>

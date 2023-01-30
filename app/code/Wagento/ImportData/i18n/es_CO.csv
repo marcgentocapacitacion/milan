@@ -1,0 +1,5 @@
+"Configuration of the product description import", "Configuración de la importación de la descripción del producto"
+"Frequency to update Product Description", "Frecuencia para actualizar la descripción del producto"
+"Import Data", "Datos de importacion"
+"Product Description", "Descripción del producto"
+"You need to put a cron expression, for example: */5 * * * *", "Necesitas poner una expresión cron, por ejemplo: */5 * * * *"

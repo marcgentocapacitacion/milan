@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="wagento_extension" translate="label" sortOrder="10">
+            <label>Wagento Extensions</label>
+        </tab>
+        <section id="wagento_cron_import_data" translate="label" type="text" sortOrder="20"  showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Import Data</label>
+            <tab>wagento_extension</tab>
+            <resource>Wagento_ImportData::config</resource>
+            <group id="cron_schedule" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Cron</label>
+                <field id="importdata_product_description" translate="label" sortOrder="10" showInDefault="1" showInStore="0" showInWebsite="0">
+                    <label>Frequency to update Product Description</label>
+                    <source_model>Magento\Cron\Model\Config\Source\Frequency</source_model>
+                    <backend_model>Magento\Backup\Model\Config\Backend\Cron</backend_model>
+                    <comment>You need to put a cron expression, for example: */5 * * * *</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
