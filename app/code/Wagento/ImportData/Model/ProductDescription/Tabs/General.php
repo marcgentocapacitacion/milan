@@ -2,10 +2,12 @@
 
 namespace Wagento\ImportData\Model\ProductDescription\Tabs;
 
+use Wagento\ImportData\Api\TabsInterface;
+
 /**
  * Class General
  */
-class General extends AbstractTabs
+class General extends AbstractTabs implements TabsInterface
 {
     /**
      * @var string
@@ -40,22 +42,11 @@ class General extends AbstractTabs
                         data-element="main"
                         id="' . $this->idTab . '"
                         data-pb-style="FHEVQ9P">';
-
-
+        foreach ($description as $line => $row) {
+            $html .= $this->getColumns($row);
+        }
         $html .= '</div>';
-        $html .= '</div>';
-        return $html;
-    }
-
-
-
-    /**
-     * @return string
-     */
-    public function getStyle(): string
-    {
-        return "
-        #html-body [data-pb-style=XEY2FHJ] {
+        $this->setStyle('#html-body [data-pb-style=XEY2FHJ] {
             border-width: 1px
         }
 
@@ -63,7 +54,7 @@ class General extends AbstractTabs
             justify-content: flex-start;
             display: flex;
             flex-direction: column
-        }
-        ";
+        }');
+        return $html;
     }
 }

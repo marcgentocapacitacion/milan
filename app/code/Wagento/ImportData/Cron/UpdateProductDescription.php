@@ -7,9 +7,7 @@ use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Model\Product;
 use Wagento\ImportData\Api\ImportexportProductDescriptionInterface;
 use Wagento\ImportData\Model\ResourceModel\ImportexportProductDescription as ResourceModelImportexportProductDescription;
-use Wagento\ImportData\Block\Adminhtml\Import\MountProductDescriptionFactory as MountProductDescriptionBlockFactory;
-use Wagento\ImportData\Block\Adminhtml\Import\MountProductDescription as MountProductDescriptionBlock;
-use Magento\Framework\View\LayoutInterface;
+use Wagento\ImportData\Api\ProductDescriptionInterface;
 
 /**
  * Class UpdateProductDescription
@@ -32,35 +30,26 @@ class UpdateProductDescription
     protected ResourceModelImportexportProductDescription $importexportProductDescriptionResource;
 
     /**
-     * @var MountProductDescriptionBlockFactory
+     * @var ProductDescriptionInterface
      */
-    protected MountProductDescriptionBlockFactory $mountProductDescriptionBlock;
-
-    /**
-     * Parent layout of the block
-     *
-     * @var LayoutInterface
-     */
-    protected LayoutInterface $layout;
+    protected ProductDescriptionInterface $productDescription;
 
     /**
      * @param ProductRepositoryInterface                  $productRepository
      * @param Collection                                  $collection
      * @param ResourceModelImportexportProductDescription $importexportProductDescriptionResource
-     * @param MountProductDescriptionBlockFactory         $mountProductDescriptionBlock
+     * @param ProductDescriptionInterface                 $productDescription
      */
     public function __construct(
         ProductRepositoryInterface $productRepository,
         Collection $collection,
         ResourceModelImportexportProductDescription $importexportProductDescriptionResource,
-        MountProductDescriptionBlockFactory $mountProductDescriptionBlock,
-        LayoutInterface $layout
+        ProductDescriptionInterface $productDescription
     ) {
         $this->productRepository = $productRepository;
         $this->collection = $collection;
         $this->importexportProductDescriptionResource = $importexportProductDescriptionResource;
-        $this->mountProductDescriptionBlock = $mountProductDescriptionBlock;
-        $this->layout = $layout;
+        $this->productDescription = $productDescription;
     }
 
     /**
@@ -76,18 +65,14 @@ class UpdateProductDescription
 
         /** @var ImportexportProductDescriptionInterface $item */
         foreach ($queue->getItems() as $item) {
-            /** @var MountProductDescriptionBlock $block */
-            $block = $this->layout->createBlock(
-                MountProductDescriptionBlock::class,
-                "import_product_description_{$item->getSku()}"
-            );
-            $block->setQueueProductDescription($item);
-            $html = $block->toHtml();
+            if (!($description = $item->getDataDescription())) {
+                continue;
+            }
             /** @var Product $product */
             $product = $this->productRepository->get($item->getSku());
-            $product->setDescription($html);
+            $product->setDescription($this->productDescription->getHtml($description));
             $this->productRepository->save($product);
-            $this->importexportProductDescriptionResource->delete($item);
+            //$this->importexportProductDescriptionResource->delete($item);
         }
     }
 
