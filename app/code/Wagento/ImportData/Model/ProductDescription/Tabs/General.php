@@ -42,8 +42,15 @@ class General extends AbstractTabs implements TabsInterface
                         data-element="main"
                         id="' . $this->idTab . '"
                         data-pb-style="FHEVQ9P">';
+        $firstTime = true;
         foreach ($description as $line => $row) {
+            if (!$firstTime) {
+                $html .= '<div data-content-type="divider" data-appearance="default" data-element="main">
+                            <hr data-element="line" data-pb-style="OJLLULW">
+                        </div>';
+            }
             $html .= $this->getColumns($row);
+            $firstTime = false;
         }
         $html .= '</div>';
         $this->setStyle('#html-body [data-pb-style=XEY2FHJ] {
@@ -54,6 +61,18 @@ class General extends AbstractTabs implements TabsInterface
             justify-content: flex-start;
             display: flex;
             flex-direction: column
+        }
+        #html-body [data-pb-style=FHEVQ9P] {
+            background-position: left top;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: scroll
+        }
+        #html-body [data-pb-style=OJLLULW] {
+            width: 100%;
+            border-width: 1px;
+            border-color: #cecece;
+            display: inline-block
         }');
         return $html;
     }

@@ -16,6 +16,13 @@ class ProductDescription implements ProductDescriptionInterface
     protected array $tabsImport;
 
     /**
+     * @var array
+     */
+    protected array $tabsImportWithoutImport = [
+        'Caracteristicas' => true
+    ];
+
+    /**
      * @param array $tabsImport
      */
     public function __construct(array $tabsImport)
@@ -34,14 +41,23 @@ class ProductDescription implements ProductDescriptionInterface
         $body = '';
         $style = '';
         foreach ($this->tabsImport as $name => $tabsImport) {
-            if (!$tabsImport instanceof TabsInterface) {
+            if (!($tabsImport instanceof TabsInterface)) {
                 continue;
             }
+
+            if (isset($this->tabsImportWithoutImport[$name])) {
+                $label .= $tabsImport->getHeader($name);
+                $body .= $tabsImport->getBody([]);
+                $style .= $tabsImport->getStyle();
+                continue;
+            }
+
             if (!isset($description[$name])) {
                 continue;
             }
             $label .= $tabsImport->getHeader($name);
-            $body .= $tabsImport->getBody($description);
+            $body .= $tabsImport->getBody($description[$name]);
+            $style .= $tabsImport->getStyle();
         }
         $html = '<style>';
         $html .= $style;

@@ -53,10 +53,16 @@
     <!-- Logger Customer End -->
     <preference for="Wagento\ImportData\Api\ImportexportProductDescriptionInterface"
                 type="Wagento\ImportData\Model\ImportexportProductDescription"/>
+    <preference for="Wagento\ImportData\Api\ProductDescriptionInterface"
+                type="Wagento\ImportData\Model\ProductDescription\ProductDescription"/>
     <type name="Wagento\ImportData\Model\ProductDescription\ProductDescription">
         <arguments>
             <argument name="tabsImport" xsi:type="array">
-                <item name="General" xsi:type="string">Wagento\ImportData\Model\ProductDescription\Tabs\General</item>
+                <item name="General" xsi:type="object">Wagento\ImportData\Model\ProductDescription\Tabs\General</item>
+                <item name="Caracteristicas" xsi:type="object">Wagento\ImportData\Model\ProductDescription\Tabs\Caracteristicas</item>
+                <item name="Geometria" xsi:type="object">Wagento\ImportData\Model\ProductDescription\Tabs\Geometria</item>
+                <item name="Tecnologia" xsi:type="object">Wagento\ImportData\Model\ProductDescription\Tabs\Tecnologia</item>
+                <item name="Beneficios" xsi:type="object">Wagento\ImportData\Model\ProductDescription\Tabs\Beneficios</item>
             </argument>
         </arguments>
     </type>

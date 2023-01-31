@@ -87,11 +87,17 @@ class AbstractTabs
                         data-content-type="column-line"
                         data-element="main"
                         data-pb-style="CGSWTM6">';
-        $qtdColumns = 0;
+        $qtdColumns = [];
         foreach ($row as $column => $item) {
-            if ($row['type'] != 'link') {
+            if (!isset($qtdColumns[$column])) {
+                $qtdColumns[$column] = 1;
+            } else {
+                $qtdColumns[$column] = $qtdColumns[$column] + 1;
+            }
+            if ($item['type'] != 'link') {
                 continue;
             }
+
             if (isset($row[$column - 1]) && $row[$column - 1]['type'] == 'text') {
                 $row[$column - 1]['data1'] .= $this->getALink(
                     $item['data1'] ?? 'Click here',
@@ -101,23 +107,20 @@ class AbstractTabs
             }
         }
 
-        foreach ($row as $item) {
+        foreach ($row as $column => $item) {
             if ($item['type'] == 'video_youtube') {
-                $html .= $this->getField($item);
-                $qtdColumns++;
-                continue;
+                return $this->getField($item);
             }
+            $dataPbStyle = "X6X8P03".time();
             $html .= '<div  class="pagebuilder-column"
                         data-content-type="column"
-                        data-appearance="full-height"
+                        data-appearance="align-center"
                         data-background-images="{}"
                         data-element="main"
-                        data-pb-style="X6X8P03' . time() . '">';
+                        data-pb-style="' . $dataPbStyle . '">';
             $html .= $this->getField($item);
             $html .= '</div>';
-            $qtdColumns++;
-        }
-        $this->setStyle("#html-body [data-pb-style=X6X8P03" . time() . "] {
+            $this->setStyle("#html-body [data-pb-style=" . $dataPbStyle . "] {
             justify-content: center;
             display: flex;
             flex-direction: column;
@@ -125,11 +128,12 @@ class AbstractTabs
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: scroll;
-            width: " . (100/$qtdColumns) . "%;
+            width: " . (100/$qtdColumns[$column]) . "%;
             margin-left: 10px;
             margin-right: 10px;
             align-self: stretch
         }");
+        }
         $html .= '</div>';
         $html .= '</div>';
         return $html;
@@ -140,14 +144,15 @@ class AbstractTabs
      *
      * @return string
      */
-    public function getField(array $row): string
+    public function getField(array $item): string
     {
-        return match ($row['type']) {
-            'image' => $this->getImage($row['data1'] ?? ''),
-            'text' => $this->getText($row['data1'] ?? ''),
-            'link' => $this->getALink($row['data1'] ?? 'Click here', $row['data2'] ?? ''),
-            'video_youtube' => $this->getVideoYoutube($row['data1'] ?? ''),
-            default => $row['data1'] ?? ''
+        return match ($item['type']) {
+            'image' => $this->getImage($item['data1'] ?? ''),
+            'text' => $this->getText($item['data1'] ?? ''),
+            'link' => $this->getALink($item['data1'] ?? 'Click here', $item['data2'] ?? ''),
+            'video_youtube' => $this->getVideoYoutube($item['data1'] ?? ''),
+            'table' => $this->getTable($item),
+            default => $item['data1'] ?? ''
         };
     }
 
@@ -179,12 +184,9 @@ class AbstractTabs
      */
     public function getALink(string $label, string $url): string
     {
-        return '<a tabindex="0"
-                   href="' . $url . '"
-                   target="_blank"
-                   rel="noopener">
+        return str_replace("\n", '', '<a tabindex="0" href="' . $url . '" target="_blank" rel="noopener">
                    <span style="color: #236fa1;"><strong>' . $label . '</strong></span>
-               </a>';
+               </a>');
     }
 
     /**
@@ -220,12 +222,60 @@ class AbstractTabs
      */
     public function getText(string $text): string
     {
-        return '<div data-content-type="text"
+        $textList = explode("\n", $text);
+        $html = '<div data-content-type="text"
                     data-appearance="default"
                     data-element="main"
-                    data-pb-style="F4Q0BIE">
-                    <p class="MsoNormal" style="text-align: justify;">' . $text . '</p>
-                </div>';
+                    data-pb-style="F4Q0BIE">';
+        foreach ($textList ?? [] as $value) {
+            $html .= '<p class="MsoNormal" style="text-align: justify;">' . $value . '</p>';
+        }
+        $html .= '</div>';
+        return $html;
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return string
+     */
+    public function getTable(array $data): string
+    {
+        if (!isset($data['dataColumns'])) {
+            return '';
+        }
+
+        $html = '<table border="1" cellpadding="1" cellspacing="1">';
+        $html .= '<tbody>';
+        foreach ($data['dataColumns'] as $dataTable) {
+            $html .= '<tr>';
+            foreach ($dataTable as $column => $item) {
+                if ($column <= 0) {
+                    $html .= '<td>' . $item . '</td>';
+                } else {
+                    $html .= '<td style="text-align:center">' . $item . '</td>';
+                }
+            }
+            $html .= '</tr>';
+        }
+        $html .= '</tbody>';
+        $html .= '</table>';
+        $this->setStyle('td:first-child {
+            max-width: none;
+            font-weight: bold;
+            text-align: left;
+        }
+        tr td {
+            text-align: center;
+            border-bottom: 1px solid;
+        }
+        tr:nth-child(even) {
+            background-color: #eeeded;
+        }
+        table {
+            font-size: 14px;
+        }');
+        return $html;
     }
 
     /**
@@ -233,7 +283,7 @@ class AbstractTabs
      */
     public function getStyle(): string
     {
-        return implode('', $this->style);
+        return str_replace("\n", '' , implode('', $this->style));
     }
 
     /**

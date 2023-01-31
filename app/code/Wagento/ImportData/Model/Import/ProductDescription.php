@@ -77,6 +77,11 @@ class ProductDescription extends \Magento\ImportExport\Model\Import\Entity\Abstr
     protected ImportexportProductDescriptionInterfaceFactory $importexportProductDescriptionFactory;
 
     /**
+     * @var array
+     */
+    protected $excludeLine = [];
+
+    /**
      * @param \Magento\Framework\Json\Helper\Data                   $jsonHelper
      * @param \Magento\ImportExport\Helper\Data                     $importExportData
      * @param \Magento\ImportExport\Model\ResourceModel\Import\Data $importData
@@ -121,7 +126,13 @@ class ProductDescription extends \Magento\ImportExport\Model\Import\Entity\Abstr
     {
         while ($bunch = $this->_dataSourceModel->getNextBunch()) {
             $data = [];
-            foreach ($bunch as $rowData) {
+            foreach ($bunch as $line => $rowData) {
+                if (isset($this->excludeLine[$line])) {
+                    continue;
+                }
+                if ($rowData[self::COL_TYPE] == 'table') {
+                    $rowData['dataColumns'] = $this->prepareDataForTable($bunch, $line);
+                }
                 $data[$rowData[self::COL_SKU]][$rowData[self::COL_TAB]][$rowData[self::COL_LINE]][] = $rowData;
             }
 
@@ -140,6 +151,44 @@ class ProductDescription extends \Magento\ImportExport\Model\Import\Entity\Abstr
             }
         }
         return true;
+    }
+
+    /**
+     * @param array $bunch
+     * @param       $line
+     *
+     * @return array
+     */
+    protected function prepareDataForTable(array &$bunch, $line): array
+    {
+        $firstTime = true;
+        $dataTable = [];
+        $count = count($bunch);
+        for($i = $line; $i <= $count;$i++) {
+            if (!isset($bunch[$i])) {
+                break;
+            }
+            if ($bunch[$i]['type'] != 'table') {
+                break;
+            }
+            $stop = false;
+            $ii = 1;
+            $dataColumns = [];
+            while (!$stop) {
+                if (isset($bunch[$i]['data'.$ii]) && $bunch[$i]['data'.$ii]) {
+                    $dataColumns[] = $bunch[$i]['data' . $ii];
+                } else {
+                    $stop = true;
+                }
+                $ii++;
+            }
+            $dataTable[] = $dataColumns;
+            if (!$firstTime) {
+                $this->excludeLine[$i] = $i;
+            }
+            $firstTime = false;
+        }
+        return $dataTable;
     }
 
     /**
