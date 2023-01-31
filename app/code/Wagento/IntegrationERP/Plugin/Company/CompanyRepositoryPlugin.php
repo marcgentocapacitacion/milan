@@ -71,13 +71,40 @@ class CompanyRepositoryPlugin
         CompanyRepositoryInterface $subject,
         CompanyInterface $company
     ) {
-        $companyExtension = $company->getExtensionAttributes();
-        if ($companyExtension === null) {
-            $companyExtension = $this->companyExtensionFactory->create();
+        $extensionAttributes = $company->getExtensionAttributes();
+        if ($extensionAttributes === null) {
+            $extensionAttributes = $this->companyExtensionFactory->create();
         }
 
-        $company->setExtensionAttributes($companyExtension);
-
+        $company->setExtensionAttributes($extensionAttributes);
+        /** @var \Wagento\IntegrationERP\Model\CompanyCustomData $model */
+        $model = $this->model->create();
+        $this->resourceModel->create()->load($model, $company->getId());
+        if (!$model->getId()) {
+            $model->setCompanyId($company->getId());
+        }
+        $model->setUAutorizadoTemporada((bool)($extensionAttributes->getUAutorizadoTemporada() == '0' ? false : true));
+        $model->setUInicioTemporada($extensionAttributes->getUInicioTemporada() ?? '');
+        $model->setUFinTemporada($extensionAttributes->getUFinTemporada() ?? '');
+        $model->setUGroupNumTemporada($extensionAttributes->getUGroupNumTemporada() ?? '');
+        $model->setUDiscountTemporada($extensionAttributes->getUDiscountTemporada() ?? '');
+        $model->setUAutorizadoTemporadaOPT((bool)$extensionAttributes->getUAutorizadoTemporadaOPT() ?? false);
+        $model->setUGroupNumTempoOPT($extensionAttributes->getUGroupNumTempoOPT() ?? '');
+        $model->setGroupNum((bool)$extensionAttributes->getGroupNum() ?? false);
+        $model->setUDiscountContado($extensionAttributes->getUDiscountContado() ?? '');
+        $model->setUDiscountContadoOptimus($extensionAttributes->getUDiscountContadoOptimus() ?? '');
+        $model->setUDiscountOptimus($extensionAttributes->getUDiscountOptimus() ?? '');
+        $model->setUGroupNumOptimus($extensionAttributes->getUGroupNumOptimus() ?? '');
+        $model->setUDiscountMilan($extensionAttributes->getUDiscountMilan() ?? '');
+        $model->setDebitLine($extensionAttributes->getDebitLine() ?? '');
+        $model->setUFechaNacimiento($extensionAttributes->getUFechaNacimiento() ?? '');
+        $model->setUClienteActivoHasta($extensionAttributes->getUClienteActivoHasta() ?? '');
+        $model->setPhone2($extensionAttributes->getPhone2() ?? '');
+        $model->setCellular($extensionAttributes->getCellular() ?? '');
+        $model->setFrozen((bool)$extensionAttributes->getFrozen() ?? false);
+        $model->setSlpCode((bool)$extensionAttributes->getSlpCode() ?? false);
+        $model->setTerritory((bool)$extensionAttributes->getTerritory() ?? false);
+        $this->resourceModel->create()->save($model);
         return $company;
     }
 

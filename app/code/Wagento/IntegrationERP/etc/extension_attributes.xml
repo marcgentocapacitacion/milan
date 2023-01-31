@@ -36,9 +36,9 @@
                 <field>u_autorizadoTemporadaOPT</field>
             </join>
         </attribute>
-        <attribute code="u_groupNUmTempoOPT" type="string">
+        <attribute code="u_groupNumTempoOPT" type="string">
             <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
-                <field>u_groupNUmTempoOPT</field>
+                <field>u_groupNumTempoOPT</field>
             </join>
         </attribute>
         <attribute code="groupNum" type="string">
