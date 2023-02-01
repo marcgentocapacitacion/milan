@@ -45,7 +45,7 @@ class Characteristic extends \Magento\Catalog\Block\Product\View
      */
     public function getCustomAttributesLabel(string $code): string
     {
-        return $this->getProduct()->getAttributes()[$code]->getFrontendLabel() ?? '';
+        return mb_strtoupper($this->getProduct()->getAttributes()[$code]->getFrontendLabel() ?? '');
     }
 
     /**

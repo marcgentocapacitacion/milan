@@ -19,7 +19,8 @@ class ProductDescription implements ProductDescriptionInterface
      * @var array
      */
     protected array $tabsImportWithoutImport = [
-        'Caracteristicas' => true
+        'Caracteristicas' => true,
+        'Documentos' => true
     ];
 
     /**

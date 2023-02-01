@@ -63,6 +63,7 @@
                 <item name="Geometria" xsi:type="object">Wagento\ImportData\Model\ProductDescription\Tabs\Geometria</item>
                 <item name="Tecnologia" xsi:type="object">Wagento\ImportData\Model\ProductDescription\Tabs\Tecnologia</item>
                 <item name="Beneficios" xsi:type="object">Wagento\ImportData\Model\ProductDescription\Tabs\Beneficios</item>
+                <item name="Documentos" xsi:type="object">Wagento\ImportData\Model\ProductDescription\Tabs\Documentos</item>
             </argument>
         </arguments>
     </type>
