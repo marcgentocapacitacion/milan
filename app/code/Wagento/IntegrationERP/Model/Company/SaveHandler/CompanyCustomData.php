@@ -56,7 +56,7 @@ class CompanyCustomData implements SaveHandlerInterface
         $model->setUGroupNumTemporada($extensionAttributes->getUGroupNumTemporada() ?? '');
         $model->setUDiscountTemporada($extensionAttributes->getUDiscountTemporada() ?? '');
         $model->setUAutorizadoTemporadaOPT($this->getBolleanValue($extensionAttributes->getUAutorizadoTemporadaOPT()));
-        $model->setUGroupNUmTempoOPT($extensionAttributes->getUGroupNUmTempoOPT() ?? '');
+        $model->setUGroupNumTempoOPT($extensionAttributes->getUGroupNumTempoOPT() ?? '');
         $model->setGroupNum($this->getBolleanValue($extensionAttributes->getGroupNum()));
         $model->setUDiscountContado($extensionAttributes->getUDiscountContado() ?? '');
         $model->setUDiscountContadoOptimus($extensionAttributes->getUDiscountContadoOptimus() ?? '');

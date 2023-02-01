@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="itm_outstandingpayments::outstandingpayments" title="OutstandingPayments" module="ITM_OutstandingPayments" sortOrder="0" parent="itm::base"  resource="ITM_OutstandingPayments::main"/>
+        <add id="itm_outstandingpayments::outstandingpayments_company" title="Company" module="ITM_OutstandingPayments" sortOrder="10" parent="itm_outstandingpayments::outstandingpayments" action="itm_outstandingpayments/company/" resource="ITM_OutstandingPayments::main"/>
+        <add id="itm_outstandingpayments::outstandingpayments_sapinvoice" title="Outstanding Payments" module="ITM_OutstandingPayments" sortOrder="10" parent="itm_outstandingpayments::outstandingpayments" action="itm_outstandingpayments/sapinvoice/" resource="ITM_OutstandingPayments::main"/>
+    </menu>
+</config>

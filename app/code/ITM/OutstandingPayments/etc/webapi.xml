@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<route method="POST" url="/V1/itm-outstandingpayments/save">
+		<service class="ITM\OutstandingPayments\Api\SapinvoiceRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Magento_Backend::admin"/>
+		</resources>
+	</route>
+	<route method="POST" url="/V1/itm-outstandingpayments/savefile">
+		<service class="ITM\OutstandingPayments\Api\SapinvoiceRepositoryInterface" method="saveFile"/>
+		<resources>
+			<resource ref="Magento_Backend::admin"/>
+		</resources>
+	</route>
+	<route method="POST" url="/V1/itm-outstandingpayments/savelist">
+		<service class="ITM\OutstandingPayments\Api\SapinvoiceRepositoryInterface" method="saveList"/>
+		<resources>
+			<resource ref="Magento_Backend::admin"/>
+		</resources>
+	</route>
+	<route method="GET" url="/V1/itm-outstandingpayments/search">
+		<service class="ITM\OutstandingPayments\Api\SapinvoiceRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Magento_Backend::admin"/>
+		</resources>
+	</route>
+
+	<route method="POST" url="/V1/itm-outstandingpayments/delete">
+		<service class="ITM\OutstandingPayments\Api\SapinvoiceRepositoryInterface" method="deleteInvoice"/>
+		<resources>
+			<resource ref="Magento_Backend::admin"/>
+		</resources>
+	</route>
+	<route method="POST" url="/V1/itm-outstandingpayments/deletelist">
+		<service class="ITM\OutstandingPayments\Api\SapinvoiceRepositoryInterface" method="deleteList"/>
+		<resources>
+			<resource ref="Magento_Backend::admin"/>
+		</resources>
+	</route>
+	<route url="/V1/itm-outstandingpayments/sales/order/info" method="GET">
+		<service class="ITM\OutstandingPayments\Api\Sales\OrderInterface" method="getOrderInfo" />
+		<resources>
+			<resource ref="Magento_Backend::admin" />
+		</resources>
+	</route>
+	<route url="/V1/itm-outstandingpayments/sales/order/list" method="GET">
+		<service class="ITM\OutstandingPayments\Api\Sales\OrderInterface" method="getOrderList" />
+		<resources>
+			<resource ref="Magento_Backend::admin" />
+		</resources>
+	</route>
+	
+</routes>

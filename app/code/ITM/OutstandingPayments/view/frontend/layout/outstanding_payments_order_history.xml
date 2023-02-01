@@ -1,0 +1,21 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+
+	<head>
+        <title>Invoice Payments</title>
+    </head>
+
+   <update handle="customer_account"/>
+    <body>
+    
+     <!-- and for the page title: -->
+            <referenceBlock name="page.main.title">
+               <action method="setPageTitle">
+                  <argument translate="true" name="title" xsi:type="string">Invoice Payments</argument>
+               </action>
+            </referenceBlock>
+            
+        <referenceContainer name="content">
+            <block class="ITM\OutstandingPayments\Block\Order\History" name="outstandingpayments_index_invoice_list" cacheable="false" template="ITM_OutstandingPayments::order/history.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

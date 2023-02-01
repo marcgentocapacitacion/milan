@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+
+	 <event name="sales_model_service_quote_submit_before">
+		<observer instance="ITM\OutstandingPayments\Observer\Sales\ModelServiceQuoteSubmitBefore" name="itm_outstandingpayments_observer_sales_modelservicequotesubmitbefore_sales_model_service_quote_submit_before"/>
+	</event>
+	<event name="sales_order_place_after">
+		<observer instance="ITM\OutstandingPayments\Observer\Sales\OrderPlaceAfter" name="itm_outstandingpayments_observer_sales_orderplaceafter_sales_order_place_after"/>
+	</event>
+	
+	<event name="payment_method_is_active">
+		<observer instance="ITM\OutstandingPayments\Observer\Payment\MethodIsActive" name="itm_outstandingpayments_observer_payment_methodisactive_payment_method_is_active"/>
+	</event>
+</config>
