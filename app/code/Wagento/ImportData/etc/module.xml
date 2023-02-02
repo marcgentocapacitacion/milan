@@ -4,6 +4,7 @@
     <module name="Wagento_ImportData">
         <sequence>
             <module name="Magento_CatalogImportExport"/>
+            <module name="Magento_Catalog"/>
         </sequence>
     </module>
 </config>
