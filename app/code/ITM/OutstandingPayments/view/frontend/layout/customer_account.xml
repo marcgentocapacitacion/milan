@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+    <referenceBlock name="customer_account_navigation">
+
+        <block class="ITM\OutstandingPayments\Block\InvoiceOrderLink" name="itm_outstandingpayments-customer-account-navigation-account-myquote" after="customer-account-navigation-orders-link">
+            <arguments>
+                <argument name="label" xsi:type="string" translate="true">Invoice Payments</argument>
+                <argument name="path" xsi:type="string">outstanding_payments/order/history</argument>
+            </arguments>
+        </block>
+
+        <block class="ITM\OutstandingPayments\Block\OpenInvoicesLink" name="itm_outstandingpayments_customer-account-navigation-account-openinvoiceslink">
+            <arguments>
+                <argument name="label" xsi:type="string" translate="true">Outstanding Payments</argument>
+                <argument name="path" xsi:type="string">outstanding_payments/index/open</argument>
+            </arguments>
+        </block>
+        <block class="ITM\OutstandingPayments\Block\PaidInvoicesLink" name="itm_outstandingpayments_customer-account-navigation-account-paidinvoiceslink">
+            <arguments>
+                <argument name="label" xsi:type="string" translate="true">Closed Payments</argument>
+                <argument name="path" xsi:type="string">outstanding_payments/index/closed</argument>
+            </arguments>
+        </block>
+    </referenceBlock>
+    
+    </body>
+</page>

@@ -1,0 +1,74 @@
+<?php
+
+//var_dump($this->getInvoiceCollection());
+?>
+
+
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+
+<?php $_invoices = $block->getInvoiceCollection(); ?>
+<?php if ($_invoices && count($_invoices)): ?>
+    <?php if ($block->getPagerHtml()): ?>
+        <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml() ?></div>
+    <?php endif ?>
+    <div class="table-wrapper orders-history">
+        <table class="data table table-order-items history" id="my-orders-table">
+            <caption class="table-caption"><?= /* @escapeNotVerified */ __('Invoices') ?></caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="col id"><?= /* @escapeNotVerified */ __('Invoice #') ?></th>
+                    <th scope="col" class="col date"><?= /* @escapeNotVerified */ __('Date') ?></th>
+                    <?= /* @noEscape */ $block->getChildHtml('extra.column.header') ?>
+                    
+                    <th scope="col" class="col total"><?= /* @escapeNotVerified */ __('Doc. Total') ?></th>
+                    <th scope="col" class="col doc_type"><?= /* @escapeNotVerified */ __('Doc Type') ?></th>
+                    <th scope="col" class="col status"><?= /* @escapeNotVerified */ __('Status') ?></th>
+                    <th scope="col" class="col status"><?= /* @escapeNotVerified */ __('Info') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($_invoices as $_invoice): ?>
+                    <tr>
+                        <td data-th="<?= $block->escapeHtml(__('Invoice #')) ?>" class="col id"><?= /* @escapeNotVerified */ $_invoice->getDocNum() ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Date')) ?>" class="col date"><?= /* @escapeNotVerified */ $block->formatDate($_invoice->getDocDate()) ?></td>
+                        
+                        <td data-th="<?= $block->escapeHtml(__('Invoice Total')) ?>" class="col total"><?= /* @escapeNotVerified */ $this->formatPrice($_invoice->getDocTotal()) ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Doc Type')) ?>" class="col doc_type">
+                            <?= /* @escapeNotVerified */ $this->getDocTypeLabel($_invoice->getDocType()) ?>
+                        </td>
+                        <td data-th="<?= $block->escapeHtml(__('Status')) ?>" class="col status"><?= /* @escapeNotVerified */ $this->getInvoiceStatusLabel($_invoice) ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Info')) ?>" class="col info">
+
+                            <?php
+                            echo __('Doc Entry').": ".$_invoice->getDocEntry();
+                             if(!empty($_invoice->getInfo())) {
+                                 $info = json_decode($_invoice->getInfo(), true);
+                                 if ($info) {
+                                     foreach ($info as $key => $item) {
+                                         if (!empty($item)) {
+                                             echo "<br>" . __($key) . ": " . $item;
+                                         }
+                                     }
+                                 }
+                             }
+                            ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <?php if ($block->getPagerHtml()): ?>
+        <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml() ?></div>
+    <?php endif ?>
+<?php else: ?>
+    <div class="message info empty"><span><?= /* @escapeNotVerified */ __('You have no closed outstanding payments') ?></span></div>
+<?php endif ?>

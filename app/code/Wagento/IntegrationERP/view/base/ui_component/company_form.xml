@@ -107,7 +107,7 @@
                 </checkbox>
             </formElements>
         </field>
-        <field name="extension_attributes.u_groupNUmTempoOPT" sortOrder="70" formElement="input">
+        <field name="extension_attributes.u_groupNumTempoOPT" sortOrder="70" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">company_custom_data</item>

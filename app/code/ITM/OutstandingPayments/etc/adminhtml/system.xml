@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+	<tab id="itm_extension" translate="label" sortOrder="1000">
+            <label>ITM Extensions</label>
+        </tab>
+         <section id="itm_outstanding_payments_section" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Outstanding Payments</label>
+            <tab>itm_extension</tab>
+            <resource>ITM_Extensions::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="10">
+                <label>General</label>
+                <field id="allowed_payment_methods" translate="label" type="multiselect" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Allow only selected payment methods when you pay SAP invoice</label>
+                     <source_model>ITM\OutstandingPayments\Model\Config\Source\PaymentMethods</source_model>    
+                    <comment><![CDATA[  ]]></comment>
+                </field>
+                <field id="hide_osp_orders" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Hide OSP Orders</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="default_company" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Default Company</label>
+                    <source_model>ITM\OutstandingPayments\Model\Customer\Attribute\Source\Company</source_model>
+                </field>
+            </group>
+  
+        </section>
+	</system>
+</config>

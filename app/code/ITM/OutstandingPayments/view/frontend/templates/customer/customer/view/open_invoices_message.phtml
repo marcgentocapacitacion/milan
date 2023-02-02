@@ -1,0 +1,12 @@
+<?php
+$_helper = $this->helper('ITM\OutstandingPayments\Helper\Data');
+$url = $this->getUrl('outstanding_payments/index/open');
+$count = count($this->getOpenInvoices());
+?>
+<?php if($count>0) :?>
+    <div class="block block-dashboard-info">
+        <div class="block-title osp-msg message-success success message"><div>
+                <?= __('You have %1 open invoices click <a href ="%2">here</a> for more information ',$count,$url) ?>
+            </div></div>
+    </div>
+<?php endif; ?>

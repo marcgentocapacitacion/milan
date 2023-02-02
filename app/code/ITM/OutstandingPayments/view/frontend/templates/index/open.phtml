@@ -1,0 +1,158 @@
+<?php
+
+//var_dump($this->getInvoiceCollection());
+?>
+
+
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+
+<?php $_invoices = $block->getInvoiceCollection(); ?>
+<?php if ($_invoices && count($_invoices)): ?>
+<form name="page_form" method="POST" id="page_form">
+         <div class="actions-toolbar" style="float:right;margin-bottom:20px">
+            <div class="primary">
+                <button type="submit" class="action pay primary" title="Save"><span><?php echo  __("Pay Selected");?></span></button>
+            </div>
+        </div>
+</form>
+            
+            
+<form name="orderForm1" action="<?php echo $this->getUrl('outstanding_payments/invoice/payselected', array('_secure'=>true)) ?>" method="post" id="page_Form1" enctype="multipart/form-data" onsubmit="return checkForm();">
+    <div class="table-wrapper orders-history">
+        <table class="data table table-order-items history" id="my-orders-table">
+            <caption class="table-caption"><?= /* @escapeNotVerified */ __('Invoices') ?></caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="col id"></th>
+                    <th scope="col" class="col id"><?= /* @escapeNotVerified */ __('Invoice #') ?></th>
+                    <th scope="col" class="col date"><?= /* @escapeNotVerified */ __('Date') ?></th>
+                    <?= /* @noEscape */ $block->getChildHtml('extra.column.header') ?>
+                    
+                    <th scope="col" class="col total"><?= /* @escapeNotVerified */ __('Doc. Total') ?></th>
+                    <th scope="col" class="col total"><?= /* @escapeNotVerified */ __('Open Balance') ?></th>
+                    <th scope="col" class="col total"><?= /* @escapeNotVerified */ __('Doc Type') ?></th>
+                    <th scope="col" class="col status"><?= /* @escapeNotVerified */ __('Status') ?></th>
+                    <th scope="col" class="col status"><?= /* @escapeNotVerified */ __('Info') ?></th>
+                    <th scope="col" class="col actions"><?= /* @escapeNotVerified */ __('Action') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($_invoices as $_invoice): ?>
+                    <tr>
+                    	<td data-th="<?= $block->escapeHtml(__('check to pay')) ?>" class="col id">
+							<?php if($_invoice->getInvoiceStatus()=="o"): ?>
+        					<input class="checkbox" type="checkbox" id="items<?php echo $_invoice->getDocEntry() ?>"	name="doc_entry[]" value="<?php echo $_invoice->getDocType()."_".$_invoice->getDocEntry() ?>" />
+        					<?php endif; ?>
+						</td>
+                        <td data-th="<?= $block->escapeHtml(__('Invoice #')) ?>" class="col id"><?= /* @escapeNotVerified */ $_invoice->getDocNum() ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Date')) ?>" class="col date"><?= /* @escapeNotVerified */ $block->formatDate($_invoice->getDocDate()) ?></td>
+                        
+                        <td data-th="<?= $block->escapeHtml(__('Invoice Total')) ?>" class="col total"><?= /* @escapeNotVerified */ $this->formatPrice($_invoice->getDocTotal()) ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Open Balance')) ?>" class="col total">
+                            <?= /* @escapeNotVerified */ $this->formatPrice($_invoice->getOpenBalance()) ?>
+
+                        </td>
+                        <td data-th="<?= $block->escapeHtml(__('Doc Type')) ?>" class="col doc_type">
+                            <?= /* @escapeNotVerified */ $this->getDocTypeLabel($_invoice->getDocType()) ?>
+                        </td>
+                        <td data-th="<?= $block->escapeHtml(__('Status')) ?>" class="col status"><?= /* @escapeNotVerified */ $this->getInvoiceStatusLabel($_invoice) ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Info')) ?>" class="col info">
+
+                            <?php
+                                echo __('Doc Entry').": ".$_invoice->getDocEntry();
+                                if(!empty($_invoice->getInfo())) {
+                                    $info = json_decode($_invoice->getInfo(), true);
+                                    foreach ($info as $key => $item) {
+                                        if (!empty($item)) {
+                                            echo "<br>" . __($key) . ": " . $item;
+                                        }
+                                    }
+                                }
+                            ?>
+                        </td>
+                        <td data-th="<?= $block->escapeHtml(__('Actions')) ?>" class="col actions">
+                           
+                           <?php  if ($_invoice->getPath() != ""): ?>
+                            <a target="_blank" href="<?php echo $this->getUrl('outstanding_payments/download/index',["type"=>$_invoice->getDocType(),"id" =>$_invoice->getDocEntry()]); ?>" class="action view">
+                            	<img width=30 src="<?php echo $block->getViewFileUrl('ITM_OutstandingPayments::images/pdf.png'); ?>" title="<?php echo __("Download") ?>" alt="<?php echo __("Download") ?> " />
+                            </a>
+                            <?php endif; ?>
+                            <?php  if ($_invoice->getInvoiceStatus() == "o"): ?>
+                             
+                             <!-- <a href="<?= $this->getUrl("outstanding_payments/invoice/pay",["din"=>$_invoice->getDocEntry(),"doc_type"=>$_invoice->getDocType()]) ?>" class="action view"> -->
+                              <a href="#" class="action view pay_invoice">
+                                <span>
+                                <img width=30 src="<?php echo $block->getViewFileUrl('ITM_OutstandingPayments::images/pay.png'); ?>" title="<?php echo __("Pay") ?>" alt="<?php echo __("Pay") ?> " />
+                                </span>
+                            </a>
+                            
+                            <?php endif; ?>
+                        </td>
+
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</form>
+    <?php if ($block->getPagerHtml()): ?>
+        <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml() ?></div>
+    <?php endif ?>
+<?php else: ?>
+    <div class="message info empty"><span><?= /* @escapeNotVerified */ __('You have no open outstanding payments') ?></span></div>
+<?php endif ?>
+
+<script>
+require(['jquery'],function(){
+    jQuery(document).ready(function() {
+    	jQuery('.pay_invoice').click(function($) {
+    		 jQuery('input:checkbox').removeAttr('checked');
+    		 jQuery(this).closest('tr').find('[type=checkbox]').prop('checked', true);
+    		 jQuery("#page_form").submit();
+    		 jQuery(this).closest('tr').find('[type=checkbox]').prop('checked', false);
+    		 jQuery(this).prop("disabled",true);
+     	    return false;
+    	});
+        
+        jQuery("#page_form").submit(function(){
+        	  var searchIDs = jQuery(".checkbox:checked").map(function(){
+        	      return jQuery(this).val();
+        	    }).get(); 
+
+        	  var lastpanel = searchIDs[searchIDs.length - 1];
+
+        	  searchIDs.forEach(function(element) {
+        	    var doc_entry = element;
+        		var _global = false;
+        		if(element == lastpanel){
+					_global = true;	
+            	}
+                var url = "<?php echo $this->getUrl('outstanding_payments/invoice/payselected', array('_secure'=>true)) ?>";
+                jQuery.ajax({
+                url: url,
+                type: "POST",
+              //  async: false,
+               // timeout: 10000,
+                data: {doc_entry:doc_entry},
+                showLoader: true,
+                cache: false,
+                global: _global,
+                success: function(response){
+                    console.log("success");
+                }
+            });
+        	  });
+        	    
+            return false;
+        });
+    });
+});
+</script>

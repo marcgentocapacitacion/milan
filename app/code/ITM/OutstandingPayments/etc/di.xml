@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+	<type name="Magento\Checkout\Model\Cart">
+		<plugin name="beforeAddToCart" type="ITM\OutstandingPayments\Plugin\Catalog\Product"
+			sortOrder="10" disabled="false" />
+	</type>
+	<type name="Magento\Catalog\Model\Product">
+		<plugin name="aroundGetVisibility" type="ITM\OutstandingPayments\Plugin\Catalog\Model\Product"
+				sortOrder="10" disabled="false" />
+	</type>
+
+	<type name="Magento\Sales\Block\Order\History">
+		<plugin name="afterGetOrders" type="ITM\OutstandingPayments\Plugin\Block\Order\History"
+			sortOrder="10" disabled="false" />
+	</type>
+
+	<virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid" type="Magento\Sales\Model\ResourceModel\Grid">
+	    <arguments>
+	        <argument name="columns" xsi:type="array">
+	            <item name="itm_sap_company" xsi:type="string">sales_order.itm_sap_company</item>
+	            <item name="itm_order_type" xsi:type="string">sales_order.itm_order_type</item>
+	        </argument>
+	    </arguments>
+	</virtualType>
+
+   	<preference for="ITM\OutstandingPayments\Api\SapinvoiceRepositoryInterface" type="ITM\OutstandingPayments\Model\SapinvoiceRepository"/>
+	<preference for="ITM\OutstandingPayments\Api\Data\SapinvoiceInterface" type="ITM\OutstandingPayments\Model\Sapinvoice"/>
+	<preference for="ITM\OutstandingPayments\Api\Data\SapinvoiceSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+   	<preference for="ITM\OutstandingPayments\Api\Sales\OrderInterface" type="ITM\OutstandingPayments\Model\Sales\Order" />
+
+	<type name="Magento\Sales\Helper\Reorder">
+		<plugin name="OutstandingPaymentsAfterReOrder" type="ITM\OutstandingPayments\Plugin\Sales\Helper\Reorder"/>
+	</type>
+
+    <type name="Magento\Sales\Block\Order\History">
+        <plugin name="OutstandingPaymentsAfterGetOrders" type="ITM\OutstandingPayments\Plugin\Sales\Helper\History"/>
+    </type>
+
+	<type name="Magento\Sales\Block\Order\Item\Renderer\DefaultRenderer">
+		<plugin name="ITM_OutstandingPayments_Plugin_Magento_Sales_Block_Order_Item_Renderer_DefaultRenderer" type="ITM\OutstandingPayments\Plugin\Magento\Sales\Block\Order\Item\Renderer\DefaultRenderer" sortOrder="10" disabled="false"/>
+	</type>
+	<type name="Magento\Sales\Block\Order\Email\Items\Order\DefaultOrder">
+		<plugin name="ITM_OutstandingPayments_Plugin_Magento_Sales_Block_Order_Email_Items_Order_DefaultOrder" type="ITM\OutstandingPayments\Plugin\Magento\Sales\Block\Order\Email\Items\Order\DefaultOrder" sortOrder="10" disabled="false"/>
+	</type>
+
+	<type name="Magento\Sales\Model\Order\Email\Container\Template">
+		<plugin name="OutstandingPaymentsAfterSetTemplateId" type="ITM\OutstandingPayments\Plugin\Sales\Order"/>
+	</type>
+
+</config>

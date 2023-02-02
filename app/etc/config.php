@@ -486,6 +486,7 @@ return [
         'Fastly_Cdn' => 1,
         'ITM_Main' => 1,
         'ITM_MagB1' => 1,
+        'ITM_OutstandingPayments' => 1,
         'ITM_Pricing' => 1,
         'Mageplaza_Core' => 1,
         'Mageplaza_Blog' => 1,
