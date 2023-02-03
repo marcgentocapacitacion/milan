@@ -72,7 +72,7 @@ class UpdateProductDescription
             $product = $this->productRepository->get($item->getSku());
             $product->setDescription($this->productDescription->getHtml($description));
             $this->productRepository->save($product);
-            //$this->importexportProductDescriptionResource->delete($item);
+            $this->importexportProductDescriptionResource->delete($item);
         }
     }
 
