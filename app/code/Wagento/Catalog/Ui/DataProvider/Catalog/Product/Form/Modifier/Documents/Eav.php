@@ -62,8 +62,8 @@ class Eav extends \Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Eav
      * @param ScopeOverriddenValue                     $scopeOverriddenValue
      * @param DataPersistorInterface                   $dataPersistor
      * @param Filesystem                               $filesystem
-     * @param                                          $attributesToDisable
-     * @param                                          $attributesToEliminate
+     * @param array                                    $attributesToDisable
+     * @param array                                    $attributesToEliminate
      * @param CompositeConfigProcessor|null            $wysiwygConfigProcessor
      * @param ScopeConfigInterface|null                $scopeConfig
      * @param AttributeCollectionFactory|null          $attributeCollectionFactory
