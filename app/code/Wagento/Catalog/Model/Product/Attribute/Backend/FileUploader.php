@@ -50,10 +50,10 @@ class FileUploader extends \Magento\Eav\Model\Entity\Attribute\Backend\AbstractB
      * @param array $value Attribute value
      * @return string
      */
-    private function getUploadedFileName($value)
+    private function getUploadedFile($value)
     {
-        if (is_array($value) && isset($value[0]['name'])) {
-            return $value[0]['name'];
+        if (is_array($value) && isset($value[0]['file'])) {
+            return $value[0]['file'];
         }
 
         return '';
@@ -70,15 +70,19 @@ class FileUploader extends \Magento\Eav\Model\Entity\Attribute\Backend\AbstractB
             $attributeName = $this->getAttribute()->getName();
             $value = $object->getData($attributeName);
 
-            if ($fileName = $this->getUploadedFileName($value)) {
+            if ($fileName = $this->getUploadedFile($value)) {
                 /** @var StoreInterface $store */
                 //$store = $this->storeManager->getStore();
                 //$baseMediaDir = $store->getBaseMediaDir();
-                $this->imageUploader->setBasePath($this->productFileConfig->getBaseMediaPath());
-                $this->imageUploader->setBaseTmpPath($this->productFileConfig->getBaseTmpMediaPath());
                 $newImgRelativePath = $this->imageUploader->moveFileFromTmp($fileName, true);
                 $value[0]['url'] = $newImgRelativePath;
-                $value[0]['name'] = $value[0]['url'];
+                $value[0]['file'] = $value[0]['url'];
+            }
+
+            if ($fileName = $this->getUploadedFile($value)) {
+                $object->setData($attributeName, $fileName);
+            } elseif (!is_string($value)) {
+                $object->setData($attributeName, null);
             }
         } catch (\Exception $e) {
             $this->logger->critical($e);

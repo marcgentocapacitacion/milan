@@ -24,6 +24,8 @@ use Magento\Framework\UrlInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Ui\DataProvider\Mapper\FormElement as FormElementMapper;
 use Magento\Ui\DataProvider\Mapper\MetaProperties as MetaPropertiesMapper;
+use Magento\Framework\Filesystem;
+use Magento\Framework\App\Filesystem\DirectoryList;
 
 /**
  * Class Eav
@@ -34,6 +36,11 @@ class Eav extends \Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Eav
      * @var UrlInterface
      */
     protected UrlInterface $urlBuilder;
+
+    /**
+     * @var Filesystem
+     */
+    protected Filesystem $filesystem;
 
     /**
      * @param UrlInterface                             $urlBuilder
@@ -54,6 +61,7 @@ class Eav extends \Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Eav
      * @param ArrayManager                             $arrayManager
      * @param ScopeOverriddenValue                     $scopeOverriddenValue
      * @param DataPersistorInterface                   $dataPersistor
+     * @param Filesystem                               $filesystem
      * @param                                          $attributesToDisable
      * @param                                          $attributesToEliminate
      * @param CompositeConfigProcessor|null            $wysiwygConfigProcessor
@@ -80,6 +88,7 @@ class Eav extends \Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Eav
         ArrayManager $arrayManager,
         ScopeOverriddenValue $scopeOverriddenValue,
         DataPersistorInterface $dataPersistor,
+        Filesystem $filesystem,
         $attributesToDisable = [],
         $attributesToEliminate = [],
         CompositeConfigProcessor $wysiwygConfigProcessor = null,
@@ -114,6 +123,7 @@ class Eav extends \Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Eav
         );
 
         $this->urlBuilder = $urlBuilder;
+        $this->filesystem = $filesystem;
     }
 
     /**
@@ -142,5 +152,33 @@ class Eav extends \Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Eav
         $documents['arguments']['data']['config']['elementTmpl'] = 'Magento_Ui/js/form/element/file-uploader';
         $meta['content']['children']['container_documents']['children']['documents'] = $documents;
         return $meta;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function modifyData(array $data)
+    {
+        $data = parent::modifyData($data);
+        $productId = $this->locator->getProduct()->getId();
+        $file = $this->locator->getProduct()->getDocuments() ?? false;
+        if (!$file) {
+            return $data;
+        }
+        $url = $this->storeManager->getStore(
+            $this->locator->getProduct()->getStore()
+        )->getBaseUrl('media') . $file;
+        $fileSize = $this->filesystem->getDirectoryRead(DirectoryList::MEDIA)->stat($file);
+        $attributeValue = [
+            [
+                'file' => $file,
+                'name' => $file,
+                'size' => $fileSize,
+                'url' => $url,
+                'type' => 'pdf'
+            ]
+        ];
+        $data[$productId]['product']['documents'] = $attributeValue;
+        return $data;
     }
 }

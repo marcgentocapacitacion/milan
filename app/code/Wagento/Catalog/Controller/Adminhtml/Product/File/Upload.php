@@ -85,7 +85,7 @@ class Upload extends \Magento\Backend\App\Action
                 unset($result['tmp_name']);
                 $result['path'] = $this->productMediaConfig->getTmpMediaPath($result['file']);
                 $result['url'] = $this->productMediaConfig->getTmpMediaUrl($result['file']);
-                $result['file'] = $result['file'] . '.tmp';
+                $result['file'] = $result['file'];
             } else {
                 $result = ['error' => 'Something went wrong while saving the file(s).'];
             }

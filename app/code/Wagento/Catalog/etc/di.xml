@@ -9,4 +9,21 @@
         </arguments>
     </type>
     <preference for="Magento\Catalog\Controller\Category\View" type="Wagento\Catalog\Controller\Category\View"/>
+    <virtualType name="Wagento\Catalog\DocumentsImageUpload" type="Magento\Catalog\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">tmp/documents/catalog/product</argument>
+            <argument name="basePath" xsi:type="string">documents/catalog/product</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="pdf" xsi:type="string">pdf</item>
+            </argument>
+            <argument name="allowedMimeTypes" xsi:type="array">
+                <item name="pdf" xsi:type="string">pdf</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Wagento\Catalog\Model\Product\Attribute\Backend\FileUploader">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Wagento\Catalog\DocumentsImageUpload</argument>
+        </arguments>
+    </type>
 </config>
