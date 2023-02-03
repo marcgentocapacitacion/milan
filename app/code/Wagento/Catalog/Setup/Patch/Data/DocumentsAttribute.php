@@ -69,6 +69,7 @@ class DocumentsAttribute implements \Magento\Framework\Setup\Patch\DataPatchInte
                 'required' => false,
                 'sort_order' => 150,
                 'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_STORE,
+                'backend' => \Wagento\Catalog\Model\Product\Attribute\Backend\FileUploader::class,
                 'group' => 'content',
                 'system' => true,
                 'is_used_in_grid' => true,
