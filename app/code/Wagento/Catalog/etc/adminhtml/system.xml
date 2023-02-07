@@ -9,12 +9,23 @@
             <label>Catalog</label>
             <tab>wagento_extension</tab>
             <resource>Wagento_StoreLocator::config</resource>
-            <group id="custom_pages_categories" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="10">
+            <group id="custom_pages_categories" translate="label" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="10">
                 <label>Pages of the Custom Categories</label>
-                <field id="custom_pages_brands" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="custom_pages_brands" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Pages</label>
                     <backend_model>Wagento\Catalog\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
                     <frontend_model>Wagento\Catalog\Block\System\Config\CustomCategoriesPages</frontend_model>
+                </field>
+            </group>
+            <group id="product_list" translate="label" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="10">
+                <label>Product List</label>
+                <field id="use_almacen_for_stock" type="select" translate="label" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="10">
+                    <label>Use Almacen for stock</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="use_addCart_without_login" type="select" translate="label" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="10">
+                    <label>Add to Cart without login</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
             </group>
         </section>

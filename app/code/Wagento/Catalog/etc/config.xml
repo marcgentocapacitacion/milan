@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <wagento_catalog>
+            <product_list>
+                <use_almacen_for_stock>1</use_almacen_for_stock>
+                <use_addCart_without_login>1</use_addCart_without_login>
+            </product_list>
+        </wagento_catalog>
+    </default>
+</config>

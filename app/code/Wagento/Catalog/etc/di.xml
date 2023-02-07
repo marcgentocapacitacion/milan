@@ -26,4 +26,10 @@
             <argument name="imageUploader" xsi:type="object">Wagento\Catalog\DocumentsImageUpload</argument>
         </arguments>
     </type>
+    <type name="Magento\InventorySales\Model\ResourceModel\StockIdResolver">
+        <plugin name="magento_inventory_customer_almacen" type="Wagento\Catalog\Plugin\AlmacenStockPlugin"/>
+    </type>
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="magento_catalog_add_to_cart_without_login" type="Wagento\Catalog\Plugin\ProductPlugin"/>
+    </type>
 </config>

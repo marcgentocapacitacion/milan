@@ -3,5 +3,4 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Magento\Company\Block\Company\Account\Create" type="Wagento\Company\Block\Company\Account\Create"/>
     <preference for="Magento\Company\Block\Company\Register\Profile" type="Wagento\Company\Block\Company\Register\Profile"/>
-    <preference for="Magento\Customer\Model\Data\Customer" type="Wagento\Company\Model\Data\Customer"/>
 </config>
