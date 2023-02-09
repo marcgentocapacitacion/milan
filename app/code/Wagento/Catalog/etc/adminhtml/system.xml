@@ -23,9 +23,16 @@
                     <label>Use Almacen for stock</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="use_addCart_without_login" type="select" translate="label" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="10">
-                    <label>Add to Cart without login</label>
+                <field id="use_addCart_without_login" type="select" translate="label" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="10">
+                    <label>Show Add to Cart without login</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="show_price_without_login" type="select" translate="label" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="10">
+                    <label>Show Price without login</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="message_verify_stock" type="text" translate="label" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="10">
+                    <label>Message to verify stock when the user is without login.</label>
                 </field>
             </group>
         </section>

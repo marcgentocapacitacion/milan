@@ -5,7 +5,9 @@
         <wagento_catalog>
             <product_list>
                 <use_almacen_for_stock>1</use_almacen_for_stock>
-                <use_addCart_without_login>1</use_addCart_without_login>
+                <use_addCart_without_login>0</use_addCart_without_login>
+                <show_price_without_login>0</show_price_without_login>
+                <message_verify_stock>Please log in to your account to check availability and prices</message_verify_stock>
             </product_list>
         </wagento_catalog>
     </default>

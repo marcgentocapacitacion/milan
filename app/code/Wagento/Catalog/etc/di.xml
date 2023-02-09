@@ -32,4 +32,7 @@
     <type name="Magento\Catalog\Model\Product">
         <plugin name="magento_catalog_add_to_cart_without_login" type="Wagento\Catalog\Plugin\ProductPlugin"/>
     </type>
+    <type name="Magento\Framework\Pricing\Render">
+        <plugin name="magento_catalog_show_price_without_login" type="Wagento\Catalog\Plugin\Magento\Framework\Pricing\RenderPlugin"/>
+    </type>
 </config>

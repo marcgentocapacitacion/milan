@@ -6,6 +6,13 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
+        <referenceContainer name="content">
+            <block class="Wagento\Catalog\Block\MessageVerifyStock"
+                name="category.message.products"
+                template="Wagento_Catalog::message-verify-stock.phtml"
+                after="category.subcategories.products"
+            />
+        </referenceContainer>
         <referenceContainer name="columns.top">
             <block class="Wagento\Catalog\Block\MiniLogos" name="category.image.banner" template="Wagento_Catalog::category/banner.phtml"/>
             <block class="Wagento\Catalog\Block\MiniLogos" name="category.image.carousel" template="Wagento_Catalog::category/carousel.phtml">
