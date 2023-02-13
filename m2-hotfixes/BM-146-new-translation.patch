@@ -1,0 +1,9 @@
+diff --git a/vendor/fasaro/magento2-es_co-language-pack/es_CO.csv b/vendor/fasaro/magento2-es_co-language-pack/es_CO.csv
+index e9cf976..c93ea3a 100644
+--- a/vendor/fasaro/magento2-es_co-language-pack/es_CO.csv
++++ b/vendor/fasaro/magento2-es_co-language-pack/es_CO.csv
+@@ -25920,3 +25920,4 @@ Top position of magnifier,Posición superior de la lupa,module,WeltPixel_Quickvi
+ True,Cierto,module,WeltPixel_Quickview
+ Width of magnifier block,Ancho del bloque de lupa,module,WeltPixel_Quickview
+ Zoom of fullscreen,Zoom de pantalla completa,module,WeltPixel_Quickview
++"There are no source items with the in stock status","No hay disponibilidad del producto seleccionado",module,Magento_InventorySales
