@@ -1,7 +1,14 @@
 <?php
 /** @var \Wagento\ImportData\Block\Product\Documents $block */
 ?>
-<embed src="<?=$block->getUrlFile();?>"
-       type="application/pdf"
-       width="90%"
-       height="1080px"/>
+<div data-content-type="text"
+     data-appearance="default"
+     data-element="main"
+     data-pb-style="F4Q0BIE">
+    <?=__('Save the manual');?>
+    <a href="<?=$block->getUrlFile();?>" download><?=__('click here.');?></a>
+</div>
+<iframe src="<?=$block->getUrlFile();?>"
+        type="application/pdf"
+        width="90%"
+        height="1080px"/>
