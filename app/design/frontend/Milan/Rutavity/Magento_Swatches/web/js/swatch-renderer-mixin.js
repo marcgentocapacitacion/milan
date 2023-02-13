@@ -10,7 +10,7 @@ define([
          */
         _create: function () {
             this._super();
-            this._loadMedia();
+            this._loadInitMedia();
         },
 
         /**
@@ -18,7 +18,7 @@ define([
          *
          * @private
          */
-        _loadMedia: function () {
+        _loadInitMedia: function () {
             var $main = this.inProductList ?
                     this.element.parents('.product-item-info') :
                     this.element.parents('.column.main'),
