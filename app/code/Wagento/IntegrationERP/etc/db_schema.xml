@@ -15,7 +15,6 @@
         <column xsi:type="varchar" name="u_group_num_temporada" nullable="true" length="255" comment="Cod. AC Milan season"/>
         <column xsi:type="varchar" name="u_discount_temporada" nullable="true" length="255" comment="% Dcto Season"/>
         <column xsi:type="int" name="u_autorizado_temporada_o_p_t" nullable="true" comment="Authorize Tempo OPT"/>
-        <column xsi:type="varchar" name="u_groupNumTempoOPT" nullable="true" length="255" comment="Cod. OPTIMUS season"/>
         <column xsi:type="varchar" name="u_group_num_tempo_o_p_t" nullable="true" length="255" comment="Cod. OPTIMUS season"/>
         <column xsi:type="int" name="group_num" nullable="true" comment="Milan Payment Condition"/>
         <column xsi:type="varchar" name="u_discount_contado" nullable="true" length="255" comment="% Cash Discount"/>

@@ -8,7 +8,6 @@
             "u_group_num_temporada": true,
             "u_discount_temporada": true,
             "u_autorizado_temporada_o_p_t": true,
-            "u_groupNumTempoOPT": true,
             "u_group_num_tempo_o_p_t": true,
             "group_num": true,
             "u_discount_contado": true,
