@@ -11,7 +11,7 @@
             <label translate="true">Custom Attributes</label>
             <dataScope>company_custom_data</dataScope>
         </settings>
-        <field name="extension_attributes.u_autorizadoTemporada" sortOrder="10" formElement="checkbox">
+        <field name="extension_attributes.u_autorizado_temporada" sortOrder="10" formElement="checkbox">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">company_custom_data</item>
@@ -33,7 +33,7 @@
                 </checkbox>
             </formElements>
         </field>
-        <field name="extension_attributes.u_inicioTemporada" sortOrder="20" formElement="date">
+        <field name="extension_attributes.u_inicio_temporada" sortOrder="20" formElement="date">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">company_custom_data</item>
@@ -48,7 +48,7 @@
                 <visible>true</visible>
             </settings>
         </field>
-        <field name="extension_attributes.u_finTemporada" sortOrder="30" formElement="date">
+        <field name="extension_attributes.u_fin_temporada" sortOrder="30" formElement="date">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">company_custom_data</item>
@@ -63,7 +63,7 @@
                 <visible>true</visible>
             </settings>
         </field>
-        <field name="extension_attributes.u_groupNumTemporada" sortOrder="40" formElement="input">
+        <field name="extension_attributes.u_group_num_temporada" sortOrder="40" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">company_custom_data</item>
@@ -74,7 +74,7 @@
                 <label translate="true">Cod. AC Milan season</label>
             </settings>
         </field>
-        <field name="extension_attributes.u_discountTemporada" sortOrder="50" formElement="input">
+        <field name="extension_attributes.u_discount_temporada" sortOrder="50" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">company_custom_data</item>
@@ -85,7 +85,7 @@
                 <label translate="true">% Dcto Season</label>
             </settings>
         </field>
-        <field name="extension_attributes.u_autorizadoTemporadaOPT" sortOrder="60" formElement="checkbox">
+        <field name="extension_attributes.u_autorizado_temporada_o_p_t" sortOrder="60" formElement="checkbox">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">company_custom_data</item>
@@ -107,7 +107,7 @@
                 </checkbox>
             </formElements>
         </field>
-        <field name="extension_attributes.u_groupNumTempoOPT" sortOrder="70" formElement="input">
+        <field name="extension_attributes.u_group_num_tempo_o_p_t" sortOrder="70" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">company_custom_data</item>
@@ -118,7 +118,7 @@
                 <label translate="true">Cod. OPTIMUS season</label>
             </settings>
         </field>
-        <field name="extension_attributes.groupNum" sortOrder="80" formElement="checkbox">
+        <field name="extension_attributes.group_num" sortOrder="80" formElement="checkbox">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">company_custom_data</item>
@@ -140,7 +140,7 @@
                 </checkbox>
             </formElements>
         </field>
-        <field name="extension_attributes.u_discountContado" sortOrder="90" formElement="input">
+        <field name="extension_attributes.u_discount_contado" sortOrder="90" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">company_custom_data</item>
@@ -151,7 +151,7 @@
                 <label translate="true">% Cash Discount</label>
             </settings>
         </field>
-        <field name="extension_attributes.u_discountContadoOptimus" sortOrder="100" formElement="input">
+        <field name="extension_attributes.u_discount_contado_optimus" sortOrder="100" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">company_custom_data</item>
@@ -162,7 +162,7 @@
                 <label translate="true">% Cash Discount Optimus</label>
             </settings>
         </field>
-        <field name="extension_attributes.u_discountOptimus" sortOrder="110" formElement="input">
+        <field name="extension_attributes.u_discount_optimus" sortOrder="110" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">company_custom_data</item>
@@ -173,7 +173,7 @@
                 <label translate="true">% Discount Fact. Optimus</label>
             </settings>
         </field>
-        <field name="extension_attributes.u_groupNumOptimus" sortOrder="120" formElement="input">
+        <field name="extension_attributes.u_group_num_optimus" sortOrder="120" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">company_custom_data</item>
@@ -184,7 +184,7 @@
                 <label translate="true">Optimus Payment Condition</label>
             </settings>
         </field>
-        <field name="extension_attributes.u_discountMilan" sortOrder="130" formElement="input">
+        <field name="extension_attributes.u_discount_milan" sortOrder="130" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">company_custom_data</item>
@@ -195,7 +195,7 @@
                 <label translate="true">% Discount Fact. Milan</label>
             </settings>
         </field>
-        <field name="extension_attributes.debitLine" sortOrder="140" formElement="input">
+        <field name="extension_attributes.debit_line" sortOrder="140" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">company_custom_data</item>
@@ -206,7 +206,7 @@
                 <label translate="true">Golden Quota</label>
             </settings>
         </field>
-        <field name="extension_attributes.u_fechaNacimiento" sortOrder="150" formElement="date">
+        <field name="extension_attributes.u_fecha_nacimiento" sortOrder="150" formElement="date">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">company_custom_data</item>
@@ -280,7 +280,7 @@
                 </checkbox>
             </formElements>
         </field>
-        <field name="extension_attributes.slpCode" sortOrder="200" formElement="checkbox">
+        <field name="extension_attributes.slp_code" sortOrder="200" formElement="checkbox">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">company_custom_data</item>

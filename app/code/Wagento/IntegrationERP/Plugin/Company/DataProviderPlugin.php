@@ -51,7 +51,7 @@ class DataProviderPlugin
     {
         $model = $this->model->create();
         $extensionAttributes = $company->getExtensionAttributes();
-        $model->setUAutorizadoTemporada((bool)($extensionAttributes->getUAutorizadoTemporada() == '0' ? false : true));
+        $model->setUAutorizadoTemporada((bool)($extensionAttributes->getUAutorizadoTemporada() ?? false));
         $model->setUInicioTemporada($extensionAttributes->getUInicioTemporada() ?? '');
         $model->setUFinTemporada($extensionAttributes->getUFinTemporada() ?? '');
         $model->setUGroupNumTemporada($extensionAttributes->getUGroupNumTemporada() ?? '');

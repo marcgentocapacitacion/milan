@@ -6,79 +6,79 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
     <extension_attributes for="Magento\Company\Api\Data\CompanyInterface">
-        <attribute code="u_autorizadoTemporada" type="int">
+        <attribute code="u_autorizado_temporada" type="int">
             <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
-                <field>u_autorizadoTemporada</field>
+                <field>u_autorizado_temporada</field>
             </join>
         </attribute>
-        <attribute code="u_inicioTemporada" type="string">
+        <attribute code="u_inicio_temporada" type="string">
             <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
-                <field>u_inicioTemporada</field>
+                <field>u_inicio_temporada</field>
             </join>
         </attribute>
-        <attribute code="u_finTemporada" type="string">
+        <attribute code="u_fin_temporada" type="string">
             <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
-                <field>u_finTemporada</field>
+                <field>u_fin_temporada</field>
             </join>
         </attribute>
-        <attribute code="u_groupNumTemporada" type="string">
+        <attribute code="u_group_num_temporada" type="string">
             <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
-                <field>u_groupNumTemporada</field>
+                <field>u_group_num_temporada</field>
             </join>
         </attribute>
-        <attribute code="u_discountTemporada" type="string">
+        <attribute code="u_discount_temporada" type="string">
             <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
-                <field>u_discountTemporada</field>
+                <field>u_discount_temporada</field>
             </join>
         </attribute>
-        <attribute code="u_autorizadoTemporadaOPT" type="string">
+        <attribute code="u_autorizado_temporada_o_p_t" type="string">
             <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
-                <field>u_autorizadoTemporadaOPT</field>
+                <field>u_autorizado_temporada_o_p_t</field>
             </join>
         </attribute>
-        <attribute code="u_groupNumTempoOPT" type="string">
+        <attribute code="u_group_num_tempo_o_p_t" type="string">
             <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
-                <field>u_groupNumTempoOPT</field>
+                <field>u_group_num_tempo_o_p_t</field>
             </join>
         </attribute>
-        <attribute code="groupNum" type="string">
+        <attribute code="group_num" type="string">
             <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
-                <field>groupNum</field>
+                <field>group_num</field>
             </join>
         </attribute>
-        <attribute code="u_discountContado" type="string">
+        <attribute code="u_discount_contado" type="string">
             <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
-                <field>u_discountContado</field>
+                <field>u_discount_contado</field>
             </join>
         </attribute>
-        <attribute code="u_discountContadoOptimus" type="string">
+        <attribute code="u_discount_contado_optimus" type="string">
             <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
-                <field>u_discountContadoOptimus</field>
+                <field>u_discount_contado_optimus</field>
             </join>
         </attribute>
-        <attribute code="u_discountOptimus" type="string">
+        <attribute code="u_discount_optimus" type="string">
             <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
-                <field>u_discountOptimus</field>
+                <field>u_discount_optimus</field>
             </join>
         </attribute>
-        <attribute code="u_groupNumOptimus" type="string">
+        <attribute code="u_group_num_optimus" type="string">
             <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
-                <field>u_groupNumOptimus</field>
+                <field>u_group_num_optimus</field>
             </join>
         </attribute>
-        <attribute code="u_discountMilan" type="string">
+        <attribute code="u_discount_milan" type="string">
             <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
-                <field>u_discountMilan</field>
+                <field>u_discount_milan</field>
             </join>
         </attribute>
-        <attribute code="debitLine" type="string">
+        <attribute code="debit_line" type="string">
             <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
-                <field>debitLine</field>
+                <field>debit_line</field>
             </join>
         </attribute>
-        <attribute code="u_fechaNacimiento" type="string">
+        <attribute code="u_fecha_nacimiento" type="string">
             <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
-                <field>u_fechaNacimiento</field>
+                <field>u_fecha_nacimiento</field>
             </join>
         </attribute>
         <attribute code="u_cliente_activo_hasta" type="string">
@@ -86,9 +86,9 @@
                 <field>u_cliente_activo_hasta</field>
             </join>
         </attribute>
-        <attribute code="u_phone1WP" type="string">
+        <attribute code="u_phone1_w_p" type="string">
             <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
-                <field>u_phone1WP</field>
+                <field>u_phone1_w_p</field>
             </join>
         </attribute>
         <attribute code="phone2" type="string">
@@ -96,9 +96,9 @@
                 <field>phone2</field>
             </join>
         </attribute>
-        <attribute code="u_phone2WP" type="string">
+        <attribute code="u_phone2_w_p" type="string">
             <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
-                <field>u_phone2WP</field>
+                <field>u_phone2_w_p</field>
             </join>
         </attribute>
         <attribute code="cellular" type="string">
@@ -106,9 +106,9 @@
                 <field>cellular</field>
             </join>
         </attribute>
-        <attribute code="u_cellularWP" type="string">
+        <attribute code="u_cellular_w_p" type="string">
             <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
-                <field>u_cellularWP</field>
+                <field>u_cellular_w_p</field>
             </join>
         </attribute>
         <attribute code="frozen" type="string">
@@ -116,9 +116,9 @@
                 <field>frozen</field>
             </join>
         </attribute>
-        <attribute code="slpCode" type="string">
+        <attribute code="slp_code" type="string">
             <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
-                <field>slpCode</field>
+                <field>slp_code</field>
             </join>
         </attribute>
         <attribute code="territory" type="string">

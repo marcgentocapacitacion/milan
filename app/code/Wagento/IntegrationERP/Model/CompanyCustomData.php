@@ -22,7 +22,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function getUAutorizadoTemporada(): int
     {
-        return $this->getData('u_autorizadoTemporada');
+        return $this->getData('u_autorizado_temporada');
     }
 
     /**
@@ -32,7 +32,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function setUAutorizadoTemporada(int $value)
     {
-        $this->setData('u_autorizadoTemporada', $value);
+        $this->setData('u_autorizado_temporada', $value);
         return $this;
     }
 
@@ -60,7 +60,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function getUInicioTemporada(): string
     {
-        return $this->getData('u_inicioTemporada');
+        return $this->getData('u_inicio_temporada');
     }
 
     /**
@@ -70,7 +70,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function setUInicioTemporada(string $value)
     {
-        $this->setData('u_inicioTemporada', $value);
+        $this->setData('u_inicio_temporada', $value);
         return $this;
     }
 
@@ -79,7 +79,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function getUFinTemporada(): string
     {
-        return $this->getData('u_finTemporada');
+        return $this->getData('u_fin_temporada');
     }
 
     /**
@@ -89,7 +89,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function setUFinTemporada(string $value)
     {
-        $this->setData('u_finTemporada', $value);
+        $this->setData('u_fin_temporada', $value);
         return $this;
     }
 
@@ -98,7 +98,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function getUGroupNumTemporada(): string
     {
-        return $this->getData('u_groupNumTemporada');
+        return $this->getData('u_group_num_temporada');
     }
 
     /**
@@ -108,7 +108,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function setUGroupNumTemporada(string $value)
     {
-        $this->setData('u_groupNumTemporada', $value);
+        $this->setData('u_group_num_temporada', $value);
         return $this;
     }
 
@@ -117,7 +117,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function getUDiscountTemporada(): string
     {
-        return $this->getData('u_discountTemporada');
+        return $this->getData('u_discount_temporada');
     }
 
     /**
@@ -127,7 +127,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function setUDiscountTemporada(string $value)
     {
-        $this->setData('u_discountTemporada', $value);
+        $this->setData('u_discount_temporada', $value);
         return $this;
     }
 
@@ -136,7 +136,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function getUAutorizadoTemporadaOPT(): bool
     {
-        return $this->getData('u_autorizadoTemporadaOPT');
+        return $this->getData('u_autorizado_temporada_o_p_t');
     }
 
     /**
@@ -146,7 +146,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function setUAutorizadoTemporadaOPT(bool $value)
     {
-        $this->setData('u_autorizadoTemporadaOPT', $value);
+        $this->setData('u_autorizado_temporada_o_p_t', $value);
         return $this;
     }
 
@@ -155,7 +155,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function getUGroupNumTempoOPT(): string
     {
-        return $this->getData('u_groupNumTempoOPT');
+        return $this->getData('u_group_num_tempo_o_p_t');
     }
 
     /**
@@ -165,7 +165,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function setUGroupNumTempoOPT(string $value)
     {
-        $this->setData('u_groupNumTempoOPT', $value);
+        $this->setData('u_group_num_tempo_o_p_t', $value);
         return $this;
     }
 
@@ -174,7 +174,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function getGroupNum(): bool
     {
-        return $this->getData('groupNum');
+        return $this->getData('group_num');
     }
 
     /**
@@ -184,7 +184,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function setGroupNum(bool $value)
     {
-        $this->setData('groupNum', $value);
+        $this->setData('group_num', $value);
         return $this;
     }
 
@@ -193,7 +193,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function getUDiscountContado(): string
     {
-        return $this->getData('u_discountContado');
+        return $this->getData('u_discount_contado');
     }
 
     /**
@@ -203,7 +203,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function setUDiscountContado(string $value)
     {
-        $this->setData('u_discountContado', $value);
+        $this->setData('u_discount_contado', $value);
         return $this;
     }
 
@@ -212,7 +212,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function getUDiscountContadoOptimus(): string
     {
-        return $this->getData('u_discountContadoOptimus');
+        return $this->getData('u_discount_contado_optimus');
     }
 
     /**
@@ -222,7 +222,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function setUDiscountContadoOptimus(string $value)
     {
-        $this->setData('u_discountContadoOptimus', $value);
+        $this->setData('u_discount_contado_optimus', $value);
         return $this;
     }
 
@@ -231,7 +231,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function getUDiscountOptimus(): string
     {
-        return $this->getData('u_discountOptimus');
+        return $this->getData('u_discount_optimus');
     }
 
     /**
@@ -241,7 +241,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function setUDiscountOptimus(string $value)
     {
-        $this->setData('u_discountOptimus', $value);
+        $this->setData('u_discount_optimus', $value);
         return $this;
     }
 
@@ -250,7 +250,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function getUGroupNumOptimus(): string
     {
-        return $this->getData('u_groupNumOptimus');
+        return $this->getData('u_group_num_optimus');
     }
 
     /**
@@ -260,7 +260,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function setUGroupNumOptimus(string $value)
     {
-        $this->setData('u_groupNumOptimus', $value);
+        $this->setData('u_group_num_optimus', $value);
         return $this;
     }
 
@@ -269,7 +269,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function getUDiscountMilan(): string
     {
-        return $this->getData('u_discountMilan');
+        return $this->getData('u_discount_milan');
     }
 
     /**
@@ -279,7 +279,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function setUDiscountMilan(string $value)
     {
-        $this->setData('u_discountMilan', $value);
+        $this->setData('u_discount_milan', $value);
         return $this;
     }
 
@@ -288,7 +288,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function getDebitLine(): string
     {
-        return $this->getData('debitLine');
+        return $this->getData('debit_line');
     }
 
     /**
@@ -298,7 +298,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function setDebitLine(string $value)
     {
-        $this->setData('debitLine', $value);
+        $this->setData('debit_line', $value);
         return $this;
     }
 
@@ -307,7 +307,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function getUFechaNacimiento(): string
     {
-        return $this->getData('u_fechaNacimiento');
+        return $this->getData('u_fecha_nacimiento');
     }
 
     /**
@@ -317,7 +317,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function setUFechaNacimiento(string $value)
     {
-        $this->setData('u_fechaNacimiento', $value);
+        $this->setData('u_fecha_nacimiento', $value);
         return $this;
     }
 
@@ -402,7 +402,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function getSlpCode(): bool
     {
-        return $this->getData('slpCode');
+        return $this->getData('slp_code');
     }
 
     /**
@@ -412,7 +412,7 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
      */
     public function setSlpCode(bool $value)
     {
-        $this->setData('slpCode', $value);
+        $this->setData('slp_code', $value);
         return $this;
     }
 
