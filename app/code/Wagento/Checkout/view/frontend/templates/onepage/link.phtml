@@ -1,0 +1,28 @@
+<?php
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+
+use Wagento\Checkout\Block\Onepage\Link;
+use Magento\Framework\Escaper;
+
+/**
+ * @var Link $block
+ * @var Escaper $escaper
+ */
+?>
+<?php if ($block->isPossibleOnepageCheckout()): ?>
+    <button type="button"
+            data-role="proceed-to-checkout"
+            title="<?= $escaper->escapeHtmlAttr(__('Proceed to Checkout')) ?>"
+            data-mage-init='{
+                "Wagento_Checkout/js/proceed-to-checkout":{
+                    "checkoutUrl":"<?= $escaper->escapeJs($block->getCheckoutUrl());?>",
+                    "validateMinimumAmount": "<?=($block->isDisabled() ?? false);?>",
+                    "messageError": "<?=$block->getMessageError();?>"
+                }
+            }'
+            class="action primary checkout">
+        <span><?= $escaper->escapeHtml(__('Proceed to Checkout')) ?></span>
+    </button>
+<?php endif?>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="carriers">
+            <group id="tablerate">
+                <field id="cost_type_handling_type" translate="label" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>Cost type Handling Fee</label>
+                    <source_model>Wagento\Checkout\Model\Source\CostTypeHandlingFee</source_model>
+                    <comment>If the Product is selected, we will use the price to calculate the Handling Fee.</comment>
+                    <depends>
+                        <field id="carriers/tablerate/handling_type">P</field>
+                    </depends>
+                </field>
+                <field id="handling_fee" sortOrder="9"></field>
+            </group>
+        </section>
+    </system>
+</config>
