@@ -7,6 +7,7 @@ use Magento\Catalog\Helper\Output as OutputHelper;
 use Magento\Catalog\Model\Layer\Resolver;
 use Magento\Catalog\Model\Product;
 use Magento\Framework\App\ActionInterface;
+use Magento\Framework\Data\Form\FormKey;
 use Magento\Framework\Data\Helper\PostHelper;
 use Magento\Framework\Url\Helper\Data;
 use Wagento\Sales\Model\ResourceModel\Order\Item\CollectionFactory as CollectionItemFactory;
@@ -42,6 +43,11 @@ class ReorderProducts extends \Magento\Catalog\Block\Product\ListProduct
     protected EncoderInterface $urlEncoder;
 
     /**
+     * @var FormKey
+     */
+    protected FormKey $formKey;
+
+    /**
      * @param Context                     $context
      * @param CollectionItemFactory       $collectionFactory
      * @param Session                     $customerSession
@@ -61,12 +67,14 @@ class ReorderProducts extends \Magento\Catalog\Block\Product\ListProduct
         CategoryRepositoryInterface $categoryRepository,
         Data $urlHelper,
         EncoderInterface $urlEncoder,
+        FormKey $formKey,
         array $data = [],
         ?OutputHelper $outputHelper = null
     ) {
         $this->collectionFactory = $collectionFactory;
         $this->customerSession = $customerSession;
         $this->urlEncoder = $urlEncoder;
+        $this->formKey = $formKey;
         parent::__construct(
             $context,
             $postDataHelper,
@@ -76,6 +84,16 @@ class ReorderProducts extends \Magento\Catalog\Block\Product\ListProduct
             $data,
             $outputHelper
         );
+    }
+
+    /**
+     * Retrieve Session Form Key
+     *
+     * @return string
+     */
+    public function getFormKey()
+    {
+        return $this->formKey->getFormKey();
     }
 
     /**

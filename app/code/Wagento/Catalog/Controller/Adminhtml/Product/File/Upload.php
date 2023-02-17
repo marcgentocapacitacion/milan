@@ -8,6 +8,8 @@ use Magento\Framework\Filesystem;
 use Magento\Framework\Controller\Result\RawFactory;
 use Magento\MediaStorage\Model\File\UploaderFactory;
 use Wagento\Catalog\Model\Product\File\Config as ProductMediaConfig;
+use Magento\Framework\Serialize\SerializerInterface;
+
 /**
  * Class Upload
  */
@@ -48,22 +50,32 @@ class Upload extends \Magento\Backend\App\Action
     private ProductMediaConfig $productMediaConfig;
 
     /**
-     * @param Context         $context
-     * @param RawFactory      $resultRawFactory
-     * @param UploaderFactory $uploaderFactory
+     * @var SerializerInterface
+     */
+    protected SerializerInterface $serializer;
+
+    /**
+     * @param Context             $context
+     * @param RawFactory          $resultRawFactory
+     * @param UploaderFactory     $uploaderFactory
+     * @param ProductMediaConfig  $productMediaConfig
+     * @param Filesystem          $filesystem
+     * @param SerializerInterface $serializer
      */
     public function __construct(
         Context $context,
         RawFactory $resultRawFactory,
         UploaderFactory $uploaderFactory,
         ProductMediaConfig $productMediaConfig,
-        Filesystem $filesystem
+        Filesystem $filesystem,
+        SerializerInterface $serializer
     ) {
         parent::__construct($context);
         $this->resultRawFactory = $resultRawFactory;
         $this->uploaderFactory = $uploaderFactory;
         $this->productMediaConfig = $productMediaConfig;
         $this->filesystem = $filesystem;
+        $this->serializer = $serializer;
     }
 
     /**
@@ -96,7 +108,7 @@ class Upload extends \Magento\Backend\App\Action
         /** @var \Magento\Framework\Controller\Result\Raw $response */
         $response = $this->resultRawFactory->create();
         $response->setHeader('Content-type', 'text/plain');
-        $response->setContents(json_encode($result));
+        $response->setContents($this->serializer->serialize($result));
         return $response;
     }
 

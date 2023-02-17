@@ -13,6 +13,7 @@ use Wagento\ImportData\Api\ImportexportProductDescriptionInterfaceFactory;
 use Magento\Framework\App\ResourceConnection;
 use Magento\ImportExport\Model\Import\ErrorProcessing\ProcessingError;
 use Magento\ImportExport\Model\Import\ErrorProcessing\ProcessingErrorAggregatorInterface;
+use Magento\Framework\Serialize\SerializerInterface;
 
 /**
  * Class ProductDescription
@@ -82,6 +83,11 @@ class ProductDescription extends \Magento\ImportExport\Model\Import\Entity\Abstr
     protected $excludeLine = [];
 
     /**
+     * @var SerializerInterface
+     */
+    protected SerializerInterface $serializer;
+
+    /**
      * @param \Magento\Framework\Json\Helper\Data                   $jsonHelper
      * @param \Magento\ImportExport\Helper\Data                     $importExportData
      * @param \Magento\ImportExport\Model\ResourceModel\Import\Data $importData
@@ -93,6 +99,7 @@ class ProductDescription extends \Magento\ImportExport\Model\Import\Entity\Abstr
      * @param ProductRepositoryInterface                            $productRepository
      * @param ResourceModelImportexportProductDescription           $importexportProductDescriptionResource
      * @param ImportexportProductDescriptionInterfaceFactory        $importexportProductDescriptionFactory
+     * @param SerializerInterface                                   $serializer
      */
     public function __construct(
         \Magento\Framework\Json\Helper\Data $jsonHelper,
@@ -105,7 +112,8 @@ class ProductDescription extends \Magento\ImportExport\Model\Import\Entity\Abstr
         ProcessingErrorAggregatorInterface $errorAggregator,
         ProductRepositoryInterface $productRepository,
         ResourceModelImportexportProductDescription $importexportProductDescriptionResource,
-        ImportexportProductDescriptionInterfaceFactory $importexportProductDescriptionFactory
+        ImportexportProductDescriptionInterfaceFactory $importexportProductDescriptionFactory,
+        SerializerInterface $serializer
     ) {
         $this->jsonHelper = $jsonHelper;
         $this->_importExportData = $importExportData;
@@ -117,6 +125,7 @@ class ProductDescription extends \Magento\ImportExport\Model\Import\Entity\Abstr
         $this->needColumnCheck = false;
         $this->importexportProductDescriptionResource = $importexportProductDescriptionResource;
         $this->importexportProductDescriptionFactory = $importexportProductDescriptionFactory;
+        $this->serializer = $serializer;
     }
 
     /**
@@ -146,7 +155,7 @@ class ProductDescription extends \Magento\ImportExport\Model\Import\Entity\Abstr
                 );
 
                 $model->setSku($sku);
-                $model->setDataDescription(\json_encode($row));
+                $model->setDataDescription($this->serializer->serialize($row));
                 $this->importexportProductDescriptionResource->save($model);
             }
         }

@@ -5,6 +5,7 @@ namespace Wagento\Affiliate\Controller\Adminhtml\Manager;
 use Magento\Backend\App\Action\Context;
 use Wagento\Affiliate\Model\ResourceModel\AffiliateFactory as ResourceModelAffiliate;
 use Wagento\Affiliate\Model\AffiliateFactory as ModelAffiliate;
+use Magento\Framework\Serialize\SerializerInterface;
 
 /**
  * Class Save
@@ -29,18 +30,26 @@ class Save extends \Magento\Backend\App\Action
     protected ModelAffiliate $model;
 
     /**
+     * @var SerializerInterface
+     */
+    protected SerializerInterface $serializer;
+
+    /**
      * @param Context                $context
      * @param ResourceModelAffiliate $resource
      * @param ModelAffiliate         $model
+     * @param SerializerInterface    $serializer
      */
     public function __construct(
         Context $context,
         ResourceModelAffiliate $resource,
-        ModelAffiliate $model
+        ModelAffiliate $model,
+        SerializerInterface $serializer
     ) {
         parent::__construct($context);
         $this->resource = $resource;
         $this->model = $model;
+        $this->serializer = $serializer;
     }
 
     /**
@@ -63,7 +72,7 @@ class Save extends \Magento\Backend\App\Action
             $model->setData('address', $this->getRequest()->getParam('address'));
             $model->setData('city', $this->getRequest()->getParam('city'));
             $model->setData('active', $this->getRequest()->getParam('active'));
-            $model->setData('image', \json_encode($this->getRequest()->getParam('image')) ?? '');
+            $model->setData('image', $this->serializer->serialize($this->getRequest()->getParam('image')) ?? '');
             $this->resource->create()->save($model);
             $this->messageManager->addSuccessMessage(__('You saved the affiliate.'));
             $resultRedirect->setPath('affiliate/manager/edit', [

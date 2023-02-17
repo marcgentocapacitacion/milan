@@ -173,6 +173,12 @@ define([
                         return;
                     }
                     $(self.options.elementAddHtml()).html(response.html);
+                    $("form[data-role='tocart-form']").each(function () {
+                        $(this).catalogAddToCart({
+                            "addToCartButtonTextDefault": $t('Add'),
+                            "product_sku": $(this).attr('data-product-sku')
+                        });
+                    });
                 }
             });
         },
