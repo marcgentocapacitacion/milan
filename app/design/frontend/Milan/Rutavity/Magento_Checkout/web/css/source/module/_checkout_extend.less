@@ -231,6 +231,16 @@
     }
 }
 
+.checkout-payment-method {
+    .field-select-billing > .label {
+        border: 0;
+        height: auto;
+        margin: 0;
+        position: static;
+        width: auto;
+    }
+}
+
 .checkout-shipping-method {
     .actions-toolbar .action.primary.button {
         width: 360px;
@@ -268,13 +278,13 @@
 .checkout-payment-method {
     .checkout-billing-address {
         border: solid 2px @color-blue-title;
-
-        input[type="checkbox"] {
-            display: none;
-        }
     }
 
     .billing-address-same-as-shipping-block {
+        input[type="checkbox"] {
+            display: none;
+        }
+
         .action-toolbar {
             .is-same-action {
                 background: @color-rutavity-gray-input;
