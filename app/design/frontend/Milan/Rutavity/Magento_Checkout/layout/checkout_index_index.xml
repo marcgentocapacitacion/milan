@@ -63,6 +63,13 @@
                                                 </item>
                                                 <item name="totals" xsi:type="array">
                                                     <item name="sortOrder" xsi:type="string">40</item>
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="payment-total" xsi:type="array">
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="basicCurrencyMessage" xsi:type="string" translate="true">Charge on credit</item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
                                                 </item>
                                             </item>
                                         </item>
