@@ -18,19 +18,19 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getUAutorizadoTemporada(): int
+    public function getUAutorizadoTemporada(): bool
     {
         return $this->getData('u_autorizado_temporada');
     }
 
     /**
-     * @param int $value
+     * @param bool $value
      *
      * @return $this
      */
-    public function setUAutorizadoTemporada(int $value)
+    public function setUAutorizadoTemporada(bool $value)
     {
         $this->setData('u_autorizado_temporada', $value);
         return $this;

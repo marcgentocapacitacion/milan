@@ -83,7 +83,7 @@ class CompanyRepositoryPlugin
         if (!$model->getId()) {
             $model->setCompanyId($company->getId());
         }
-        $model->setUAutorizadoTemporada($extensionAttributes->getUAutorizadoTemporada() == '0' ? true : false);
+        $model->setUAutorizadoTemporada($extensionAttributes->getUAutorizadoTemporada() == 'false' ? false : true);
         $model->setUInicioTemporada($extensionAttributes->getUInicioTemporada() ?? '');
         $model->setUFinTemporada($extensionAttributes->getUFinTemporada() ?? '');
         $model->setUGroupNumTemporada($extensionAttributes->getUGroupNumTemporada() ?? '');
