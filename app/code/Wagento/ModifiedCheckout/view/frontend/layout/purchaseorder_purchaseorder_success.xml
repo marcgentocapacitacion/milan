@@ -14,7 +14,7 @@
         <attribute name="class" value="checkout-onepage-success"/>
         <referenceBlock name="page.main.title">
             <action method="setPageTitle">
-                <argument translate="true" name="title" xsi:type="string">Shipping Confirmation</argument>
+                <argument translate="true" name="title" xsi:type="string">Order Confirmation</argument>
             </action>
         </referenceBlock>
         <referenceBlock name="po.checkout.success">
