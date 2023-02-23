@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="sales_order">
+        <column xsi:type="smallint"
+                name="order_origin"
+                nullable="true"
+                comment="Order Origin -> Store View or Admin Panel"
+        />
+    </table>
+    <table name="sales_order_grid">
+        <column xsi:type="smallint"
+                name="order_origin"
+                nullable="true"
+                comment="Order Origin -> Store View or Admin Panel"
+        />
+    </table>
+</schema>

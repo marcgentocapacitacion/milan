@@ -5,4 +5,17 @@
         <plugin name="wagento_block_admin_order_create_items_grid"
                 type="Wagento\Sales\Plugin\Block\Adminhtml\Order\Create\Items\GridPlugin"/>
     </type>
+    <type name="Magento\Sales\Model\AdminOrder\Create">
+        <plugin name="wagento_model_adminorder_create" type="Wagento\Sales\Plugin\Model\AdminOrder\CreatePlugin"/>
+    </type>
+    <type name="Magento\Quote\Model\QuoteManagement">
+        <plugin name="wagento_model_quote_quotemanagement" type="Wagento\Sales\Plugin\Quote\Model\QuoteManagementPlugin"/>
+    </type>
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid" type="Magento\Sales\Model\ResourceModel\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="order_origin" xsi:type="string">sales_order.order_origin</item>
+            </argument>
+        </arguments>
+    </virtualType>
 </config>

@@ -1,0 +1,28 @@
+<?php
+/**
+ * Copyright © 2023 Wagento. All rights reserved.
+ */
+
+use Wagento\Sales\Model\System\Config\Source\OrderOrigin as OrderOriginSource;
+
+?>
+<?php /** @var $block \Magento\Sales\Block\Adminhtml\Order\View\Info */ ?>
+<?php $order = $block->getOrder() ?>
+
+<?php if (!is_null($order->getOrderOrigin())):?>
+    <div>
+        <div style="background: #f1f1f1;padding: 10px;">
+            <span> <?php echo __("Order Origin")?> </span>
+            <span style="float:right">
+                <?php
+                if ($order->getOrderOrigin() == OrderOriginSource::ORDER_ORIGIN_STORE) {
+                    $label = OrderOriginSource::ORDER_ORIGIN_STORE_LABEL;
+                } else if ($order->getOrderOrigin() == OrderOriginSource::ORDER_ORIGIN_ADMIN) {
+                    $label = OrderOriginSource::ORDER_ORIGIN_ADMIN_LABEL;
+                }
+                echo $label;
+                ?>
+            </span>
+        </div>
+    </div>
+<?php endif;?>

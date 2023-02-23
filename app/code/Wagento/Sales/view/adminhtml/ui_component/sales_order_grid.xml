@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <columns name="sales_order_columns">
+        <column name="order_origin" class="Wagento\Sales\Ui\Component\Listing\Column\OrderOrigin">
+            <settings>
+                <filter>select</filter>
+                <options class="Wagento\Sales\Model\System\Config\Source\OrderOrigin"/>
+                <dataType>select</dataType>
+                <label translate="true">Order Origin</label>
+            </settings>
+        </column>
+    </columns>
+</listing>
