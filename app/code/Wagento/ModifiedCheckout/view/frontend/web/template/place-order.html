@@ -1,7 +1,10 @@
 <!-- ko if: (isVisible()) -->
+<div class="message-shipping-type">
+    <!-- ko i18n: getMessageShippingType()--><!-- /ko -->
+</div>
 <div class="actions-toolbar-trigger" id="place-order-trigger-wrapper">
     <button type="button" class="button action primary" id="place-order-trigger" value="Place Order" >
-        <span>Place Order</span>
+        <span data-bind="i18n: 'Complete Order'"></span>
     </button>
 </div>
 <!-- /ko -->

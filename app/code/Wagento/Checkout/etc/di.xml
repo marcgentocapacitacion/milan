@@ -3,7 +3,4 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Magento\Checkout\Block\Onepage\Link" type="Wagento\Checkout\Block\Onepage\Link"/>
     <preference for="Magento\Checkout\Block\Cart\ValidationMessages" type="Wagento\Checkout\Block\Cart\ValidationMessages"/>
-    <type name="Magento\OfflineShipping\Model\Carrier\Tablerate">
-        <plugin name="wagento_tablerate_percentage_product" type="Wagento\Checkout\Plugin\Model\Carrier\TableratePlugin"/>
-    </type>
 </config>

@@ -1,10 +1,16 @@
 <?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
         <carriers>
             <tablerate>
                 <cost_type_handling_type>product</cost_type_handling_type>
+                <message_shipping_type>El monto del envío será calculado al procesar la orden</message_shipping_type>
             </tablerate>
         </carriers>
     </default>

@@ -18,6 +18,7 @@
         <?php endif;?>
         <p class="order-date"><?= $block->escapeHtml(__('Created on <span>%1</span>', $block->getOrderDate()), ['span']) ?></p>
         <p class="order-date"><?=__('When the order is processed, it may be divided into multiple invoices with different payment terms.');?></p>
+        <p class="order-date"><?=$block->getMessageShippingType();?></p>
 
         <div class="order-details">
             <div class="information billing-information">

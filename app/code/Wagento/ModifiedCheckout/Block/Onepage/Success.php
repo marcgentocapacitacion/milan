@@ -2,7 +2,11 @@
 namespace Wagento\ModifiedCheckout\Block\Onepage;
 
 use Magento\Framework\Exception\LocalizedException;
+use Wagento\OfflineShipping\Api\ConfigShippingTypeInterface;
 
+/**
+ * Success class
+ */
 class Success extends \Magento\Checkout\Block\Onepage\Success
 {
 
@@ -12,12 +16,18 @@ class Success extends \Magento\Checkout\Block\Onepage\Success
     protected $priceHelper;
 
     /**
+     * @var ConfigShippingTypeInterface
+     */
+    protected ConfigShippingTypeInterface $configShippingType;
+
+    /**
      * @param \Magento\Framework\View\Element\Template\Context $context
-     * @param \Magento\Checkout\Model\Session $checkoutSession
-     * @param \Magento\Sales\Model\Order\Config $orderConfig
-     * @param \Magento\Framework\App\Http\Context $httpContext
-     * @param \Magento\Framework\Pricing\Helper\Data $priceHelper
-     * @param array $data
+     * @param \Magento\Checkout\Model\Session                  $checkoutSession
+     * @param \Magento\Sales\Model\Order\Config                $orderConfig
+     * @param \Magento\Framework\App\Http\Context              $httpContext
+     * @param \Magento\Framework\Pricing\Helper\Data           $priceHelper
+     * @param ConfigShippingTypeInterface                      $configShippingType
+     * @param array                                            $data
      */
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
@@ -25,9 +35,11 @@ class Success extends \Magento\Checkout\Block\Onepage\Success
         \Magento\Sales\Model\Order\Config $orderConfig,
         \Magento\Framework\App\Http\Context $httpContext,
         \Magento\Framework\Pricing\Helper\Data $priceHelper,
+        ConfigShippingTypeInterface $configShippingType,
         array $data = []
     ) {
         $this->priceHelper = $priceHelper;
+        $this->configShippingType = $configShippingType;
         parent::__construct($context, $checkoutSession, $orderConfig, $httpContext, $data);
     }
 
@@ -122,5 +134,13 @@ class Success extends \Magento\Checkout\Block\Onepage\Success
     public function getFormattedPrice($price)
     {
         return $this->priceHelper->currency($price, true, false);
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessageShippingType(): string
+    {
+        return $this->configShippingType->getMessageShippingType();
     }
 }

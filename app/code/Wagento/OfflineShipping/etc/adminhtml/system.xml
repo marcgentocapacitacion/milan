@@ -10,11 +10,20 @@
             <group id="tablerate">
                 <field id="cost_type_handling_type" translate="label" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" canRestore="1">
                     <label>Cost type Handling Fee</label>
-                    <source_model>Wagento\Checkout\Model\Source\CostTypeHandlingFee</source_model>
+                    <source_model>Wagento\OfflineShipping\Model\Source\CostTypeHandlingFee</source_model>
                     <comment>If the Product is selected, we will use the price to calculate the Handling Fee.</comment>
                     <depends>
                         <field id="carriers/tablerate/handling_type">P</field>
                     </depends>
+                </field>
+                <field id="shipping_type_message" translate="label" type="select" sortOrder="9" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>Cost type Handling Fee</label>
+                    <source_model>Wagento\OfflineShipping\Model\Source\CostTypeHandlingFee</source_model>
+                    <comment>If the Product is selected, we will use the price to calculate the Handling Fee.</comment>
+                </field>
+                <field id="message_shipping_type" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>Message Shipping Type</label>
+                    <comment>If the Product is selected, we will use the price to calculate the Handling Fee.</comment>
                 </field>
                 <field id="handling_fee" sortOrder="9"></field>
             </group>

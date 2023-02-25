@@ -6,6 +6,7 @@ use Magento\Checkout\Model\Session as CheckoutSession;
 use Magento\Framework\Pricing\Helper\Data as PricingData;
 use Magento\Framework\View\Element\Template\Context as TemplateContext;
 use Magento\PurchaseOrder\Api\PurchaseOrderRepositoryInterface;
+use Wagento\OfflineShipping\Api\ConfigShippingTypeInterface;
 
 /**
  * Class Success
@@ -18,10 +19,17 @@ class Success extends \Magento\PurchaseOrder\Block\PurchaseOrder\Success
     protected PricingData $priceHelper;
 
     /**
+     * @var ConfigShippingTypeInterface
+     */
+    protected ConfigShippingTypeInterface $configShippingType;
+
+
+    /**
      * @param TemplateContext                  $context
      * @param CheckoutSession                  $checkoutSession
      * @param PurchaseOrderRepositoryInterface $purchaseOrderRepository
      * @param PricingData                      $priceHelper
+     * @param ConfigShippingTypeInterface      $configShippingType
      * @param array                            $data
      */
     public function __construct(
@@ -29,6 +37,7 @@ class Success extends \Magento\PurchaseOrder\Block\PurchaseOrder\Success
         CheckoutSession $checkoutSession,
         PurchaseOrderRepositoryInterface $purchaseOrderRepository,
         PricingData $priceHelper,
+        ConfigShippingTypeInterface $configShippingType,
         array $data = []
     ) {
         parent::__construct(
@@ -38,6 +47,7 @@ class Success extends \Magento\PurchaseOrder\Block\PurchaseOrder\Success
             $data
         );
         $this->priceHelper = $priceHelper;
+        $this->configShippingType = $configShippingType;
 
     }
 
@@ -79,5 +89,13 @@ class Success extends \Magento\PurchaseOrder\Block\PurchaseOrder\Success
     public function getFormattedPrice($price)
     {
         return $this->priceHelper->currency($price, true, false);
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessageShippingType(): string
+    {
+        return $this->configShippingType->getMessageShippingType();
     }
 }

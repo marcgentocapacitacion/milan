@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\OfflineShipping\Model\Carrier\Tablerate">
+        <plugin name="wagento_tablerate_percentage_product" type="Wagento\OfflineShipping\Plugin\Model\Carrier\TableratePlugin"/>
+    </type>
+    <type name="Magento\Company\Controller\Adminhtml\Index\Save">
+        <plugin name="wagento_company_controller_admin_index_save"
+                type="Wagento\OfflineShipping\Plugin\Company\Controller\Adminhtml\Index\SavePlugin"/>
+    </type>
+    <type name="Magento\Company\Model\Company\DataProvider">
+        <plugin name="wagento_company_model_company_data_provider"
+                type="Wagento\OfflineShipping\Plugin\Company\Model\Company\DataProviderPlugin"/>
+    </type>
+    <preference for="Wagento\OfflineShipping\Api\ConfigShippingTypeInterface" type="Wagento\OfflineShipping\Model\ConfigShippingType"/>
+</config>

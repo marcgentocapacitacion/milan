@@ -1,6 +1,6 @@
 <?php
 
-namespace Wagento\Checkout\Model\Source;
+namespace Wagento\OfflineShipping\Model\Source;
 
 /**
  * Class CostTypeHandlingFee
