@@ -83,14 +83,14 @@ class CompanyRepositoryPlugin
         if (!$model->getId()) {
             $model->setCompanyId($company->getId());
         }
-        $model->setUAutorizadoTemporada($extensionAttributes->getUAutorizadoTemporada() == 'false' ? false : true);
+        $model->setUAutorizadoTemporada((bool)$extensionAttributes->getUAutorizadoTemporada() ?? false);
         $model->setUInicioTemporada($extensionAttributes->getUInicioTemporada() ?? '');
         $model->setUFinTemporada($extensionAttributes->getUFinTemporada() ?? '');
         $model->setUGroupNumTemporada($extensionAttributes->getUGroupNumTemporada() ?? '');
         $model->setUDiscountTemporada($extensionAttributes->getUDiscountTemporada() ?? '');
-        $model->setUAutorizadoTemporadaOPT($extensionAttributes->getUAutorizadoTemporadaOPT() == 'false' ? false : true);
+        $model->setUAutorizadoTemporadaOPT((bool)$extensionAttributes->getUAutorizadoTemporadaOPT() ?? false);
         $model->setUGroupNumTempoOPT($extensionAttributes->getUGroupNumTempoOPT() ?? '');
-        $model->setGroupNum($extensionAttributes->getGroupNum() == 'false' ? false : true);
+        $model->setGroupNum((bool)$extensionAttributes->getGroupNum() ?? false);
         $model->setUDiscountContado($extensionAttributes->getUDiscountContado() ?? '');
         $model->setUDiscountContadoOptimus($extensionAttributes->getUDiscountContadoOptimus() ?? '');
         $model->setUDiscountOptimus($extensionAttributes->getUDiscountOptimus() ?? '');
@@ -101,9 +101,9 @@ class CompanyRepositoryPlugin
         $model->setUClienteActivoHasta($extensionAttributes->getUClienteActivoHasta() ?? '');
         $model->setPhone2($extensionAttributes->getPhone2() ?? '');
         $model->setCellular($extensionAttributes->getCellular() ?? '');
-        $model->setFrozen($extensionAttributes->getFrozen() == 'false' ? false : true);
-        $model->setSlpCode($extensionAttributes->getSlpCode() == 'false' ? false : true);
-        $model->setTerritory($extensionAttributes->getTerritory() == 'false' ? false : true);
+        $model->setFrozen((bool)$extensionAttributes->getFrozen() ?? false);
+        $model->setSlpCode((bool)$extensionAttributes->getSlpCode() ?? false);
+        $model->setTerritory((bool)$extensionAttributes->getTerritory() ?? false);
         $this->resourceModel->create()->save($model);
         return $company;
     }
