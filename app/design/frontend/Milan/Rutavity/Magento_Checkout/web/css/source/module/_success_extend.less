@@ -8,6 +8,13 @@
         height: 60px;
         display: flex;
         padding-left: 30px;
+        > .onepage-success-button-print {
+            width: 70%;
+            > a {
+                margin: 10px 0 0 !important;
+                font-size: 35px;
+            }
+        }
 
         .page-title {
             margin: 0;
@@ -83,15 +90,6 @@
 .success-order-items {
     max-width: @success-form-width;
     margin: 0 auto;
-
-    &:after {
-        content: '';
-        width: 100%;
-        height: 3px;
-        background: #F7B951;
-        display: block;
-        margin: 60px 0;
-    }
 
     .items {
         table.item {

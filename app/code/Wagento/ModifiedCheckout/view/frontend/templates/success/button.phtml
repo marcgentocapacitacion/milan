@@ -1,0 +1,18 @@
+<?php
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+?>
+<?php /** @var $block \Magento\Checkout\Block\Onepage\Success */ ?>
+
+<?php if ($block->getCanViewOrder() && $block->getCanPrintOrder()) :?>
+    <div class="onepage-success-button-print">
+        <a href="<?= $block->escapeUrl($block->getPrintUrl()) ?>"
+           class="action print"
+           target="_blank"
+           rel="noopener">
+            <i class="fa-solid fa-print"></i>
+        </a>
+    </div>
+    <?= $block->getChildHtml() ?>
+<?php endif;?>
