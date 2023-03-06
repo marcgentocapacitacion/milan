@@ -44,12 +44,13 @@ class SearchDataProvider extends \WeltPixel\SearchAutoComplete\Model\Autocomplet
             $productIds = array_slice($productIds, 0, $maxItemsDisplayed);
             $searchCriteria = $this->searchCriteriaBuilder->addFilter('entity_id', $productIds, 'in')->create();
             $products = $this->productRepository->getList($searchCriteria);
-            foreach ($products->getItems() as $product) {
+            $productsItems = $products->getItems() ?? [];
+            array_walk($productsItems, function ($product, $key) use (&$items){
                 if (!$product->isSalable()) {
-                    continue;
+                    return;
                 }
                 $items[] = $this->getMountArrayProductsData($product);
-            }
+            });
 
             $items = $this->getIrelevantProductIds($irelevantProductIds, $items);
 
@@ -136,17 +137,11 @@ class SearchDataProvider extends \WeltPixel\SearchAutoComplete\Model\Autocomplet
      */
     protected function getIrelevantProductIds(array $irelevantProductIds, array $items): array
     {
-        $searchCriteria = $this->searchCriteriaBuilder->addFilter('entity_id', $irelevantProductIds, 'in')->create();
-        $products = $this->productRepository->getList($searchCriteria);
-
-        foreach ($products->getItems() as $product) {
-            if (!$product->isSalable()) {
-                continue;
-            }
+        array_walk($irelevantProductIds, function ($value, $key) use(&$items) {
             $items[] = $this->itemFactory->create([
-                'id' => $product->getId(),
+                'id' => $value
             ]);
-        }
+        });
         return $items;
     }
 }
