@@ -37,95 +37,95 @@ $displayResults = $helper->getTemplateResultsContainer();
 
         <ul class="product-list">
             <?php foreach ($itemsCollection as $_product): ?>
+                <?php $productModel = $_product->getObject();?>
                 <?php if($i <= $maxItemsDisplayed && is_null($_product->getTitle()) && !is_null($_product->getName())): ?>
-                <?php $productImage = $_product->getImage();?>
-                <li <?php if($productDividerClass && $displayResults != 1):  ?> style="border-bottom: 1px solid <?php echo $dividerColor; ?>" <?php endif;?>>
-                    <div class="block-flex">
-                        <?php if($isShowImageThumbnail) : ?>
-                            <div class="block-left">
-                                <a href="<?php echo $_product->getUrl();?>">
-                                    <img class="prod-img" src="<?php echo $productImage; ?>" width="<?php echo $WidthOfTheImage; ?>">
-                                </a>
-                            </div>
-                        <?php endif; ?>
-                        <div class="block-right">
-                            <div class="product-details">
-                                <a href="<?php echo $_product->getUrl();?>" class="product-title" style="color: <?php echo $containerTextColor; ?>">
-                                    <?php echo $_product->getName(); ?>
-                                </a>
-                                <?php if($isShowPrice) : ?>
-                                    <span class="price"><?php echo $_product->getFinalPrice() ?></span>
-                                <?php endif; ?>
-                                <?php if($isShowDescription) : ?> <?php echo $helper->limitText($_product->getDescription(), $MaxWordsProductDescription)?><?php endif; ?>
-                            </div>
-                            <div class="actions-primary">
-                                <?php $productModel = $_product->getObject();?>
-                                <?php if ($block->getAddToCompareUrl()) :?>
-                                    <?php $compareHelper = $this->helper(Magento\Catalog\Helper\Product\Compare::class); ?>
-                                    <a href="#" class="action primary tocompare"
-                                       title="<?= $block->escapeHtmlAttr(__('Add to Compare')) ?>"
-                                       data-post='<?= /* @noEscape */ $compareHelper->getPostDataParams($productModel) ?>'
-                                       data-role="add-to-links">
-                                        <span><?= $block->escapeHtml(__('Add to Compare')) ?></span>
+                    <?php $productImage = $_product->getImage();?>
+                    <li <?php if($productDividerClass && $displayResults != 1):  ?> style="border-bottom: 1px solid <?php echo $dividerColor; ?>" <?php endif;?>>
+                        <div class="block-flex">
+                            <?php if($isShowImageThumbnail) : ?>
+                                <div class="block-left">
+                                    <a href="<?php echo $_product->getUrl();?>">
+                                        <img class="prod-img" src="<?php echo $productImage; ?>" width="<?php echo $WidthOfTheImage; ?>">
                                     </a>
-                                <?php endif; ?>
-                                <?php if ($productModel->isSaleable()):?>
-                                    <?php if (!$productModel->getTypeInstance()->isPossibleBuyFromList($productModel)):?>
-                                        <button
-                                            class="action tocart primary"
-                                            data-mage-init='{"redirectUrl": {"url": "<?= $escaper->escapeUrl($block->getAddToCartUrl($productModel)) ?>"}}'
-                                            type="button"
-                                            title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>">
-                                            <span><?= $escaper->escapeHtml(__('Add to Cart')) ?></span>
-                                        </button>
-                                    <?php else :?>
-                                        <?php
-                                        /** @var $viewModel PreparePostData */
-                                        $viewModel = $block->getPreparePostData();
-                                        $postArray = $viewModel->getPostData(
-                                            $escaper->escapeUrl($block->getAddToCartUrl($productModel)),
-                                            ['product' => $productModel->getEntityId()]
-                                        );
-                                        $value = $postArray['data'][ActionInterface::PARAM_NAME_URL_ENCODED];
-                                        ?>
-                                        <form data-role="tocart-form-catalogsearch-autocomplete"
-                                              data-product-sku="<?=$escaper->escapeHtmlAttr($productModel->getSku()) ?>"
-                                              action="<?= $escaper->escapeUrl($block->getAddToCartUrl($productModel)) ?>"
-                                              method="post">
-                                            <input type="hidden" name="product"
-                                                   value="<?= /* @noEscape */ (int)$productModel->getEntityId() ?>">
-                                            <input type="hidden"
-                                                   name="<?= /* @noEscape */ ActionInterface::PARAM_NAME_URL_ENCODED?>"
-                                                   value="<?= /* @noEscape */ $value ?>">
-                                            <input type="hidden" value="<?php echo $block->getFormKey(); ?>" name="form_key" />
-                                            <button type="submit"
-                                                    title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
-                                                    class="action tocart primary"
-                                                    disabled>
+                                </div>
+                            <?php endif; ?>
+                            <div class="block-right">
+                                <div class="product-details">
+                                    <a href="<?php echo $_product->getUrl();?>" class="product-title" style="color: <?php echo $containerTextColor; ?>">
+                                        <?php echo $_product->getName(); ?>
+                                    </a>
+                                    <?php if($isShowPrice) : ?>
+                                        <span class="price"><?php echo $_product->getFinalPrice() ?></span>
+                                    <?php endif; ?>
+                                    <?php if($isShowDescription) : ?> <?php echo $helper->limitText($_product->getDescription(), $MaxWordsProductDescription)?><?php endif; ?>
+                                </div>
+                                <div class="actions-primary">
+                                    <?php if ($block->getAddToCompareUrl()) :?>
+                                        <?php $compareHelper = $this->helper(Magento\Catalog\Helper\Product\Compare::class); ?>
+                                        <a href="#" class="action primary tocompare"
+                                           title="<?= $block->escapeHtmlAttr(__('Add to Compare')) ?>"
+                                           data-post='<?= /* @noEscape */ $compareHelper->getPostDataParams($productModel) ?>'
+                                           data-role="add-to-links">
+                                            <span><?= $block->escapeHtml(__('Add to Compare')) ?></span>
+                                        </a>
+                                    <?php endif; ?>
+                                    <?php if ($productModel->isSaleable()):?>
+                                        <?php if (!$productModel->getTypeInstance()->isPossibleBuyFromList($productModel)):?>
+                                            <button
+                                                class="action tocart primary"
+                                                data-mage-init='{"redirectUrl": {"url": "<?= $escaper->escapeUrl($block->getAddToCartUrl($productModel)) ?>"}}'
+                                                type="button"
+                                                title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>">
                                                 <span><?= $escaper->escapeHtml(__('Add to Cart')) ?></span>
                                             </button>
-                                        </form>
+                                        <?php else :?>
+                                            <?php
+                                            /** @var $viewModel PreparePostData */
+                                            $viewModel = $block->getPreparePostData();
+                                            $postArray = $viewModel->getPostData(
+                                                $escaper->escapeUrl($block->getAddToCartUrl($productModel)),
+                                                ['product' => $productModel->getEntityId()]
+                                            );
+                                            $value = $postArray['data'][ActionInterface::PARAM_NAME_URL_ENCODED];
+                                            ?>
+                                            <form data-role="tocart-form-catalogsearch-autocomplete"
+                                                  data-product-sku="<?=$escaper->escapeHtmlAttr($productModel->getSku()) ?>"
+                                                  action="<?= $escaper->escapeUrl($block->getAddToCartUrl($productModel)) ?>"
+                                                  method="post">
+                                                <input type="hidden" name="product"
+                                                       value="<?= /* @noEscape */ (int)$productModel->getEntityId() ?>">
+                                                <input type="hidden"
+                                                       name="<?= /* @noEscape */ ActionInterface::PARAM_NAME_URL_ENCODED?>"
+                                                       value="<?= /* @noEscape */ $value ?>">
+                                                <input type="hidden" value="<?php echo $block->getFormKey(); ?>" name="form_key" />
+                                                <button type="submit"
+                                                        title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
+                                                        class="action tocart primary"
+                                                        disabled>
+                                                    <span><?= $escaper->escapeHtml(__('Add to Cart')) ?></span>
+                                                </button>
+                                            </form>
+                                        <?php endif;?>
                                     <?php endif;?>
-                                <?php endif;?>
+                                </div>
                             </div>
+                            <div class="clear"></div>
                         </div>
-                        <div class="clear"></div>
-                    </div>
-                </li>
-            <?php   $i++;  ?>
-            <?php endif; ?>
-            <?php if (!$block->isRedirectToCartEnabled() && $productModel):?>
-                <script type="text/x-magento-init">
-                        {
-                            "[data-role=tocart-form-catalogsearch-autocomplete]": {
-                                "catalogAddToCart": {
-                                    "product_sku": "<?= $escaper->escapeJs($productModel->getSku()) ?>",
-                                    "addToCartButtonTextDefault": "<?= $escaper->escapeHtml(__('Add')) ?>"
+                    </li>
+                    <?php   $i++;  ?>
+                <?php endif; ?>
+                <?php if (!$block->isRedirectToCartEnabled() && isset($productModel)):?>
+                    <script type="text/x-magento-init">
+                            {
+                                "[data-role=tocart-form-catalogsearch-autocomplete]": {
+                                    "catalogAddToCart": {
+                                        "product_sku": "<?= $escaper->escapeJs($productModel->getSku()) ?>",
+                                        "addToCartButtonTextDefault": "<?= $escaper->escapeHtml(__('Add')) ?>"
+                                    }
                                 }
                             }
-                        }
-                        </script>
-            <?php endif;?>
+                            </script>
+                <?php endif;?>
             <?php endforeach; ?>
         </ul>
         <?php if($collectionSize > $maxItemsDisplayed ): ?>
