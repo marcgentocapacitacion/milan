@@ -507,6 +507,7 @@ return [
         'Wagento_PurchaseOrder' => 1,
         'Wagento_Rutavity' => 1,
         'Wagento_Sales' => 1,
+        'WeltPixel_SearchAutoComplete' => 1,
         'Wagento_SelectCustom' => 1,
         'Wagento_StoreLocator' => 1,
         'Wagento_Theme' => 1,
@@ -520,7 +521,7 @@ return [
         'WeltPixel_MobileDetect' => 1,
         'Wagento_NavigationLinks' => 1,
         'WeltPixel_QuickCart' => 1,
-        'WeltPixel_SearchAutoComplete' => 1,
+        'Wagento_SearchAutoComplete' => 1,
         'WeltPixel_Sitemap' => 1,
         'WeltPixel_SocialLogin' => 1
     ]

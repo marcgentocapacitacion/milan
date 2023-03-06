@@ -1,0 +1,19 @@
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .compare.wrapper {
+        list-style: none;
+        position: relative;
+        left: 27px;
+        > li {
+            > a.action.compare {
+                color: #fff;
+                font-weight: bold;
+                > span.counter.qty {
+                    color: #fff;
+                }
+                &:hover {
+                    color: #fff;
+                }
+            }
+        }
+    }
+}

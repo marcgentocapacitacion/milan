@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="WeltPixel\SearchAutoComplete\Model\Autocomplete\SearchDataProvider"
+                type="Wagento\SearchAutoComplete\Model\Autocomplete\SearchDataProvider"/>
+    <preference for="WeltPixel\SearchAutoComplete\Block\SearchAutoComplete"
+                type="Wagento\SearchAutoComplete\Block\SearchAutoComplete"/>
+    <type name="Magento\Catalog\Controller\Product\Compare\Add">
+        <plugin name="wagento_searchautocomplete_catalog_controller_product_compare_add"
+                type="Wagento\SearchAutoComplete\Plugin\Catalog\Controller\Product\Compare\AddPlugin"/>
+    </type>
+</config>
