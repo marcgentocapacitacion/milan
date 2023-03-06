@@ -40,19 +40,14 @@ class SearchDataProvider extends \WeltPixel\SearchAutoComplete\Model\Autocomplet
         }
 
         if ($productIds) {
-            $irelevantProductIds = array_slice($productIds, $maxItemsDisplayed);
             $productIds = array_slice($productIds, 0, $maxItemsDisplayed);
-            $searchCriteria = $this->searchCriteriaBuilder->addFilter('entity_id', $productIds, 'in')->create();
-            $products = $this->productRepository->getList($searchCriteria);
-            $productsItems = $products->getItems() ?? [];
-            array_walk($productsItems, function ($product, $key) use (&$items){
+            array_walk($productIds, function ($id, $key) use (&$items){
+                $product = $this->productRepository->getById($id);
                 if (!$product->isSalable()) {
                     return;
                 }
                 $items[] = $this->getMountArrayProductsData($product);
             });
-
-            $items = $this->getIrelevantProductIds($irelevantProductIds, $items);
 
             if ($collection->getSize() >= 1) {
                 $result = [];
