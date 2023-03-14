@@ -1,0 +1,18 @@
+<?php /** @var \Wagento\PromotionSeason\Block\Product\View\PromotionSeasonTag $block */ ?>
+<?php if ($block->isPromotionSeasonProduct()):?>
+    <div class="label_promotion"
+         id="promotion_season_label_promotion"
+         style="display: none;">
+        <?=$block->getLabelPromotion();?>
+    </div>
+    <script type="text/x-magento-init">
+        {
+            "#promotion_season_label_promotion": {
+                "Wagento_PromotionSeason/product/view/is_product_season": {
+                    "productTypeSimple": "<?=$block->isProductSimple();?>",
+                    "productOptionsIsPromotionSeason": <?=$block->getOptionsIdIsPromotionSeason();?>
+                }
+            }
+        }
+    </script>
+<?php endif;?>

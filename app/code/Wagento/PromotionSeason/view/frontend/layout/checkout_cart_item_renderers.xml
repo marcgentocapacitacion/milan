@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="checkout.cart.item.renderers">
+            <block class="Wagento\PromotionSeason\Block\Cart\Item\PromotionSeasonTag"
+                   name="wagento.checkout.cart.item.renderers.default.promotion.season"
+                   as="cart.promotion.season"
+                   template="Wagento_PromotionSeason::cart/item/tag_promotion_season.phtml"/>
+            <block class="Wagento\PromotionSeason\Block\PromotionSeasonTag"
+                   name="checkout.products.list.wagento.promotion.season"
+                   as="checkout.products.list.wagento.promotion.season"
+                   template="Wagento_PromotionSeason::product/tag_promotion_season.phtml"/>
+        </referenceBlock>
+    </body>
+</page>

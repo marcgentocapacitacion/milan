@@ -19,6 +19,10 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
         <td colspan="5">
             <div data-th="<?=$block->escapeHtml(__('Item')) ?>" class="col item">
                 <div>
+                    <?=$block->getParentBlock()
+                        ->getChildBlock('checkout.products.list.wagento.promotion.season')
+                        ->setProduct($_item->getProduct())
+                        ->toHtml();?>
                     <?php if ($block->hasProductUrl()): ?>
                         <a href="<?= $block->escapeUrl($block->getProductUrl()) ?>"
                            title="<?= $block->escapeHtml($block->getProductName()) ?>"
@@ -132,4 +136,8 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
             </div>
         </td>
     </tr>
+    <?=$block->getParentBlock()
+        ->getChildBlock('cart.promotion.season')
+        ->setItem($_item)
+        ->toHtml();?>
 </tbody>

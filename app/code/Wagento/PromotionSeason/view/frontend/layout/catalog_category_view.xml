@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="category.products.list">
+            <block class="Wagento\PromotionSeason\Block\PromotionSeasonTag"
+                   name="category.products.list.wagento.promotion.season"
+                   template="Wagento_PromotionSeason::product/tag_promotion_season.phtml"/>
+            <action method="setTemplate">
+                <argument name='template' xsi:type='string'>Wagento_PromotionSeason::product/list.phtml</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>

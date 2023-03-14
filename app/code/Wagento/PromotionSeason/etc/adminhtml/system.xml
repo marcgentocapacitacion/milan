@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="wagento_extension" translate="label" sortOrder="10">
+            <label>Wagento Extensions</label>
+        </tab>
+        <section id="wagento_season_promotion" translate="label" type="text" sortOrder="50"  showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Season Promotion</label>
+            <tab>wagento_extension</tab>
+            <resource>Magento_Catalog::config_catalog</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enable" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="itm_properties" translate="label comment" type="select" sortOrder="10" showInDefault="1" canRestore="1">
+                    <label>ITM Properties</label>
+                    <comment>Select what propriety will have a promotion.</comment>
+                    <source_model>\ITM\MagB1\Model\AttributeSource\ItmProperties</source_model>
+                </field>
+                <field id="label_promotion" translate="label" type="text" sortOrder="20" showInDefault="1" canRestore="1">
+                    <label>Promotion Label</label>
+                </field>
+                <field id="value_promotion_limit" translate="label" type="text" sortOrder="30" showInDefault="1" canRestore="1">
+                    <label>Promotion Limit value</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+                <field id="text_promotion_cart_more_than" translate="label comment" type="text" sortOrder="40" showInDefault="1" canRestore="1">
+                    <label>Promotion Text more than</label>
+                    <comment>Promotion Text in the Cart when more than *Promotion Limit value*</comment>
+                </field>
+                <field id="text_promotion_cart_less_than" translate="label comment" type="text" sortOrder="50" showInDefault="1" canRestore="1">
+                    <label>Promotion Text less than</label>
+                    <comment>Promotion Text in the Cart when less than *Promotion Limit value*</comment>
+                </field>
+                <field id="date_limit_pay" translate="label comment" type="text" sortOrder="30" showInDefault="1" canRestore="1">
+                    <label>Limit date to pay</label>
+                    <comment>The field is intended only to show in the cart.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

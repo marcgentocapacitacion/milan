@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <wagento_season_promotion>
+            <general>
+                <enable>1</enable>
+                <itm_properties>p25</itm_properties>
+                <label_promotion>Temporada</label_promotion>
+                <value_promotion_limit>3000000.000</value_promotion_limit>
+                <text_promotion_cart_more_than>Artículo de temporada, la fecha límite de pago es hasta el %s.</text_promotion_cart_more_than>
+                <text_promotion_cart_less_than>Los artículos de temporada no cumplen con todas las condiciones necesarias.</text_promotion_cart_less_than>
+            </general>
+        </wagento_season_promotion>
+    </default>
+</config>

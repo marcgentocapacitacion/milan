@@ -4,6 +4,7 @@
  *
  * @var $block \Magento\Catalog\Block\Category\View
  */
+use Wagento\NavigationLinks\Model\Attribute\Source\CategoryLayout;
 
 $_category = $block->getCurrentCategory();
 $subcategoriesLayout = $_category->getData('weltpixel_sc_layout');
@@ -12,7 +13,7 @@ $categoryGridColsNr = $_category->getData('weltpixel_sc_columns');
 $categoryTitlePosition = $_category->getData('weltpixel_sc_title_position');
 $gridColNr = ($categoryGridColsNr) ? $categoryGridColsNr : '4';
 
-if ($subcategoriesLayout == \Wagento\NavigationLinks\Model\Attribute\Source\CategoryLayout::LAYOUT_IMAGES_WITH_PRODUCTS) :
+if ($subcategoriesLayout == CategoryLayout::LAYOUT_IMAGES_WITH_PRODUCTS && !$block->getRequest()->getParam('promoseasontemporada', false)) :
     $subcategories = $_helper->getSubcategories($_category);
     ?>
     <div class="wp-subcategories">

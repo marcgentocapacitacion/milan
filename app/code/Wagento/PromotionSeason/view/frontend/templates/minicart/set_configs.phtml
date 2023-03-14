@@ -1,0 +1,11 @@
+<?php /** @var Wagento\PromotionSeason\Block\Minicart\PromotionSeasonTag $block */ ?>
+<script>
+    window.promotion_season_show_tag = function (sku) {
+        var products = <?=$block->getPromotionSeasonProductAllItems();?>;
+        if (products[sku]) {
+            return true;
+        }
+        return false;
+    }
+    window.promotion_season_label_promotion = "<?=$block->getLabelPromotion();?>";
+</script>

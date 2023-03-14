@@ -1,0 +1,10 @@
+<?php /** @var \Wagento\PromotionSeason\Block\Cart\Item\PromotionSeasonTag $block */ ?>
+<?php if ($block->isPromotionSeasonProduct()):?>
+<tr>
+    <td colspan="4" class="text-limit-value">
+        <div class="<?=$block->isRowTotalExccedLimit() ? 'text_promotion_excced' : 'text_promotion_no_excced';?>">
+            <?=$block->getText();?>
+        </div>
+    </td>
+</tr>
+<?php endif;?>

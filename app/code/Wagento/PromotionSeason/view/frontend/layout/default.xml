@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="before.body.end">
+            <block class="Wagento\PromotionSeason\Block\Minicart\PromotionSeasonTag"
+                   name="wagento_promotionseason_minicart"
+                   template="Wagento_PromotionSeason::minicart/set_configs.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

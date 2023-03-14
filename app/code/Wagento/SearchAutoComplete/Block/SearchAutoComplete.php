@@ -2,16 +2,13 @@
 
 namespace Wagento\SearchAutoComplete\Block;
 
-use Magento\Backend\Block\Template\Context;
 use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Catalog\Helper\Output as OutputHelper;
 use Magento\Catalog\Model\Layer\Resolver;
-use Magento\Checkout\Helper\Cart;
 use Magento\Framework\Data\Form\FormKey;
 use Magento\Framework\Data\Helper\PostHelper;
 use Magento\Framework\Url\Helper\Data;
 use WeltPixel\SearchAutoComplete\Model\Autocomplete\SearchDataProvider;
-use Magento\Catalog\Model\Product;
 use Magento\Catalog\ViewModel\Product\Listing\PreparePostData;
 
 /**
