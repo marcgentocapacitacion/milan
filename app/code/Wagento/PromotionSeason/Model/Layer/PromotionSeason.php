@@ -10,6 +10,9 @@ use Magento\Catalog\Model\ResourceModel\Product;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Framework\Registry;
 use Wagento\PromotionSeason\Model\Config\ConfigInterface;
+use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
+use Magento\ConfigurableProduct\Model\ResourceModel\Product\Type\ConfigurableFactory;
+use Magento\Catalog\Api\ProductRepositoryInterface;
 
 /**
  * Class PromotionSeason
@@ -22,6 +25,26 @@ class PromotionSeason extends \Magento\Catalog\Model\Layer\Category
     protected ConfigInterface $config;
 
     /**
+     * @var ProductCollectionFactory
+     */
+    protected ProductCollectionFactory $productCollectionFactory;
+
+    /**
+     * @var ConfigurableFactory
+     */
+    protected ConfigurableFactory $configurableFactory;
+
+    /**
+     * @var ProductRepositoryInterface
+     */
+    protected ProductRepositoryInterface $productRepository;
+
+    /**
+     * @var array
+     */
+    protected array $productLoaded;
+
+    /**
      * @param ContextInterface            $context
      * @param StateFactory                $layerStateFactory
      * @param CollectionFactory           $attributeCollectionFactory
@@ -30,6 +53,9 @@ class PromotionSeason extends \Magento\Catalog\Model\Layer\Category
      * @param Registry                    $registry
      * @param CategoryRepositoryInterface $categoryRepository
      * @param ConfigInterface             $config
+     * @param ProductCollectionFactory    $productCollectionFactory
+     * @param ConfigurableFactory         $configurableFactory
+     * @param ProductRepositoryInterface  $productRepository
      * @param array                       $data
      */
     public function __construct(
@@ -41,6 +67,9 @@ class PromotionSeason extends \Magento\Catalog\Model\Layer\Category
         Registry $registry,
         CategoryRepositoryInterface $categoryRepository,
         ConfigInterface $config,
+        ProductCollectionFactory $productCollectionFactory,
+        ConfigurableFactory $configurableFactory,
+        ProductRepositoryInterface $productRepository,
         array $data = []
     ) {
         parent::__construct(
@@ -54,6 +83,10 @@ class PromotionSeason extends \Magento\Catalog\Model\Layer\Category
             $data
         );
         $this->config = $config;
+        $this->productCollectionFactory = $productCollectionFactory;
+        $this->configurableFactory = $configurableFactory;
+        $this->productRepository = $productRepository;
+        $this->productLoaded = [];
     }
 
     /**
@@ -66,12 +99,48 @@ class PromotionSeason extends \Magento\Catalog\Model\Layer\Category
             $collection = $this->_productCollections[$this->getCurrentCategory()->getId()];
         } else {
             $collection = $this->collectionProvider->getCollection($this->getCurrentCategory());
-            $collection->addAttributeToFilter('itm_properties', $this->config->getItmProperties());
+            $collection->addAttributeToFilter('sku', ['in' => [$this->getProductSku()]]);
             $this->prepareProductCollection($collection);
             $this->_productCollections[$this->getCurrentCategory()->getId()] = $collection;
         }
-        //$collection = parent::getProductCollection();
-        //$collection->addAttributeToFilter('itm_properties', $this->config->getItmProperties());
         return $collection;
+    }
+
+    /**
+     * @return array
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    protected function getProductSku(): array
+    {
+        $collection = $this->productCollectionFactory->create();
+        $collection->addAttributeToFilter('itm_properties', $this->config->getItmProperties());
+        $collection->addAttributeToFilter('status', '1');
+        $ids = [];
+        foreach ($collection->getItems() as $item) {
+            if (isset($ids[$item->getSku()])) {
+                continue;
+            }
+            $ids[$item->getSku()] = $item->getSku();
+            $configurable = $this->configurableFactory->create();
+            $parentIds = $configurable->getParentIdsByChild($item->getId());
+            if (!$parentIds) {
+                continue;
+            }
+            foreach ($parentIds as $parentId) {
+                try {
+                    if (!isset($this->productLoaded[$parentId])) {
+                        $this->productLoaded[$parentId] = $this->productRepository->getById($parentId);
+                    }
+                    $sku = $this->productLoaded[$parentId]->getSku();
+                    if (isset($ids[$sku])) {
+                        continue;
+                    }
+                    $ids[$sku] = $sku;
+                } catch (\Exception $e) {
+                    continue;
+                }
+            }
+        }
+        return array_values($ids);
     }
 }
