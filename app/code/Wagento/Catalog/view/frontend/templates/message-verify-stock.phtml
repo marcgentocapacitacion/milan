@@ -1,4 +1,6 @@
 <?php
 /** @var \Wagento\Catalog\Block\MessageVerifyStock $block */
 ?>
-<div class="message-verify-stock-b2b"><?=__($block->getMessage());?></div>
+<?php if(!$block->isLoggedIn()):?>
+    <div class="message-verify-stock-b2b"><?=__($block->getMessage());?></div>
+<?php endif;?>
