@@ -2,6 +2,8 @@
 
 namespace Wagento\ImportData\Model\Import;
 
+use Magento\ImportExport\Model\ResourceModel\Import\Data as DataSourceModel;
+
 /**
  * Class Product
  */
@@ -19,7 +21,7 @@ class Product extends \Magento\CatalogImportExport\Model\Import\Product
     /**
      * @return \Magento\ImportExport\Model\ResourceModel\Import\Data
      */
-    public function getDataSourceModel()
+    public function getDataSourceModel() : DataSourceModel
     {
         return $this->_dataSourceModel;
     }

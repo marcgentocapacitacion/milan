@@ -3,6 +3,7 @@
 namespace Wagento\ImportData\Model\Import;
 
 use Magento\CustomerImportExport\Model\Import\Customer as CustomerImport;
+use Magento\ImportExport\Model\ResourceModel\Import\Data as DataSourceModel;
 
 /**
  * Class Customer
@@ -21,7 +22,7 @@ class Customer extends CustomerImport
     /**
      * @return \Magento\ImportExport\Model\ResourceModel\Import\Data
      */
-    public function getDataSourceModel()
+    public function getDataSourceModel() : DataSourceModel
     {
         return $this->_dataSourceModel;
     }

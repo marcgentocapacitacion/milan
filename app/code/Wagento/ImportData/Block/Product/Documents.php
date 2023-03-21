@@ -74,6 +74,9 @@ class Documents extends \Magento\Catalog\Block\Product\View
      */
     public function getUrlFile(): string
     {
+        if (!$this->getProduct()) {
+            return '';
+        }
         return $this->storeManager
                 ->getStore($this->getProduct()->getStore())
                 ->getBaseUrl(UrlInterface::URL_TYPE_MEDIA) . $this->getProduct()->getDocuments();

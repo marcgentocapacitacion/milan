@@ -688,43 +688,68 @@
         }
     }
 
-    .box-tocart {
-        &:extend(.abs-box-tocart all);
-        margin-bottom: 0;
+    .products-grid.wishlist {
+        > .product-items {
+            > .product-item {
+                > .product-item-info {
+                    &:hover {
+                        .product-item-inner {
+                            display: block;
+                        }
+                    }
+                    > .product-item-inner {
+                        display: none;
+                        > .product-item-actions {
+                            text-align: center;
+                            > a.action {
+                                opacity: 0.5;
+                                &:before {
+                                    color: #000000;
+                                    font-size: 24px;
+                                }
+                                &:hover {
+                                    opacity: 1;
+                                }
+                            }
+                        }
 
-        .field.qty {
-        }
+                        > .box-tocart {
+                            &:extend(.abs-box-tocart all);
+                            margin-bottom: 0;
 
-        .input-text.qty {
-            &:extend(.abs-input-qty all);
-        }
+                            .field.qty {
+                            }
 
-        .actions {
-        }
+                            .input-text.qty {
+                                &:extend(.abs-input-qty all);
+                            }
 
-        .action.tocart {
-            &:extend(.abs-button-l all);
-            &:extend(.abs-button-responsive all);
+                            .actions {
+                            }
 
-            vertical-align: top;
-            position: relative;
-            border: none;
+                            > .fieldset {
+                                > .product-item-actions {
+                                    > .actions-primary {
+                                        &:extend(.abs-button-l all);
+                                        &:extend(.abs-button-responsive all);
 
-            &:after {
-                content: '';
-                display: inline-block;
-                position: absolute;
-                top: 10px;
-                right: 40px;
-                width: 42px;
-                height: 35px;
-                font-size: 24px;
-                margin-left: 20px;
-                background: url('@{baseDir}images/assets/cart-ch.png');
-            }
+                                        vertical-align: top;
+                                        position: relative;
+                                        border: none;
 
-            span {
-                margin-right: 20px;
+                                        > .tocart {
+                                            width: 60px;
+                                        }
+
+                                        span {
+                                            margin-right: 20px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -979,7 +1004,6 @@
 
             .box-tocart .action.tocart {
                 border-radius: 30px;
-                height: 60px;
             }
 
             .product-addto-links {
@@ -1094,7 +1118,7 @@
                         padding: 0;
 
                         .tocart {
-                            background: transparent url('@{baseDir}images/assets/cart-ch.png');
+                            background: transparent url('@{baseDir}images/assets/cart-ch.png') no-repeat;
                             width: 42px;
                             height: 35px;
                             border-radius: 0;
@@ -1170,8 +1194,6 @@
     .box-tocart {
         .action.tocart {
             margin-bottom: 0;
-            width: 320px;
-            height: 60px;
             border-radius: 30px;
             font-size: 21px;
             position: relative;

@@ -55,6 +55,9 @@ class Characteristic extends \Magento\Catalog\Block\Product\View
      */
     public function getCustomAttributesValue(string $code): string
     {
+        if (!$this->getProduct()) {
+            return '';
+        }
         return $this->getProduct()->getData($code) ?? '';
     }
 

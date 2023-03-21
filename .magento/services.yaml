@@ -7,7 +7,7 @@ mysql:
     disk: 2048
 
 redis:
-    type: redis:5.0
+    type: redis:7.0
 
 elasticsearch:
     type: elasticsearch:7.7
