@@ -43,9 +43,6 @@ class SearchDataProvider extends \WeltPixel\SearchAutoComplete\Model\Autocomplet
             $productIds = array_slice($productIds, 0, $maxItemsDisplayed);
             array_walk($productIds, function ($id, $key) use (&$items){
                 $product = $this->productRepository->getById($id);
-                if (!$product->isSalable()) {
-                    return;
-                }
                 $items[] = $this->getMountArrayProductsData($product);
             });
 
