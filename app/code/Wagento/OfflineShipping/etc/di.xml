@@ -18,4 +18,5 @@
                 type="Wagento\OfflineShipping\Plugin\Company\Model\Company\DataProviderPlugin"/>
     </type>
     <preference for="Wagento\OfflineShipping\Api\ConfigShippingTypeInterface" type="Wagento\OfflineShipping\Model\ConfigShippingType"/>
+    <preference for="Wagento\OfflineShipping\Model\Config\ConfigInterface" type="Wagento\OfflineShipping\Model\Config\Config"/>
 </config>

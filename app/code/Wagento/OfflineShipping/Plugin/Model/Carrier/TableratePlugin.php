@@ -2,29 +2,20 @@
 
 namespace Wagento\OfflineShipping\Plugin\Model\Carrier;
 
-use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Backend\Model\Session\Quote as SessionQuote;
 use Magento\OfflineShipping\Model\Carrier\Tablerate;
 use Magento\Quote\Model\Quote\Address\RateRequest;
-use Magento\Store\Model\StoreManagerInterface;
 use Magento\Customer\Model\Session as CustomerSession;
 use Wagento\OfflineShipping\Model\Company\Source\ShippingType;
 use Magento\Company\Api\CompanyRepositoryInterface;
+use Magento\Customer\Api\Data\CustomerExtensionInterface;
+use Wagento\OfflineShipping\Model\Config\ConfigInterface;
 
 /**
  * Class TableratePlugin
  */
 class TableratePlugin
 {
-    /**
-     * @var ScopeConfigInterface
-     */
-    protected ScopeConfigInterface $scopeConfig;
-
-    /**
-     * @var StoreManagerInterface
-     */
-    protected StoreManagerInterface $storeManager;
-
     /**
      * @var CustomerSession
      */
@@ -41,34 +32,31 @@ class TableratePlugin
     protected CompanyRepositoryInterface $companyRepository;
 
     /**
-     * @param ScopeConfigInterface       $scopeConfig
-     * @param StoreManagerInterface      $storeManager
-     * @param CustomerSession            $customerSession
-     * @param CompanyRepositoryInterface $companyRepository
+     * @var SessionQuote
      */
-    public function __construct(
-        ScopeConfigInterface $scopeConfig,
-        StoreManagerInterface $storeManager,
-        CustomerSession $customerSession,
-        CompanyRepositoryInterface $companyRepository
-    ) {
-        $this->scopeConfig = $scopeConfig;
-        $this->storeManager = $storeManager;
-        $this->customerSession = $customerSession;
-        $this->companyRepository = $companyRepository;
-    }
+    protected SessionQuote $sessionQuote;
 
     /**
-     * @return string
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @var ConfigInterface
      */
-    protected function getCostTypeHandlingType(): string
-    {
-        return $this->scopeConfig->getValue(
-            'carriers/tablerate/cost_type_handling_type',
-            \Magento\Store\Model\ScopeInterface::SCOPE_STORE,
-            $this->storeManager->getStore()->getId()
-        );
+    protected ConfigInterface $config;
+
+    /**
+     * @param CustomerSession            $customerSession
+     * @param CompanyRepositoryInterface $companyRepository
+     * @param SessionQuote               $sessionQuote
+     * @param ConfigInterface            $config
+     */
+    public function __construct(
+        CustomerSession $customerSession,
+        CompanyRepositoryInterface $companyRepository,
+        SessionQuote $sessionQuote,
+        ConfigInterface $config
+    ) {
+        $this->customerSession = $customerSession;
+        $this->companyRepository = $companyRepository;
+        $this->sessionQuote = $sessionQuote;
+        $this->config = $config;
     }
 
     /**
@@ -80,7 +68,7 @@ class TableratePlugin
             return $this->shippingType;
         }
         try {
-            $extensionAttribute = $this->customerSession->getCustomerData()->getExtensionAttributes() ?? false;
+            $extensionAttribute = $this->getCustomerExtensionAttributes();
             if (!$extensionAttribute) {
                 return '';
             }
@@ -94,6 +82,30 @@ class TableratePlugin
             return '';
         }
         return $this->shippingType;
+    }
+
+    /**
+     * @return CustomerExtensionInterface|null
+     * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    protected function getCustomerExtensionAttributes(): ?CustomerExtensionInterface
+    {
+        if ($this->customerSession->isLoggedIn()) {
+            if ($this->customerSession->getCustomerData()) {
+                return $this->customerSession->getCustomerData()->getExtensionAttributes();
+            }
+        }
+
+        if (!$this->sessionQuote->getQuote()) {
+            return null;
+        }
+
+        if (!$this->sessionQuote->getQuote()->getCustomer()) {
+            return null;
+        }
+
+        return $this->sessionQuote->getQuote()->getCustomer()->getExtensionAttributes();
     }
 
     /**
@@ -125,7 +137,7 @@ class TableratePlugin
             return $result;
         }
 
-        if ($this->getCostTypeHandlingType() == 'handling_fee') {
+        if ($this->config->getCostTypeHandlingType() == 'handling_fee') {
             return $result;
         }
 
@@ -153,7 +165,7 @@ class TableratePlugin
             return $result;
         }
 
-        if ($this->getCostTypeHandlingType() == 'handling_fee') {
+        if ($this->config->getCostTypeHandlingType() == 'handling_fee') {
             return $result;
         }
 

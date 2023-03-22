@@ -2,16 +2,13 @@
 
 namespace Wagento\Catalog\Plugin;
 
+use Magento\Backend\Model\Session\Quote as SessionQuote;
 use Magento\Customer\Api\Data\CustomerInterface;
 use Magento\Customer\Model\Session as CustomerSession;
-use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Inventory\Model\ResourceModel\StockSourceLink;
-use Magento\InventorySales\Model\ResourceModel\StockIdResolver;
 use Magento\Inventory\Model\StockSourceLinkFactory as StockSourceLinkFactoryModel;
-use \Magento\Backend\Model\Session\Quote as SessionQuote;
-use Magento\Customer\Model\Customer;
-use Magento\Customer\Model\CustomerFactory;
-use Magento\Customer\Model\ResourceModel\Customer as ResourceModelCustomer;
+use Magento\InventorySales\Model\ResourceModel\StockIdResolver;
+use Wagento\Catalog\Model\ConfigInterface;
 
 /**
  * Class AlmacenStockPlugin
@@ -34,50 +31,34 @@ class AlmacenStockPlugin
     protected StockSourceLinkFactoryModel $sourceLinkModelFactory;
 
     /**
-     * @var ScopeConfigInterface
-     */
-    protected ScopeConfigInterface $scopeConfig;
-
-    /**
      * @var SessionQuote
      */
     protected SessionQuote $sessionQuote;
 
     /**
-     * @var CustomerFactory
+     * @var ConfigInterface
      */
-    protected CustomerFactory $customerFactory;
-
-    /**
-     * @var ResourceModelCustomer
-     */
-    protected ResourceModelCustomer $resourceCustomer;
+    protected ConfigInterface $config;
 
     /**
      * @param CustomerSession             $customerSession
      * @param StockSourceLink             $sourceLink
      * @param StockSourceLinkFactoryModel $sourceLinkModelFactory
-     * @param ScopeConfigInterface        $scopeConfig
+     * @param ConfigInterface             $config
      * @param SessionQuote                $sessionQuote
-     * @param CustomerFactory             $customerFactory
-     * @param ResourceModelCustomer       $resourceCustomer
      */
     public function __construct(
         CustomerSession $customerSession,
         StockSourceLink $sourceLink,
         StockSourceLinkFactoryModel $sourceLinkModelFactory,
-        ScopeConfigInterface $scopeConfig,
-        SessionQuote $sessionQuote,
-        CustomerFactory $customerFactory,
-        ResourceModelCustomer $resourceCustomer
+        ConfigInterface $config,
+        SessionQuote $sessionQuote
     ) {
         $this->customerSession = $customerSession;
         $this->sourceLink = $sourceLink;
         $this->sourceLinkModelFactory = $sourceLinkModelFactory;
-        $this->scopeConfig = $scopeConfig;
+        $this->config = $config;
         $this->sessionQuote = $sessionQuote;
-        $this->customerFactory = $customerFactory;
-        $this->resourceCustomer = $resourceCustomer;
     }
 
     /**
@@ -94,7 +75,7 @@ class AlmacenStockPlugin
         string $type,
         string $code
     ) {
-        if(!$this->scopeConfig->isSetFlag('wagento_catalog/product_list/use_almacen_for_stock')) {
+        if(!$this->config->getUseAlmacenForStock()) {
             return $proceed($type, $code);
         }
 
@@ -102,14 +83,14 @@ class AlmacenStockPlugin
             return $proceed($type, $code);
         }
 
-        $sourceStock = $customer->getAlmacen() ?? false;
-        if (!$sourceStock) {
+        $sourceStock = $customer->getCustomAttribute('almacen') ?? false;
+        if (!$sourceStock || !$sourceStock->getValue()) {
             return $proceed($type, $code);
         }
 
         /** @var \Magento\Inventory\Model\StockSourceLink $stockSouceModel */
         $stockSouceModel = $this->sourceLinkModelFactory->create();
-        $this->sourceLink->load($stockSouceModel, $sourceStock, 'source_code');
+        $this->sourceLink->load($stockSouceModel, $sourceStock->getValue(), 'source_code');
 
         if (!$stockSouceModel->getId()) {
             return $proceed($type, $code);
@@ -118,30 +99,24 @@ class AlmacenStockPlugin
     }
 
     /**
-     * @return Customer|null
+     * @return CustomerInterface|null
      */
-    protected function getCustomer(): ?Customer
+    protected function getCustomer(): ?CustomerInterface
     {
         try {
             if ($this->customerSession->isLoggedIn()) {
-                return $this->customerSession->getCustomer();
+                return $this->customerSession->getCustomerData();
             }
 
-            if (!$this->sessionQuote->getCustomerId()) {
+            if (!$this->sessionQuote->getQuote()) {
                 return null;
             }
 
-            $customerId = $this->sessionQuote->getCustomerId();
-            $model = $this->customerFactory->create();
-            $this->resourceCustomer
-                ->addAttribute(
-                    $this->resourceCustomer->getAttribute('almacen')
-                )
-                ->load($model, $customerId,CustomerInterface::ID);
-            if ($model->getId()) {
-                return $model;
+            if (!$this->sessionQuote->getQuote()->getCustomer()) {
+                return null;
             }
-            return null;
+
+            return $this->sessionQuote->getQuote()->getCustomer();
         } catch (\Exception $e) {
             return null;
         }

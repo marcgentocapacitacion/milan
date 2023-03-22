@@ -7,13 +7,8 @@ use Magento\Store\Model\ScopeInterface;
 /**
  * Class Config
  */
-class Config extends \Magento\Framework\App\Config
+class Config extends \Magento\Framework\App\Config implements ConfigInterface
 {
-    /**
-     * @var string
-     */
-    public const CONFIG_PATH = 'wagento_catalog/custom_pages_categories/custom_pages_brands';
-
     /**
      * @var string
      */
@@ -54,6 +49,14 @@ class Config extends \Magento\Framework\App\Config
             return true;
         }
         return false;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getUseAlmacenForStock(): bool
+    {
+        return $this->isSetFlag(self::USE_ALMACEN_FOR_STOCK) ?? false;
     }
 
     /**
