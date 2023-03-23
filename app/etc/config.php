@@ -520,6 +520,7 @@ return [
         'Wagento_PurchaseOrder' => 1,
         'Wagento_Rutavity' => 1,
         'Wagento_Sales' => 1,
+        'Wagento_SalesRepresentative' => 1,
         'WeltPixel_SearchAutoComplete' => 1,
         'Wagento_SelectCustom' => 1,
         'Wagento_StoreLocator' => 1,

@@ -1,0 +1,22 @@
+{
+    "name": "wagento/module-salesrepresentative",
+    "description": "Sales Representative extension that shows orders, customers and companies by company representative permission",
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Rudie Wang",
+            "email": "rudi.wang@wagento.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Wagento\\SalesRepresentative\\": ""
+        }
+    }
+}
