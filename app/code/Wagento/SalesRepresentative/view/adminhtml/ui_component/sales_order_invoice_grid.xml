@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Update sales_order_invoice_grid ui component to use custom data provider
+ * @package Wagento_SalesRepresentative
+ * @author Rudie Wang <rudi.wang@wagento.com>
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <dataSource name="sales_order_invoice_grid_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Magento_Sales::sales_invoice</aclResource>
+        <dataProvider class="Wagento\SalesRepresentative\Ui\Component\Invoice\DataProvider" name="sales_order_invoice_grid_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+</listing>
