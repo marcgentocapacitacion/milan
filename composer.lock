@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "749a588b204f203929d73a12668670a9",
+    "content-hash": "a95bfdf0484917392809d1ddd8348f18",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -2183,6 +2183,71 @@
                 }
             ],
             "time": "2023-01-30T10:40:19+00:00"
+        },
+        {
+            "name": "gmostafa/php-graphql-client",
+            "version": "v1.13",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mghoneimy/php-graphql-client.git",
+                "reference": "caadeba3e8af0d3d5cf6481e393cf933f3a83f3c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mghoneimy/php-graphql-client/zipball/caadeba3e8af0d3d5cf6481e393cf933f3a83f3c",
+                "reference": "caadeba3e8af0d3d5cf6481e393cf933f3a83f3c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/guzzle": "^6.3|^7.0.1",
+                "php": "^7.1 || ^8.0",
+                "psr/http-client": "^1.0",
+                "psr/http-message": "^1.0"
+            },
+            "conflict": {
+                "guzzlehttp/psr7": "< 1.7.0"
+            },
+            "require-dev": {
+                "aws/aws-sdk-php": "^3.186",
+                "codacy/coverage": "^1.4",
+                "phpunit/phpunit": "^7.5|^8.0|^9.0"
+            },
+            "suggest": {
+                "aws/aws-sdk-php": "Move this package to require section to use AWS IAM authorization",
+                "gmostafa/php-graphql-oqm": "To have object-to-query mapping support"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "GraphQL\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mostafa Ghoneimy",
+                    "email": "emostafagh@gmail.com"
+                }
+            ],
+            "description": "GraphQL client and query builder.",
+            "keywords": [
+                "builder",
+                "client",
+                "graph-ql",
+                "graphql",
+                "php",
+                "query",
+                "query-builder"
+            ],
+            "support": {
+                "issues": "https://github.com/mghoneimy/php-graphql-client/issues",
+                "source": "https://github.com/mghoneimy/php-graphql-client/tree/v1.13"
+            },
+            "time": "2021-08-10T12:39:57+00:00"
         },
         {
             "name": "google/recaptcha",
@@ -5581,6 +5646,32 @@
             "description": "Validating packages through a composer plugin"
         },
         {
+            "name": "magento/data-services",
+            "version": "7.0.15",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/data-services/magento-data-services-7.0.15.0.zip",
+                "shasum": "1a351ad6696066df259ce259d4510a87552b75ed"
+            },
+            "require": {
+                "magento/framework": ">=102.0.0 <104.0.0",
+                "magento/module-data-services": "7.0.15",
+                "magento/module-data-services-multishipping": "7.0.6",
+                "magento/module-saas-common": ">=101.1.0 <103.0.0",
+                "magento/services-id": "^3.1.2",
+                "php": "~7.2.0||~7.3.0||~7.4.0||~8.1.0||~8.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.5.0"
+            },
+            "type": "metapackage",
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Data Services metapackage"
+        },
+        {
             "name": "magento/ece-tools",
             "version": "2002.1.14",
             "dist": {
@@ -6199,6 +6290,39 @@
                 "AFL-3.0"
             ],
             "description": "Chinese (China) language"
+        },
+        {
+            "name": "magento/live-search",
+            "version": "3.0.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/live-search/magento-live-search-3.0.1.0.zip",
+                "shasum": "8b04b8c8303d56d665bfdb66c665864aefc18963"
+            },
+            "require": {
+                "magento/data-services": "^7.0.15",
+                "magento/module-bundle-product-data-exporter": "^102.0.0",
+                "magento/module-catalog-inventory-data-exporter": "^102.0.0",
+                "magento/module-catalog-url-rewrite-data-exporter": "^102.0.0",
+                "magento/module-configurable-product-data-exporter": "^102.0.0",
+                "magento/module-live-search": "3.0.1",
+                "magento/module-live-search-adapter": "3.0.1",
+                "magento/module-live-search-metrics": "3.0.1",
+                "magento/module-live-search-product-listing": "3.0.1",
+                "magento/module-live-search-storefront-popover": "3.0.1",
+                "magento/module-live-search-terms": "3.0.1",
+                "magento/module-parent-product-data-exporter": "^102.0.0",
+                "magento/module-saas-catalog": "^102.0.0",
+                "magento/module-saas-category": "^102.0.0",
+                "magento/module-saas-category-permissions": "^102.0.0",
+                "magento/module-saas-product-override": "^102.0.0",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "type": "metapackage",
+            "license": [
+                "proprietary"
+            ],
+            "description": "Live Search Metapackage"
         },
         {
             "name": "magento/magento-cloud-components",
@@ -7350,6 +7474,34 @@
                 "AFL-3.0"
             ],
             "description": "N/A"
+        },
+        {
+            "name": "magento/module-admin-graph-ql-server",
+            "version": "1.0.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-admin-graph-ql-server/magento-module-admin-graph-ql-server-1.0.1.0.zip",
+                "shasum": "9c7d8537d330b0c17523729813b9033dab1bf920"
+            },
+            "require": {
+                "magento/framework": "^103.0.0",
+                "magento/module-graph-ql-server": "^1.0.1",
+                "php": "~7.3.0||~7.4.0||~8.1.0||~8.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\AdminGraphQlServer\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Commerce Admin BFF GraphQL Server"
         },
         {
             "name": "magento/module-admin-gws",
@@ -8936,6 +9088,39 @@
             "description": "N/A"
         },
         {
+            "name": "magento/module-bundle-product-data-exporter",
+            "version": "102.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-bundle-product-data-exporter/magento-module-bundle-product-data-exporter-102.0.0.0.zip",
+                "shasum": "d117079a105c1ed12b76bee5c9fc1ad237838a68"
+            },
+            "require": {
+                "magento/framework": ">=103.0.4",
+                "magento/module-bundle": ">=101.0.4",
+                "magento/module-catalog": ">=104.0.4",
+                "magento/module-catalog-data-exporter": "self.version",
+                "magento/module-data-exporter": "self.version",
+                "magento/module-eav": ">=102.1.4",
+                "magento/module-store": ">=101.1.4",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\BundleProductDataExporter\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Bundle product data exporter"
+        },
+        {
             "name": "magento/module-bundle-requisition-list",
             "version": "100.3.5",
             "dist": {
@@ -9305,6 +9490,46 @@
             "description": "N/A"
         },
         {
+            "name": "magento/module-catalog-data-exporter",
+            "version": "102.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-catalog-data-exporter/magento-module-catalog-data-exporter-102.0.0.0.zip",
+                "shasum": "96e2e792f64c6f007c0c1c9f7a2b71b927b345dc"
+            },
+            "require": {
+                "magento/framework": ">=103.0.4",
+                "magento/module-catalog": ">=104.0.4",
+                "magento/module-customer": ">=103.0.4",
+                "magento/module-data-exporter": "self.version",
+                "magento/module-directory": ">=100.4.4",
+                "magento/module-downloadable": ">=100.4.4",
+                "magento/module-eav": ">=102.1.4",
+                "magento/module-grouped-product": ">=100.4.2",
+                "magento/module-indexer": ">=100.4.4",
+                "magento/module-store": ">=101.1.4",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "suggest": {
+                "magento/module-catalog": ">=104.0.4",
+                "magento/module-config": ">=101.2.4"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\CatalogDataExporter\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Catalog data exporter"
+        },
+        {
             "name": "magento/module-catalog-event",
             "version": "101.1.5",
             "dist": {
@@ -9484,6 +9709,38 @@
                 "AFL-3.0"
             ],
             "description": "N/A"
+        },
+        {
+            "name": "magento/module-catalog-inventory-data-exporter",
+            "version": "102.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-catalog-inventory-data-exporter/magento-module-catalog-inventory-data-exporter-102.0.0.0.zip",
+                "shasum": "415188df6d508628866d1f0081f494df68cbc726"
+            },
+            "require": {
+                "magento/framework": ">=103.0.4",
+                "magento/module-catalog": ">=104.0.4",
+                "magento/module-catalog-data-exporter": "self.version",
+                "magento/module-catalog-inventory": ">=100.4.4",
+                "magento/module-data-exporter": "self.version",
+                "magento/module-store": ">=101.1.4",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\CatalogInventoryDataExporter\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Catalog inventory data exporter"
         },
         {
             "name": "magento/module-catalog-inventory-graph-ql",
@@ -10020,6 +10277,36 @@
             "description": "N/A"
         },
         {
+            "name": "magento/module-catalog-url-rewrite-data-exporter",
+            "version": "102.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-catalog-url-rewrite-data-exporter/magento-module-catalog-url-rewrite-data-exporter-102.0.0.0.zip",
+                "shasum": "09708c2377e18f719a86fcac68750a6b3da0f790"
+            },
+            "require": {
+                "magento/framework": ">=103.0.4",
+                "magento/module-data-exporter": "self.version",
+                "magento/module-store": ">=101.1.4",
+                "magento/module-url-rewrite": ">=102.0.3",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\CatalogUrlRewriteDataExporter\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Product URL data exporter"
+        },
+        {
             "name": "magento/module-catalog-url-rewrite-graph-ql",
             "version": "100.4.4",
             "dist": {
@@ -10121,6 +10408,41 @@
                 "AFL-3.0"
             ],
             "description": "N/A"
+        },
+        {
+            "name": "magento/module-category-permission-data-exporter",
+            "version": "102.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-category-permission-data-exporter/magento-module-category-permission-data-exporter-102.0.0.0.zip",
+                "shasum": "4ac2817b730abccce61d5f4143054ee87cee4dff"
+            },
+            "require": {
+                "magento/framework": ">=103.0.4",
+                "magento/module-catalog-permissions": ">=100.4.4",
+                "magento/module-data-exporter": "self.version",
+                "magento/module-indexer": ">=100.4.4",
+                "magento/module-query-xml": "self.version",
+                "magento/module-store": ">=101.1.4",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "suggest": {
+                "magento/module-config": ">=101.1.2"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\CategoryPermissionDataExporter\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Export raw data to for Category Permissions feature"
         },
         {
             "name": "magento/module-checkout",
@@ -11059,6 +11381,39 @@
             "description": "N/A"
         },
         {
+            "name": "magento/module-configurable-product-data-exporter",
+            "version": "102.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-configurable-product-data-exporter/magento-module-configurable-product-data-exporter-102.0.0.0.zip",
+                "shasum": "e17afe4e636b238807d5153793aed568c1045d8e"
+            },
+            "require": {
+                "magento/framework": ">=103.0.4",
+                "magento/module-catalog": ">=104.0.4",
+                "magento/module-catalog-data-exporter": "self.version",
+                "magento/module-configurable-product": ">=100.4.4",
+                "magento/module-data-exporter": "self.version",
+                "magento/module-eav": ">=102.1.4",
+                "magento/module-store": ">=101.1.4",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\ConfigurableProductDataExporter\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Configurable product data exporter"
+        },
+        {
             "name": "magento/module-configurable-product-graph-ql",
             "version": "100.4.6",
             "dist": {
@@ -11808,6 +12163,100 @@
                 "proprietary"
             ],
             "description": "N/A"
+        },
+        {
+            "name": "magento/module-data-exporter",
+            "version": "102.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-data-exporter/magento-module-data-exporter-102.0.0.0.zip",
+                "shasum": "4781b5e670d32a75cf5065386b459d4c350bdc09"
+            },
+            "require": {
+                "magento/framework": ">=103.0.4",
+                "magento/module-analytics": ">=100.4.4",
+                "magento/module-query-xml": "self.version",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\DataExporter\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Magento 2 Data Exporter module exports necessary data to Magento cloud services that rely on it"
+        },
+        {
+            "name": "magento/module-data-services",
+            "version": "7.0.15",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-data-services/magento-module-data-services-7.0.15.0.zip",
+                "shasum": "86d4501f27888c5bff4b7d61ad36446ff3b8f36b"
+            },
+            "require": {
+                "magento/framework": ">=102.0.0 <104.0.0",
+                "magento/module-catalog": ">=103.0.0 <105.0.0",
+                "magento/module-checkout": ">=100.3.0 <100.5.0",
+                "magento/module-config": ">=101.1.0 <101.3.0",
+                "magento/module-customer": ">=102.0.0 <104.0.0",
+                "magento/module-quote": ">=101.1.0 <101.3.0",
+                "magento/module-saas-common": ">=101.1.0 <103.0.0",
+                "magento/module-store": ">=101.0.0 <101.2.0",
+                "magento/services-id": "^3.1.2",
+                "php": "~7.2.0||~7.3.0||~7.4.0||~8.1.0||~8.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\DataServices\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Data Services base module"
+        },
+        {
+            "name": "magento/module-data-services-multishipping",
+            "version": "7.0.6",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-data-services-multishipping/magento-module-data-services-multishipping-7.0.6.0.zip",
+                "shasum": "d40b2efb726c8176c463ee45ac784fd7c5873053"
+            },
+            "require": {
+                "magento/framework": ">102.0.0",
+                "magento/module-customer": ">=102.0.0 <104.0.0",
+                "magento/module-data-services": "7.0.15",
+                "magento/module-multishipping": ">=100.3.0 <100.5.0",
+                "php": "~7.2.0||~7.3.0||~7.4.0||~8.1.0||~8.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\DataServicesMultishipping\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Data Services Multishipping module"
         },
         {
             "name": "magento/module-deferred-total-calculating",
@@ -13440,6 +13889,36 @@
             "description": "N/A"
         },
         {
+            "name": "magento/module-graph-ql-server",
+            "version": "1.0.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-graph-ql-server/magento-module-graph-ql-server-1.0.1.0.zip",
+                "shasum": "a6a4a2f01bf6eabf9417bccaaeb6a0426e860cd6"
+            },
+            "require": {
+                "magento/framework": "^103.0.0",
+                "magento/module-backend": ">=101.0.0 <103.0.0",
+                "magento/module-graph-ql": "^100.4.0",
+                "magento/module-webapi": "^100.4.0",
+                "php": "~7.3.0||~7.4.0||~8.1.0||~8.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\GraphQlServer\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Commerce BFF GraphQL Server"
+        },
+        {
             "name": "magento/module-grouped-catalog-inventory",
             "version": "100.4.3",
             "dist": {
@@ -14582,6 +15061,40 @@
                 "AFL-3.0"
             ],
             "description": "N/A"
+        },
+        {
+            "name": "magento/module-inventory-data-exporter",
+            "version": "102.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-inventory-data-exporter/magento-module-inventory-data-exporter-102.0.0.0.zip",
+                "shasum": "e42d0df89e3f0d5cad3bd3bd040095c74434a400"
+            },
+            "require": {
+                "magento/framework": ">=103.0.4",
+                "magento/module-catalog": ">=104.0.4",
+                "magento/module-catalog-inventory": ">=100.4.4",
+                "magento/module-data-exporter": "self.version",
+                "magento/module-inventory": ">=1.2.2",
+                "magento/module-inventory-api": ">=1.2.2",
+                "magento/module-inventory-catalog-api": ">=1.3.2",
+                "magento/module-query-xml": "self.version",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\InventoryDataExporter\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Inventory data exporter"
         },
         {
             "name": "magento/module-inventory-distance-based-source-selection",
@@ -16388,6 +16901,199 @@
                 "proprietary"
             ],
             "description": "N/A"
+        },
+        {
+            "name": "magento/module-live-search",
+            "version": "3.0.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-live-search/magento-module-live-search-3.0.1.0.zip",
+                "shasum": "4d0a90569d08fe3b6d7a8306030d5b6190dfe356"
+            },
+            "require": {
+                "ext-json": "*",
+                "magento/framework": ">=103.0.4",
+                "magento/module-advanced-search": "^100.0.2",
+                "magento/module-backend": "^102.0.0",
+                "magento/module-config": ">=101.1.2",
+                "magento/module-customer": "^103.0.0",
+                "magento/module-search": "^101.0.0",
+                "magento/module-services-id": "^3.1.2",
+                "magento/module-store": ">=101.0.2",
+                "magento/services-connector": "^1.2.5",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\LiveSearch\\": ""
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "A module to manage search configuration"
+        },
+        {
+            "name": "magento/module-live-search-adapter",
+            "version": "3.0.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-live-search-adapter/magento-module-live-search-adapter-3.0.1.0.zip",
+                "shasum": "9f066c06df88b1dc39dad5aa28af32afc45c8d75"
+            },
+            "require": {
+                "gmostafa/php-graphql-client": "^1.8",
+                "magento/framework": ">=103.0.4",
+                "magento/module-catalog": ">=103.0.2",
+                "magento/module-catalog-inventory": "^100.4.0",
+                "magento/module-catalog-search": ">=102.0.0",
+                "magento/module-eav": ">=102.0.2",
+                "magento/module-live-search": "3.0.1",
+                "magento/module-search": "^101.0.0",
+                "magento/module-store": ">=101.0.2",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\LiveSearchAdapter\\": ""
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "PHP adapter for live search"
+        },
+        {
+            "name": "magento/module-live-search-metrics",
+            "version": "3.0.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-live-search-metrics/magento-module-live-search-metrics-3.0.1.0.zip",
+                "shasum": "35a2490c67e672436e31dfeebeae2ad64596dfbd"
+            },
+            "require": {
+                "ext-json": "*",
+                "magento/framework": ">=103.0.4",
+                "magento/module-backend": "^102.0.0",
+                "magento/module-catalog": "^104.0.0",
+                "magento/module-live-search": "3.0.1",
+                "magento/module-live-search-adapter": "3.0.1",
+                "magento/module-store": ">=101.0.2",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\LiveSearchMetrics\\": ""
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "LiveSearch metrics"
+        },
+        {
+            "name": "magento/module-live-search-product-listing",
+            "version": "3.0.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-live-search-product-listing/magento-module-live-search-product-listing-3.0.1.0.zip",
+                "shasum": "81e89ded17912f071228544ae3d185580c1e4346"
+            },
+            "require": {
+                "magento/framework": ">=102.0.2",
+                "magento/module-catalog": ">=103.0.2",
+                "magento/module-catalog-inventory": "^100.4.0",
+                "magento/module-catalog-search": ">=102.0.0",
+                "magento/module-customer": "^103.0.0",
+                "magento/module-live-search": "3.0.1",
+                "magento/module-search": "^101.0.0",
+                "magento/module-services-id": "^3.0.0",
+                "magento/module-store": ">=101.0.2",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\LiveSearchProductListing\\": ""
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "A module to serve search results in PLP page directly from LiveSearch SaaS"
+        },
+        {
+            "name": "magento/module-live-search-storefront-popover",
+            "version": "3.0.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-live-search-storefront-popover/magento-module-live-search-storefront-popover-3.0.1.0.zip",
+                "shasum": "d5162dbe02d208e53f881c8cec144137a7627e76"
+            },
+            "require": {
+                "ext-json": "*",
+                "magento/framework": ">=103.0.4",
+                "magento/module-catalog-inventory": "^100.4.0",
+                "magento/module-live-search": "3.0.1",
+                "magento/module-search": "^101.0.0",
+                "magento/module-store": ">=101.0.2",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\LiveSearchStorefrontPopover\\": ""
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Live Search storefront popover"
+        },
+        {
+            "name": "magento/module-live-search-terms",
+            "version": "3.0.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-live-search-terms/magento-module-live-search-terms-3.0.1.0.zip",
+                "shasum": "4cb6cc3fa43dd7ada727de641dbf258790ab694b"
+            },
+            "require": {
+                "magento/framework": ">=103.0.4",
+                "magento/module-search": "^101.0.0",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\LiveSearchTerms\\": ""
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Live Search Popular Terms"
         },
         {
             "name": "magento/module-logging",
@@ -18543,6 +19249,37 @@
             "description": "N/A"
         },
         {
+            "name": "magento/module-parent-product-data-exporter",
+            "version": "102.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-parent-product-data-exporter/magento-module-parent-product-data-exporter-102.0.0.0.zip",
+                "shasum": "50d3ebafe707f0ea1f9a31a84a251c9e09252e4d"
+            },
+            "require": {
+                "magento/framework": ">=103.0.4",
+                "magento/module-catalog": ">=104.0.4",
+                "magento/module-configurable-product": ">=100.4.4",
+                "magento/module-data-exporter": "self.version",
+                "magento/module-store": ">=101.1.4",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\ParentProductDataExporter\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Extract parent-child product relation"
+        },
+        {
             "name": "magento/module-payment",
             "version": "100.4.6",
             "dist": {
@@ -19005,6 +19742,77 @@
             "description": "N/A"
         },
         {
+            "name": "magento/module-product-override-data-exporter",
+            "version": "102.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-product-override-data-exporter/magento-module-product-override-data-exporter-102.0.0.0.zip",
+                "shasum": "e7abc481b2242f2a540c90d2f8a7f8cef60d25b7"
+            },
+            "require": {
+                "magento/framework": ">=103.0.4",
+                "magento/module-catalog": ">=104.0.4",
+                "magento/module-catalog-data-exporter": "self.version",
+                "magento/module-catalog-permissions": ">=100.4.4",
+                "magento/module-configurable-product-data-exporter": "self.version",
+                "magento/module-data-exporter": "self.version",
+                "magento/module-query-xml": "self.version",
+                "magento/module-store": ">=101.1.4",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "suggest": {
+                "magento/module-catalog-permissions": "Catalog permissions module is needed for B2B permissions support",
+                "magento/module-configurable-product": "Configurable product module is required for proper module functioning",
+                "magento/module-customer": "Customer module is needed for B2B prices support",
+                "magento/module-store": "Store module is needed for B2B prices support"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\ProductOverrideDataExporter\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Product prices exporter"
+        },
+        {
+            "name": "magento/module-product-variant-data-exporter",
+            "version": "102.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-product-variant-data-exporter/magento-module-product-variant-data-exporter-102.0.0.0.zip",
+                "shasum": "6c316b5de22b43bab4e19e3540721574d89039a2"
+            },
+            "require": {
+                "magento/framework": ">=103.0.4",
+                "magento/module-catalog": ">=104.0.4",
+                "magento/module-configurable-product": ">=100.4.4",
+                "magento/module-data-exporter": "self.version",
+                "magento/module-eav": ">=102.1.4",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\ProductVariantDataExporter\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Product Variant Data Exporter"
+        },
+        {
             "name": "magento/module-product-video",
             "version": "100.4.6",
             "dist": {
@@ -19267,6 +20075,34 @@
                 "AFL-3.0"
             ],
             "description": "N/A"
+        },
+        {
+            "name": "magento/module-query-xml",
+            "version": "102.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-query-xml/magento-module-query-xml-102.0.0.0.zip",
+                "shasum": "d661b045f188eb8c3056b44a5da423b00a8466da"
+            },
+            "require": {
+                "magento/framework": ">=103.0.4",
+                "magento/module-analytics": ">=100.4.4",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\QueryXml\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Query Xml"
         },
         {
             "name": "magento/module-quick-checkout",
@@ -21267,6 +22103,307 @@
             "description": "N/A"
         },
         {
+            "name": "magento/module-saas-catalog",
+            "version": "102.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-saas-catalog/magento-module-saas-catalog-102.0.0.0.zip",
+                "shasum": "290daea12fb6b0b914fe568db0940dc67d284d6c"
+            },
+            "require": {
+                "magento/framework": ">=103.0.4",
+                "magento/module-catalog-data-exporter": "102.*",
+                "magento/module-data-exporter": "102.*",
+                "magento/module-saas-common": "self.version",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.5.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\SaaSCatalog\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Magento 2 SaaS Catalog module exports necessary catalog data to Magento cloud services that rely on it"
+        },
+        {
+            "name": "magento/module-saas-category",
+            "version": "102.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-saas-category/magento-module-saas-category-102.0.0.0.zip",
+                "shasum": "bedeef005b7db88385d9e8d11bda008adf508995"
+            },
+            "require": {
+                "magento/framework": ">=103.0.4",
+                "magento/module-catalog-data-exporter": "102.*",
+                "magento/module-data-exporter": "102.*",
+                "magento/module-saas-common": "self.version",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.5.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\SaaSCategory\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Magento_SaaSCategory"
+        },
+        {
+            "name": "magento/module-saas-category-permissions",
+            "version": "102.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-saas-category-permissions/magento-module-saas-category-permissions-102.0.0.0.zip",
+                "shasum": "d16dad00750665b8a22541f7a799bac17ac04cdf"
+            },
+            "require": {
+                "magento/framework": ">=103.0.4",
+                "magento/module-category-permission-data-exporter": "102.*",
+                "magento/module-data-exporter": "102.*",
+                "magento/module-saas-common": "self.version",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.5.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\SaaSCategoryPermissions\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Magento_SaaSCategoryPermissions"
+        },
+        {
+            "name": "magento/module-saas-common",
+            "version": "102.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-saas-common/magento-module-saas-common-102.0.0.0.zip",
+                "shasum": "d2df0c67617c334911ea421353f2bbda484466cf"
+            },
+            "require": {
+                "magento/framework": ">=103.0.4",
+                "magento/module-data-exporter": "102.*",
+                "magento/module-services-id": "^3.1.2",
+                "magento/services-connector": "^1.2.5",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.5.0"
+            },
+            "suggest": {
+                "ext-zlib": "Allow gzip compression of HTTP requests"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\SaaSCommon\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Magento 2 SaaS Common module for shared saas export functionality"
+        },
+        {
+            "name": "magento/module-saas-inventory",
+            "version": "102.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-saas-inventory/magento-module-saas-inventory-102.0.0.0.zip",
+                "shasum": "109bdcff6bd1c19e2a17108ea51b7886d8d15be6"
+            },
+            "require": {
+                "magento/framework": ">=103.0.4",
+                "magento/module-data-exporter": "102.*",
+                "magento/module-inventory-data-exporter": "102.*",
+                "magento/module-saas-common": "self.version",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.5.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\SaaSInventory\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Magento 2 SaaS Inventory module exports necessary inventory data to Magento cloud services that rely on it"
+        },
+        {
+            "name": "magento/module-saas-product-override",
+            "version": "102.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-saas-product-override/magento-module-saas-product-override-102.0.0.0.zip",
+                "shasum": "7cd8cf1c9592b662483806c11c200c94b8f42ba6"
+            },
+            "require": {
+                "magento/framework": ">=103.0.4",
+                "magento/module-data-exporter": "102.*",
+                "magento/module-product-override-data-exporter": "102.*",
+                "magento/module-saas-common": "self.version",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.5.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\SaaSProductOverride\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Magento_SaaSProductOverride"
+        },
+        {
+            "name": "magento/module-saas-product-variant",
+            "version": "102.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-saas-product-variant/magento-module-saas-product-variant-102.0.0.0.zip",
+                "shasum": "75f399e830d8e070b91df2c6908725e1e570f70b"
+            },
+            "require": {
+                "magento/framework": ">=103.0.4",
+                "magento/module-data-exporter": "102.*",
+                "magento/module-product-variant-data-exporter": "102.*",
+                "magento/module-saas-common": "self.version",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.5.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\SaaSProductVariant\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Magento_SaaSProductVariant"
+        },
+        {
+            "name": "magento/module-saas-sales",
+            "version": "102.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-saas-sales/magento-module-saas-sales-102.0.0.0.zip",
+                "shasum": "2d7729f75a1310ebaf43bcebb0b2a9ba9e27c7cf"
+            },
+            "require": {
+                "ext-json": "*",
+                "magento/framework": ">=103.0.4",
+                "magento/module-data-exporter": "102.*",
+                "magento/module-saas-common": "self.version",
+                "magento/module-sales-orders-data-exporter": "102.*",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.5.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\SaaSSales\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Magento 2 SaaS Sales module exports necessary orders data to Magento cloud services that rely on it"
+        },
+        {
+            "name": "magento/module-saas-scopes",
+            "version": "102.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-saas-scopes/magento-module-saas-scopes-102.0.0.0.zip",
+                "shasum": "b50ac88adf5abd27ac347d7435ecf5af978dd8a9"
+            },
+            "require": {
+                "magento/framework": ">=103.0.4",
+                "magento/module-data-exporter": "102.*",
+                "magento/module-saas-common": "self.version",
+                "magento/module-scopes-data-exporter": "102.*",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.5.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\SaaSScopes\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Magento 2 SaaS Scopes Exporter module exports necessary scoping data to Magento cloud services that rely on it"
+        },
+        {
             "name": "magento/module-sales",
             "version": "103.0.6",
             "dist": {
@@ -21445,6 +22582,36 @@
                 "AFL-3.0"
             ],
             "description": "N/A"
+        },
+        {
+            "name": "magento/module-sales-orders-data-exporter",
+            "version": "102.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-sales-orders-data-exporter/magento-module-sales-orders-data-exporter-102.0.0.0.zip",
+                "shasum": "5c3117f79e1d04d6909ef59703022d4670a56a5f"
+            },
+            "require": {
+                "magento/framework": ">=103.0.4",
+                "magento/module-data-exporter": "self.version",
+                "magento/module-query-xml": "self.version",
+                "magento/module-sales": ">=103.0.4",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\SalesOrdersDataExporter\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Sales data exporter"
         },
         {
             "name": "magento/module-sales-rule",
@@ -21719,6 +22886,34 @@
             "description": "N/A"
         },
         {
+            "name": "magento/module-scopes-data-exporter",
+            "version": "102.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-scopes-data-exporter/magento-module-scopes-data-exporter-102.0.0.0.zip",
+                "shasum": "a530a3a19a56d87dbb378d8f10cca23160b1aa2b"
+            },
+            "require": {
+                "magento/framework": ">=103.0.4",
+                "magento/module-data-exporter": "self.version",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\ScopesDataExporter\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Scopes data exporter"
+        },
+        {
             "name": "magento/module-search",
             "version": "101.1.6",
             "dist": {
@@ -21910,6 +23105,98 @@
                 "AFL-3.0"
             ],
             "description": "N/A"
+        },
+        {
+            "name": "magento/module-services-id",
+            "version": "3.1.2",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-services-id/magento-module-services-id-3.1.2.0.zip",
+                "shasum": "79588af55e6a9d6e701dfad51f48dd2c6aacec47"
+            },
+            "require": {
+                "magento/framework": ">=102.0.0 <104.0.0",
+                "magento/module-config": ">=101.1.0 <101.3.0",
+                "magento/services-connector": "^1.2.5",
+                "php": "~7.2.0||~7.3.0||~7.4.0||~8.1.0||~8.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\ServicesId\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Commerce Services identity"
+        },
+        {
+            "name": "magento/module-services-id-graph-ql-server",
+            "version": "1.0.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-services-id-graph-ql-server/magento-module-services-id-graph-ql-server-1.0.3.0.zip",
+                "shasum": "0d48ffd5313004986a8d5a49b79ec87fc98c8d94"
+            },
+            "require": {
+                "magento/framework": ">=102.0.0 <104.0.0",
+                "magento/module-admin-graph-ql-server": "^1.0.1",
+                "magento/module-backend": ">=101.0.0 <103.0.0",
+                "magento/module-services-id": "^3.1.2",
+                "php": "~7.2.0||~7.3.0||~7.4.0||~8.1.0||~8.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\ServicesIdGraphQlServer\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Commerce Services identity GraphQL server"
+        },
+        {
+            "name": "magento/module-services-id-layout",
+            "version": "1.0.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/module-services-id-layout/magento-module-services-id-layout-1.0.3.0.zip",
+                "shasum": "fb63abd40dafed0c67f876d679712d8541a992a1"
+            },
+            "require": {
+                "magento/framework": ">=102.0.0 <104.0.0",
+                "magento/module-backend": ">=101.0.0 <103.0.0",
+                "magento/module-config": ">=101.1.0 <101.3.0",
+                "magento/module-graph-ql-server": "^1.0.1",
+                "magento/module-services-id": "^3.1.2",
+                "magento/module-services-id-graph-ql-server": "^1.0.3",
+                "magento/module-store": ">=101.0.0 <101.2.0",
+                "php": "~7.2.0||~7.3.0||~7.4.0||~8.1.0||~8.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\ServicesIdLayout\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Commerce Services identity Layout"
         },
         {
             "name": "magento/module-shared-catalog",
@@ -24384,6 +25671,33 @@
             "description": "Quick Checkout metapackage"
         },
         {
+            "name": "magento/saas-export",
+            "version": "102.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/saas-export/magento-saas-export-102.0.0.0.zip",
+                "shasum": "347c416a1f6251e065fd0184906839e32c2dfd7b"
+            },
+            "require": {
+                "magento/module-saas-catalog": "self.version",
+                "magento/module-saas-category": "self.version",
+                "magento/module-saas-category-permissions": "self.version",
+                "magento/module-saas-common": "self.version",
+                "magento/module-saas-inventory": "self.version",
+                "magento/module-saas-product-override": "self.version",
+                "magento/module-saas-product-variant": "self.version",
+                "magento/module-saas-sales": "self.version",
+                "magento/module-saas-scopes": "self.version",
+                "php": "~8.1.0||~8.2.0"
+            },
+            "type": "metapackage",
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Magento 2 SaaS Export module exports necessary data to Magento cloud services that rely on it"
+        },
+        {
             "name": "magento/security-package",
             "version": "1.1.5",
             "dist": {
@@ -24451,6 +25765,63 @@
             },
             "type": "metapackage",
             "description": "Magento Security Package for Enterprise Edition"
+        },
+        {
+            "name": "magento/services-connector",
+            "version": "1.2.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/services-connector/magento-services-connector-1.2.5.0.zip",
+                "shasum": "527516ff1a1f3c803392b8b9b91d454c6f99855b"
+            },
+            "require": {
+                "firebase/php-jwt": "^6.0.0",
+                "guzzlehttp/guzzle": "^6.0.0||^7.3.0",
+                "magento/framework": ">=101.0.0",
+                "php": "~7.2.0||~7.3.0||~7.4.0||~8.1.0||~8.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magento\\ServicesConnector\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Saas utilities module"
+        },
+        {
+            "name": "magento/services-id",
+            "version": "3.1.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/services-id/magento-services-id-3.1.3.0.zip",
+                "shasum": "501cfff15ad2be3b6360395e28dbe8e036e2e0e3"
+            },
+            "require": {
+                "magento/framework": ">=102.0.0 <104.0.0",
+                "magento/module-admin-graph-ql-server": "^1.0.1",
+                "magento/module-backend": ">=101.0.0 <103.0.0",
+                "magento/module-config": ">=101.1.0 <101.3.0",
+                "magento/module-graph-ql-server": "^1.0.1",
+                "magento/module-services-id": "3.1.2",
+                "magento/module-services-id-graph-ql-server": "1.0.3",
+                "magento/module-services-id-layout": "1.0.3",
+                "magento/module-store": ">=101.0.0 <101.2.0",
+                "magento/services-connector": "^1.2.5",
+                "php": "~7.2.0||~7.3.0||~7.4.0||~8.1.0||~8.2.0"
+            },
+            "type": "metapackage",
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Commerce Services identity metapackage"
         },
         {
             "name": "magento/theme-adminhtml-backend",
