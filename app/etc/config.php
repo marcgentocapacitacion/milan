@@ -550,6 +550,7 @@ return [
         'Wagento_CustomerAccountNavigation' => 1,
         'Wagento_ImportData' => 1,
         'Wagento_IntegrationERP' => 1,
+        'Wagento_LiveSearchStorefrontPopover' => 1,
         'Wagento_ModifiedCheckout' => 1,
         'WeltPixel_Backend' => 1,
         'Wagento_OfflineShipping' => 1,
@@ -558,7 +559,7 @@ return [
         'Wagento_Rutavity' => 1,
         'Wagento_Sales' => 1,
         'Wagento_SalesRepresentative' => 1,
-        'WeltPixel_SearchAutoComplete' => 1,
+        'WeltPixel_SearchAutoComplete' => 0,
         'Wagento_SelectCustom' => 1,
         'Wagento_StoreLocator' => 1,
         'Wagento_Theme' => 1,
@@ -572,7 +573,7 @@ return [
         'WeltPixel_MobileDetect' => 1,
         'Wagento_NavigationLinks' => 1,
         'WeltPixel_QuickCart' => 1,
-        'Wagento_SearchAutoComplete' => 1,
+        'Wagento_SearchAutoComplete' => 0,
         'WeltPixel_Sitemap' => 1,
         'WeltPixel_SocialLogin' => 1
     ]
