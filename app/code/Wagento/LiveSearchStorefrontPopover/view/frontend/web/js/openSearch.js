@@ -30,20 +30,14 @@ define([
                 media: '(max-width: 768px)',
                 entry: function () {
                     this.isExpandable = true;
-                }.bind(this),
-                exit: function () {
-                    this.isExpandable = true;
                 }.bind(this)
             });
 
             this.searchLabel.on('click', function (e) {
-                if (this.isActive()) {
+                if (!this.isExpandable && this.isActive()) {
                     this.searchLabel.trigger('focus');
-                    if (!this.isExpandable) {
-                        this.setActiveState(false);
-                    } else if(this.isExpandable) {
-                        e.preventDefault();
-                    }
+                    this.setActiveState(false);
+                    e.preventDefault();
                 }
             }.bind(this));
 
