@@ -514,6 +514,7 @@ return [
         'Wagento_CustomerAccountNavigation' => 1,
         'Wagento_ImportData' => 1,
         'Wagento_IntegrationERP' => 1,
+        'Wagento_InventoryGraphQl' => 1,
         'Wagento_ModifiedCheckout' => 1,
         'WeltPixel_Backend' => 1,
         'Wagento_OfflineShipping' => 1,
