@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Sales Representative extension shows items by company's sales representative permission
+ * @package Wagento_SalesRepresentative
+ * @author Rudie Wang <rudi.wang@wagento.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Add company & sales representative to order collection -->
+    <type name="Magento\Sales\Model\ResourceModel\Order\Grid\Collection">
+        <plugin name="order_sales_representative_column" type="Wagento\SalesRepresentative\Plugin\Model\ResourceModel\Grid\Order\CollectionPlugin"/>
+    </type>
+    <!-- Add company & sales representative to invoice collection -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <plugin name="invoice_sales_representative_column" type="Wagento\SalesRepresentative\Plugin\Framework\View\Element\UiComponent\DataProvider\CollectionFactory" sortOrder="1"/>
+    </type>
+    <!-- Check customer sales representative permission on Customer edit pages -->
+    <type name="Magento\Customer\Controller\Adminhtml\Index\Edit">
+        <plugin name="customer_edit_sales_representative_check" type="Wagento\SalesRepresentative\Plugin\Controller\Adminhtml\Customer\Index\Edit" sortOrder="1"/>
+    </type>
+    <!-- Check company sales representative permission on Company edit pages -->
+    <type name="Magento\Company\Controller\Adminhtml\Index\Edit">
+        <plugin name="customer_edit_sales_representative_check" type="Wagento\SalesRepresentative\Plugin\Controller\Adminhtml\Company\Index\Edit" sortOrder="1"/>
+    </type>
+    <!-- Check company sales representative permission on Order edit pages -->
+    <type name="Magento\Sales\Controller\Adminhtml\Order\View">
+        <plugin name="order_view_sales_representative_check" type="Wagento\SalesRepresentative\Plugin\Controller\Adminhtml\Order\Index\View" sortOrder="1"/>
+    </type>
+</config>

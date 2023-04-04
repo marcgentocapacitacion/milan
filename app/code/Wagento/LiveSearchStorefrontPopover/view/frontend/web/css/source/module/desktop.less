@@ -1,0 +1,32 @@
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .search-autocomplete {
+        border-radius: 10px;
+        > .popover-container {
+            border-radius: 10px;
+            width: 1125px;
+            height: 68vh;
+            > .products-container {
+                > .product-result {
+                    font-size: 15px;
+                    height: 120px;
+                    > img {
+                        max-width: 105px;
+                    }
+                    > .product-price {
+                        font-size: 15px;
+                        font-weight: bold;
+                        margin-top: 10px;
+                    }
+                }
+            }
+
+            > .view-all-footer {
+                background: linear-gradient(90deg, #633093 0%, #1e73bb 100%);
+                color: #fff;
+                font-weight: bold;
+                font-size: 17px;
+                content: "Ver todo";
+            }
+        }
+    }
+}
