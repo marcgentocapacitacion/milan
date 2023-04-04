@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\CatalogGraphQl\Model\Resolver\Product\PriceRange">
+        <plugin name="wagento_cataloggraphql_pricerange"
+                type="Wagento\CatalogGraphQl\Plugin\Model\Resolver\Product\PriceRangePlugin"/>
+    </type>
+    <type name="Magento\CatalogGraphQl\Model\Resolver\Product\SpecialPrice">
+        <plugin name="wagento_cataloggraphql_specialprice"
+                type="Wagento\CatalogGraphQl\Plugin\Model\Resolver\Product\SpecialPricePlugin"/>
+    </type>
+    <type name="Magento\CatalogGraphQl\Model\Resolver\Product\Price">
+        <plugin name="wagento_cataloggraphql_price"
+                type="Wagento\CatalogGraphQl\Plugin\Model\Resolver\Product\PricePlugin"/>
+    </type>
+</config>
