@@ -4,7 +4,7 @@
 
 mysql:
     type: mysql:10.6
-    disk: 10240
+    disk: 2048
 
 redis:
     type: redis:7.0
