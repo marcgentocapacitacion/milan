@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Sales Representative extension shows items by company's sales representative permission
+ * @package Wagento_SalesRepresentative
+ * @author Rudie Wang <rudi.wang@wagento.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Customer filter by sales representative -->
+    <preference for="Magento\Customer\Ui\Component\DataProvider" type="Wagento\SalesRepresentative\Ui\Component\Customer\DataProvider"/>
+    <!-- Company filter by sales representative -->
+    <preference for="CompanyProvider" type="Wagento\SalesRepresentative\Ui\Component\Company\DataProvider"/>
+    <!-- Add company & sales representative to order creation customer collection -->
+    <preference for="Magento\Sales\Model\ResourceModel\Order\Customer\Collection" type="Wagento\SalesRepresentative\Model\ResourceModel\Order\Customer\Collection"/>
+</config>
