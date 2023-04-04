@@ -3,7 +3,7 @@
 # Each service listed will be deployed to power your project.
 
 mysql:
-    type: mysql:10.3
+    type: mysql:10.6
     disk: 2048
 
 redis:
@@ -14,5 +14,5 @@ elasticsearch:
     disk: 1024
 
 rabbitmq:
-  type: rabbitmq:3.8
+  type: rabbitmq:3.9
   disk: 1024
