@@ -13,7 +13,7 @@
     </head>
     <body>
         <referenceContainer name="footer">
-            <block class="Magento\Framework\View\Element\Template" name="mobile-footer" template="Wagento_Rutavity::html/mobile-footer.phtml" after="-">
+            <block class="Wagento\Rutavity\Block\MobileFooter" name="mobile-footer" template="Wagento_Rutavity::html/mobile-footer.phtml" after="-">
                 <block class="Magento\Checkout\Block\Cart\Sidebar" name="mobile-footer-cart" template="Wagento_Rutavity::html/mobile-footer/cart.phtml">
                     <arguments>
                         <argument name="jsLayout" xsi:type="array">
