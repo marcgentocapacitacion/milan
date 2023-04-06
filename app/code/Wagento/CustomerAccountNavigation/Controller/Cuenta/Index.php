@@ -3,7 +3,10 @@
 namespace Wagento\CustomerAccountNavigation\Controller\Cuenta;
 
 use Magento\Framework\App\ActionInterface;
+use Magento\Framework\Controller\Result\Redirect;
+use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\View\Result\PageFactory;
+use Magento\Customer\Model\Session;
 
 /**
  * Class Index
@@ -16,11 +19,28 @@ class Index implements ActionInterface
     protected PageFactory $resultPageFactory;
 
     /**
-     * @param PageFactory $resultPageFactory
+     * @var Session
      */
-    public function __construct(PageFactory $resultPageFactory)
-    {
+    protected Session $customerSession;
+
+    /**
+     * @var ResultFactory
+     */
+    protected ResultFactory $resultFactory;
+
+    /**
+     * @param PageFactory   $resultPageFactory
+     * @param Session       $customerSession
+     * @param ResultFactory $resultFactory
+     */
+    public function __construct(
+        PageFactory $resultPageFactory,
+        Session $customerSession,
+        ResultFactory $resultFactory
+    ) {
         $this->resultPageFactory = $resultPageFactory;
+        $this->customerSession = $customerSession;
+        $this->resultFactory = $resultFactory;
     }
 
     /**
@@ -28,6 +48,12 @@ class Index implements ActionInterface
      */
     public function execute()
     {
-        return $this->resultPageFactory->create();
+        if ($this->customerSession->isLoggedIn()) {
+            return $this->resultPageFactory->create();
+        }
+        /** @var Redirect $resultRedirect */
+        $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
+        $resultRedirect->setPath(\Magento\Customer\Model\Url::ROUTE_ACCOUNT_LOGIN);
+        return $resultRedirect;
     }
 }
