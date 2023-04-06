@@ -6,7 +6,7 @@
  */
 
 /**
- * @var \Magento\Framework\View\Element\Template $block
+ * @var \Wagento\Rutavity\Block\MobileFooter $block
  */
 ?>
 <div id="mobile-footer" class="mobile-footer sticky">
@@ -27,10 +27,12 @@
         <div class="item mobile-footer-cart">
             <?= $block->getChildHtml('mobile-footer-cart') ?>
         </div>
-        <div class="item mobile-footer-account">
-            <a href="<?= $block->getUrl('customer/account') ?>" class="action myaccount">
-                <span class="text"><?php /* @escapeNotVerified */ echo __('My Account'); ?></span>
-            </a>
-        </div>
+        <?php if ($block->isLoggedIn()):?>
+            <div class="item mobile-footer-account">
+                <a href="<?= $block->getUrl('customer/account') ?>" class="action myaccount">
+                    <span class="text"><?php /* @escapeNotVerified */ echo __('My Account'); ?></span>
+                </a>
+            </div>
+        <?php endif;?>
     </div>
 </div>
