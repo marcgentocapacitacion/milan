@@ -9,6 +9,7 @@ use Magento\Framework\GraphQl\Config\Element\Field;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
 use Magento\Inventory\Model\ResourceModel\StockSourceLink;
 use Magento\Inventory\Model\StockSourceLinkFactory as StockSourceLinkFactoryModel;
+use Magento\InventoryApi\Api\StockRepositoryInterface;
 use Magento\InventoryGraphQl\Model\Resolver\StockStatusProvider;
 use Magento\InventorySalesApi\Api\AreProductsSalableInterface;
 use Wagento\Catalog\Model\ConfigInterface;
@@ -44,24 +45,32 @@ class StockStatusProviderPlugin
     protected AreProductsSalableInterface $areProductsSalable;
 
     /**
+     * @var StockRepositoryInterface
+     */
+    protected StockRepositoryInterface $stockRepository;
+
+    /**
      * @param StockSourceLinkFactoryModel $sourceLinkModelFactory
      * @param StockSourceLink             $sourceLink
      * @param ConfigInterface             $config
      * @param CustomerRepositoryInterface $customerRepository
      * @param AreProductsSalableInterface $areProductsSalable
+     * @param StockRepositoryInterface    $stockRepository
      */
     public function __construct(
         StockSourceLinkFactoryModel $sourceLinkModelFactory,
         StockSourceLink $sourceLink,
         ConfigInterface $config,
         CustomerRepositoryInterface $customerRepository,
-        AreProductsSalableInterface $areProductsSalable
+        AreProductsSalableInterface $areProductsSalable,
+        StockRepositoryInterface $stockRepository
     ) {
         $this->sourceLinkModelFactory = $sourceLinkModelFactory;
         $this->sourceLink = $sourceLink;
         $this->config = $config;
         $this->customerRepository = $customerRepository;
         $this->areProductsSalable = $areProductsSalable;
+        $this->stockRepository = $stockRepository;
     }
 
     /**
@@ -92,32 +101,21 @@ class StockStatusProviderPlugin
         }
         $sourceStock = $customer->getCustomAttribute('almacen') ?? false;
         if (!$sourceStock || !$sourceStock->getValue()) {
-            return $proceed(
-                $field,
-                $context,
-                $info,
-                $value,
-                $args
-            );
+            return $proceed($field, $context, $info, $value, $args);
         }
 
-        /** @var \Magento\Inventory\Model\StockSourceLink $stockSouceModel */
-        $stockSouceModel = $this->sourceLinkModelFactory->create();
-        $this->sourceLink->load($stockSouceModel, $sourceStock->getValue(), 'source_code');
-        if (!$stockSouceModel->getId()) {
-            return $proceed(
-                $field,
-                $context,
-                $info,
-                $value,
-                $args
-            );
+        try {
+            $stock = $this->stockRepository->get($sourceStock->getValue());
+            if (!$stock->getStockId()) {
+                return $proceed($field, $context, $info, $value, $args);
+            }
+            $stockId = $stock->getStockId();
+        } catch (\Exception $e) {
+            return $proceed($field, $context, $info, $value, $args);
         }
 
         /* @var $product ProductInterface */
         $product = $value['model'];
-
-        $stockId = $stockSouceModel->getStockId();
         $result = $this->areProductsSalable->execute([$product->getSku()], $stockId);
         $result = current($result);
 

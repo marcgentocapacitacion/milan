@@ -9,6 +9,7 @@ use Magento\Inventory\Model\ResourceModel\StockSourceLink;
 use Magento\Inventory\Model\StockSourceLinkFactory as StockSourceLinkFactoryModel;
 use Magento\InventorySales\Model\ResourceModel\StockIdResolver;
 use Wagento\Catalog\Model\ConfigInterface;
+use Magento\InventoryApi\Api\StockRepositoryInterface;
 
 /**
  * Class AlmacenStockPlugin
@@ -41,10 +42,16 @@ class AlmacenStockPlugin
     protected ConfigInterface $config;
 
     /**
+     * @var StockRepositoryInterface
+     */
+    protected StockRepositoryInterface $stockRepository;
+
+    /**
      * @param CustomerSession             $customerSession
      * @param StockSourceLink             $sourceLink
      * @param StockSourceLinkFactoryModel $sourceLinkModelFactory
      * @param ConfigInterface             $config
+     * @param StockRepositoryInterface    $stockRepository
      * @param SessionQuote                $sessionQuote
      */
     public function __construct(
@@ -52,6 +59,7 @@ class AlmacenStockPlugin
         StockSourceLink $sourceLink,
         StockSourceLinkFactoryModel $sourceLinkModelFactory,
         ConfigInterface $config,
+        StockRepositoryInterface $stockRepository,
         SessionQuote $sessionQuote
     ) {
         $this->customerSession = $customerSession;
@@ -59,6 +67,7 @@ class AlmacenStockPlugin
         $this->sourceLinkModelFactory = $sourceLinkModelFactory;
         $this->config = $config;
         $this->sessionQuote = $sessionQuote;
+        $this->stockRepository = $stockRepository;
     }
 
     /**
@@ -88,14 +97,15 @@ class AlmacenStockPlugin
             return $proceed($type, $code);
         }
 
-        /** @var \Magento\Inventory\Model\StockSourceLink $stockSouceModel */
-        $stockSouceModel = $this->sourceLinkModelFactory->create();
-        $this->sourceLink->load($stockSouceModel, $sourceStock->getValue(), 'source_code');
-
-        if (!$stockSouceModel->getId()) {
+        try {
+            $stock = $this->stockRepository->get((int)$sourceStock->getValue());
+            if (!$stock->getStockId()) {
+                return $proceed($type, $code);
+            }
+            return $stock->getStockId();
+        } catch (\Exception $e) {
             return $proceed($type, $code);
         }
-        return $stockSouceModel->getStockId();
     }
 
     /**
