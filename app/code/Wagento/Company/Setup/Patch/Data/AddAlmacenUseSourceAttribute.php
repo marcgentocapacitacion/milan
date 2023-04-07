@@ -5,13 +5,13 @@ namespace Wagento\Company\Setup\Patch\Data;
 use Magento\Customer\Model\Customer;
 use Magento\Eav\Model\Config;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
-use Magento\Customer\Setup\CustomerSetupFactory;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
+use Magento\Customer\Setup\CustomerSetupFactory;
 
 /**
- * Class AddAlmacenAttribute
+ * Class AddAlmacenUseSourceAttribute
  */
-class AddAlmacenAttribute implements DataPatchInterface
+class AddAlmacenUseSourceAttribute implements DataPatchInterface
 {
     /**
      * @var ModuleDataSetupInterface
@@ -65,30 +65,16 @@ class AddAlmacenAttribute implements DataPatchInterface
     public function apply()
     {
         $customerSetup = $this->customerSetupFactory->create(['setup' => $this->moduleDataSetup]);
-        $customerSetup->addAttribute(
+        $customerSetup->updateAttribute(
             Customer::ENTITY,
             'almacen',
             [
-                'type' => 'varchar',
-                'label' => 'Almacen',
-                'input' => 'text',
-                'required' => false,
-                'sort_order' => 100,
-                'visible' => true,
-                'system' => false,
-                'is_used_in_grid' => true,
-                'is_visible_in_grid' => true,
-                'is_filterable_in_grid' => true,
-                'is_searchable_in_grid' => true
+                'backend_type' => 'int',
+                'frontend_input' => 'select',
+                'source_model' => \Wagento\Catalog\Model\Source\AlmacenStock::class
             ]
         );
 
-        $attributes = $this->eavConfig->getAttribute(Customer::ENTITY, 'almacen');
-        $attributes->setData(
-            'used_in_forms',
-            ['adminhtml_customer', 'customer_account_create', 'customer_account_edit']
-        );
-        $attributes->save();
         return $this;
     }
 }
