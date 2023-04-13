@@ -1,0 +1,4 @@
+"There are no source items with the in stock status","No hay disponibilidad del producto seleccionado",module,Magento_InventorySales
+"The requested sku is not assigned to given stock","El sku solicitado no está asignado al stock dado",module,Magento_InventorySales
+"The requested sku is not assigned to given stock.","El sku solicitado no está asignado al stock dado.",module,Magento_InventorySales
+"The requested sku is not assigned to given stock.","El sku solicitado no está asignado al stock dado.",module,Magento_InventoryConfiguration
