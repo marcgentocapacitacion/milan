@@ -80,7 +80,8 @@ class PromotionSeasonTag extends \Magento\Framework\View\Element\Template
      */
     public function isRowTotalExccedLimit(): bool
     {
-        $rowTotal = (float)$this->item->getQuote()->getSubtotal();
+        // $rowTotal = (float)$this->item->getQuote()->getSubtotal();
+        $rowTotal = (float) ($this->item->getPrice() * $this->item->getQty());
         $limit = $this->config->getValuePromotionLimit();
         return $rowTotal > $limit;
     }
