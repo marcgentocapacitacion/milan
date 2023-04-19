@@ -7,6 +7,18 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceBlock name="customer_account_navigation">
+            <referenceBlock name="company-customer-account-navigation-orders-link">
+                <arguments>
+                    <argument name="sortOrder" xsi:type="number">232</argument>
+                    <argument name="label" xsi:type="string" translate="true">Web Orders</argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="customer-account-navigation-orders-link">
+                <arguments>
+                    <argument name="sortOrder" xsi:type="number">231</argument>
+                    <argument name="label" xsi:type="string" translate="true">Web Orders</argument>
+                </arguments>
+            </referenceBlock>
             <block class="Wagento\CustomerAccountNavigation\Block\AllOrdersLink" name="itm_magb1_customer-account-navigation-account-allorderslink">
                 <arguments>
                     <argument name="label" xsi:type="string" translate="true">My Company Orders</argument>
@@ -64,6 +76,30 @@
                     <argument name="sortOrder" xsi:type="number">175</argument>
                 </arguments>
             </block>
+            <referenceBlock name="itm_outstandingpayments-customer-account-navigation-account-myquote" remove="true"/>
+            <block class="Magento\Customer\Block\Account\SortLink" name="wagento-itm_outstandingpayments-customer-account-navigation-account-myquote">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Invoice Payments</argument>
+                    <argument name="path" xsi:type="string">outstanding_payments/order/history</argument>
+                    <argument name="sortOrder" xsi:type="number">174</argument>
+                </arguments>
+            </block>
+            <referenceBlock name="itm_outstandingpayments_customer-account-navigation-account-openinvoiceslink" remove="true" />
+            <block class="Magento\Customer\Block\Account\SortLink" name="wagento-itm_outstandingpayments_customer-account-navigation-account-openinvoiceslink">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Outstanding Payments</argument>
+                    <argument name="path" xsi:type="string">outstanding_payments/index/open</argument>
+                    <argument name="sortOrder" xsi:type="number">173</argument>
+                </arguments>
+            </block>
+            <referenceBlock name="itm_outstandingpayments_customer-account-navigation-account-paidinvoiceslink" remove="true"/>
+            <block class="Magento\Customer\Block\Account\SortLink" name="wagento-itm_outstandingpayments_customer-account-navigation-account-paidinvoiceslink">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Closed Payments</argument>
+                    <argument name="path" xsi:type="string">outstanding_payments/index/closed</argument>
+                    <argument name="sortOrder" xsi:type="number">172</argument>
+                </arguments>
+            </block>
             <referenceBlock name="customer-account-navigation-delimiter-2">
                 <arguments>
                     <argument name="sortOrder" xsi:type="number">170</argument>
@@ -72,18 +108,6 @@
             <referenceBlock name="customer-account-navigation-account-edit-link">
                 <arguments>
                     <argument name="sortOrder" xsi:type="number">160</argument>
-                </arguments>
-            </referenceBlock>
-            <referenceBlock name="customer-account-navigation-orders-link">
-                <arguments>
-                    <argument name="sortOrder" xsi:type="number">231</argument>
-                    <argument name="label" xsi:type="string" translate="true">Web Orders</argument>
-                </arguments>
-            </referenceBlock>
-            <referenceBlock name="company-customer-account-navigation-orders-link">
-                <arguments>
-                    <argument name="sortOrder" xsi:type="number">232</argument>
-                    <argument name="label" xsi:type="string" translate="true">Web Orders</argument>
                 </arguments>
             </referenceBlock>
             <referenceBlock name="customer-account-navigation-customer-balance-link">
