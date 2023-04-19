@@ -4,6 +4,19 @@
 //  _____________________________________________
 
 & when (@media-common = true) {
+    .cms-home {
+        > .page-wrapper {
+            .page-main-full-width {
+                .page {
+                    &.messages {
+                        position: relative;
+                        z-index: 9999;
+                    }
+                }
+            }
+        }
+    }
+
     .page-footer {
         .footer-content-block {
             .row {

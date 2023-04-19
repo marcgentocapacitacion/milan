@@ -554,6 +554,7 @@ return [
         'Wagento_InventoryConfiguration' => 1,
         'Wagento_InventoryGraphQl' => 1,
         'Wagento_LiveSearchStorefrontPopover' => 1,
+        'Wagento_LoginAsCustomer' => 1,
         'Wagento_ModifiedCheckout' => 1,
         'WeltPixel_Backend' => 1,
         'Wagento_OfflineShipping' => 1,
