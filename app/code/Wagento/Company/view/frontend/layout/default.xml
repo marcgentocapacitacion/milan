@@ -26,7 +26,7 @@
                             </arguments>
                         </block>
                         <container name="form.additional.info">
-                            <block class="Magento\Captcha\Block\Captcha" name="captcha" after="-" cacheable="false">
+                            <block class="Magento\Captcha\Block\Captcha" name="captcha" after="-">
                                 <action method="setFormId">
                                     <argument name="formId" xsi:type="string">company_create</argument>
                                 </action>
