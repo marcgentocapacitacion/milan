@@ -31,7 +31,8 @@
                     <th scope="col" class="col total"><?= /* @escapeNotVerified */ __('Doc. Total') ?></th>
                     <th scope="col" class="col doc_type"><?= /* @escapeNotVerified */ __('Doc Type') ?></th>
                     <th scope="col" class="col status"><?= /* @escapeNotVerified */ __('Status') ?></th>
-                    <th scope="col" class="col status"><?= /* @escapeNotVerified */ __('Info') ?></th>
+                    <th scope="col" class="col info"><?= /* @escapeNotVerified */ __('Info') ?></th>
+                    <th scope="col" class="col file"><?= /* @escapeNotVerified */ __('File') ?></th>
                 </tr>
             </thead>
             <tbody>
@@ -48,18 +49,26 @@
                         <td data-th="<?= $block->escapeHtml(__('Info')) ?>" class="col info">
 
                             <?php
-                            echo __('Doc Entry').": ".$_invoice->getDocEntry();
+                            //echo __('Doc Entry').": ".$_invoice->getDocEntry();
                              if(!empty($_invoice->getInfo())) {
                                  $info = json_decode($_invoice->getInfo(), true);
                                  if ($info) {
                                      foreach ($info as $key => $item) {
                                          if (!empty($item)) {
-                                             echo "<br>" . __($key) . ": " . $item;
+                                             echo __($item["label"]) . ": " . $item["value"];
+                                             echo "<br>";
                                          }
                                      }
                                  }
                              }
                             ?>
+                        </td>
+                        <td data-th="<?= $block->escapeHtml(__('File')) ?>" class="col file">
+                            <?php  if ($_invoice->getPath() != ""): ?>
+                                <a target="_blank" href="<?php echo $this->getUrl('outstanding_payments/download/index',["type"=>$_invoice->getDocType(),"id" =>$_invoice->getDocEntry()]); ?>" class="action view">
+                                    <img width=30 src="<?php echo $block->getViewFileUrl('ITM_OutstandingPayments::images/pdf.png'); ?>" title="<?php echo __("Download") ?>" alt="<?php echo __("Download") ?> " />
+                                </a>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>

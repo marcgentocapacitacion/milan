@@ -9,12 +9,12 @@
 		<plugin name="aroundGetVisibility" type="ITM\OutstandingPayments\Plugin\Catalog\Model\Product"
 				sortOrder="10" disabled="false" />
 	</type>
-
+	
 	<type name="Magento\Sales\Block\Order\History">
 		<plugin name="afterGetOrders" type="ITM\OutstandingPayments\Plugin\Block\Order\History"
 			sortOrder="10" disabled="false" />
 	</type>
-
+	    
 	<virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid" type="Magento\Sales\Model\ResourceModel\Grid">
 	    <arguments>
 	        <argument name="columns" xsi:type="array">
@@ -23,7 +23,7 @@
 	        </argument>
 	    </arguments>
 	</virtualType>
-
+   
    	<preference for="ITM\OutstandingPayments\Api\SapinvoiceRepositoryInterface" type="ITM\OutstandingPayments\Model\SapinvoiceRepository"/>
 	<preference for="ITM\OutstandingPayments\Api\Data\SapinvoiceInterface" type="ITM\OutstandingPayments\Model\Sapinvoice"/>
 	<preference for="ITM\OutstandingPayments\Api\Data\SapinvoiceSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
@@ -47,5 +47,7 @@
 	<type name="Magento\Sales\Model\Order\Email\Container\Template">
 		<plugin name="OutstandingPaymentsAfterSetTemplateId" type="ITM\OutstandingPayments\Plugin\Sales\Order"/>
 	</type>
-
+	<type name="Magento\Sales\Block\Order\Email\Items\DefaultItems">
+		<plugin name="ITM_OutstandingPayments_Plugin_Magento_Sales_Block_Order_Email_Items_DefaultItems" type="ITM\OutstandingPayments\Plugin\Magento\Sales\Block\Order\Email\Items\DefaultItems" sortOrder="10" disabled="false"/>
+	</type>
 </config>

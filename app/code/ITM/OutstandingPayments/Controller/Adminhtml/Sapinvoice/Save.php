@@ -42,8 +42,8 @@ class Save extends \ITM\OutstandingPayments\Controller\Adminhtml\Sapinvoice
                 $model = $this->_objectManager->create('ITM\OutstandingPayments\Model\Sapinvoice');
                 $data = $this->getRequest()->getPostValue();
               
-                $inputFilter = new \Zend_Filter_Input([ ], [ ], $data);
-                $data = $inputFilter->getUnescaped();
+                //$inputFilter = new \Zend_Filter_Input([ ], [ ], $data);
+                //$data = $inputFilter->getUnescaped();
                 $id = $this->getRequest()->getParam('id');
                 if ($id) {
                     $model->load($id);

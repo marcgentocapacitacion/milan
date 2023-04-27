@@ -306,4 +306,23 @@ class Sapinvoice extends \Magento\Framework\Model\AbstractModel implements Sapin
     {
         $this->code = $value;
     }
+
+    /**
+     * Get Info
+     * @return string
+     */
+    public function getInfo()
+    {
+        return $this->getData(self::INFO);
+    }
+
+    /**
+     * Set status
+     * @param string $info
+     * @return \ITM\OutstandingPayments\Api\Data\SapinvoiceInterface
+     */
+    public function setInfo($info)
+    {
+        return $this->setData(self::INFO, $info);
+    }
 }

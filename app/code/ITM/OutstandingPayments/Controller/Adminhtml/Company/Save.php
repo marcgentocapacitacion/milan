@@ -1,18 +1,18 @@
 <?php
-    
+
 namespace ITM\OutstandingPayments\Controller\Adminhtml\Company;
-    
+
 class Save extends \ITM\OutstandingPayments\Controller\Adminhtml\Company
 {
-    
+
     public function execute()
     {
         if ($this->getRequest()->getPostValue()) {
             try {
                 $model = $this->_objectManager->create('ITM\OutstandingPayments\Model\Company');
                 $data = $this->getRequest()->getPostValue();
-                $inputFilter = new \Zend_Filter_Input([ ], [ ], $data);
-                $data = $inputFilter->getUnescaped();
+                // $inputFilter = new \Zend_Filter_Input([ ], [ ], $data);
+                //$data = $inputFilter->getUnescaped();
                 $id = $this->getRequest()->getParam('id');
                 if ($id) {
                     $model->load($id);
@@ -35,8 +35,8 @@ class Save extends \ITM\OutstandingPayments\Controller\Adminhtml\Company
                 return;
             } catch (\Magento\Framework\Exception\LocalizedException $e) {
                 $this->messageManager->addError($e->getMessage());
-                $id =(int ) $this->getRequest()->getParam('id');
-                if (! empty($id)) {
+                $id = (int )$this->getRequest()->getParam('id');
+                if (!empty($id)) {
                     $this->_redirect('itm_outstandingpayments/*/edit', ['id' => $id]);
                 } else {
                     $this->_redirect('itm_outstandingpayments/*/new');

@@ -1,10 +1,10 @@
 <?php
 /**
- * Custom Module for Magento2 to Pay Your Outstanding payments
- * Copyright (C) 2017
- *
+ * Custom Module for Magento2 to Pay Your Outstanding payments 
+ * Copyright (C) 2017  
+ * 
  * This file included in ITM/OutstandingPayments is licensed under OSL 3.0
- *
+ * 
  * http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * Please see LICENSE.txt for the full text of the OSL 3.0 license
  */
@@ -26,10 +26,11 @@ interface SapinvoiceRepositoryInterface
     public function save(
         \ITM\OutstandingPayments\Api\Data\SapinvoiceInterface $sapinvoice
     );
-
+    
     /**
+     *
      * @api
-     * @param \ITM\OutstandingPayments\Api\Data\SapinvoiceInterface $sapinvoice
+     * @param ITM\OutstandingPayments\Api\Data\SapinvoiceInterface $sapinvoice
      * @param string $fileName
      * @return bool
      */
@@ -66,7 +67,7 @@ interface SapinvoiceRepositoryInterface
      * @return bool true on success
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-
+    
     public function deleteInvoice(
         \ITM\OutstandingPayments\Api\Data\SapinvoiceInterface $sapinvoice
         );
@@ -77,7 +78,7 @@ interface SapinvoiceRepositoryInterface
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function deleteList($sapinvoiceList);
-
+   
     /**
      * Delete Sapinvoice
      * @param \ITM\OutstandingPayments\Api\Data\SapinvoiceInterface $sapinvoice

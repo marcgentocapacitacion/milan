@@ -118,6 +118,8 @@ class PaySelected extends \Magento\Customer\Controller\AbstractAccount
             );
             
             $this->_cart->addProduct($_product,$cart_params);
+            // log files
+            \Magento\Framework\App\ObjectManager::getInstance()->create('ITM\MagB1\Helper\Data')->_log(__("Your %1 %2 has been successfully added to your cart.",$type,$doc_entry));
             $this->_messageManager->addSuccess(__("Your %1 %2 has been successfully added to your cart.",$type,$doc_entry));
         } catch (\Exception $e) {
             $this->_messageManager->addError($e->getMessage());

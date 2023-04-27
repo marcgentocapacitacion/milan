@@ -1,10 +1,10 @@
 <?php
 /**
- * Custom Module for Magento2 to Pay Your Outstanding payments 
- * Copyright (C) 2017  
- * 
+ * Custom Module for Magento2 to Pay Your Outstanding payments
+ * Copyright (C) 2017
+ *
  * This file included in ITM/OutstandingPayments is licensed under OSL 3.0
- * 
+ *
  * http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * Please see LICENSE.txt for the full text of the OSL 3.0 license
  */
@@ -29,9 +29,8 @@ interface SapinvoiceInterface
     const SAP_COMPANY = 'sap_company';
     const FILE = 'path';
     const STATUS = 'status';
-    
-    
-    
+    const INFO = 'info';
+
 
 
     /**
@@ -46,8 +45,8 @@ interface SapinvoiceInterface
      * @return \ITM\OutstandingPayments\Api\Data\SapinvoiceInterface
      */
     public function setEntityId($entity_id);
-    
-   
+
+
     /**
      * Get doc_entry
      * @return string|null
@@ -217,21 +216,38 @@ interface SapinvoiceInterface
      * @return \ITM\OutstandingPayments\Api\Data\SapinvoiceInterface
      */
     public function setStatus($status);
-    
-    
+
+
     // Vertual Field for delete
+
     /**
+     * @return string
      * @api
      *
-     * @return string code.
      */
     public function getCode();
-    
+
     /**
+     * @param $value code
+     * @return null
      * @api
      *
-     * @param $value code.
-     * @return null
      */
     public function setCode($value);
+
+
+    /**
+     * @return string|null
+     * @api
+     *
+     */
+    public function getInfo();
+
+    /**
+     * @param String $value .
+     * @return null
+     * @api
+     *
+     */
+    public function setInfo($value);
 }
