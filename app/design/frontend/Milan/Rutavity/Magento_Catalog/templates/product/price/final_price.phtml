@@ -18,28 +18,29 @@ $priceModel = $block->getPriceType('regular_price');
 $finalPriceModel = $block->getPriceType('final_price');
 $idSuffix = $block->getIdSuffix() ? $block->getIdSuffix() : '';
 $schema = ($block->getZone() == 'item_view') ? true : false;
+$blockHtml = '';
 ?>
 <?php if ($block->hasSpecialPrice()) :?>
-    <span class="old-price">
-        <?= /* @noEscape */ $block->renderAmount($priceModel->getAmount(), [
+    <?php $blockHtml .= '<span class="old-price">';?>
+        <?php $blockHtml .= $block->renderAmount($priceModel->getAmount(), [
             'display_label'     => __('Regular Price'),
             'price_id'          => $block->getPriceId('old-price-' . $idSuffix),
             'price_type'        => 'oldPrice',
             'include_container' => true,
             'skip_adjustments'  => true
         ]); ?>
-    </span>
-    <span class="special-price">
-        <?= /* @noEscape */ $block->renderAmount($finalPriceModel->getAmount(), [
+    <?php $blockHtml .= '</span>';?>
+    <?php $blockHtml .= '<span class="special-price">';?>
+        <?php $blockHtml .= $block->renderAmount($finalPriceModel->getAmount(), [
             'display_label'     => __('Special Price'),
             'price_id'          => $block->getPriceId('product-price-' . $idSuffix),
             'price_type'        => 'finalPrice',
             'include_container' => true,
             'schema' => $schema
         ]); ?>
-    </span>
+    <?php $blockHtml .= '</span>'?>
 <?php else :?>
-    <?= /* @noEscape */ $block->renderAmount($finalPriceModel->getAmount(), [
+    <?php $blockHtml .= $block->renderAmount($finalPriceModel->getAmount(), [
         'price_id'          => $block->getPriceId('product-price-' . $idSuffix),
         'price_type'        => 'finalPrice',
         'include_container' => true,
@@ -49,12 +50,34 @@ $schema = ($block->getZone() == 'item_view') ? true : false;
 
 <?php if ($block->showMinimalPrice()) :?>
     <?php if ($block->getUseLinkForAsLowAs()) :?>
-        <a href="<?= $block->escapeUrl($block->getSaleableItem()->getProductUrl()) ?>" class="minimal-price-link">
-            <?= /* @noEscape */ $block->renderAmountMinimal() ?>
-        </a>
+        <?php $blockHtml .= '<a href="' . $block->escapeUrl($block->getSaleableItem()->getProductUrl()) . '" class="minimal-price-link">';?>
+            <?php $blockHtml .= $block->renderAmountMinimal();?>
+        <?php $blockHtml .= '</a>';?>
     <?php else :?>
-        <span class="minimal-price-link">
-            <?= /* @noEscape */ $block->renderAmountMinimal() ?>
-        </span>
+        <?php $blockHtml .= '<span class="minimal-price-link">';?>
+            <?php $blockHtml .= $block->renderAmountMinimal();?>
+        <?php $blockHtml .= '</span>';?>
     <?php endif?>
 <?php endif; ?>
+
+<?php if ($block->getRequest()->isAjax()):?>
+    <?php echo $blockHtml;?>
+<?php else:?>
+    <div id="show-price-without-login" data-bind="scope: 'show-price-without-login'">
+        <div data-bind="html: getBlockHtml()"></div>
+    </div>
+    <script type="text/x-magento-init">
+        {
+            "#show-price-without-login": {
+                "Magento_Ui/js/core/app": {
+                    "components":{
+                        "show-price-without-login": {
+                            "component":"Wagento_Catalog\/js\/view\/show-price-without-login",
+                            "blockPrice": "<?=str_replace("\n", "", str_replace("\"", "\\\"", $blockHtml));?>"
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+<?php endif;?>

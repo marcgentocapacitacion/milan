@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="sales_order_tabs">
+            <block class="Wagento\OutstandingPayments\Block\Adminhtml\Order\View\Tab\InvoicePaymentErp"
+                   name="wagento_order_invoice_payment_erp">
+                <uiComponent name="sales_order_invoice_payment_erp"/>
+            </block>
+            <action method="addTab">
+                <argument name="name" xsi:type="string">order_invoice_payment_erp</argument>
+                <argument name="block" xsi:type="string">wagento_order_invoice_payment_erp</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>

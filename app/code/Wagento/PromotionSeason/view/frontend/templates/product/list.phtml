@@ -81,19 +81,35 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                         <div class="product-item-inner">
                             <div class="product actions product-item-actions"<?php echo strpos($pos, $viewMode . '-actions') ? $position : ''; ?>>
                                 <div class="actions-primary"<?php echo strpos($pos, $viewMode . '-primary') ? $position : ''; ?>>
+                                    <?php $blockHtml = '';?>
                                     <?php if ($_product->isSaleable()): ?>
-                                        <?php $postParams = $block->getAddToCartPostParams($_product); ?>
-                                        <form data-role="tocart-form" data-product-sku="<?= $block->escapeHtml($_product->getSku()) ?>" action="<?= /* @NoEscape */ $postParams['action'] ?>" method="post">
-                                            <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $postParams['data']['product'] ?>">
-                                            <input type="hidden" name="<?= /* @escapeNotVerified */ Action::PARAM_NAME_URL_ENCODED ?>" value="<?= /* @escapeNotVerified */ $postParams['data'][Action::PARAM_NAME_URL_ENCODED] ?>">
-                                            <?= $block->getBlockHtml('formkey') ?>
-                                            <button type="submit"
-                                                    title="<?php echo $block->escapeHtml(__('Add to Cart')); ?>"
-                                                    class="action tocart primary">
-                                                <span><?php /* @escapeNotVerified */ echo __('Add to Cart') ?></span>
-                                            </button>
-                                        </form>
+                                        <?php
+                                        $blockAddToCart = $block->getChildBlock('category.products.list.add.to.cart')
+                                            ->setProductToAddCart($_product);
+                                        $blockHtml = $blockAddToCart->toHtml();
+                                        ?>
                                     <?php endif; ?>
+                                    <?php if ($block->getRequest()->isAjax()):?>
+                                        <?php echo $blockHtml;?>
+                                    <?php else:?>
+                                        <div class="add-cart-without-login" data-bind="scope: 'add-cart-without-login'">
+                                            <div data-bind="html: getBlockHtml()"></div>
+                                        </div>
+                                        <script type="text/x-magento-init">
+                                            {
+                                                ".add-cart-without-login": {
+                                                    "Magento_Ui/js/core/app": {
+                                                        "components":{
+                                                            "add-cart-without-login": {
+                                                                "component":"Wagento_Catalog\/js\/view\/add-cart-without-login",
+                                                                "blockAddToCart": "<?=str_replace("\n", "", str_replace("\"", "\\\"", $blockHtml));?>"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        </script>
+                                    <?php endif;?>
                                 </div>
                             </div>
                             <?php if ($showDescription):?>

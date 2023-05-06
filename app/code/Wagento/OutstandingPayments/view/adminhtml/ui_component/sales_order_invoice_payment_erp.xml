@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Wagento, Inc. All rights reserved.
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">sales_order_invoice_payment_erp.sales_order_invoice_payment_erp_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>sales_order_shipment_columns</spinner>
+        <deps>
+            <dep>sales_order_invoice_payment_erp.sales_order_invoice_payment_erp_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="sales_order_invoice_payment_erp_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <filterUrlParams>
+                <param name="order_id">*</param>
+            </filterUrlParams>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Magento_Sales::invoice_erp</aclResource>
+        <dataProvider class="Wagento\OutstandingPayments\Ui\DataProvider\InvoicePaymentErp" name="sales_order_invoice_payment_erp_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <exportButton name="export_button">
+            <settings>
+                <additionalParams>
+                    <param xsi:type="string" active="true" name="order_id">*</param>
+                </additionalParams>
+            </settings>
+        </exportButton>
+        <filterSearch name="fulltext"/>
+    </listingToolbar>
+    <columns name="sales_order_shipment_columns">
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>entity_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="doc_entry">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Doc Entry</label>
+            </settings>
+        </column>
+        <column name="doc_num">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Doc Num</label>
+            </settings>
+        </column>
+        <column name="card_code">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Card Code</label>
+            </settings>
+        </column>
+        <column name="email">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Email</label>
+            </settings>
+        </column>
+        <column name="doc_total" class="Magento\Sales\Ui\Component\Listing\Column\Price">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Doc Total</label>
+            </settings>
+        </column>
+        <column name="doc_date" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Doc Date</label>
+            </settings>
+        </column>
+        <column name="doc_due_date" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Doc Due Date</label>
+            </settings>
+        </column>
+        <column name="sap_company">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">SAP Company</label>
+            </settings>
+        </column>
+        <column name="invoice_status" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <filter>select</filter>
+                <options class="Wagento\OutstandingPayments\Ui\Component\Listing\Column\InvoiceStatus\Options"/>
+                <dataType>select</dataType>
+                <label translate="true">Invoice Status</label>
+            </settings>
+        </column>
+    </columns>
+</listing>

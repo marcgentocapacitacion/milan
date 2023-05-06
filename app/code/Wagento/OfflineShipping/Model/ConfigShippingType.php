@@ -49,6 +49,9 @@ class ConfigShippingType implements ConfigShippingTypeInterface
     public function getMessageShippingType(): string
     {
         try {
+            if (!$this->customerSession->getCustomerData()) {
+                return '';
+            }
             $extensionAttribute = $this->customerSession->getCustomerData()->getExtensionAttributes() ?? false;
             if (!$extensionAttribute) {
                 return '';

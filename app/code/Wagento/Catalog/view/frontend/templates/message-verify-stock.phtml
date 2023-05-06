@@ -1,6 +1,19 @@
 <?php
 /** @var \Wagento\Catalog\Block\MessageVerifyStock $block */
 ?>
-<?php if(!$block->isLoggedIn()):?>
-    <div class="message-verify-stock-b2b"><?=__($block->getMessage());?></div>
-<?php endif;?>
+<div id="message-verify-stock" data-bind="scope: 'message-verify-stock'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+<script type="text/x-magento-init">
+    {
+        "#message-verify-stock": {
+            "Magento_Ui/js/core/app": {
+                "components":{
+                    "message-verify-stock": {
+                        "component":"Wagento_Catalog\/js\/view\/message-verify-stock"
+                    }
+                }
+            }
+        }
+    }
+</script>

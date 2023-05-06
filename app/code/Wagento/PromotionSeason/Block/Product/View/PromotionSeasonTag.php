@@ -42,7 +42,9 @@ class PromotionSeasonTag extends \Wagento\PromotionSeason\Block\PromotionSeasonT
         parent::__construct($context, $config, $promotionSeasonRules, $data);
         $this->coreRegistry = $coreRegistry;
         $this->json = $json;
-        $this->setProduct($this->coreRegistry->registry('product'));
+        if ($this->coreRegistry->registry('product')) {
+            $this->setProduct($this->coreRegistry->registry('product'));
+        }
     }
 
     /**

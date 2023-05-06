@@ -559,6 +559,7 @@ return [
         'Wagento_ModifiedCheckout' => 1,
         'WeltPixel_Backend' => 1,
         'Wagento_OfflineShipping' => 1,
+        'Wagento_OutstandingPayments' => 1,
         'WeltPixel_AjaxInfiniteScroll' => 1,
         'Wagento_PurchaseOrder' => 1,
         'Wagento_Rutavity' => 1,

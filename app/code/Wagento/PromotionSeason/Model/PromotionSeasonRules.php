@@ -142,7 +142,7 @@ class PromotionSeasonRules implements PromotionSeasonRulesInterface
     public function isPromotionSeasonProductBySku(string $sku): bool
     {
         try {
-            $product = $this->productRepository->get($sku);
+            $product = $this->productRepository->get($sku, false, null, true);
             return $this->isPromotionSeasonProduct($product);
         } catch (\Exception $e) {
             return false;

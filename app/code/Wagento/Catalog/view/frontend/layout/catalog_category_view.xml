@@ -10,8 +10,7 @@
             <block class="Wagento\Catalog\Block\MessageVerifyStock"
                 name="category.message.products"
                 template="Wagento_Catalog::message-verify-stock.phtml"
-                after="category.subcategories.products"
-            />
+                after="category.subcategories.products"/>
         </referenceContainer>
         <referenceContainer name="columns.top">
             <block class="Wagento\Catalog\Block\MiniLogos" name="category.image.banner" template="Wagento_Catalog::category/banner.phtml"/>

@@ -9,7 +9,7 @@
 <?php
 /** @var $block \Magento\Checkout\Block\Onepage\Success */
 
-$orderItems = $block->getOrderItems();
+$orderItems = $block->getOrderItems() ?? [];
 ?>
 <div class="success-order-items">
     <div class="items">
@@ -18,50 +18,49 @@ $orderItems = $block->getOrderItems();
             /** @var $orderItem \Magento\Sales\Model\Order\Item */
             if ($orderItem->getParentItem()) {
                 continue;
-            }
-            ?>
-        <table class="item">
-            <thead>
-            <tr>
-                <th colspan="4"><?= $block->escapeHtml(__('Order Articles')) ?></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td colspan="4"><?= $orderItem->getName() ?></td>
-            </tr>
-            </tbody>
-            <tfoot>
-            <tr>
-                <th><?= $block->escapeHtml(__('Qty')) ?></th>
-                <td><?= round($orderItem->getQtyOrdered(), 0) ?></td>
-                <th><?= $block->escapeHtml(__('Price')) ?></th>
-                <td><?= $block->getFormattedPrice($orderItem->getPrice()) ?></td>
-            </tr>
-            </tfoot>
-        </table>
-        <?php endforeach;; ?>
+            }?>
+            <table class="item">
+                <thead>
+                    <tr>
+                        <th colspan="4"><?= $block->escapeHtml(__('Order Articles')) ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="4"><?= $orderItem->getName() ?></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th><?= $block->escapeHtml(__('Qty')) ?></th>
+                        <td><?= round($orderItem->getQtyOrdered(), 0) ?></td>
+                        <th><?= $block->escapeHtml(__('Price')) ?></th>
+                        <td><?= $block->getFormattedPrice($orderItem->getPrice()) ?></td>
+                    </tr>
+                </tfoot>
+            </table>
+        <?php endforeach;?>
     </div>
     <table class="total">
         <tbody>
-        <tr>
-            <td class="total-label"><?= $block->escapeHtml(__('Subtotal')) ?></td>
-            <td class="total-value"><?= $block->getSubtotal() ?></td>
-        </tr>
-        <tr>
-            <td class="total-label"><?= $block->escapeHtml(__('Shipping Amount')) ?></td>
-            <td class="total-value"><?= $block->getShippingAmount() ?></td>
-        </tr>
-        <?php if ($block->getDiscountAmount()): ?>
             <tr>
-                <td class="total-label"><?= $block->escapeHtml(__('Discount Amount')) ?></td>
-                <td class="total-value"><?= $block->getDiscountAmount() ?></td>
+                <td class="total-label"><?= $block->escapeHtml(__('Subtotal')) ?></td>
+                <td class="total-value"><?= $block->getSubtotal() ?></td>
             </tr>
-        <?php endif; ?>
-        <tr>
-            <td class="total-label"><?= $block->escapeHtml(__('Grand Total')) ?></td>
-            <td class="total-value"><?= $block->getGrandTotal() ?></td>
-        </tr>
+            <tr>
+                <td class="total-label"><?= $block->escapeHtml(__('Shipping Amount')) ?></td>
+                <td class="total-value"><?= $block->getShippingAmount() ?></td>
+            </tr>
+            <?php if ($block->getDiscountAmount()): ?>
+                <tr>
+                    <td class="total-label"><?= $block->escapeHtml(__('Discount Amount')) ?></td>
+                    <td class="total-value"><?= $block->getDiscountAmount() ?></td>
+                </tr>
+            <?php endif; ?>
+            <tr>
+                <td class="total-label"><?= $block->escapeHtml(__('Grand Total')) ?></td>
+                <td class="total-value"><?= $block->getGrandTotal() ?></td>
+            </tr>
         </tbody>
     </table>
 </div>
