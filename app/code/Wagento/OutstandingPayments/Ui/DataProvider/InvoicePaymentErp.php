@@ -25,9 +25,9 @@ class InvoicePaymentErp extends \Magento\Framework\View\Element\UiComponent\Data
     protected ?OrderInterface $currentOrder;
 
     /**
-     * @param                          $name
-     * @param                          $primaryFieldName
-     * @param                          $requestFieldName
+     * @param string                   $name
+     * @param string                   $primaryFieldName
+     * @param string                   $requestFieldName
      * @param OrderRepositoryInterface $orderRepository
      * @param ReportingInterface       $reporting
      * @param SearchCriteriaBuilder    $searchCriteriaBuilder

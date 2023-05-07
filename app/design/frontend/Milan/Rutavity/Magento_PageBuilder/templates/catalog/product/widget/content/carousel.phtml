@@ -1,7 +1,6 @@
 <?php
 /**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * Copyright © Wagento, Inc. All rights reserved.
  */
 use Magento\Framework\App\Action\Action;
 
@@ -38,7 +37,7 @@ use Magento\Framework\App\Action\Action;
                     <?= $block->getImage($_item, $image)->toHtml() ?>
                 </a>
                 <div class="product-item-details">
-                    <strong class="product-item-name">
+                    <strong class="product-item-name" style="font-size: 16px;line-height: 16px;">
                         <a title="<?= $block->escapeHtml($_item->getName()) ?>"
                            href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>"
                            class="product-item-link">
