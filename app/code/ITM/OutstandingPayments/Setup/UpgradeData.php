@@ -24,6 +24,7 @@ class UpgradeData implements UpgradeDataInterface
      * @var \Magento\Catalog\Api\ProductRepositoryInterface
      */
     protected $_productRepository;
+
     /**
      * Constructor
      *
@@ -34,8 +35,7 @@ class UpgradeData implements UpgradeDataInterface
         \Magento\Catalog\Api\ProductRepositoryInterface $productRepository,
         \Magento\Framework\App\State $state,
         \Magento\Framework\ObjectManagerInterface $objectManager
-    )
-    {
+    ) {
         $this->eavSetupFactory = $eavSetupFactory;
         $this->_productRepository = $productRepository;
         $this->state = $state;
@@ -50,14 +50,23 @@ class UpgradeData implements UpgradeDataInterface
         ModuleContextInterface $context
     ) {
         $eavSetup = $this->eavSetupFactory->create(['setup' => $setup]);
-
-        if (version_compare($context->getVersion(), "1.0.2", "<")) {
-
-            //\Magento\Framework\App\ObjectManager::getInstance()->create('\ITM\MagB1\Helper\Data')->_log("insider");
-            try{
+        if (version_compare($context->getVersion(), "1.0.3", "<")) {
+            try {
                 $this->state->getAreaCode();
+            } catch (\Magento\Framework\Exception\LocalizedException $ex) {
+                $this->state->setAreaCode('adminhtml');
             }
-            catch (\Magento\Framework\Exception\LocalizedException $ex) {
+            $sku = "sap_invoice";
+            $product = $this->_productRepository->get($sku);
+            if ($product->getTypeId() == "virtual") {
+                $product->setTypeId("payment");
+                $this->_productRepository->save($product);
+            }
+        }
+        if (version_compare($context->getVersion(), "1.0.2", "<")) {
+            try {
+                $this->state->getAreaCode();
+            } catch (\Magento\Framework\Exception\LocalizedException $ex) {
                 $this->state->setAreaCode('adminhtml');
             }
             $sku = "sap_invoice";
@@ -66,12 +75,12 @@ class UpgradeData implements UpgradeDataInterface
             $save = false;
             $typeOptionFound = false;
             foreach ($customOptions as $customOption) {
-                if($customOption->getTitle() == "Type") {
+                if ($customOption->getTitle() == "Type") {
                     $typeOptionFound = true;
                 }
             }
 
-            if($typeOptionFound == false) {
+            if ($typeOptionFound == false) {
                 $customOption_type = $this->_objectManager->create('Magento\Catalog\Api\Data\ProductCustomOptionInterface');
                 $customOption_type_option1 = $this->_objectManager->create('Magento\Catalog\Api\Data\ProductCustomOptionValuesInterface');
 
@@ -98,8 +107,31 @@ class UpgradeData implements UpgradeDataInterface
                 $product->setOptions($customOptions);
                 $save = true;
             }
-            if($save) {
+            if ($save) {
                 $this->_productRepository->save($product);
+            }
+        }
+        if (version_compare($context->getVersion(), "1.0.3", "<")) {
+            // associate these attributes with new product type
+            $fieldList = [
+                'price'
+            ];
+
+            // make these attributes applicable to new product type
+            foreach ($fieldList as $field) {
+                $applyTo = explode(
+                    ',',
+                    $eavSetup->getAttribute(\Magento\Catalog\Model\Product::ENTITY, $field, 'apply_to')
+                );
+                if (!in_array(\ITM\OutstandingPayments\Model\Product\Type\Payment::TYPE_ID, $applyTo)) {
+                    $applyTo[] = \ITM\OutstandingPayments\Model\Product\Type\Payment::TYPE_ID;
+                    $eavSetup->updateAttribute(
+                        \Magento\Catalog\Model\Product::ENTITY,
+                        $field,
+                        'apply_to',
+                        implode(',', $applyTo)
+                    );
+                }
             }
         }
     }

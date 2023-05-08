@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+   <type name="Magento\Catalog\Helper\Product\Configuration">
+   		<plugin name="itm_outstandingpayments_plugin_frontend_magento_catalog_helper_product_configuration" type="ITM\OutstandingPayments\Plugin\Frontend\Magento\Catalog\Helper\Product\Configuration" sortOrder="10" disabled="false"/>
+   	</type>
+</config>

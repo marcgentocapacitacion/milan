@@ -97,7 +97,7 @@ class PaySelected extends \Magento\Customer\Controller\AbstractAccount
                 \Magento\Store\Model\StoreManagerInterface::class
                 )->getStore()->getId();
             $company = $this->_helper->getCustomerSapCompany();
-            $invoiceOpenBalance = $this->_helper->getOpenBalanceByDocEntry($doc_entry, $company, $doc_type);
+            $invoiceOpenBalance =  $this->_helper->getOpenBalanceByDocEntry($doc_entry, $company, $doc_type);
             
             $_product = $this->_productRepository->get($sku, false, $storeId);
             $doc_entry_option_id = $this->_helper->getDocEntryOptionId($_product);

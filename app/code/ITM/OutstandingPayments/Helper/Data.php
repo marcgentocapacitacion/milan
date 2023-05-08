@@ -92,7 +92,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
     public function allowPartialPayment()
     {
-
         return false;
     }
 
@@ -108,6 +107,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         return $this->_invoiceStatus->getLabel($invoice->getInvoiceStatus());
     }
 
+    public function getDocNumByDocEntry($docEntry, $docType){
+
+       $invoice =  $this->getInvoice($docEntry,$this->getCustomerSapCompany(), $this->getDocType($docType));
+        return $invoice;
+    }
     public function getDocEntryOptionId($product)
     {
 

@@ -32,7 +32,7 @@ class QuoteItemQtySetAfter implements \Magento\Framework\Event\ObserverInterface
                 \Magento\CatalogInventory\Helper\Data::ERROR_QTY,
                 __('The most you may purchase is %1.',1)
             );
-            
+
         }
 
     }

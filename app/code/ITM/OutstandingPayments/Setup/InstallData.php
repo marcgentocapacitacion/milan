@@ -118,7 +118,7 @@ class InstallData implements InstallDataInterface
         $_product =  $this->_productFactory->create()->loadByAttribute('sku', $sku);
         if(!$_product) {
             $product->setName("Payment");
-            $product->setTypeId('virtual');
+            $product->setTypeId('payment');
             $product->setStatus(\Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED);
             $product->setAttributeSetId(4);
             $product->setSku($sku);
@@ -131,7 +131,7 @@ class InstallData implements InstallDataInterface
                 'use_config_manage_stock' => false, //'Use config settings' checkbox
                 'manage_stock' => false, //manage stock
                 'min_sale_qty' => 1, //Minimum Qty Allowed in Shopping Cart
-                'max_sale_qty' => 1 //Maximum Qty Allowed in Shopping Cart
+                //'max_sale_qty' => 1 //Maximum Qty Allowed in Shopping Cart
             )
                 );
             $product->setHasOptions(1);

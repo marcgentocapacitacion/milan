@@ -11,4 +11,8 @@
 	<event name="payment_method_is_active">
 		<observer instance="ITM\OutstandingPayments\Observer\Payment\MethodIsActive" name="itm_outstandingpayments_observer_payment_methodisactive_payment_method_is_active"/>
 	</event>
+	<event name="sales_quote_item_qty_set_after">
+		<observer instance="ITM\OutstandingPayments\Observer\Frontend\Sales\QuoteItemQtySetAfter" name="itm_outstandingpayments_observer_frontend_sales_quoteitemqtysetafter"/>
+	</event>
+
 </config>
