@@ -562,6 +562,7 @@ return [
         'Wagento_OutstandingPayments' => 1,
         'WeltPixel_AjaxInfiniteScroll' => 1,
         'Wagento_PurchaseOrder' => 1,
+        'Wagento_Quote' => 1,
         'Wagento_Rutavity' => 1,
         'Wagento_Sales' => 1,
         'Wagento_SalesRepresentative' => 1,

@@ -13,7 +13,6 @@ define([
 
     return Component.extend({
         defaults: {
-            messageText: "",
             template: 'Wagento_Catalog/message-verify-stock'
         },
         /**
