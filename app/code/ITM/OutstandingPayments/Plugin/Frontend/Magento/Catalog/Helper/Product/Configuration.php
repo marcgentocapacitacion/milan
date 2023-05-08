@@ -52,6 +52,9 @@ class Configuration
         }
 
         $invoice = $this->helper->getDocNumByDocEntry($docEntry, $docType);
+        if (!$invoice) {
+            return [];
+        }
         $docNum = $invoice->getDocNum();
 
         $_newOptions = [];
