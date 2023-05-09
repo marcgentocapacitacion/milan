@@ -68,6 +68,7 @@ function($) {
                     /** fix lazy load images */
                     window.ajaxInfiniteScroll.reloadImages(items);
                     window.ajaxInfiniteScroll.dataLayerUpdate(data);
+                    window.ajaxInfiniteScroll.dataServerSideViewItemListPush(data);
                     window.ajaxInfiniteScroll.updateQuickviewPrevNext(data);
                     window.ajaxInfiniteScroll.updateProductPagePrevNext(data);
                 });
@@ -223,6 +224,7 @@ function($) {
                             /** fix lazy load images */
                             window.ajaxInfiniteScroll.reloadImages(items);
                             window.ajaxInfiniteScroll.dataLayerUpdate(data);
+                            window.ajaxInfiniteScroll.dataServerSideViewItemListPush(data);
                             window.ajaxInfiniteScroll.updateQuickviewPrevNext(data);
                             window.ajaxInfiniteScroll.updateProductPagePrevNext(data);
                         });
@@ -364,6 +366,13 @@ function($) {
             }
 
         },
+        dataServerSideViewItemListPush: function(data) {
+            var viewItemListHashKeyParsed = data.match(/<input.*id="wp_ga4_server_side_view_item_list".*value="(.*?)"/);
+            if ( ( viewItemListHashKeyParsed != null ) && (typeof viewItemListHashKeyParsed == 'object') && (viewItemListHashKeyParsed.length == 2) ) {
+                var viewItemListHashKey = viewItemListHashKeyParsed[1];
+                window.wpGA4ServerSide.pushViewItemList(viewItemListHashKey);
+            }
+        },
         updateQuickviewPrevNext: function(data) {
             var listingProductIds = data.match(/window.quickviewProductIds[= ]+\[(.*?)];/);
             if ( ( listingProductIds != null ) && (typeof listingProductIds == 'object') && (listingProductIds.length == 2) ) {
@@ -427,6 +436,7 @@ function($) {
             var qeryStr = window.ajaxInfiniteScroll.getUrlParameter('q', window.ajaxInfiniteScroll.removeQueryStringParameter('p'));
             $.ajax({
                 cache: true,
+                global: false,
                 url: window.ajaxReloadPaginationUrl,
                 data: {
                     is_ajax: 1,
@@ -457,6 +467,7 @@ function($) {
             $.ajax({
                 cache: true,
                 url: window.ajaxCanonicalRefresh,
+                global: false,
                 data: {
                     is_ajax: 1,
                     current_url: window.location.href

@@ -98,6 +98,11 @@ $gtmHelper = $this->helper('WeltPixel\GoogleTagManager\Helper\Data');
                                         <?php endif; ?>
                                     <?php endif; ?>
                                 </div>
+                                <div data-role="add-to-links" class="actions-secondary"<?php echo strpos($pos, $viewMode . '-secondary') ? $position : ''; ?>>
+                                    <?php if ($addToBlock = $block->getChildBlock('addto')): ?>
+                                        <?php echo $addToBlock->setProduct($_product)->getChildHtml(); ?>
+                                    <?php endif; ?>
+                                </div>
                             </div>
                             <?php if ($showDescription):?>
                                 <div class="product description product-item-description">
@@ -113,7 +118,7 @@ $gtmHelper = $this->helper('WeltPixel\GoogleTagManager\Helper\Data');
             <?php endforeach; ?>
         </ol>
     </div>
-    <?php echo $block->getToolbarHtml() ?>
+    <?= $block->getChildBlock('toolbar')->setIsBottom(true)->toHtml() ?>
     <?php if (!$block->isRedirectToCartEnabled()) : ?>
         <script type="text/x-magento-init">
         {

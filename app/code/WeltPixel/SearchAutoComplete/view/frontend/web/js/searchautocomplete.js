@@ -20,6 +20,7 @@ define(['jquery', 'domReady'], function ($) {
                 xhr = $.ajax({
                     url: config.baseURL + 'searchautocomplete',
                     dataType: 'json',
+                    global: false,
                     type: 'post',
                     data: { q : q },
                     success: function(data) {

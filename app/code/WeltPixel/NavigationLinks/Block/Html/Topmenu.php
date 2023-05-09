@@ -162,10 +162,6 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
                     if ($dynamicSubcategories) {
                         $liGroup = 0;
                         foreach ($columnGroups as $columnSum) {
-                            $columnSum = (int)$columnSum;
-                            if (!is_numeric($columnSum)) {
-                                $columnSum = 0;
-                            }
                             $liGroup += $columnSum;
                             if ($counter <= $liGroup) {
                                 break;
@@ -415,11 +411,14 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
         $mmHoverTextUnderline = ($designSettingsEnabled && $mmHoverOption ? $this->_wpHelper->getMegaMenuLinksHoverUnderline() : '');
         $continuityTopLevelWithMegaMenu = ($designSettingsEnabled ? $this->_wpHelper->getMegaMenuContinuity() : '');
         $mmSubMenuPadding = ($designSettingsEnabled ? $this->_wpHelper->getSubMenuPadding() : '');
+        $mmSubMenuSubItemsPadding = ($designSettingsEnabled ? $this->_wpHelper->getSubMenuSubItemsPadding() : '');
+        $mmSubMenuCategoryTitlePadding = ($designSettingsEnabled ? $this->_wpHelper->getMegaMenuCategoryTitlePadding() : '');
         $mmSubMenuTextTransformOption = ($designSettingsEnabled ? $this->_wpHelper->isTextTransformEnabled() : '');
         $mmSubMenuFontSizeL0 = ($designSettingsEnabled ? $this->_wpHelper->getMegaMenuFontSizeL0() : '');
         $mmSubMenuFontSizeL1 = ($designSettingsEnabled ? $this->_wpHelper->getMegaMenuFontSizeL1() : '');
         $mmSubMenuFontSizeL2 = ($designSettingsEnabled ? $this->_wpHelper->getMegaMenuFontSizeL2() : '');
         $mmItemsPaddingL0 = ($designSettingsEnabled ? $this->_wpHelper->getMegaMenuLinksPaddingLevel0() : '');
+        $mmPromoLabelBorderRadius = ($designSettingsEnabled ? $this->_wpHelper->getMegaMenuPromoLabelBorderRadius() : '');
 
         $mmSubMenuFontSizeL0 = strlen(trim($mmSubMenuFontSizeL0)) ? 'font-size:' . $mmSubMenuFontSizeL0 : 'font-size: inherit;';
         $mmSubMenuFontSizeL1 = strlen(trim($mmSubMenuFontSizeL1)) ? 'font-size:' . $mmSubMenuFontSizeL1 : 'font-size: inherit;';
@@ -463,12 +462,12 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
             $this->inlineStyleOptions[] = 'body .nav-sections .navigation ul li.megamenu.level' . $childLevel
                 . ' ul.level' . $childLevel . '.submenu' . '.'
                 . (strpos($megaMenuClass, 'fullwidth') !== false ? $megaMenuClass . ' > li div.fullwidth-wrapper' : $megaMenuClass)
-                //. ',' . 'body .nav-sections .navigation .megamenu .submenu'
+                . ',' . 'body .nav-sections .navigation .megamenu .submenu'
                 . '{ background: ' . $backgroundColor . ' ;}';
-//            $this->inlineStyleOptions[] = 'body .nav-sections .navigation ul li.megamenu.level' . $childLevel
-//                . ' ul.level' . $childLevel . '.submenu' . '.'
-//                . $megaMenuClass . ' li a'
-//                . '{ background: ' . $backgroundColor . ' ;}';
+            $this->inlineStyleOptions[] = 'body .nav-sections .navigation ul li.megamenu.level' . $childLevel
+                . ' ul.level' . $childLevel . '.submenu' . '.'
+                . $megaMenuClass . ' li a'
+                . '{ background: ' . $backgroundColor . ' ;}';
         }
 
         if (strlen($mmFontColor)) {
@@ -511,32 +510,33 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
         if ($continuityTopLevelWithMegaMenu) {
             $this->inlineStyleOptions[] = 'body .nav-sections .navigation ul li.megamenu.level0.mm-has-children'
                 . ':hover > a { background:' . ($backgroundColor ? $backgroundColor : 'transparent') . ' ;}';
+        } else {
+            $this->inlineStyleOptions[] = 'body .page-wrapper .nav-sections .navigation ul li.megamenu.mm-first-item a.level-top'
+                . '{ padding-left: 0px ;}';
         }
 
         if (strlen($mmSubMenuPadding)) {
-            $this->inlineStyleOptions[] = '.nav-sections:not(.nav-mobile) .navigation ul li.megamenu.level' . $childLevel
-                . ' ul.level' . $childLevel . '.submenu' . '.'
-                . $megaMenuClass . ' li.mm-no-children '
+            $this->inlineStyleOptions[] ='.navigation .megamenu.level-top-fullwidth .submenu .level1 .submenu li,
+            .navigation .megamenu.level-top-sectioned .submenu .level1 .submenu li,
+            .navigation .megamenu.level-top-boxed .submenu .level1 .submenu li'
                 . '{ padding:' . $mmSubMenuPadding . ' ;}';
+        }
 
-            $mmSubMenuPaddingArray = explode(' ', $mmSubMenuPadding);
-            switch (count($mmSubMenuPaddingArray)) {
-                case 1:
-                    $mmSubMenuPaddingArray[1] = intval($mmSubMenuPaddingArray[0]) + 10 . 'px';
-                    break;
-                case 2:
-                case 3:
-                    $mmSubMenuPaddingArray[1] = intval($mmSubMenuPaddingArray[1]) + 10 . 'px';
-                    break;
-                case 4:
-                    $mmSubMenuPaddingArray[1] = intval($mmSubMenuPaddingArray[1]) + 10 . 'px';
-                    $mmSubMenuPaddingArray[3] = intval($mmSubMenuPaddingArray[3]) + 10 . 'px';
-                    break;
-            }
+        if (strlen($mmSubMenuSubItemsPadding)) {
+            $this->inlineStyleOptions[] = '.navigation .megamenu.level-top-fullwidth .submenu .level1 .submenu li a,
+            .navigation .megamenu.level-top-sectioned .submenu .level1 .submenu li a,
+            .navigation .megamenu.level-top-boxed .submenu .level1 .submenu li a'
+                . '{ padding:' . $mmSubMenuSubItemsPadding . ' ;}';
+        }
 
-            $mmSubMenuPadding = implode(' ', $mmSubMenuPaddingArray);
-            $this->inlineStyleOptions[] = '.nav-sections:not(.nav-mobile) .nav-sections .navigation ul li.level0 .parent > a.mm-category-title'
-                . '{ padding:' . $mmSubMenuPadding . ' ;}';
+        if (strlen($mmSubMenuCategoryTitlePadding)) {
+            $this->inlineStyleOptions[] = '.nav-sections:not(.mobile-nav) .navigation ul li.level0 .parent > a'
+                . '{ padding:' . $mmSubMenuCategoryTitlePadding . ' ;}';
+        }
+
+        if (strlen($mmPromoLabelBorderRadius)) {
+            $this->inlineStyleOptions[] = '.nav-sections:not(.nav-mobile) .navigation .ui-menu-icon .megamenu-promo-text' .
+                '{ border-radius:'. $mmPromoLabelBorderRadius .' }';
         }
 
         if (strlen($mmSubMenuTextTransformOption)) {

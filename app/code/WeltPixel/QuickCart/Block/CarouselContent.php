@@ -4,7 +4,7 @@ namespace WeltPixel\QuickCart\Block;
 use Magento\Catalog\Model\Product\Visibility as ProductVisibility;
 use Magento\Catalog\Model\ProductRepository;
 use WeltPixel\QuickCart\Model\Config\Source\CarouselDisplayFor;
-use WeltPixel\Quickview\Model\Config\Source\CarouselType;
+use WeltPixel\QuickCart\Model\Config\Source\CarouselType;
 
 /**
  * Class CarouselContent

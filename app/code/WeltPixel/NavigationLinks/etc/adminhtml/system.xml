@@ -123,18 +123,39 @@
                     <comment>Set font size for Navigation / Menu Level 2. Example: 20px</comment>
                 </field>
                 <field id="links_mm_padding" translate="label" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>MegaMenu Items Padding</label>
+                    <label>MegaMenu - Level 2+ “li” padding</label>
                     <depends>
                         <field id="weltpixel_megamenu/megamenu_design_settings/enable">1</field>
                     </depends>
-                    <comment>Insert Padding for MegaMenu Items. Example: 5px 10px 5px 10px</comment>
+                    <comment>Insert Padding for MegaMenu Items Level 1 'li'. Example: 5px 10px 5px 10px</comment>
+                </field>
+                <field id="sub_links_mm_padding" translate="label" type="text" sortOrder="115" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>MegaMenu - Level 2+ “a” padding</label>
+                    <depends>
+                        <field id="weltpixel_megamenu/megamenu_design_settings/enable">1</field>
+                    </depends>
+                    <comment>Apply padding for "a" elements of all Level 2+ MegaMenu items. Example: 5px 10px</comment>
+                </field>
+                <field id="links_level1_mm_padding" translate="label" type="text" sortOrder="116" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>MegaMenu - Level 1 “a” padding</label>
+                    <depends>
+                        <field id="weltpixel_megamenu/megamenu_design_settings/enable">1</field>
+                    </depends>
+                    <comment>Apply padding for "a" elements of all Level 2+ MegaMenu items. Example: 8px 20px</comment>
                 </field>
                 <field id="links_level0_mm_padding" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>MegaMenu Level 0 Items Padding</label>
+                    <label>MegaMenu - Level 0 “a” padding</label>
                     <depends>
                         <field id="weltpixel_megamenu/megamenu_design_settings/enable">1</field>
                     </depends>
                     <comment>Insert left right padding for MegaMenu Items. Example: 20px</comment>
+                </field>
+                <field id="label_mm_border_radius" translate="label" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Promo Label Border Radius</label>
+                    <depends>
+                        <field id="weltpixel_megamenu/megamenu_design_settings/enable">1</field>
+                    </depends>
+                    <comment>Insert Border Radius for Promo Label</comment>
                 </field>
             </group>
         </section>

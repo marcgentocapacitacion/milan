@@ -41,6 +41,7 @@ define([
                         window.twitterOauthCall = true;
                         $.ajax({
                             url: twitterOauthUrl,
+                            global: false,
                             type: 'POST'
                         }).done(function (response) {
                             if (response.success && response.oauthLink) {
@@ -138,6 +139,7 @@ define([
             return $.ajax({
                 url: ajaxUrl,
                 type: 'POST',
+                global: false,
                 data: parameters
             }).done(function (response) {
                 window.sl.addMsg($('#email_modal'),response);

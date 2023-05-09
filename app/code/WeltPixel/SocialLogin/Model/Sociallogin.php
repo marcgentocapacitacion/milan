@@ -8,6 +8,7 @@
 namespace WeltPixel\SocialLogin\Model;
 
 use Magento\Customer\Model\EmailNotificationInterface;
+use Magento\Framework\Validator\EmailAddress as EmailValidator;
 
 /**
  * Class Sociallogin
@@ -177,6 +178,11 @@ class Sociallogin extends \Magento\Framework\Model\AbstractModel
     protected $_objManager;
 
     /**
+     * @var EmailValidator
+     */
+    protected $emailValidator;
+
+    /**
      * Sociallogin constructor.
      * @param \Magento\Framework\Model\Context $context
      * @param \Magento\Framework\Registry $registry
@@ -197,6 +203,8 @@ class Sociallogin extends \Magento\Framework\Model\AbstractModel
      * @param \Magento\Customer\Model\CustomerFactory $customerFactory
      * @param \Magento\Customer\Api\AccountManagementInterface $accountManagement
      * @param EmailNotificationInterface $emailNotificationInterface
+     * @param \Magento\Framework\ObjectManagerInterface $objectManager
+     * @param EmailValidator $emailValidator
      * @param \Magento\Framework\Model\ResourceModel\AbstractResource|null $resource
      * @param \Magento\Framework\Data\Collection\AbstractDb|null $resourceCollection
      * @param array $data
@@ -222,6 +230,7 @@ class Sociallogin extends \Magento\Framework\Model\AbstractModel
         \Magento\Customer\Api\AccountManagementInterface $accountManagement,
         \Magento\Customer\Model\EmailNotificationInterface $emailNotificationInterface,
         \Magento\Framework\ObjectManagerInterface $objectManager,
+        EmailValidator $emailValidator,
         \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
         \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
         array $data = []
@@ -246,6 +255,7 @@ class Sociallogin extends \Magento\Framework\Model\AbstractModel
         $this->accountManagement = $accountManagement;
         $this->emailNotificationInterface = $emailNotificationInterface;
         $this->_objManager = $objectManager;
+        $this->emailValidator = $emailValidator;
     }
 
     public function _construct()
@@ -468,7 +478,7 @@ class Sociallogin extends \Magento\Framework\Model\AbstractModel
                 ->getGroupId();
 
             $errors = $this->_validate($customer);
-            $correctEmail = \Zend_Validate::is($this->fetchSocialUserData('email'), 'EmailAddress');
+            $correctEmail = $this->emailValidator->isValid($this->fetchSocialUserData('email'));
             if ((empty($errors) || $this->_helper->validateIgnore()) && $correctEmail) {
                 $customerId = $customer->save()->getId();
                 $customer->setConfirmation(null)->save();

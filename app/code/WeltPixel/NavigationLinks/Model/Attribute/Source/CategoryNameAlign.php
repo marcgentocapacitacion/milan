@@ -17,6 +17,7 @@ class CategoryNameAlign implements SourceInterface, OptionSourceInterface
     const ALIGN_CENTER  = 'center';
     const ALIGN_LEFT  = 'left';
     const ALIGN_RIGHT = 'right';
+    const ALIGN_HIDE = 'hide';
 
 
     /**
@@ -30,6 +31,7 @@ class CategoryNameAlign implements SourceInterface, OptionSourceInterface
             self::ALIGN_LEFT  => __('Left'),
             self::ALIGN_CENTER => __('Center'),
             self::ALIGN_RIGHT => __('Right'),
+            self::ALIGN_HIDE => __('Hide')
         ];
     }
 

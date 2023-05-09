@@ -8,6 +8,7 @@
 namespace WeltPixel\SocialLogin\Model;
 
 use WeltPixel\SocialLogin\lib\Google\Client as Google_Client;
+use Magento\Framework\Validator\EmailAddress as EmailValidator;
 
 /**
  * Class Google
@@ -74,12 +75,13 @@ class Google extends \WeltPixel\SocialLogin\Model\Sociallogin
         \Magento\Customer\Api\AccountManagementInterface $accountManagement,
         \Magento\Customer\Model\EmailNotificationInterface $emailNotificationInterface,
         \Magento\Framework\ObjectManagerInterface $objectManager,
+        EmailValidator $emailValidator,
         \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
         \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
         array $data = []
         )
     {
-        parent::__construct($context, $registry, $slHelper, $storeManager, $store, $encryptor, $customer, $eavConfig, $attribute, $random, $filesystem, $ioFile, $dir, $customerSession, $customerRepository, $customerData, $customerFactory, $accountManagement, $emailNotificationInterface, $objectManager, $resource, $resourceCollection, $data);
+        parent::__construct($context, $registry, $slHelper, $storeManager, $store, $encryptor, $customer, $eavConfig, $attribute, $random, $filesystem, $ioFile, $dir, $customerSession, $customerRepository, $customerData, $customerFactory, $accountManagement, $emailNotificationInterface, $objectManager, $emailValidator, $resource, $resourceCollection, $data);
         $this->client = $client;
         $this->request = $request;
     }

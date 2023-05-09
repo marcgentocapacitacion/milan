@@ -158,17 +158,27 @@
         .product-item-info {
             width: 95%;
 
-            .product-item-inner {
-                top: 0;
-                right: 17%;
-                box-shadow: none;
-                left: auto;
-                border: none;
-                position: absolute;
-                z-index: 9;
+            > .product-item-details {
+                position: initial !important;
 
-                &:before {
-                    display: none;
+                > .weltpixel_quickview_button_v2 {
+                    position: absolute !important;
+                    top: 180px !important;
+                    right: 20px !important;
+                }
+
+                .product-item-inner {
+                    top: 0;
+                    right: 17%;
+                    box-shadow: none;
+                    left: auto;
+                    border: none;
+                    position: absolute;
+                    z-index: 9;
+
+                    &:before {
+                        display: none;
+                    }
                 }
             }
 

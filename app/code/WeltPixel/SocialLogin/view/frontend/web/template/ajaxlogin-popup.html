@@ -32,7 +32,8 @@
             <form class="form form-login"
                   method="post"
                   data-bind="event: {submit: login }"
-                  id="ajaxlogin-form">
+                  id="ajaxlogin-form"
+                  novalidate="novalidate">
                 <div class="fieldset login" data-bind="attr: {'data-hasrequired': $t('* Required Fields')}">
                     <div class="field email required">
                         <label class="label" for="ajaxlogin-email"><span data-bind="i18n: 'Email Address'"></span></label>

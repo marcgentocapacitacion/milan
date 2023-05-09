@@ -91,7 +91,7 @@ class MobileDetect
      * The User-Agent HTTP header is stored in here.
      * @var string
      */
-    protected $userAgent = null;
+    protected $userAgent = '';
 
     /**
      * HTTP headers in the PHP-flavor. So HTTP_USER_AGENT and SERVER_SOFTWARE.
@@ -657,7 +657,7 @@ class MobileDetect
      */
     public function __construct(
         array $headers = null,
-        $userAgent = null
+              $userAgent = ''
     ) {
         $this->setHttpHeaders($headers);
         $this->setUserAgent($userAgent);
@@ -1216,9 +1216,13 @@ class MobileDetect
      *
      * @todo: search in the HTTP headers too.
      */
-    public function match($regex, $userAgent = null)
+    public function match($regex, $userAgent = '')
     {
-        $match = (bool) preg_match(sprintf('#%s#is', $regex), (false === empty($userAgent) ? $userAgent : $this->userAgent), $matches);
+        $matches = [];
+        $userAgent = ($userAgent) ?? '';
+        $subject = (false === empty($userAgent) ? $userAgent : $this->userAgent);
+        if (is_null($subject)) $subject = '';
+        $match = (bool) preg_match(sprintf('#%s#is', $regex), $subject, $matches);
         // If positive match is found, store the results for debug.
         if ($match) {
             $this->matchingRegex = $regex;

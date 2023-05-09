@@ -192,6 +192,14 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      * @param null $storeId
      * @return mixed
      */
+    public function getSubMenuSubItemsPadding($storeId = null) {
+        return $this->scopeConfig->getValue('weltpixel_megamenu/megamenu_design_settings/sub_links_mm_padding', \Magento\Store\Model\ScopeInterface::SCOPE_STORE, $storeId) ?? '';
+    }
+
+    /**
+     * @param null $storeId
+     * @return mixed
+     */
     public function isTextTransformEnabled($storeId = null) {
         return $this->scopeConfig->getValue('weltpixel_megamenu/megamenu_design_settings/links_mm_text_transform', \Magento\Store\Model\ScopeInterface::SCOPE_STORE, $storeId) ?? '';
     }
@@ -228,5 +236,20 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         return $this->scopeConfig->getValue('weltpixel_megamenu/megamenu_design_settings/links_level0_mm_padding', \Magento\Store\Model\ScopeInterface::SCOPE_STORE, $storeId) ?? '';
     }
 
+    /**
+     * @param null $storeId
+     * @return mixed
+     */
+    public function getMegaMenuPromoLabelBorderRadius($storeId = null) {
+        return $this->scopeConfig->getValue('weltpixel_megamenu/megamenu_design_settings/label_mm_border_radius', \Magento\Store\Model\ScopeInterface::SCOPE_STORE, $storeId) ?? '';
+    }
+
+    /**
+     * @param null $storeId
+     * @return mixed
+     */
+    public function getMegaMenuCategoryTitlePadding($storeId = null) {
+        return $this->scopeConfig->getValue('weltpixel_megamenu/megamenu_design_settings/links_level1_mm_padding', \Magento\Store\Model\ScopeInterface::SCOPE_STORE, $storeId) ?? '';
+    }
 
 }

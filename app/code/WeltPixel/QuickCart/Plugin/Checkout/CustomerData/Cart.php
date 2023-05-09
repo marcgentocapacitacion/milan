@@ -90,6 +90,16 @@ class Cart
                 ->setTemplate('WeltPixel_QuickCart::carousel/content.phtml')
                 ->setProductViewModel($abstractProductBlock);
 
+            /** @var \Magento\Framework\Pricing\Render $priceRender */
+            $priceRender = $this->layout->getBlock('product.price.render.default');
+            if (!$priceRender) {
+                $this->layout->createBlock(
+                    \Magento\Framework\Pricing\Render::class,
+                    'product.price.render.default',
+                    ['data' => ['price_render_handle' => 'catalog_product_prices']]
+                );
+            }
+
             $quickCartCarouselContent = $carouselContentBlock->toHtml();
         }
 

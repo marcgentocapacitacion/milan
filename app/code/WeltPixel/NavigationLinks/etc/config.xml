@@ -5,14 +5,6 @@
 			<megamenu>
 				<enable>1</enable>
 			</megamenu>
-            <megamenu_design_settings>
-                <enable>1</enable>
-                <background_mm_color>#FFFFFFE6</background_mm_color>
-                <font_mm_color>#000000</font_mm_color>
-                <links_mm_hover_options>1</links_mm_hover_options>
-                <font_mm_hover_color>#000000</font_mm_hover_color>
-                <links_mm_hover_underline>left-right</links_mm_hover_underline>
-            </megamenu_design_settings>
 		</weltpixel_megamenu>
 	</default>
 </config>

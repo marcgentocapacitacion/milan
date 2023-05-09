@@ -93,7 +93,7 @@ class SocialAccounts extends \Magento\Framework\View\Element\Template
     {
         $customer  = $this->getCustomer();
         $rpToken = $customer->getRpToken();
-        if (!$customer->getPasswordHash() && $this->customerAccountManagement->validateResetPasswordLinkToken($customer->getId(), $rpToken)) {
+        if (!$customer->getPasswordHash() && $this->customerAccountManagement->validateResetPasswordLinkToken((int)$customer->getId(), $rpToken)) {
             return true;
         } else {
             return false;

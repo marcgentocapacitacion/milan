@@ -1,6 +1,9 @@
 @import 'source/_navigation_global.less';
 
 /** Custom Navigation style */
+.navigation {
+    position: static !important;
+}
 .navigation > ul {
     position: static !important;
 }
@@ -17,8 +20,10 @@
 .navigation .megamenu.level0.has-active > .level-top,
 .navigation .megamenu.level0.active > .level-top {
     border-bottom: 0 none;
+    color: #575757;
 }
 .navigation .megamenu.level0:hover > a {
+    color: #444444 !important;
     text-shadow: 0 0 0 #000000;
 }
 .navigation .level0 .submenu {
@@ -31,12 +36,14 @@
 .navigation .megamenu.level0 .submenu .active > a,
 .navigation .megamenu.level0 .submenu .has-active > a {
     border-bottom: 0 none;
+    color: #575757;
 }
 .navigation .megamenu a {
     text-transform: uppercase;
 }
 .navigation .megamenu a.bold-menu,
 .navigation .megamenu a:hover {
+    color: #444444;
 }
 .navigation .level0 > .level-top,
 .navigation ul li.level0.first > a{
@@ -61,6 +68,11 @@
 .navigation .megamenu.level-top-boxed .submenu .columns-group {
     padding: 0;
 }
+.navigation .megamenu.level-top-fullwidth .submenu .columns-group li,
+.navigation .megamenu.level-top-sectioned .submenu .columns-group li,
+.navigation .megamenu.level-top-boxed .submenu .columns-group li {
+    padding: 0 5px;
+}
 .navigation .megamenu.level-top-fullwidth .submenu .columns-group li > a,
 .navigation .megamenu.level-top-sectioned .submenu .columns-group li > a,
 .navigation .megamenu.level-top-boxed .submenu .columns-group li > a {
@@ -69,7 +81,7 @@
 .navigation .megamenu.level-top-fullwidth .submenu .columns-group li > a span,
 .navigation .megamenu.level-top-sectioned .submenu .columns-group li > a span,
 .navigation .megamenu.level-top-boxed .submenu .columns-group li > a span {
-    padding: 0;
+    padding: 0 0 5px;
     font-size: 1.4rem;
 }
 .navigation .megamenu.level-top-fullwidth .submenu .columns-group li > a:hover,
@@ -143,6 +155,19 @@
     font-size: 1.65rem;
     padding: 0 0 5px;
 }
+.navigation .megamenu.level-top-fullwidth .submenu [data-has-children] > a span.mm-subcategory-title:before,
+.navigation .megamenu.level-top-sectioned .submenu [data-has-children] > a span.mm-subcategory-title:before,
+.navigation .megamenu.level-top-boxed .submenu [data-has-children] > a span.mm-subcategory-title:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    height: 1px;
+    margin: 1px 0 0;
+    opacity: 1;
+    left: 0;
+    width: 100%;
+    background: #cccccc;
+}
 .navigation .megamenu.level-top-fullwidth .submenu .level3 a span,
 .navigation .megamenu.level-top-sectioned .submenu .level3 a span,
 .navigation .megamenu.level-top-boxed .submenu .level3 a span {
@@ -152,11 +177,6 @@
 .navigation .megamenu.level-top-sectioned .submenu:not(:first-child) .active > a,
 .navigation .megamenu.level-top-boxed .submenu:not(:first-child) .active > a {
     border-left: 0 none;
-}
-
-.navigation ul li.megamenu.level0 ul.level0.submenu.sectioned {
-    padding: 20px 50px;
-    left: -40px !important;
 }
 
 .navigation .megamenu.level-top-default .submenu {
@@ -225,7 +245,7 @@
 }
 
 .navigation .megamenu.level-top-sectioned .sectioned {
-    display: flex;
+    display: table;
 }
 .navigation .megamenu.level-top-sectioned .sectioned .columns-group {
     display: table-cell !important;
@@ -424,19 +444,8 @@
     padding: 20px 0 15px 20px;
 }
 .navigation .megamenu.level-top-sectioned .level0.submenu.sectioned .right-block-child {
-    padding: 20px 50px;
-    margin-left: 50px;
-    position: relative;
-}
-.navigation .megamenu.level-top-sectioned .level0.submenu.sectioned .right-block-child:before {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 1px;
-    height: 50%;
-    background: #333;
-    left: 0;
-    bottom: 25%;
+    padding: 20px 20px 15px 0;
+    float: right;
 }
 .navigation .megamenu.level-top-sectioned .level0.submenu.sectioned.has-menu-block.left-block-child .submenu-child,
 .navigation .megamenu.level-top-sectioned .level0.submenu.sectioned.has-menu-block.right-block-child .submenu-child,
@@ -447,7 +456,7 @@
 }
 .navigation .megamenu.level-top-sectioned .level0.submenu.sectioned.has-menu-block.right-block-child:not(.top-block-child) .submenu-child,
 .navigation .megamenu.level-top-sectioned .level0.submenu.sectioned.has-menu-block.right-block-child:not(.bottom-block-child) .submenu-child {
-    display: flex;
+    display: table-cell;
 }
 .navigation .megamenu.level-top-sectioned .level0.submenu.sectioned.has-menu-block.left-block-child.top-block-child.bottom-block-child .submenu-child:first-child,
 .navigation .megamenu.level-top-sectioned .level0.submenu.sectioned.has-menu-block.left-block-child.top-block-child.bottom-block-child .submenu-child:last-child,
@@ -561,6 +570,8 @@
 .navigation .megamenu .mm-image.mm-align-center {text-align: center !important;}
 .navigation .megamenu .mm-image.mm-align-left {text-align: left !important;}
 .navigation .megamenu .mm-image.mm-align-right {text-align: right !important;}
+.navigation .megamenu .mm-image.mm-align-hide .mm-subcategory-title,
+.navigation .megamenu .mm-image.mm-align-hide .megamenu-promo-text {display:none !important;}
 
 .navigation .megamenu.level-top-fullwidth .mm-image .mm-image-wrp,
 .navigation .megamenu.level-top-sectioned .mm-image .mm-image-wrp {
@@ -576,6 +587,20 @@
 .navigation ul li.megamenu ul.submenu li a > span.underline-megamenu,
 .navigation ul li.megamenu ul.submenu li a > span.bottom-fade-in {
     position: relative;
+}
+
+.navigation ul li.megamenu ul.submenu li a > span.underline-megamenu:before,
+.navigation ul li.megamenu ul.submenu li a > span.underline-megamenu:after,
+.navigation ul li.megamenu ul.submenu li a > span.bottom-fade-in:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    margin: 1px 0 0;
+    transition: all 0.2s ease-in-out;
+    transition-duration: 0.5s;
+    opacity: 0;
 }
 
 .navigation ul li.megamenu ul.submenu li a:hover > span.underline-megamenu:before,

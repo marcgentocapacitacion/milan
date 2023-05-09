@@ -272,6 +272,10 @@ define([
 
             }
 
+            if (content.ga4ServerSideItemListHash) {
+                window.wpGA4ServerSide.pushViewItemList(content.ga4ServerSideItemListHash);
+            }
+
             if (content.dataLayer) {
                 var dlObjects = JSON.parse(content.dataLayer);
                 window.dataLayer = window.dataLayer || [];
@@ -474,6 +478,16 @@ define([
                 paramData = this.getParams(urlParams, paramName, paramValue, defaultValue);
             window.isSorting = (paramName == 'product_list_order' || paramName == 'product_list_limit' || paramName == 'p') ? true : false;
             if( paramName == 'product_list_mode') {// paramName == 'product_list_order' - to remove adavancedsorting by ajax
+                var ajaxParam = false;
+                for (var i = urlParams.length; i--;) {
+                    if (urlParams[i] === 'ajax=1') {
+                        urlParams.splice(i, 1);
+                        ajaxParam = true;
+                    }
+                }
+                if (ajaxParam) {
+                    paramData = this.getParams(urlParams, paramName, paramValue, defaultValue);
+                }
                 location.href = baseUrl + (paramData.length ? '?' + paramData : '');
             } else {
                 this.makeAjaxCall(baseUrl, paramData, true);
@@ -510,6 +524,7 @@ define([
                 data: (paramData && paramData.length > 0) ? paramData + '&ajax=1' : 'ajax=1',
                 type: 'get',
                 dataType: 'json',
+                global: false,
                 cache: true,
                 showLoader: showLoader,
                 beforeSend: function (xhr){
