@@ -37,6 +37,9 @@ class Configuration
         $result,
         $item
     ) {
+        if ($item->getSku() != "sap_invoice") {
+            return $result;
+        }
         $_options = $result;
         $docEntry = 0;
         $docType = "";
@@ -48,28 +51,28 @@ class Configuration
             if ($_option['label'] == "Type") {
                 $docType = $_option["value"];
             }
-
         }
 
         $invoice = $this->helper->getDocNumByDocEntry($docEntry, $docType);
-        if (!$invoice) {
-            return [];
-        }
-        $docNum = $invoice->getDocNum();
+        if ($invoice) {
+            $docNum = $invoice->getDocNum();
 
-        $_newOptions = [];
-        foreach ($_options as $_option) {
-            if ($_option['label'] == "DocEntry") {
-                $_option["label"] = __("Doc Num");
-                $_option["value"] = $docNum;
+            $_newOptions = [];
+            foreach ($_options as $_option) {
+                if ($_option['label'] == "DocEntry") {
+                    $_option["label"] = __("Doc Num");
+                    $_option["value"] = $docNum;
+                }
+                if ($_option['label'] == "Amount") {
+                    $_option["label"] = __("Payment Amount");
+                    $_option["value"] = $this->priceHelper->currency($_option["value"], true, false);
+                }
+                $_newOptions[] = $_option;
             }
-            if ($_option['label'] == "Amount") {
-                $_option["label"]  = __("Payment Amount");
-                $_option["value"] =  $this->priceHelper->currency($_option["value"], true, false);
-            }
-            $_newOptions[] = $_option;
+
+            return $_newOptions;
         }
 
-        return $_newOptions;
+        return $result;
     }
 }

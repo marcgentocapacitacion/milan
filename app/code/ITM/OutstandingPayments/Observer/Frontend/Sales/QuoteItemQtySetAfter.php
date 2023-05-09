@@ -34,6 +34,15 @@ class QuoteItemQtySetAfter implements \Magento\Framework\Event\ObserverInterface
             );
 
         }
+        if($quoteItem->getSku() == "sap_invoice" && $quoteItem->getPrice()==0){
+            $quoteItem->getQuote()->setHasError(true);
+            $quoteItem->addMessage(
+                __('There is an error in this payment, please delete the payment and add it again.'),
+                \Magento\CatalogInventory\Helper\Data::ERROR_QTY,
+                __('There is an error in this payment, please delete the payment and add it again.')
+            );
+
+        }
 
     }
 }

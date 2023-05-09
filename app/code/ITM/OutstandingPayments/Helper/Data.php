@@ -364,7 +364,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
     public function getDocType($docType)
     {
-        $doc_type  = "in";
+        $doc_type  = "";
+
         if ($docType == "Invoice") {
             $doc_type = "in";
         } else if ($docType == "Down Payment") {
