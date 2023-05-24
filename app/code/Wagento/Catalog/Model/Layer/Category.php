@@ -45,7 +45,7 @@ class Category extends \Magento\Catalog\Model\Layer\Category
             try {
                 $categoryModel = $this->categoryRepository->get($category);
                 $ids[] = $categoryModel->getId();
-                $ids += $categoryModel->getAllChildren(true);
+                $ids = array_merge_recursive($ids, $categoryModel->getAllChildren(true));
             } catch (\Exception $exception) {
                 continue;
             }
