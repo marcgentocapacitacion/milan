@@ -38,6 +38,19 @@
             </div>
         <?php endif ?>
     </div>
+    <?php if ($block->getViewModel()->isClearShoppingCartEnabled()): ?>
+        <div class="cart main actions">
+            <button type="button"
+                    name="update_cart_action"
+                    data-cart-empty=""
+                    value="empty_cart"
+                    title="<?= $block->escapeHtml(__('Clear Shopping Cart')) ?>"
+                    class="action clear" id="empty_cart_button">
+                <span><?= $block->escapeHtml(__('Clear Shopping Cart')) ?></span>
+            </button>
+            <input type="hidden" value="" id="update_cart_action_container" data-cart-item-update=""/>
+        </div>
+    <?php endif ?>
 </form>
 <?= $block->getChildHtml('checkout.cart.order.actions') ?>
 <?= $block->getChildHtml('shopping.cart.table.after') ?>
