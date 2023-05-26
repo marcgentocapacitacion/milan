@@ -21,6 +21,11 @@
 }
 
 .block.crosssell{
+
+    .cart-container & {
+        margin: 0;
+    }
+
 	.owl-stage{
 		.owl-item{
 			.product-item{
@@ -28,6 +33,42 @@
 			}
 		}
 	}
+
+    .block-title {
+        width: 100%;
+        background-color: rgba(236, 239, 241, 0.6);
+        padding: 10px;
+        margin-top: 15px;
+        font-size: 20px;
+        line-height: 1.42857143;
+    }
+
+    .block-content {
+        .product-items {
+            margin: 0;
+        }
+
+        .product-item {
+            padding: 10px;
+            .product-item-name,
+            .product-item-name a {
+                font-size: 1.8rem;
+                line-height: 1.42857143;
+            }
+        }
+    }
+
+}
+
+.quickcart-carousel-products-wrapper {
+    .product-item {
+        padding: 10px;
+        .product-item-name,
+        .product-item-name a {
+            font-size: 1.8rem;
+            line-height: 1.42857143;
+        }
+    }
 }
 
 .clearfix {

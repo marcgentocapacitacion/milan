@@ -277,7 +277,7 @@
             </upsell_products>
             <crosssell_products>
                 <status>1</status>
-                <title>Cross sell products</title>
+                <title>También puede interesarle</title>
                 <max_items>15</max_items>
                 <slide_by>1</slide_by>
                 <loop>1</loop>
@@ -292,27 +292,27 @@
                 <rtl>0</rtl>
                 <nav_design>1</nav_design>
                 <nav_brk1>0</nav_brk1>
-                <dots_brk1>1</dots_brk1>
+                <dots_brk1>0</dots_brk1>
                 <dotsEach_brk1>0</dotsEach_brk1>
                 <items_brk1>2</items_brk1>
                 <center_brk1>0</center_brk1>
                 <stagePadding_brk1>0</stagePadding_brk1>
                 <nav_brk2>0</nav_brk2>
-                <dots_brk2>1</dots_brk2>
+                <dots_brk2>0</dots_brk2>
                 <dotsEach_brk2>0</dotsEach_brk2>
                 <items_brk2>3</items_brk2>
                 <center_brk2>0</center_brk2>
                 <stagePadding_brk2>0</stagePadding_brk2>
                 <nav_brk3>0</nav_brk3>
-                <dots_brk3>1</dots_brk3>
+                <dots_brk3>0</dots_brk3>
                 <dotsEach_brk3>0</dotsEach_brk3>
                 <items_brk3>4</items_brk3>
                 <center_brk3>0</center_brk3>
                 <stagePadding_brk3>0</stagePadding_brk3>
                 <nav_brk4>1</nav_brk4>
-                <dots_brk4>1</dots_brk4>
+                <dots_brk4>0</dots_brk4>
                 <dotsEach_brk4>0</dotsEach_brk4>
-                <items_brk4>5</items_brk4>
+                <items_brk4>4</items_brk4>
                 <center_brk4>0</center_brk4>
                 <stagePadding_brk4>0</stagePadding_brk4>
             </crosssell_products>
