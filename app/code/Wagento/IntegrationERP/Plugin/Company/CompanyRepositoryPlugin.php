@@ -86,15 +86,15 @@ class CompanyRepositoryPlugin
         $model->setUAutorizadoTemporada((bool)$extensionAttributes->getUAutorizadoTemporada() ?? false);
         $model->setUInicioTemporada($extensionAttributes->getUInicioTemporada() ?? '');
         $model->setUFinTemporada($extensionAttributes->getUFinTemporada() ?? '');
-        $model->setUGroupNumTemporada($extensionAttributes->getUGroupNumTemporada() ?? '');
+        $model->setUGroupNumTemporada((int)$extensionAttributes->getUGroupNumTemporada());
         $model->setUDiscountTemporada($extensionAttributes->getUDiscountTemporada() ?? '');
         $model->setUAutorizadoTemporadaOPT((bool)$extensionAttributes->getUAutorizadoTemporadaOPT() ?? false);
-        $model->setUGroupNumTempoOPT($extensionAttributes->getUGroupNumTempoOPT() ?? '');
+        $model->setUGroupNumTempoOPT((int)$extensionAttributes->getUGroupNumTempoOPT());
         $model->setGroupNum((bool)$extensionAttributes->getGroupNum() ?? false);
         $model->setUDiscountContado($extensionAttributes->getUDiscountContado() ?? '');
         $model->setUDiscountContadoOptimus($extensionAttributes->getUDiscountContadoOptimus() ?? '');
         $model->setUDiscountOptimus($extensionAttributes->getUDiscountOptimus() ?? '');
-        $model->setUGroupNumOptimus($extensionAttributes->getUGroupNumOptimus() ?? '');
+        $model->setUGroupNumOptimus((int)$extensionAttributes->getUGroupNumOptimus());
         $model->setUDiscountMilan($extensionAttributes->getUDiscountMilan() ?? '');
         $model->setDebitLine($extensionAttributes->getDebitLine() ?? '');
         $model->setUFechaNacimiento($extensionAttributes->getUFechaNacimiento() ?? '');

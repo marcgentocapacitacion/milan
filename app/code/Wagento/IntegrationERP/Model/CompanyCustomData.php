@@ -94,19 +94,19 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getUGroupNumTemporada(): string
+    public function getUGroupNumTemporada(): int
     {
         return $this->getData('u_group_num_temporada');
     }
 
     /**
-     * @param string $value
+     * @param int $value
      *
      * @return $this
      */
-    public function setUGroupNumTemporada(string $value)
+    public function setUGroupNumTemporada(int $value)
     {
         $this->setData('u_group_num_temporada', $value);
         return $this;
@@ -151,19 +151,19 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getUGroupNumTempoOPT(): string
+    public function getUGroupNumTempoOPT(): int
     {
         return $this->getData('u_group_num_tempo_o_p_t');
     }
 
     /**
-     * @param string $value
+     * @param int $value
      *
      * @return $this
      */
-    public function setUGroupNumTempoOPT(string $value)
+    public function setUGroupNumTempoOPT(int $value)
     {
         $this->setData('u_group_num_tempo_o_p_t', $value);
         return $this;
@@ -246,19 +246,19 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getUGroupNumOptimus(): string
+    public function getUGroupNumOptimus(): int
     {
         return $this->getData('u_group_num_optimus');
     }
 
     /**
-     * @param string $value
+     * @param int $value
      *
      * @return $this
      */
-    public function setUGroupNumOptimus(string $value)
+    public function setUGroupNumOptimus(int $value)
     {
         $this->setData('u_group_num_optimus', $value);
         return $this;

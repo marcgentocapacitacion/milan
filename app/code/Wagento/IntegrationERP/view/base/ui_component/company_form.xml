@@ -63,16 +63,24 @@
                 <visible>true</visible>
             </settings>
         </field>
-        <field name="extension_attributes.u_group_num_temporada" sortOrder="40" formElement="input">
+        <field name="extension_attributes.u_group_num_temporada" sortOrder="40" formElement="select">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">company_custom_data</item>
                 </item>
             </argument>
             <settings>
-                <dataType>string</dataType>
+                <dataType>int</dataType>
                 <label translate="true">Cod. AC Milan season</label>
+                <visible>true</visible>
             </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Wagento\IntegrationERP\Model\Company\Source\UGroupNumTemporada"/>
+                    </settings>
+                </select>
+            </formElements>
         </field>
         <field name="extension_attributes.u_discount_temporada" sortOrder="50" formElement="input">
             <argument name="data" xsi:type="array">
@@ -107,16 +115,24 @@
                 </checkbox>
             </formElements>
         </field>
-        <field name="extension_attributes.u_group_num_tempo_o_p_t" sortOrder="70" formElement="input">
+        <field name="extension_attributes.u_group_num_tempo_o_p_t" sortOrder="70" formElement="select">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">company_custom_data</item>
                 </item>
             </argument>
             <settings>
-                <dataType>string</dataType>
+                <dataType>int</dataType>
                 <label translate="true">Cod. OPTIMUS season</label>
+                <visible>true</visible>
             </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Wagento\IntegrationERP\Model\Company\Source\UGroupNumTempoOPT"/>
+                    </settings>
+                </select>
+            </formElements>
         </field>
         <field name="extension_attributes.group_num" sortOrder="80" formElement="checkbox">
             <argument name="data" xsi:type="array">
@@ -173,16 +189,24 @@
                 <label translate="true">% Discount Fact. Optimus</label>
             </settings>
         </field>
-        <field name="extension_attributes.u_group_num_optimus" sortOrder="120" formElement="input">
+        <field name="extension_attributes.u_group_num_optimus" sortOrder="120" formElement="select">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">company_custom_data</item>
                 </item>
             </argument>
             <settings>
-                <dataType>string</dataType>
+                <dataType>int</dataType>
                 <label translate="true">Optimus Payment Condition</label>
+                <visible>true</visible>
             </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Wagento\IntegrationERP\Model\Company\Source\UGroupNumOptimus"/>
+                    </settings>
+                </select>
+            </formElements>
         </field>
         <field name="extension_attributes.u_discount_milan" sortOrder="130" formElement="input">
             <argument name="data" xsi:type="array">

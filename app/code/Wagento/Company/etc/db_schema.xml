@@ -9,4 +9,66 @@
     <table name="company" resource="default" engine="innodb" comment="Company Table">
         <column xsi:type="varchar" name="almacen" nullable="true" length="255" comment="Almacen"/>
     </table>
+    <table name="wagento_company_eav_attribute_website" resource="default" engine="innodb"
+           comment="Wagento Company Eav Attribute Website">
+        <column xsi:type="smallint" name="attribute_id" unsigned="true" nullable="false" identity="false"
+                comment="Attribute Id"/>
+        <column xsi:type="smallint" name="website_id" unsigned="true" nullable="false" identity="false"
+                comment="Website Id"/>
+        <column xsi:type="smallint" name="is_visible" unsigned="true" nullable="true" identity="false"
+                comment="Is Visible"/>
+        <column xsi:type="smallint" name="is_required" unsigned="true" nullable="true" identity="false"
+                comment="Is Required"/>
+        <column xsi:type="text" name="default_value" nullable="true" comment="Default Value"/>
+        <column xsi:type="smallint" name="multiline_count" unsigned="true" nullable="true" identity="false"
+                comment="Multiline Count"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="attribute_id"/>
+            <column name="website_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="WAGENTO_COMPANY_EAV_ATTR_WS_ATTR_ID_EAV_ATTR_ATTR_ID"
+                    table="wagento_company_eav_attribute_website" column="attribute_id" referenceTable="eav_attribute"
+                    referenceColumn="attribute_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="WAGENTO_COMPANY_EAV_ATTR_WS_WS_ID_STORE_WS_WS_ID"
+                    table="wagento_company_eav_attribute_website" column="website_id" referenceTable="store_website"
+                    referenceColumn="website_id" onDelete="CASCADE"/>
+        <index referenceId="WAGENTO_COMPANY_EAV_ATTRIBUTE_WEBSITE_WEBSITE_ID" indexType="btree">
+            <column name="website_id"/>
+        </index>
+    </table>
+    <table name="wagento_company_form_attribute" resource="default" engine="innodb" comment="Company Form Attribute">
+        <column xsi:type="varchar" name="form_code" nullable="false" length="32" comment="Form Code"/>
+        <column xsi:type="smallint" name="attribute_id" unsigned="true" nullable="false" identity="false"
+                comment="Attribute Id"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="form_code"/>
+            <column name="attribute_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="WAGENTO_COMPANY_FORM_ATTR_ATTR_ID_EAV_ATTR_ATTR_ID"
+                    table="wagento_company_form_attribute" column="attribute_id" referenceTable="eav_attribute"
+                    referenceColumn="attribute_id" onDelete="CASCADE"/>
+        <index referenceId="wagento_company_form_attribute" indexType="btree">
+            <column name="attribute_id"/>
+        </index>
+    </table>
+    <table name="wagento_company_eav_attribute" resource="default" engine="innodb" comment="Company EAV Attribute">
+        <column xsi:type="smallint" name="attribute_id" unsigned="true" nullable="false" identity="false"
+                comment="Attribute Id"/>
+        <column xsi:type="smallint" name="is_visible" unsigned="true" nullable="false" identity="false"
+                default="1" comment="Is Visible"/>
+        <column xsi:type="smallint" name="multiline_count" unsigned="true" nullable="false" identity="false"
+                default="1" comment="Multiline Count"/>
+        <column xsi:type="text" name="validate_rules" nullable="true" comment="Validate Rules"/>
+        <column xsi:type="smallint" name="is_system" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Is System"/>
+        <column xsi:type="int" name="sort_order" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Sort Order"/>
+        <column xsi:type="varchar" name="data_model" nullable="true" length="255" comment="Data Model"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="attribute_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="WAGENTO_COMPANY_EAV_ATTR_ATTR_ID_EAV_ATTR_ATTR_ID"
+                    table="wagento_company_eav_attribute" column="attribute_id" referenceTable="eav_attribute"
+                    referenceColumn="attribute_id" onDelete="CASCADE"/>
+    </table>
 </schema>
