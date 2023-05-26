@@ -1,0 +1,25 @@
+diff --git a/lib/web/magnifier/magnifier.js b/lib/web/magnifier/magnifier.js
+index 29726688f4d5f..8b525b2e047b8 100644
+--- a/lib/web/magnifier/magnifier.js
++++ b/lib/web/magnifier/magnifier.js
+@@ -541,11 +541,9 @@
+
+             showWrapper = false;
+             $(thumbObj).on('load', function () {
+-                if (data.length > 0) {
++                if (data.hasOwnProperty(idx)) {
+                     data[idx].status = 1;
+-
+                     $(largeObj).on('load', function () {
+-
+                         if (largeObj.width > largeWrapper.width() || largeObj.height > largeWrapper.height()) {
+                             showWrapper = true;
+                             bindEvents(eventType, thumb);
+@@ -559,7 +557,6 @@
+                             updateLensOnLoad(idx, thumb, largeObj, largeWrapper);
+                         }
+                     });
+-
+                     largeObj.src = data[idx].largeUrl;
+                 }
+             });
