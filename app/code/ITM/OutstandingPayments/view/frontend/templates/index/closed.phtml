@@ -11,7 +11,7 @@
  */
 
 // @codingStandardsIgnoreFile
-
+$displayInfoTab = $block->displayInfoTab();
 ?>
 
 <?php $_invoices = $block->getInvoiceCollection(); ?>
@@ -31,7 +31,9 @@
                     <th scope="col" class="col total"><?= /* @escapeNotVerified */ __('Doc. Total') ?></th>
                     <th scope="col" class="col doc_type"><?= /* @escapeNotVerified */ __('Doc Type') ?></th>
                     <th scope="col" class="col status"><?= /* @escapeNotVerified */ __('Status') ?></th>
+                    <?php if($displayInfoTab): ?>
                     <th scope="col" class="col info"><?= /* @escapeNotVerified */ __('Info') ?></th>
+                    <?php endif; ?>
                     <th scope="col" class="col file"><?= /* @escapeNotVerified */ __('File') ?></th>
                 </tr>
             </thead>
@@ -46,8 +48,8 @@
                             <?= /* @escapeNotVerified */ $this->getDocTypeLabel($_invoice->getDocType()) ?>
                         </td>
                         <td data-th="<?= $block->escapeHtml(__('Status')) ?>" class="col status"><?= /* @escapeNotVerified */ $this->getInvoiceStatusLabel($_invoice) ?></td>
+                        <?php if($displayInfoTab): ?>
                         <td data-th="<?= $block->escapeHtml(__('Info')) ?>" class="col info">
-
                             <?php
                             //echo __('Doc Entry').": ".$_invoice->getDocEntry();
                              if(!empty($_invoice->getInfo())) {
@@ -63,6 +65,7 @@
                              }
                             ?>
                         </td>
+                        <?php endif; ?>
                         <td data-th="<?= $block->escapeHtml(__('File')) ?>" class="col file">
                             <?php  if ($_invoice->getPath() != ""): ?>
                                 <a target="_blank" href="<?php echo $this->getUrl('outstanding_payments/download/index',["type"=>$_invoice->getDocType(),"id" =>$_invoice->getDocEntry()]); ?>" class="action view">

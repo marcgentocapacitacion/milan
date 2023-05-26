@@ -89,10 +89,13 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     {
         return (bool)$this->_scopeConfig->getValue('itm_outstanding_payments_section/general/hide_osp_orders');
     }
-
+    public function displayInfoTab()
+    {
+        return (bool)$this->_scopeConfig->getValue('itm_outstanding_payments_section/general/display_info_column');
+    }
     public function allowPartialPayment()
     {
-        return false;
+        return (bool)$this->_scopeConfig->getValue('itm_outstanding_payments_section/general/allow_partial_payments');
     }
 
     public function disableCart()

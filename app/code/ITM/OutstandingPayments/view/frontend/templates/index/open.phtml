@@ -11,133 +11,206 @@
  */
 
 // @codingStandardsIgnoreFile
-
+$displayInfoTab = $block->displayInfoTab();
+$allowPartialPayment = $block->allowPartialPayment();
 ?>
 
 <?php $_invoices = $block->getInvoiceCollection(); ?>
 <?php if ($_invoices && count($_invoices)): ?>
-    <form name="page_form" method="POST" id="page_form">
-        <div class="actions-toolbar" style="float:right;margin-bottom:20px">
-            <div class="primary">
-                <button type="submit" class="action pay primary" title="Save">
-                    <span><?php echo __("Pay Selected"); ?></span></button>
-            </div>
+    <div>
+        <div style="width: 100%;height: 60px">
+            <form name="page_form" method="POST" id="page_form">
+                <div class="actions-toolbar" style="float:right;margin-bottom:20px">
+                    <div class="primary">
+                        <button type="submit" class="action pay primary" title="Save">
+                            <span><?php echo __("Pay Selected"); ?></span></button>
+                    </div>
+                </div>
+            </form>
         </div>
-    </form>
+        <div style="width: 100%">
+            <form name="orderForm1"
+                  action="<?php echo $this->getUrl('outstanding_payments/invoice/payselected', array('_secure' => true)) ?>"
+                  method="post" id="page_Form1" enctype="multipart/form-data" onsubmit="return checkForm();">
+                <div class="table-wrapper orders-history">
+                    <table class="data table table-order-items history" id="my-orders-table">
+                        <caption class="table-caption"><?= /* @escapeNotVerified */
+                            __('Invoices') ?></caption>
+                        <thead>
+                        <tr>
+                            <th scope="col" class="col id"></th>
+                            <th scope="col" class="col id"><?= /* @escapeNotVerified */
+                                __('Invoice #') ?></th>
+                            <th scope="col" class="col date"><?= /* @escapeNotVerified */
+                                __('Date') ?></th>
+                            <?= /* @noEscape */
+                            $block->getChildHtml('extra.column.header') ?>
 
-
-    <form name="orderForm1"
-          action="<?php echo $this->getUrl('outstanding_payments/invoice/payselected', array('_secure' => true)) ?>"
-          method="post" id="page_Form1" enctype="multipart/form-data" onsubmit="return checkForm();">
-        <div class="table-wrapper orders-history">
-            <table class="data table table-order-items history" id="my-orders-table">
-                <caption class="table-caption"><?= /* @escapeNotVerified */
-                    __('Invoices') ?></caption>
-                <thead>
-                <tr>
-                    <th scope="col" class="col id"></th>
-                    <th scope="col" class="col id"><?= /* @escapeNotVerified */
-                        __('Invoice #') ?></th>
-                    <th scope="col" class="col date"><?= /* @escapeNotVerified */
-                        __('Date') ?></th>
-                    <?= /* @noEscape */
-                    $block->getChildHtml('extra.column.header') ?>
-
-                    <th scope="col" class="col total"><?= /* @escapeNotVerified */
-                        __('Doc. Total') ?></th>
-                    <th scope="col" class="col balance"><?= /* @escapeNotVerified */
-                        __('Open Balance') ?></th>
-                    <th scope="col" class="col doc_type"><?= /* @escapeNotVerified */
-                        __('Doc Type') ?></th>
-                    <th scope="col" class="col status"><?= /* @escapeNotVerified */
-                        __('Status') ?></th>
-                    <th scope="col" class="col info"><?= /* @escapeNotVerified */
-                        __('Info') ?></th>
-                    <th scope="col" class="col actions"><?= /* @escapeNotVerified */
-                        __('Action') ?></th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php foreach ($_invoices as $_invoice): ?>
-                    <tr>
-                        <td data-th="<?= $block->escapeHtml(__('check to pay')) ?>" class="col id">
-                            <?php if ($_invoice->getInvoiceStatus() == "o"): ?>
-                                <input class="checkbox" type="checkbox" id="items<?php echo $_invoice->getDocEntry() ?>"
-                                       name="doc_entry[]"
-                                       value="<?php echo $_invoice->getDocType() . "_" . $_invoice->getDocEntry() ?>"/>
+                            <th scope="col" class="col total"><?= /* @escapeNotVerified */
+                                __('Doc. Total') ?></th>
+                            <th scope="col" class="col balance"><?= /* @escapeNotVerified */
+                                __('Open Balance') ?></th>
+                            <th scope="col" class="col doc_type"><?= /* @escapeNotVerified */
+                                __('Doc Type') ?></th>
+                            <th scope="col" class="col status"><?= /* @escapeNotVerified */
+                                __('Status') ?></th>
+                            <?php if ($displayInfoTab): ?>
+                                <th scope="col" class="col info"><?= /* @escapeNotVerified */
+                                    __('Info') ?></th>
                             <?php endif; ?>
-                        </td>
-                        <td data-th="<?= $block->escapeHtml(__('Invoice #')) ?>"
-                            class="col id"><?= /* @escapeNotVerified */
-                            $_invoice->getDocNum() ?></td>
-                        <td data-th="<?= $block->escapeHtml(__('Date')) ?>"
-                            class="col date"><?= /* @escapeNotVerified */
-                            $block->formatDate($_invoice->getDocDate()) ?></td>
+                            <th scope="col" class="col file"><?= /* @escapeNotVerified */
+                                __('File') ?></th>
+                            <th scope="col" class="col actions"><?= /* @escapeNotVerified */
+                                __('Action') ?></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($_invoices as $_invoice): ?>
+                            <tr>
+                                <td data-th="<?= $block->escapeHtml(__('check to pay')) ?>" class="col id">
+                                    <?php if ($_invoice->getInvoiceStatus() == "o"): ?>
+                                        <input class="checkbox" type="checkbox"
+                                               id="items<?php echo $_invoice->getDocEntry() ?>"
+                                               name="doc_entry[]"
+                                               value="<?php echo $_invoice->getDocType() . "_" . $_invoice->getDocEntry() ?>"/>
+                                    <?php endif; ?>
+                                </td>
+                                <td data-th="<?= $block->escapeHtml(__('Invoice #')) ?>"
+                                    class="col id"><?= /* @escapeNotVerified */
+                                    $_invoice->getDocNum() ?></td>
+                                <td data-th="<?= $block->escapeHtml(__('Date')) ?>"
+                                    class="col date"><?= /* @escapeNotVerified */
+                                    $block->formatDate($_invoice->getDocDate()) ?></td>
 
-                        <td data-th="<?= $block->escapeHtml(__('Invoice Total')) ?>"
-                            class="col total"><?= /* @escapeNotVerified */
-                            $this->formatPrice($_invoice->getDocTotal()) ?></td>
-                        <td data-th="<?= $block->escapeHtml(__('Open Balance')) ?>" class="col total">
-                            <?= /* @escapeNotVerified */
-                            $this->formatPrice($_invoice->getOpenBalance()) ?>
+                                <td data-th="<?= $block->escapeHtml(__('Invoice Total')) ?>"
+                                    class="col total"><?= /* @escapeNotVerified */
+                                    $this->formatPrice($_invoice->getDocTotal()) ?></td>
+                                <td data-th="<?= $block->escapeHtml(__('Open Balance')) ?>" class="col total">
+                                    <?= /* @escapeNotVerified */
+                                    $this->formatPrice($_invoice->getOpenBalance()) ?>
+                                    <?php if($allowPartialPayment && $_invoice->getInvoiceStatus() == 'o') :?>
+                                    <div class="parital-payment">
+                                       <div>
+                                        <button type="button" id="button-cart-<?=$_invoice->getId()?>">
+                                            <span><?= $block->escapeHtml(__('Custom Amount')) ?></span>
+                                        </button>
+                                        </div>
+                                        <div id="modal-cart-<?=$_invoice->getId()?>">
+                                            <div class="modal-body-content1">
+                                                <label for="cart-<?= $block->escapeHtmlAttr($_invoice->getId()) ?>-amount">
+                                                    <span class="label"><?= $block->escapeHtml(__('Amount')) ?></span>
+                                                    <input id="invoice-<?=$_invoice->getId()?>-amount"
+                                                           name="invoice-<?= $_invoice->getId()?>-amount"
+                                                           value="<?= $_invoice->getOpenBalance() ?>"
+                                                           type="number"
+                                                           min="0"
+                                                           size="4"
+                                                           step="any"
+                                                           title="<?= $block->escapeHtmlAttr(__('Amount')) ?>"
+                                                           class="input-text amount"
+                                                           data-validate="{required:true,'validate-greater-than-zero':true}"
+                                                           data-role="cart-item-amount"/>
+                                                </label>
+                                            </div>
+                                        </div>
+                                       <script type="text/javascript">
+                                           require([
+                                               "jquery",
+                                               "Magento_Ui/js/modal/modal"
+                                           ],function($, modal) {
+                                               var options = {
+                                                   type: 'popup',
+                                                   responsive: true,
+                                                   title: '<?= __("Custom Payment Amount")?>',
+                                                   buttons: [{
+                                                       text: $.mage.__('Pay this Amount'),
+                                                       class: '',
+                                                       click: function () {
+                                                           var doc_entry = '<?=$_invoice->getDocType()?>_<?=$_invoice->getDocEntry()?>';
+                                                           var invoice_id = '<?= $_invoice->getId()?>';
+                                                           var amount = $('#invoice-<?=$_invoice->getId()?>-amount').val();
+                                                           pay(doc_entry, invoice_id, amount);
+                                                            this.closeModal();
+                                                       }
+                                                   }]
+                                               };
 
-                        </td>
-                        <td data-th="<?= $block->escapeHtml(__('Doc Type')) ?>" class="col doc_type">
-                            <?= /* @escapeNotVerified */
-                            $this->getDocTypeLabel($_invoice->getDocType()) ?>
-                        </td>
-                        <td data-th="<?= $block->escapeHtml(__('Status')) ?>"
-                            class="col status"><?= /* @escapeNotVerified */
-                            $this->getInvoiceStatusLabel($_invoice) ?></td>
-                        <td data-th="<?= $block->escapeHtml(__('Info')) ?>" class="col info">
+                                               var popup = modal(options, $('#modal-cart-<?=$_invoice->getId()?>'));
+                                               $("#button-cart-<?=$_invoice->getId()?>").click(function() {
+                                                   $('#modal-cart-<?=$_invoice->getId()?>').modal('openModal');
+                                               });
+                                           });
+                                       </script>
+                                   </div>
+                                    <?php endif; ?>
+                                </td>
+                                <td data-th="<?= $block->escapeHtml(__('Doc Type')) ?>" class="col doc_type">
+                                    <?= /* @escapeNotVerified */
+                                    $this->getDocTypeLabel($_invoice->getDocType()) ?>
+                                </td>
+                                <td data-th="<?= $block->escapeHtml(__('Status')) ?>"
+                                    class="col status"><?= /* @escapeNotVerified */
+                                    $this->getInvoiceStatusLabel($_invoice) ?></td>
+                                <?php if ($displayInfoTab): ?>
+                                    <td data-th="<?= $block->escapeHtml(__('Info')) ?>" class="col info">
 
-                            <?php
-                            //echo __('Doc Entry').": ".$_invoice->getDocEntry();
-                            if (!empty($_invoice->getInfo())) {
-                                $info = json_decode($_invoice->getInfo(), true);
-                                foreach ($info as $item) {
-                                    if (!empty($item)) {
-                                        echo __($item["label"]) . ": " . $item["value"];
-                                        echo "<br>";
-                                    }
-                                }
-                            }
-                            ?>
-                        </td>
-                        <td data-th="<?= $block->escapeHtml(__('Actions')) ?>" class="col actions">
+                                        <?php
+                                        //echo __('Doc Entry').": ".$_invoice->getDocEntry();
+                                        if (!empty($_invoice->getInfo())) {
+                                            $info = json_decode($_invoice->getInfo(), true);
+                                            foreach ($info as $item) {
+                                                if (!empty($item)) {
+                                                    echo __($item["label"]) . ": " . $item["value"];
+                                                    echo "<br>";
+                                                }
+                                            }
+                                        }
+                                        ?>
+                                    </td>
+                                <?php endif; ?>
+                                <td data-th="<?= $block->escapeHtml(__('File')) ?>" class="col file">
+                                    <?php if ($_invoice->getPath() != ""): ?>
+                                        <a target="_blank"
+                                           href="<?php echo $this->getUrl('outstanding_payments/download/index',
+                                               [
+                                                   "type" => $_invoice->getDocType(),
+                                                   "id" => $_invoice->getDocEntry()
+                                               ]); ?>"
+                                           class="action view">
+                                            <img width=30
+                                                 src="<?php echo $block->getViewFileUrl('ITM_OutstandingPayments::images/pdf.png'); ?>"
+                                                 title="<?php echo __("Download") ?>"
+                                                 alt="<?php echo __("Download") ?> "/>
+                                        </a>
+                                    <?php endif; ?>
+                                </td>
 
-                            <?php if ($_invoice->getPath() != ""): ?>
-                                <a target="_blank" href="<?php echo $this->getUrl('outstanding_payments/download/index',
-                                    ["type" => $_invoice->getDocType(), "id" => $_invoice->getDocEntry()]); ?>"
-                                   class="action view">
-                                    <img width=30
-                                         src="<?php echo $block->getViewFileUrl('ITM_OutstandingPayments::images/pdf.png'); ?>"
-                                         title="<?php echo __("Download") ?>" alt="<?php echo __("Download") ?> "/>
-                                </a>
-                            <?php endif; ?>
-                            <?php if ($_invoice->getInvoiceStatus() == "o"): ?>
+                                <td data-th="<?= $block->escapeHtml(__('Actions')) ?>" class="col actions">
+                                    <?php if ($_invoice->getInvoiceStatus() == "o"): ?>
 
-                                <!-- <a href="<?= $this->getUrl("outstanding_payments/invoice/pay", [
-                                    "din" => $_invoice->getDocEntry(),
-                                    "doc_type" => $_invoice->getDocType()
-                                ]) ?>" class="action view"> -->
-                                <a href="#" class="action view pay_invoice">
+                                        <!-- <a href="<?= $this->getUrl("outstanding_payments/invoice/pay", [
+                                            "din" => $_invoice->getDocEntry(),
+                                            "doc_type" => $_invoice->getDocType()
+                                        ]) ?>" class="action view"> -->
+                                        <a href="#" class="action view pay_invoice">
                                 <span>
                                 <img width=30
                                      src="<?php echo $block->getViewFileUrl('ITM_OutstandingPayments::images/pay.png'); ?>"
                                      title="<?php echo __("Pay") ?>" alt="<?php echo __("Pay") ?> "/>
                                 </span>
-                                </a>
+                                        </a>
 
-                            <?php endif; ?>
-                        </td>
+                                    <?php endif; ?>
+                                </td>
 
-                    </tr>
-                <?php endforeach; ?>
-                </tbody>
-            </table>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
     <?php if ($block->getPagerHtml()): ?>
         <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml() ?></div>
     <?php endif ?>
@@ -147,8 +220,38 @@
 <?php endif ?>
 
 <script>
+    function pay(doc_entry, invoice_id, amount){
+        var customurl = "<?php echo $this->getUrl().'outstanding_payments/ajax/paypartial'?>";
+        jQuery.ajax({
+            url: customurl,
+            type: 'POST',
+            cache:false,
+            dataType: 'json',
+            data: {
+                doc_entry: doc_entry,
+                invoice_id: invoice_id,
+                amount: amount,
+            },
+            complete: function(response) {
+                let status = response.status;
+                console.log(status);
+            },
+            error: function (xhr, status, errorThrown) {
+                console.log('Error happens. Try again.');
+            },
+            success: function () {
+                require(['Magento_Customer/js/customer-data'], function (customerData) {
+                    var sections = ['cart'];
+                    customerData.invalidate(sections);
+                    customerData.reload(sections, true);
+                });
+            }
+
+        });
+    }
     require(['jquery'], function () {
         jQuery(document).ready(function () {
+
             jQuery('.pay_invoice').click(function ($) {
                 jQuery('input:checkbox').removeAttr('checked');
                 jQuery(this).closest('tr').find('[type=checkbox]').prop('checked', true);
@@ -184,6 +287,11 @@
                         global: _global,
                         success: function (response) {
                             console.log("success");
+                            require(['Magento_Customer/js/customer-data'], function (customerData) {
+                                var sections = ['cart'];
+                                customerData.invalidate(sections);
+                                customerData.reload(sections, true);
+                            });
 
                         }
                     });

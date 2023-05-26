@@ -6,6 +6,7 @@
  * http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  * Please see LICENSE.txt for the full text of the OSL 3.0 license
  */
+
 namespace ITM\OutstandingPayments\Observer\Checkout;
 
 class CartProductAddBefore implements \Magento\Framework\Event\ObserverInterface
@@ -21,8 +22,7 @@ class CartProductAddBefore implements \Magento\Framework\Event\ObserverInterface
         \Magento\Framework\Message\ManagerInterface $messageManager,
         \Magento\Checkout\Model\Cart $cart,
         \ITM\OutstandingPayments\Helper\Data $helper
-    )
-    {
+    ) {
         $this->_messageManager = $messageManager;
         $this->_cart = $cart;
         $this->_helper = $helper;
@@ -40,12 +40,15 @@ class CartProductAddBefore implements \Magento\Framework\Event\ObserverInterface
         $product = $observer->getProduct();
         $sku = trim($product->getSku());
         if ($sku != "sap_invoice") {
-            if($this->_helper->cartContainInvoiceItem($this->_cart)) {
-                throw new \Magento\Framework\Exception\LocalizedException(__("Please empty your cart before you add product to cart."));
+            if ($this->_helper->cartContainInvoiceItem($this->_cart)) {
+                throw new \Magento\Framework\Exception\LocalizedException(__("Please empty your cart before you add Product to cart, The cart cannot contain payment and product at the same time."));
                 return;
             }
-        }else {
-
+        } else {
+            if ($this->_helper->cartContainAnotherItem($this->_cart)) {
+                throw new \Magento\Framework\Exception\LocalizedException(__("Please empty your cart before you add Payment to cart, The cart cannot contain payment and product at the same time."));
+                return;
+            }
             $info = $observer->getInfo();
             if (isset($info['options'])) {
                 $options = $info['options'];
@@ -60,14 +63,15 @@ class CartProductAddBefore implements \Magento\Framework\Event\ObserverInterface
 
                 $docET = $docType . "_" . $docEntry;
 
-
                 $cart_docEntry_list = $this->_helper->getCartDocEntryList($this->_cart);
 
                 if (in_array($docET, $cart_docEntry_list)) {
                     if ($docType == "in") {
                         $msg = __("Invoice '%1' is already in the cart.", $docEntry);
-                    } else if ($docType == "dt") {
-                        $msg = __("Down Payment '%1' is already in the cart.", $docEntry);
+                    } else {
+                        if ($docType == "dt") {
+                            $msg = __("Down Payment '%1' is already in the cart.", $docEntry);
+                        }
                     }
                     throw new \Magento\Framework\Exception\LocalizedException($msg);
                 }

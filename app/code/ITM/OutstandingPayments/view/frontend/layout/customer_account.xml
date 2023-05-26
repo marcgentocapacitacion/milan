@@ -9,7 +9,7 @@
     <body>
     <referenceBlock name="customer_account_navigation">
 
-        <block class="ITM\OutstandingPayments\Block\InvoiceOrderLink" name="itm_outstandingpayments-customer-account-navigation-account-myquote" after="customer-account-navigation-orders-link">
+        <block class="ITM\OutstandingPayments\Block\InvoiceOrderLink" ifconfig="itm_outstanding_payments_section/general/display_invoice_payment" name="itm_outstandingpayments-customer-account-navigation-account-myquote" after="customer-account-navigation-orders-link">
             <arguments>
                 <argument name="label" xsi:type="string" translate="true">Invoice Payments</argument>
                 <argument name="path" xsi:type="string">outstanding_payments/order/history</argument>

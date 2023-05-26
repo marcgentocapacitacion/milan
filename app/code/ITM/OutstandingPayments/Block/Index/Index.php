@@ -1,10 +1,10 @@
 <?php
 /**
- * Custom Module for Magento2 to Pay Your Outstanding invoices 
- * Copyright (C) 2017  
- * 
+ * Custom Module for Magento2 to Pay Your Outstanding invoices
+ * Copyright (C) 2017
+ *
  * This file included in ITM/OutstandingPayments is licensed under OSL 3.0
- * 
+ *
  * http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * Please see LICENSE.txt for the full text of the OSL 3.0 license
  */
@@ -14,18 +14,33 @@ namespace ITM\OutstandingPayments\Block\Index;
 class Index extends \Magento\Framework\View\Element\Template
 {
 
+    /**
+     * @var \ITM\OutstandingPayments\Model\ResourceModel\Sapinvoice\CollectionFactory
+     */
     protected $_invoiceCollectionFactory;
 
+    /**
+     * @var \Magento\Customer\Api\CustomerRepositoryInterface
+     */
     protected $_customerRepository;
 
+    /**
+     * @var \ITM\OutstandingPayments\Helper\Data
+     */
     protected $_helper;
 
+    /**
+     * @var \Magento\Framework\Pricing\Helper\Data
+     */
     protected $_pricing_helper;
 
-
-
     /**
-     * @param \Training3\ExchangeRate\Api\ExchangeRateInterface $ex_rate
+     * @param \Magento\Framework\View\Element\Template\Context $context
+     * @param \Magento\Framework\ObjectManagerInterface $objectManager
+     * @param \ITM\OutstandingPayments\Model\ResourceModel\Sapinvoice\CollectionFactory $invoiceCollectionFactory
+     * @param \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository
+     * @param \ITM\OutstandingPayments\Helper\Data $helper
+     * @param \Magento\Framework\Pricing\Helper\Data $pricing_helper
      */
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
@@ -43,8 +58,6 @@ class Index extends \Magento\Framework\View\Element\Template
         $this->_pricing_helper = $pricing_helper;
     }
 
-
-
     /**
      * @return string
      */
@@ -53,29 +66,34 @@ class Index extends \Magento\Framework\View\Element\Template
     {
         return $this->getChildHtml('pager');
     }
+
     public function getLimit()
     {
         $pager = $this->_objectManager->get('Magento\Theme\Block\Html\Pager');
         return $pager->getLimit();
     }
-    public function getDocTypeLabel($docType){
+
+    public function getDocTypeLabel($docType)
+    {
         return $this->_helper->getDocTypeLabel($docType);
     }
+
     public function getAvailableLimit()
     {
         $pager = $this->_objectManager->get('Magento\Theme\Block\Html\Pager');
         return $pager->getAvailableLimit();
     }
+
     public function getInvoiceList($invoiceStatus = [])
     {
         //get values of current page
-        $page=($this->getRequest()->getParam('p'))? $this->getRequest()->getParam('p') : 1;
+        $page = ($this->getRequest()->getParam('p')) ? $this->getRequest()->getParam('p') : 1;
         //get values of current limit
         $limit = ($this->getRequest()->getParam('limit'));
-        if(in_array($limit, $this->getAvailableLimit())) {
-            $pageSize =$limit;
-        }else{
-            $pageSize=$this->getLimit();
+        if (in_array($limit, $this->getAvailableLimit())) {
+            $pageSize = $limit;
+        } else {
+            $pageSize = $this->getLimit();
         }
 
         $company = $this->_helper->getCustomerSapCompany();
@@ -103,6 +121,16 @@ class Index extends \Magento\Framework\View\Element\Template
         return $this->_helper->getInvoiceStatusLabel($invoice);
     }
 
+    public function displayInfoTab()
+    {
+        return $this->_helper->displayInfoTab();
+    }
+
+    public function allowPartialPayment()
+    {
+        return $this->_helper->allowPartialPayment();
+    }
+
     public function getOpenInvoices()
     {
         return $this->getInvoiceList(["o", "p"]);
@@ -112,6 +140,4 @@ class Index extends \Magento\Framework\View\Element\Template
     {
         return $this->getInvoiceList(["c"]);
     }
-
-
 }

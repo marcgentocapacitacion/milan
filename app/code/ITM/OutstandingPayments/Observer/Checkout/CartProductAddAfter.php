@@ -75,7 +75,8 @@ class CartProductAddAfter implements \Magento\Framework\Event\ObserverInterface
                     if ($requested_amount > $invoiceOpenBalance) {
                         $final_amount = $invoiceOpenBalance;
                         throw new \Magento\Framework\Exception\LocalizedException(
-                            __("Request amount is more than invoice open balance, Invoice open balance = %1", $invoiceOpenBalance)
+                            __("Request amount is more than invoice open balance, Invoice open balance = %1",
+                                $invoiceOpenBalance)
                         );
                         return;
                     }
@@ -83,11 +84,11 @@ class CartProductAddAfter implements \Magento\Framework\Event\ObserverInterface
                         $final_amount = $requested_amount;
                     }
 
-
                     if ($requested_amount < $invoiceOpenBalance) {
                         if (!$this->_helper->allowPartialPayment()) {
                             throw new \Magento\Framework\Exception\LocalizedException(
-                                __("Partial payment is disabled for the moment, please use the total payment amount, open balance = %1", $invoiceOpenBalance)
+                                __("Partial payment is disabled for the moment, please use the total payment amount, open balance = %1",
+                                    $invoiceOpenBalance)
                             );
                             return;
                         } else {

@@ -15,8 +15,20 @@
                      <source_model>ITM\OutstandingPayments\Model\Config\Source\PaymentMethods</source_model>    
                     <comment><![CDATA[  ]]></comment>
                 </field>
+                <field id="allow_partial_payments" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Allow Partial Payments</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
                 <field id="hide_osp_orders" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>Hide OSP Orders</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="display_invoice_payment" translate="label" type="select" sortOrder="25" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Display Invoice Payment Tab</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="display_info_column" translate="label" type="select" sortOrder="27" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Display Info Column</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="default_company" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
