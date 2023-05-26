@@ -1,0 +1,53 @@
+{
+    "company": {
+        "column": {
+            "almacen": true
+        }
+    },
+    "wagento_company_eav_attribute_website": {
+        "column": {
+            "attribute_id": true,
+            "website_id": true,
+            "is_visible": true,
+            "is_required": true,
+            "default_value": true,
+            "multiline_count": true
+        },
+        "index": {
+            "WAGENTO_COMPANY_EAV_ATTRIBUTE_WEBSITE_WEBSITE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "WAGENTO_COMPANY_EAV_ATTR_WS_ATTR_ID_EAV_ATTR_ATTR_ID": true,
+            "WAGENTO_COMPANY_EAV_ATTR_WS_WS_ID_STORE_WS_WS_ID": true
+        }
+    },
+    "wagento_company_form_attribute": {
+        "column": {
+            "form_code": true,
+            "attribute_id": true
+        },
+        "index": {
+            "WAGENTO_COMPANY_FORM_ATTRIBUTE_ATTRIBUTE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "WAGENTO_COMPANY_FORM_ATTR_ATTR_ID_EAV_ATTR_ATTR_ID": true
+        }
+    },
+    "wagento_company_eav_attribute": {
+        "column": {
+            "attribute_id": true,
+            "is_visible": true,
+            "multiline_count": true,
+            "validate_rules": true,
+            "is_system": true,
+            "sort_order": true,
+            "data_model": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "WAGENTO_COMPANY_EAV_ATTR_ATTR_ID_EAV_ATTR_ATTR_ID": true
+        }
+    }
+}

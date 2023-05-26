@@ -15,4 +15,22 @@
     <type name="Magento\Company\Model\Company\DataProvider">
         <plugin name="company_integrationERP_dataprovider" type="Wagento\IntegrationERP\Plugin\Company\DataProviderPlugin"/>
     </type>
+    <virtualType name="Wagento\IntegrationERP\Model\Company\Source\UGroupNumTemporada"
+                 type="Wagento\IntegrationERP\Model\Company\Source\Attributes">
+        <arguments>
+            <argument name="attributeName" xsi:type="string">u_group_num_temporada</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Wagento\IntegrationERP\Model\Company\Source\UGroupNumTempoOPT"
+                 type="Wagento\IntegrationERP\Model\Company\Source\Attributes">
+        <arguments>
+            <argument name="attributeName" xsi:type="string">u_group_num_tempo_o_p_t</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Wagento\IntegrationERP\Model\Company\Source\UGroupNumOptimus"
+                 type="Wagento\IntegrationERP\Model\Company\Source\Attributes">
+        <arguments>
+            <argument name="attributeName" xsi:type="string">u_group_num_optimus</argument>
+        </arguments>
+    </virtualType>
 </config>

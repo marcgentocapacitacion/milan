@@ -21,7 +21,7 @@
                 <field>u_fin_temporada</field>
             </join>
         </attribute>
-        <attribute code="u_group_num_temporada" type="string">
+        <attribute code="u_group_num_temporada" type="int">
             <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
                 <field>u_group_num_temporada</field>
             </join>
@@ -36,7 +36,7 @@
                 <field>u_autorizado_temporada_o_p_t</field>
             </join>
         </attribute>
-        <attribute code="u_group_num_tempo_o_p_t" type="string">
+        <attribute code="u_group_num_tempo_o_p_t" type="int">
             <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
                 <field>u_group_num_tempo_o_p_t</field>
             </join>
@@ -61,7 +61,7 @@
                 <field>u_discount_optimus</field>
             </join>
         </attribute>
-        <attribute code="u_group_num_optimus" type="string">
+        <attribute code="u_group_num_optimus" type="int">
             <join reference_table="company_custom_data" reference_field="company_id" join_on_field="entity_id">
                 <field>u_group_num_optimus</field>
             </join>

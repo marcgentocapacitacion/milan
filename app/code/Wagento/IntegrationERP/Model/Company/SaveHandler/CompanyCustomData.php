@@ -53,15 +53,15 @@ class CompanyCustomData implements SaveHandlerInterface
         $model->setUAutorizadoTemporada($this->getBolleanValue($extensionAttributes->getUAutorizadoTemporada()));
         $model->setUInicioTemporada($extensionAttributes->getUInicioTemporada() ?? '');
         $model->setUFinTemporada($extensionAttributes->getUFinTemporada() ?? '');
-        $model->setUGroupNumTemporada($extensionAttributes->getUGroupNumTemporada() ?? '');
+        $model->setUGroupNumTemporada((int)$extensionAttributes->getUGroupNumTemporada());
         $model->setUDiscountTemporada($extensionAttributes->getUDiscountTemporada() ?? '');
         $model->setUAutorizadoTemporadaOPT($this->getBolleanValue($extensionAttributes->getUAutorizadoTemporadaOPT()));
-        $model->setUGroupNumTempoOPT($extensionAttributes->getUGroupNumTempoOPT() ?? '');
+        $model->setUGroupNumTempoOPT((int)$extensionAttributes->getUGroupNumTempoOPT());
         $model->setGroupNum($this->getBolleanValue($extensionAttributes->getGroupNum()));
         $model->setUDiscountContado($extensionAttributes->getUDiscountContado() ?? '');
         $model->setUDiscountContadoOptimus($extensionAttributes->getUDiscountContadoOptimus() ?? '');
         $model->setUDiscountOptimus($extensionAttributes->getUDiscountOptimus() ?? '');
-        $model->setUGroupNumOptimus($extensionAttributes->getUGroupNumOptimus() ?? '');
+        $model->setUGroupNumOptimus((int)$extensionAttributes->getUGroupNumOptimus());
         $model->setUDiscountMilan($extensionAttributes->getUDiscountMilan() ?? '');
         $model->setDebitLine($extensionAttributes->getDebitLine() ?? '');
         $model->setUFechaNacimiento($extensionAttributes->getUFechaNacimiento() ?? '');
