@@ -32,18 +32,20 @@
                                    template="Magento_Catalog::product/list/addto/compare.phtml"/>
                         </block>
                     </block>
-                    <block class="Magento\Checkout\Block\Cart\Totals" name="cart.totals.subtotal" template="Magento_Checkout::cart/totals/subtotal.phtml"/>
-                    <block class="Magento\Checkout\Block\Cart\Totals" name="cart.totals.discount" template="Magento_Checkout::cart/totals/discount.phtml"/>
-                    <block class="Magento\Checkout\Block\Cart\Coupon" name="cart.coupon" template="Magento_Checkout::cart/coupon.phtml">
-                        <block class="Magento\Checkout\Block\Cart\Totals" name="cart.totals.grandtotal" template="Magento_Checkout::cart/totals/grandtotal.phtml"/>
-                    </block>
-                    <block class="Magento\Checkout\Block\Cart" name="checkout.cart.methods.bottom" template="Magento_Checkout::cart/methods.phtml">
-                        <container name="checkout.cart.methods" as="methods" label="Payment Methods After Checkout Button">
-                            <block class="Magento\Checkout\Block\Onepage\Link" name="checkout.cart.methods.onepage.bottom" template="Wagento_Checkout::onepage/link.phtml" />
-                            <block class="Magento\Checkout\Block\QuoteShortcutButtons" name="checkout.cart.shortcut.buttons" />
-                        </container>
-                    </block>
-                    <block class="Magento\Checkout\Block\Cart" name="checkout.cart.actions" template="Magento_Checkout::cart/actions_cart.phtml"/>
+                    <container name="checkout.total.container" htmlTag="div" htmlClass="total-container" after="-">
+                        <block class="Magento\Checkout\Block\Cart\Totals" name="cart.totals.subtotal" template="Magento_Checkout::cart/totals/subtotal.phtml"/>
+                        <block class="Magento\Checkout\Block\Cart\Totals" name="cart.totals.discount" template="Magento_Checkout::cart/totals/discount.phtml"/>
+                        <block class="Magento\Checkout\Block\Cart\Coupon" name="cart.coupon" template="Magento_Checkout::cart/coupon.phtml">
+                            <block class="Magento\Checkout\Block\Cart\Totals" name="cart.totals.grandtotal" template="Magento_Checkout::cart/totals/grandtotal.phtml"/>
+                        </block>
+                        <block class="Magento\Checkout\Block\Cart" name="checkout.cart.methods.bottom" template="Magento_Checkout::cart/methods.phtml">
+                            <container name="checkout.cart.methods" as="methods" label="Payment Methods After Checkout Button">
+                                <block class="Magento\Checkout\Block\Onepage\Link" name="checkout.cart.methods.onepage.bottom" template="Wagento_Checkout::onepage/link.phtml" />
+                                <block class="Magento\Checkout\Block\QuoteShortcutButtons" name="checkout.cart.shortcut.buttons" />
+                            </container>
+                        </block>
+                        <block class="Magento\Checkout\Block\Cart" name="checkout.cart.actions" template="Magento_Checkout::cart/actions_cart.phtml"/>
+                    </container>
                 </container>
                 <container name="checkout.cart.noitems" as="no-items">
                     <block class="Magento\Checkout\Block\Cart" name="checkout.cart.empty" before="-" template="Magento_Checkout::cart/noItems.phtml">
@@ -52,5 +54,6 @@
                 </container>
             </block>
         </referenceContainer>
+        <move element="checkout.total.container" destination="checkout.cart.container" after="checkout.cart.container" />
     </body>
 </page>
