@@ -443,6 +443,7 @@
     /** Custom Navigation style */
 .nav-open .nav-sections {
     max-width: 420px;
+    max-width: 100vw;
 }
 .nav-sections {
     background-color: #ffffff;
@@ -771,3 +772,16 @@ body.quickview-mobile .nav-sections .navigation .megamenu.level-top-sectioned ul
     }
 }
 .navigation .megamenu .mm-image .mm-image-wrp {display: none;}
+
+/* Custom code */
+.nav-sections .nav-sections-items .section-item-content .header.links li.authorization-link {
+    line-height: 32px;
+
+    .rt-icon.rt-icon-login:before {
+        color: #232323;
+    }
+
+    span {
+        display: inline-block;
+    }
+}
