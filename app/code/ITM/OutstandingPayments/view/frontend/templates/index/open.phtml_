@@ -30,8 +30,7 @@ $allowPartialPayment = $block->allowPartialPayment();
         </div>
         <div style="width: 100%">
             <form name="orderForm1"
-                  action="<?php echo $this->getUrl('outstanding_payments/invoice/payselected',
-                      array('_secure' => true)) ?>"
+                  action="<?php echo $this->getUrl('outstanding_payments/invoice/payselected', array('_secure' => true)) ?>"
                   method="post" id="page_Form1" enctype="multipart/form-data" onsubmit="return checkForm();">
                 <div class="table-wrapper orders-history">
                     <table class="data table table-order-items history" id="my-orders-table">
@@ -51,10 +50,6 @@ $allowPartialPayment = $block->allowPartialPayment();
                                 __('Doc. Total') ?></th>
                             <th scope="col" class="col balance"><?= /* @escapeNotVerified */
                                 __('Open Balance') ?></th>
-                            <?php if ($allowPartialPayment) : ?>
-                                <th scope="col" class="col balance"><?= /* @escapeNotVerified */
-                                    __('Pay Partially') ?></th>
-                            <?php endif;?>
                             <th scope="col" class="col doc_type"><?= /* @escapeNotVerified */
                                 __('Doc Type') ?></th>
                             <th scope="col" class="col status"><?= /* @escapeNotVerified */
@@ -72,7 +67,7 @@ $allowPartialPayment = $block->allowPartialPayment();
                         <tbody>
                         <?php foreach ($_invoices as $_invoice): ?>
                             <tr>
-                                <td data-th="<?= $block->escapeHtml(__('Check to Pay')) ?>" class="col id">
+                                <td data-th="<?= $block->escapeHtml(__('check to pay')) ?>" class="col id">
                                     <?php if ($_invoice->getInvoiceStatus() == "o"): ?>
                                         <input class="checkbox" type="checkbox"
                                                id="items<?php echo $_invoice->getDocEntry() ?>"
@@ -93,15 +88,19 @@ $allowPartialPayment = $block->allowPartialPayment();
                                 <td data-th="<?= $block->escapeHtml(__('Open Balance')) ?>" class="col total">
                                     <?= /* @escapeNotVerified */
                                     $this->formatPrice($_invoice->getOpenBalance()) ?>
-                                </td>
-                                <?php if ($allowPartialPayment) : ?>
-                                <td data-th="<?= $block->escapeHtml(__('Pay Partially')) ?>" class="col total">
-                                    <?php if ($_invoice->getInvoiceStatus() == 'o') : ?>
-                                        <div class="parital-payment">
-                                            <div style="display: flex;">
-                                                <div>
-                                                    <input id="invoice-<?= $_invoice->getId() ?>-amount"
-                                                           name="invoice-<?= $_invoice->getId() ?>-amount"
+                                    <?php if($allowPartialPayment && $_invoice->getInvoiceStatus() == 'o') :?>
+                                    <div class="parital-payment">
+                                       <div>
+                                        <button type="button" id="button-cart-<?=$_invoice->getId()?>">
+                                            <span><?= $block->escapeHtml(__('Custom Amount')) ?></span>
+                                        </button>
+                                        </div>
+                                        <div id="modal-cart-<?=$_invoice->getId()?>">
+                                            <div class="modal-body-content1">
+                                                <label for="cart-<?= $block->escapeHtmlAttr($_invoice->getId()) ?>-amount">
+                                                    <span class="label"><?= $block->escapeHtml(__('Amount')) ?></span>
+                                                    <input id="invoice-<?=$_invoice->getId()?>-amount"
+                                                           name="invoice-<?= $_invoice->getId()?>-amount"
                                                            value="<?= $_invoice->getOpenBalance() ?>"
                                                            type="number"
                                                            min="0"
@@ -111,17 +110,40 @@ $allowPartialPayment = $block->allowPartialPayment();
                                                            class="input-text amount"
                                                            data-validate="{required:true,'validate-greater-than-zero':true}"
                                                            data-role="cart-item-amount"/>
-                                                </div>
-                                                <div style="width: 40%">
-                                                    <button type="button" id="button-cart-<?= $_invoice->getId() ?>" onclick="pay('<?=$_invoice->getDocType()?>_<?=$_invoice->getDocEntry()?>', '<?= $_invoice->getId()?>');" >
-                                                        <span><?= $block->escapeHtml(__('Pay')) ?></span>
-                                                    </button>
-                                                </div>
+                                                </label>
                                             </div>
                                         </div>
+                                       <script type="text/javascript">
+                                           require([
+                                               "jquery",
+                                               "Magento_Ui/js/modal/modal"
+                                           ],function($, modal) {
+                                               var options = {
+                                                   type: 'popup',
+                                                   responsive: true,
+                                                   title: '<?= __("Custom Payment Amount")?>',
+                                                   buttons: [{
+                                                       text: $.mage.__('Pay this Amount'),
+                                                       class: '',
+                                                       click: function () {
+                                                           var doc_entry = '<?=$_invoice->getDocType()?>_<?=$_invoice->getDocEntry()?>';
+                                                           var invoice_id = '<?= $_invoice->getId()?>';
+                                                           var amount = $('#invoice-<?=$_invoice->getId()?>-amount').val();
+                                                           pay(doc_entry, invoice_id, amount);
+                                                            this.closeModal();
+                                                       }
+                                                   }]
+                                               };
+
+                                               var popup = modal(options, $('#modal-cart-<?=$_invoice->getId()?>'));
+                                               $("#button-cart-<?=$_invoice->getId()?>").click(function() {
+                                                   $('#modal-cart-<?=$_invoice->getId()?>').modal('openModal');
+                                               });
+                                           });
+                                       </script>
+                                   </div>
                                     <?php endif; ?>
                                 </td>
-                                <?php endif; ?>
                                 <td data-th="<?= $block->escapeHtml(__('Doc Type')) ?>" class="col doc_type">
                                     <?= /* @escapeNotVerified */
                                     $this->getDocTypeLabel($_invoice->getDocType()) ?>
@@ -198,20 +220,19 @@ $allowPartialPayment = $block->allowPartialPayment();
 <?php endif ?>
 
 <script>
-    function pay(doc_entry, invoice_id) {
-        var customurl = "<?php echo $this->getUrl() . 'outstanding_payments/ajax/paypartial'?>";
-        var amount =  jQuery('#invoice-'+invoice_id+'-amount').val();
+    function pay(doc_entry, invoice_id, amount){
+        var customurl = "<?php echo $this->getUrl().'outstanding_payments/ajax/paypartial'?>";
         jQuery.ajax({
             url: customurl,
             type: 'POST',
-            cache: false,
+            cache:false,
             dataType: 'json',
             data: {
                 doc_entry: doc_entry,
                 invoice_id: invoice_id,
                 amount: amount,
             },
-            complete: function (response) {
+            complete: function(response) {
                 let status = response.status;
                 console.log(status);
             },
@@ -228,13 +249,8 @@ $allowPartialPayment = $block->allowPartialPayment();
 
         });
     }
-
     require(['jquery'], function () {
         jQuery(document).ready(function () {
-
-            jQuery('.pay_invoice').click(function ($) {
-
-            });
 
             jQuery('.pay_invoice').click(function ($) {
                 jQuery('input:checkbox').removeAttr('checked');
