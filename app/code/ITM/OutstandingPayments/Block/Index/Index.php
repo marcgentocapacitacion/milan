@@ -133,7 +133,8 @@ class Index extends \Magento\Framework\View\Element\Template
 
     public function getOpenInvoices()
     {
-        return $this->getInvoiceList(["o"]);
+        return $this->getInvoiceList(["o", "p"]);
+        //return $this->getInvoiceList(["o"]);
     }
 
     public function getClosedInvoices()

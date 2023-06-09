@@ -100,7 +100,7 @@ class SapinvoiceRepository implements sapinvoiceRepositoryInterface
             $collection = $this->_invoiceCollectionFactory->create();
             $invoiceCollection = $collection
                 ->addFieldToFilter("doc_entry", $sapinvoice->getDocentry())
-                ->addFieldToFilter("email", $sapinvoice->getEmail())
+                //->addFieldToFilter("email", $sapinvoice->getEmail())
                 ->addFieldToFilter("doc_type", $sapinvoice->getDocType())
                 ->addFieldToFilter("sap_company", $sapinvoice->getSapCompany())
                 ->setPageSize(1)
