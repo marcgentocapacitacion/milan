@@ -43,5 +43,6 @@
         </referenceContainer>
         <referenceContainer name="footer_links" remove="true" />
         <referenceContainer name="copyright" remove="true" />
+        <referenceContainer name="b2blinks" remove="true" />
     </body>
 </page>
