@@ -147,7 +147,14 @@ class TableratePlugin
         if ($this->isTaxRateFree()) {
             $result['price'] = 0.00;
         } else {
-            $result['price'] = $request->getBaseSubtotalInclTax();
+            // Get subtotal exclude tax before calculate shipping rate
+            $subtotal = 0;
+            foreach ($request->getAllItems() as $item) {
+                $subtotal += $item->getPrice();
+            }
+            $result['price'] = $subtotal;
+            // Disable subtotal include tax
+            //$result['price'] = $request->getBaseSubtotalInclTax();
         }
         return $result;
     }
