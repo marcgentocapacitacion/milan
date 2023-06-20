@@ -20,6 +20,7 @@ class ImportCustomerCommand extends Command
 
     /**
      * @param CustomerInterface $customerImport
+     * @param string|null       $name
      */
     public function __construct(
         CustomerInterface $customerImport,
