@@ -26,6 +26,33 @@ class Collection extends \WeltPixel\LayeredNavigation\Model\ResourceModel\Fullte
      */
     protected $registry = null;
 
+    /**
+     * @param \Magento\Framework\Data\Collection\EntityFactory                $entityFactory
+     * @param \Psr\Log\LoggerInterface                                        $logger
+     * @param \Magento\Framework\Data\Collection\Db\FetchStrategyInterface    $fetchStrategy
+     * @param \Magento\Framework\Event\ManagerInterface                       $eventManager
+     * @param \Magento\Eav\Model\Config                                       $eavConfig
+     * @param \Magento\Framework\App\ResourceConnection                       $resource
+     * @param \Magento\Eav\Model\EntityFactory                                $eavEntityFactory
+     * @param \Magento\Catalog\Model\ResourceModel\Helper                     $resourceHelper
+     * @param \Magento\Framework\Validator\UniversalFactory                   $universalFactory
+     * @param \Magento\Store\Model\StoreManagerInterface                      $storeManager
+     * @param \Magento\Framework\Module\Manager                               $moduleManager
+     * @param \Magento\Catalog\Model\Indexer\Product\Flat\State               $catalogProductFlatState
+     * @param \Magento\Framework\App\Config\ScopeConfigInterface              $scopeConfig
+     * @param \Magento\Catalog\Model\Product\OptionFactory                    $productOptionFactory
+     * @param \Magento\Catalog\Model\ResourceModel\Url                        $catalogUrl
+     * @param \Magento\Framework\Stdlib\DateTime\TimezoneInterface            $localeDate
+     * @param \Magento\Customer\Model\Session                                 $customerSession
+     * @param \Magento\Framework\Stdlib\DateTime                              $dateTime
+     * @param \Magento\Customer\Api\GroupManagementInterface                  $groupManagement
+     * @param \Magento\Framework\Search\Adapter\Mysql\TemporaryStorageFactory $temporaryStorageFactory
+     * @param \Magento\Framework\App\ProductMetadataInterface                 $productMetadata
+     * @param Registry                                                        $registry
+     * @param \Magento\Framework\DB\Adapter\AdapterInterface|null             $connection
+     * @param                                                                 $searchRequestName
+     * @param SearchResultFactory|null                                        $searchResultFactory
+     */
     public function __construct(
         \Magento\Framework\Data\Collection\EntityFactory $entityFactory,
         \Psr\Log\LoggerInterface $logger,
