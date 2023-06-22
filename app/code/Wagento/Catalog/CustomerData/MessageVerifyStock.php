@@ -42,7 +42,7 @@ class MessageVerifyStock implements \Magento\Customer\CustomerData\SectionSource
             $showMessage = false;
         }
         return [
-            'message' => $message,
+            'message' => __($message),
             'showMessage' => $showMessage
         ];
     }
