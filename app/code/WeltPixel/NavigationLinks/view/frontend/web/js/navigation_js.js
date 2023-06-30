@@ -12,7 +12,9 @@ define(['jquery'], function ($) {
                 navigationJs.waitUntilExists(function() {
                     return navigation.length > 0;
                 }, function() {
-                    navigationJs.adjustLevelTopFullwidth(navigation);
+                    if (!isMobile) {
+                        navigationJs.adjustLevelTopFullwidth(navigation);
+                    }
                     navigationJs.adjustMenuBlockSize(navigation);
 
                     navigation.find('.level0.submenu').on('mouseenter', function() {
