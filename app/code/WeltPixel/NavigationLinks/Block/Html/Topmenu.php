@@ -342,17 +342,31 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
             }
 
             if (strlen($categLabelTextColor)) {
-                $this->inlineStyle .= 'body .nav-sections .navigation ul li.megamenu.level'
-                    . $childLevel . '.' . $itemPositionClassPrefix . $counter
-                    . ' .megamenu-promo-level' . $childLevel . '-' . $itemPositionClassPrefix . $counter
-                    . '{ color: ' . $categLabelTextColor . ' !important ;}';
+                if (str_starts_with($categLabelTextColor, '#')) {
+                    $this->inlineStyle .= 'body .nav-sections .navigation ul li.megamenu.level'
+                        . $childLevel . '.' . $itemPositionClassPrefix . $counter
+                        . ' .megamenu-promo-level' . $childLevel . '-' . $itemPositionClassPrefix . $counter
+                        . '{ color: ' . $categLabelTextColor . ' !important ;}';
+                } else {
+                    $this->inlineStyle .= 'body .nav-sections .navigation ul li.megamenu.level'
+                        . $childLevel . '.' . $itemPositionClassPrefix . $counter
+                        . ' .megamenu-promo-level' . $childLevel . '-' . $itemPositionClassPrefix . $counter
+                        . '{ color: #' . $categLabelTextColor . ' !important ;}';
+                }
             }
 
             if (strlen($categLabelBackgorundColor)) {
-                $this->inlineStyle .= 'body .nav-sections .navigation ul li.megamenu.level'
-                    . $childLevel . '.' . $itemPositionClassPrefix . $counter
-                    . ' .megamenu-promo-level' . $childLevel . '-' . $itemPositionClassPrefix . $counter
-                    . ' { background: ' . $categLabelBackgorundColor . '; }';
+                if (str_starts_with($categLabelBackgorundColor, '#')) {
+                    $this->inlineStyle .= 'body .nav-sections .navigation ul li.megamenu.level'
+                        . $childLevel . '.' . $itemPositionClassPrefix . $counter
+                        . ' .megamenu-promo-level' . $childLevel . '-' . $itemPositionClassPrefix . $counter
+                        . ' { background: ' . $categLabelBackgorundColor . '; }';
+                } else {
+                    $this->inlineStyle .= 'body .nav-sections .navigation ul li.megamenu.level'
+                        . $childLevel . '.' . $itemPositionClassPrefix . $counter
+                        . ' .megamenu-promo-level' . $childLevel . '-' . $itemPositionClassPrefix . $counter
+                        . ' { background: #' . $categLabelBackgorundColor . '; }';
+                }
             }
 
             $itemPosition++;
