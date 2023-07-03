@@ -106,7 +106,7 @@ define(['jquery'], function ($) {
                 fullWidthWrapper.hide();
                 fullWidthWrapper.each(function() {
                     $(this)
-                        .css({'width': pageWrapperW + 'px'})
+                        //.css({'width': pageWrapperW + 'px'})
                         .find('.fullwidth-wrapper-inner')
                         .css({'width': headerContentW + 'px'});
 
@@ -255,12 +255,12 @@ define(['jquery'], function ($) {
                 let that = this,
                     megaMenuNavi = $('.navigation'),
                     headerSection = $('.page-wrapper div.page-header'),
-                    headerContent =  $('.header.content'),
+                    headerContent =  $('.page-header'),
                     overlayPosition;
 
                 switch (that.getHeaderVersion(headerSection)) {
                     case "clean" :
-                        overlayPosition = parseInt(headerContent.outerHeight() + megaMenuNavi.innerHeight());
+                        overlayPosition = parseInt(headerContent.outerHeight());
                         break;
                     case "v3" :
                         overlayPosition = parseInt(headerSection.innerHeight());
