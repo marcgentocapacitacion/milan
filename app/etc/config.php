@@ -116,7 +116,7 @@ return [
         'Magento_CompanyPayment' => 1,
         'Magento_Shipping' => 1,
         'Magento_CompareListGraphQl' => 1,
-        'Magento_TwoFactorAuth' => 1,
+        'Magento_TwoFactorAuth' => 0,
         'Magento_ConfigurableImportExport' => 1,
         'Magento_NegotiableQuote' => 1,
         'Magento_CatalogRuleConfigurable' => 1,
