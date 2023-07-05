@@ -1,0 +1,12 @@
+diff --git a/vendor/magento/module-store/etc/config.xml b/vendor/magento/module-store/etc/config.xml
+index d2f8f82..a0f0e92 100644
+--- a/vendor/magento/module-store/etc/config.xml
++++ b/vendor/magento/module-store/etc/config.xml
+@@ -134,7 +134,6 @@
+                     <phpt>phpt</phpt>
+                     <pht>pht</pht>
+                     <phar>phar</phar>
+-                    <svg>svg</svg>
+                     <svgz>svgz</svgz>
+                     <xml>xml</xml>
+                     <xhtml>xhtml</xhtml>

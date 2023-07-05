@@ -167,7 +167,7 @@ class ArraySerialized extends \Magento\Config\Model\Config\Backend\Serialized
      */
     protected function getAllowedExtensions(): array
     {
-        return ['jpg', 'jpeg', 'png'];
+        return ['jpg', 'jpeg', 'png', 'svg'];
     }
 
     /**
