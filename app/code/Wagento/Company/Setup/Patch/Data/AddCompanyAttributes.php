@@ -54,15 +54,17 @@ class AddCompanyAttributes implements DataPatchInterface
             'company',
             'u_group_num_temporada',
             [
-                'type' => 'int',
+                'type' => 'varchar',
                 'label' => 'Cod. AC Milan season',
-                'input' => 'select',
+                'input' => 'text',
                 'sort_order' => 10,
                 'position' => 10,
-                'source' => \Magento\Eav\Model\Entity\Attribute\Source\Table::class,
+                'visible' => true,
                 'system' => false,
-                'option' => ['values' => ['Default']],
-                'validate_rules' => '[]',
+                'is_used_in_grid' => true,
+                'is_visible_in_grid' => true,
+                'is_filterable_in_grid' => true,
+                'is_searchable_in_grid' => true
             ]
         );
 
@@ -70,15 +72,17 @@ class AddCompanyAttributes implements DataPatchInterface
             'company',
             'u_group_num_tempo_o_p_t',
             [
-                'type' => 'int',
+                'type' => 'varchar',
                 'label' => 'Cod. OPTIMUS season',
-                'input' => 'select',
+                'input' => 'text',
                 'sort_order' => 20,
                 'position' => 20,
-                'source' => \Magento\Eav\Model\Entity\Attribute\Source\Table::class,
+                'visible' => true,
                 'system' => false,
-                'option' => ['values' => ['Default']],
-                'validate_rules' => '[]',
+                'is_used_in_grid' => true,
+                'is_visible_in_grid' => true,
+                'is_filterable_in_grid' => true,
+                'is_searchable_in_grid' => true
             ]
         );
 
@@ -86,15 +90,17 @@ class AddCompanyAttributes implements DataPatchInterface
             'company',
             'u_group_num_optimus',
             [
-                'type' => 'int',
+                'type' => 'varchar',
                 'label' => 'Optimus Payment Condition',
-                'input' => 'select',
+                'input' => 'text',
                 'sort_order' => 30,
                 'position' => 30,
-                'source' => \Magento\Eav\Model\Entity\Attribute\Source\Table::class,
+                'visible' => true,
                 'system' => false,
-                'option' => ['values' => ['Default']],
-                'validate_rules' => '[]',
+                'is_used_in_grid' => true,
+                'is_visible_in_grid' => true,
+                'is_filterable_in_grid' => true,
+                'is_searchable_in_grid' => true
             ]
         );
     }
