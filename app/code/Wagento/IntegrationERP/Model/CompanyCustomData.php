@@ -170,19 +170,19 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
     }
 
     /**
-     * @return bool
+     * @return string
      */
-    public function getGroupNum(): bool
+    public function getGroupNum(): string
     {
         return $this->getData('group_num');
     }
 
     /**
-     * @param bool $value
+     * @param string $value
      *
      * @return $this
      */
-    public function setGroupNum(bool $value)
+    public function setGroupNum(string $value)
     {
         $this->setData('group_num', $value);
         return $this;

@@ -70,7 +70,7 @@
                 </item>
             </argument>
             <settings>
-                <dataType>int</dataType>
+                <dataType>string</dataType>
                 <label translate="true">Cod. AC Milan season</label>
                 <visible>true</visible>
             </settings>
@@ -115,32 +115,22 @@
                 </item>
             </argument>
             <settings>
-                <dataType>int</dataType>
+                <dataType>string</dataType>
                 <label translate="true">Cod. OPTIMUS season</label>
                 <visible>true</visible>
             </settings>
         </field>
-        <field name="extension_attributes.group_num" sortOrder="80" formElement="checkbox">
+        <field name="extension_attributes.group_num" sortOrder="80" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">company_custom_data</item>
                 </item>
             </argument>
             <settings>
-                <dataType>boolean</dataType>
+                <dataType>string</dataType>
                 <label translate="true">Milan Payment Condition</label>
+                <visible>true</visible>
             </settings>
-            <formElements>
-                <checkbox>
-                    <settings>
-                        <valueMap>
-                            <map name="false" xsi:type="boolean">false</map>
-                            <map name="true" xsi:type="boolean">true</map>
-                        </valueMap>
-                        <prefer>toggle</prefer>
-                    </settings>
-                </checkbox>
-            </formElements>
         </field>
         <field name="extension_attributes.u_discount_contado" sortOrder="90" formElement="input">
             <argument name="data" xsi:type="array">
@@ -182,7 +172,7 @@
                 </item>
             </argument>
             <settings>
-                <dataType>int</dataType>
+                <dataType>string</dataType>
                 <label translate="true">Optimus Payment Condition</label>
                 <visible>true</visible>
             </settings>
