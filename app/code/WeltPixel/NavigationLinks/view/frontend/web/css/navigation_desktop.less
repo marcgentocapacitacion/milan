@@ -136,7 +136,8 @@
 .navigation .megamenu.level-top-fullwidth .submenu .level1 .submenu li > a:first-child,
 .navigation .megamenu.level-top-sectioned .submenu .level1 .submenu li > a:first-child,
 .navigation .megamenu.level-top-boxed .submenu .level1 .submenu li > a:first-child {
-    margin-top: 5px;
+    margin-top: 0;
+    padding: 0;
 }
 .navigation .megamenu.level-top-fullwidth .submenu [data-has-children],
 .navigation .megamenu.level-top-sectioned .submenu [data-has-children],
@@ -232,6 +233,26 @@
     -moz-box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.05);
     -o-box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.05);
     box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.05);
+    max-height: calc(~'100vh - 200px');
+    overflow-y: scroll;
+    /* ===== Scrollbar CSS ===== */
+    /* Firefox */
+    & {
+        scrollbar-width: thin;
+        scrollbar-color: #979797 #ffffff;
+    }
+    /* Chrome, Edge, and Safari */
+    &::-webkit-scrollbar {
+        width: 13px;
+    }
+    &::-webkit-scrollbar-track {
+        background: #ffffff;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: #979797;
+        border-radius: 10px;
+        border: 2px solid #ffffff;
+    }
 }
 .navigation .megamenu.level-top-fullwidth .level0.fullwidth .fullwidth-wrapper .fullwidth-wrapper-inner {
     margin: 0 auto;
