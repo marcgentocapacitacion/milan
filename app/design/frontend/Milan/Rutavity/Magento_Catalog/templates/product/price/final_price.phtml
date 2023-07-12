@@ -63,12 +63,12 @@ $blockHtml = '';
 <?php if ($block->getRequest()->isAjax()):?>
     <?php echo $blockHtml;?>
 <?php else:?>
-    <div id="show-price-without-login" data-bind="scope: 'show-price-without-login'">
+    <div id="<?= $block->getPriceId('show-price-without-login-' . $idSuffix) ?>" data-bind="scope: 'show-price-without-login'">
         <div data-bind="html: getBlockHtml()"></div>
     </div>
     <script type="text/x-magento-init">
         {
-            "#show-price-without-login": {
+            "#<?= $block->getPriceId('show-price-without-login-' . $idSuffix) ?>": {
                 "Magento_Ui/js/core/app": {
                     "components":{
                         "show-price-without-login": {
