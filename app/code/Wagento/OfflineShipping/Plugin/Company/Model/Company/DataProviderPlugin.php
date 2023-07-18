@@ -22,11 +22,7 @@ class DataProviderPlugin
         $return,
         CompanyInterface $company
     ) {
-        $return['settings'] = [
-            'extension_attributes' => [
-                'shipping_type' => $company->getShippingType()
-            ]
-        ];
+        $return['settings']['extension_attributes']['shipping_type'] = $company->getShippingType();
         return $return;
     }
 }
