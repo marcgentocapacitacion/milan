@@ -69,8 +69,8 @@ class CompanyCustomData implements SaveHandlerInterface
         $model->setPhone2($extensionAttributes->getPhone2() ?? '');
         $model->setCellular($extensionAttributes->getCellular() ?? '');
         $model->setFrozen($this->getBolleanValue($extensionAttributes->getFrozen()));
-        $model->setSlpCode($this->getBolleanValue($extensionAttributes->getSlpCode()));
-        $model->setTerritory($this->getBolleanValue($extensionAttributes->getTerritory()));
+        $model->setSlpCode($extensionAttributes->getSlpCode() ?? '');
+        $model->setTerritory($extensionAttributes->getTerritory() ?? '');
         $this->resourceModel->create()->save($model);
     }
 

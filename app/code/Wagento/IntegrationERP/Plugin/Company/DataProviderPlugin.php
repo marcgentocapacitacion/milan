@@ -71,8 +71,8 @@ class DataProviderPlugin
         $model->setPhone2($extensionAttributes->getPhone2() ?? '');
         $model->setCellular($extensionAttributes->getCellular() ?? '');
         $model->setFrozen((bool)$extensionAttributes->getFrozen() ?? false);
-        $model->setSlpCode((bool)$extensionAttributes->getSlpCode() ?? false);
-        $model->setTerritory((bool)$extensionAttributes->getTerritory() ?? false);
+        $model->setSlpCode($extensionAttributes->getSlpCode() ?? '');
+        $model->setTerritory($extensionAttributes->getTerritory() ?? '');
         return $model->toArray();
     }
 }

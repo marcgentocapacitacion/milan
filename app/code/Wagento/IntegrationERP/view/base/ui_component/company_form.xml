@@ -273,49 +273,27 @@
                 </checkbox>
             </formElements>
         </field>
-        <field name="extension_attributes.slp_code" sortOrder="200" formElement="checkbox">
+        <field name="extension_attributes.slp_code" sortOrder="200" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">company_custom_data</item>
                 </item>
             </argument>
             <settings>
-                <dataType>boolean</dataType>
+                <dataType>string</dataType>
                 <label translate="true">Seller</label>
             </settings>
-            <formElements>
-                <checkbox>
-                    <settings>
-                        <valueMap>
-                            <map name="false" xsi:type="boolean">false</map>
-                            <map name="true" xsi:type="boolean">true</map>
-                        </valueMap>
-                        <prefer>toggle</prefer>
-                    </settings>
-                </checkbox>
-            </formElements>
         </field>
-        <field name="extension_attributes.territory" sortOrder="210" formElement="checkbox">
+        <field name="extension_attributes.territory" sortOrder="210" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">company_custom_data</item>
                 </item>
             </argument>
             <settings>
-                <dataType>boolean</dataType>
+                <dataType>string</dataType>
                 <label translate="true">Territory</label>
             </settings>
-            <formElements>
-                <checkbox>
-                    <settings>
-                        <valueMap>
-                            <map name="false" xsi:type="boolean">false</map>
-                            <map name="true" xsi:type="boolean">true</map>
-                        </valueMap>
-                        <prefer>toggle</prefer>
-                    </settings>
-                </checkbox>
-            </formElements>
         </field>
     </fieldset>
 </form>

@@ -31,8 +31,8 @@
         <column xsi:type="varchar" name="cellular" nullable="true" length="255" comment="Cell"/>
         <column xsi:type="int" name="u_cellular_w_p" nullable="true" comment=""/>
         <column xsi:type="int" name="frozen" nullable="true" comment="Inactive"/>
-        <column xsi:type="int" name="slp_code" nullable="true" comment="Seller"/>
-        <column xsi:type="int" name="territory" nullable="true" comment="Territory"/>
+        <column xsi:type="varchar" name="slp_code" nullable="true" length="255" comment="Seller"/>
+        <column xsi:type="varchar" name="territory" nullable="true" length="255" comment="Territory"/>
         <constraint xsi:type="foreign" referenceId="COMPANY_CUSTOM_DATA_COMPANY_ID_COMPANY_ENTITY_ID" table="company_custom_data"
                     column="company_id" referenceTable="company" referenceColumn="entity_id" onDelete="CASCADE"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">

@@ -398,38 +398,38 @@ class CompanyCustomData extends \Magento\Framework\Model\AbstractModel
     }
 
     /**
-     * @return bool
+     * @return string
      */
-    public function getSlpCode(): bool
+    public function getSlpCode(): string
     {
         return $this->getData('slp_code');
     }
 
     /**
-     * @param bool $value
+     * @param string $value
      *
      * @return $this
      */
-    public function setSlpCode(bool $value)
+    public function setSlpCode(string $value)
     {
         $this->setData('slp_code', $value);
         return $this;
     }
 
     /**
-     * @return bool
+     * @return string
      */
-    public function getTerritory(): bool
+    public function getTerritory(): string
     {
         return $this->getData('territory');
     }
 
     /**
-     * @param bool $value
+     * @param string $value
      *
      * @return $this
      */
-    public function setTerritory(bool $value)
+    public function setTerritory(string $value)
     {
         $this->setData('territory', $value);
         return $this;
