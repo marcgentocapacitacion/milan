@@ -5,6 +5,9 @@
             <block class="Wagento\PromotionSeason\Block\PromotionSeasonTag"
                    name="category.products.list.wagento.promotion.season"
                    template="Wagento_PromotionSeason::product/tag_promotion_season.phtml"/>
+            <block class="Magento\Catalog\Block\Product\ListProduct"
+                   name="category.products.list.add.to.cart"
+                   template="Wagento_PromotionSeason::product/list/add_to_cart.phtml"/>
             <action method="setTemplate">
                 <argument name='template' xsi:type='string'>Wagento_PromotionSeason::product/list.phtml</argument>
             </action>
