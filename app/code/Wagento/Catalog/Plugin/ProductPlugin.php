@@ -51,9 +51,9 @@ class ProductPlugin
      */
     public function aroundIsSaleable(Product $subject, callable $proceed)
     {
-        if (!$this->request->isAjax()) {
-            return $proceed();
-        }
+//        if (!$this->request->isAjax()) {
+//            return $proceed();
+//        }
 
         if (!$this->isShowAddToCart()) {
             if (!$this->customerSession->isLoggedIn()) {
