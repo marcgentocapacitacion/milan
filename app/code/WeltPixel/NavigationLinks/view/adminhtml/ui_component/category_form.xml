@@ -389,7 +389,7 @@ Note: Any newly created subcategory will be added to the last column unless you 
                         <item name="dataType" xsi:type="string">boolean</item>
                         <item name="formElement" xsi:type="string">checkbox</item>
                         <item name="scopeLabel" xsi:type="string">[STORE VIEW]</item>
-                        <item name="label" xsi:type="string" translate="true">Hide Mobile Link "All [category name]"</item>
+                        <item name="label" xsi:type="string" translate="true">Hide Mobile Link "Todo [category name]"</item>
                         <item name="prefer" xsi:type="string">toggle</item>
                         <item name="valueMap" xsi:type="array">
                             <item name="true" xsi:type="string">1</item>
