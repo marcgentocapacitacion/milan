@@ -1,0 +1,29 @@
+diff --git a/vendor/magento/module-login-as-customer-admin-ui/Ui/Customer/Component/Control/LoginAsCustomerButton.php b/vendor/magento/module-login-as-customer-admin-ui/Ui/Customer/Component/Control/LoginAsCustomerButton.php
+index 73d756f..bb180ce 100644
+--- a/vendor/magento/module-login-as-customer-admin-ui/Ui/Customer/Component/Control/LoginAsCustomerButton.php
++++ b/vendor/magento/module-login-as-customer-admin-ui/Ui/Customer/Component/Control/LoginAsCustomerButton.php
+@@ -65,6 +65,7 @@ class LoginAsCustomerButton extends GenericButton implements ButtonProviderInter
+         $isEnabled = $this->config->isEnabled();
+         if ($isAllowed && $isEnabled) {
+             $data = $this->dataProvider->getData($customerId);
++            $data['sort_order'] = 85;
+         }
+ 
+         return $data;
+diff --git a/vendor/magento/module-login-as-customer-admin-ui/view/adminhtml/web/css/source/_module.less b/vendor/magento/module-login-as-customer-admin-ui/view/adminhtml/web/css/source/_module.less
+index d702bc4..8c1cd64 100644
+--- a/vendor/magento/module-login-as-customer-admin-ui/view/adminhtml/web/css/source/_module.less
++++ b/vendor/magento/module-login-as-customer-admin-ui/view/adminhtml/web/css/source/_module.less
+@@ -43,9 +43,9 @@
+     .page-actions {
+         .page-actions-buttons {
+             .login-button {
+-                -ms-flex-order: -1;
+-                -webkit-order: -1;
+-                order: -1;
++                -ms-flex-order: 1;
++                -webkit-order: 1;
++                order: 1;
+             }
+         }
+     }
