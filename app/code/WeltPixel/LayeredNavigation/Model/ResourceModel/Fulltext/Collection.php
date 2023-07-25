@@ -417,24 +417,24 @@ class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Collection
             throw new LocalizedException(__('Something went wrong, check and test your Search Engine configurations, reindex catalog and clear cache. Thrown error: %1', $e->getMessage()));
         }
 
-        try {
-            $temporaryStorage = $this->temporaryStorageFactory->create();
-            $table = $temporaryStorage->storeDocuments($this->searchResult->getItems());
-
-            $this->getSelect()->joinInner(
-                [
-                    'search_result' => $table->getName(),
-                ],
-                'e.entity_id = search_result.' . TemporaryStorage::FIELD_ENTITY_ID,
-                []
-            );
-
-            if ($this->order && 'relevance' === $this->order['field']) {
-                $this->getSelect()->order('search_result.' . TemporaryStorage::FIELD_SCORE . ' ' . $this->order['dir']);
-            }
-        } catch (\Exception $ex) {
-            $this->_logger->error($ex->getMessage());
-        }
+//        try {
+//            $temporaryStorage = $this->temporaryStorageFactory->create();
+//            $table = $temporaryStorage->storeDocuments($this->searchResult->getItems());
+//
+//            $this->getSelect()->joinInner(
+//                [
+//                    'search_result' => $table->getName(),
+//                ],
+//                'e.entity_id = search_result.' . TemporaryStorage::FIELD_ENTITY_ID,
+//                []
+//            );
+//
+//            if ($this->order && 'relevance' === $this->order['field']) {
+//                $this->getSelect()->order('search_result.' . TemporaryStorage::FIELD_SCORE . ' ' . $this->order['dir']);
+//            }
+//        } catch (\Exception $ex) {
+//            $this->_logger->error($ex->getMessage());
+//        }
 
         parent::_renderFiltersBefore();
     }
