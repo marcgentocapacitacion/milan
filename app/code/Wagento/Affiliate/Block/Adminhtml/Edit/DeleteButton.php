@@ -9,7 +9,7 @@ use Wagento\Affiliate\Model\AffiliateFactory as ModelAffiliate;
 use Wagento\Affiliate\Model\ResourceModel\Affiliate as ResourceModelAffiliate;
 
 /**
- * Class DeleteButton
+ * Class DeleteButton.
  */
 class DeleteButton implements ButtonProviderInterface
 {
