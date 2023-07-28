@@ -27,12 +27,16 @@
         <div class="item mobile-footer-cart">
             <?= $block->getChildHtml('mobile-footer-cart') ?>
         </div>
-        <?php if ($block->isLoggedIn()):?>
             <div class="item mobile-footer-account">
-                <a href="<?= $block->getUrl('customer/account') ?>" class="action myaccount">
-                    <span class="text"><?php /* @escapeNotVerified */ echo __('My Account'); ?></span>
-                </a>
+                <?php if ($block->isLoggedIn()):?>
+                    <a href="<?= $block->getUrl('customer/account') ?>" class="action myaccount">
+                        <span class="text"><?php /* @escapeNotVerified */ echo __('My Account'); ?></span>
+                    </a>
+                <?php else: ?>
+                    <a id="do-login" class="action myaccount">
+                        <span class="text"><?php /* @escapeNotVerified */ echo __('Sign In'); ?></span>
+                    </a>
+                <?php endif;?>
             </div>
-        <?php endif;?>
     </div>
 </div>
