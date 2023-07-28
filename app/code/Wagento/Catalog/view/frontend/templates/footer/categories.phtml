@@ -8,8 +8,11 @@
         </h4>
         <ul>
             <?php /** @var \Magento\Catalog\Model\Category $parentCategory */?>
+            <?php $i = 0;?>
             <?php foreach ($category->getChildren()->getNodes() ?? [] as $parentCategory):?>
+                <?php if ($i >= 5){break;}?>
                 <li><a href="<?=$block->getCategoryUrl($parentCategory);?>"><?=$parentCategory->getName();?></a></li>
+                <?php $i++;?>
             <?php endforeach;?>
         </ul>
     </div>
