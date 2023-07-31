@@ -1,0 +1,31 @@
+diff --git a/vendor/magento/module-company-credit/view/frontend/web/js/view/payment/method-renderer/companycredit.js b/vendor/magento/module-company-credit/view/frontend/web/js/view/payment/method-renderer/companycredit.js
+index 39fe13c..f563ddb 100644
+--- a/vendor/magento/module-company-credit/view/frontend/web/js/view/payment/method-renderer/companycredit.js
++++ b/vendor/magento/module-company-credit/view/frontend/web/js/view/payment/method-renderer/companycredit.js
+@@ -34,10 +34,16 @@ define(
+ 
+             /** @inheritdoc */
+             getExceedLimitMessage: function () {
++                var rate = this.config.payment.companycredit.rate,
++                    limit = this.config.payment.companycredit.limit,
++                    totals = quote.getTotals(),
++                    priceFormat = $.extend({}, quote.getPriceFormat());
++                var exceededAmountFormatted = priceUtils.formatPrice(totals()['grand_total'] * rate - limit, priceFormat);
++
+                 return $.mage.__('The credit limit for %s is %s. It will be exceeded by %s with this order.')
+                     .replace('%s', this.getCompanyName())
+                     .replace('%s', this.getLimitFormatted())
+-                    .replace('%s', this.getExceedLimitAmount());
++                    .replace('%s', exceededAmountFormatted);
+             },
+ 
+             /** @inheritdoc */
+@@ -90,6 +96,8 @@ define(
+                 var credit = this.config.payment.companycredit,
+                     totals = quote.getTotals();
+ 
++                console.log(this.getExceedLimitMessage());
++
+                 return this.config.payment.companycredit.exceedLimit &&
+                     credit.limit < totals()['grand_total'] * credit.rate;
+             },
