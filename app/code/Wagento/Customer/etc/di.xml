@@ -5,4 +5,7 @@
         <plugin name="wagento_customer_model_data_customer"
                 type="Wagento\Customer\Plugin\Model\Data\CustomerPlugin"/>
     </type>
+    <type name="Magento\Customer\Model\Registration">
+        <plugin name="WagentoCustomerRegistrationDisable" type="Wagento\Customer\Plugin\Model\RegistrationPlugin" />
+    </type>
 </config>

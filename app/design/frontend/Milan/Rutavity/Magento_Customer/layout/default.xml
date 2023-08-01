@@ -28,5 +28,6 @@
                 <argument name="id" xsi:type="string" translate="true">create_customer_link</argument>
             </arguments>
         </referenceBlock>
+        <referenceBlock name="register-link" remove="true"/>
     </body>
 </page>
