@@ -6,7 +6,11 @@ use Magento\Catalog\Block\Product\Image;
 use Magento\Catalog\Block\Product\ImageFactory;
 use Magento\Catalog\Model\Product;
 use Magento\Customer\Model\Session;
+use Magento\Framework\Api\FilterBuilder;
+use Magento\Framework\Api\Search\SearchCriteriaBuilder;
 use Magento\Framework\View\Element\Template\Context;
+use Magento\Sales\Api\OrderItemRepositoryInterface;
+use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Model\Order\Config;
 use Magento\Sales\Model\Order\Item as OrderItem;
 use Magento\Sales\Model\ResourceModel\Order\CollectionFactory;
@@ -27,6 +31,21 @@ class Orders extends \Magento\Framework\View\Element\Template
      * @var CollectionFactory
      */
     protected CollectionFactory $_orderCollectionFactory;
+
+    /**
+     * @var SearchCriteriaBuilder
+     */
+    private SearchCriteriaBuilder $searchCriteriaBuilder;
+
+    /**
+     * @var OrderItemRepositoryInterface
+     */
+    private OrderItemRepositoryInterface $orderItemRepository;
+
+    /**
+     * @var FilterBuilder
+     */
+    private FilterBuilder $filterBuilder;
 
     /**
      * @var Session
@@ -59,6 +78,9 @@ class Orders extends \Magento\Framework\View\Element\Template
     public function __construct(
         Context $context,
         CollectionFactory $orderCollectionFactory,
+        SearchCriteriaBuilder $searchCriteriaBuilder,
+        OrderItemRepositoryInterface $orderItemRepository,
+        FilterBuilder $filterBuilder,
         Session $customerSession,
         Config $orderConfig,
         ImageFactory $imageFactory,
@@ -69,6 +91,9 @@ class Orders extends \Magento\Framework\View\Element\Template
             $data
         );
         $this->orderCollectionFactory = $orderCollectionFactory;
+        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
+        $this->orderItemRepository = $orderItemRepository;
+        $this->filterBuilder = $filterBuilder;
         $this->_customerSession = $customerSession;
         $this->_orderConfig = $orderConfig;
         $this->imageFactory = $imageFactory;
@@ -275,19 +300,33 @@ class Orders extends \Magento\Framework\View\Element\Template
             return $this;
         }
 
+        $skuFilter = $this->filterBuilder
+            ->setField('sku')
+            ->setValue("%{$search}%")
+            ->setConditionType('like')
+            ->create();
+        $nameFilter = $this->filterBuilder
+            ->setField('name')
+            ->setValue("%{$search}%")
+            ->setConditionType('like')
+            ->create();
+        $searchCriteria = $this->searchCriteriaBuilder
+            ->addFilter($skuFilter)
+            ->addFilter($nameFilter)
+            ->create();
+        $orderItems = $this->orderItemRepository->getList($searchCriteria)->getItems();
+        $orderIds = [];
+        foreach ($orderItems as $orderItem) {
+            $orderIds[] = $orderItem->getOrderId();
+        }
+
         $this->orders
-            ->join(
-                ['item' => $this->orders->getTable('sales_order_item')],
-                'item.order_id = main_table.entity_id'
-            )
             ->addFieldToFilter([
                 'main_table.increment_id',
-                'item.sku',
-                'item.name'
+                'entity_id'
         ], [
             ['like' => "%{$search}%"],
-            ['like' => "%{$search}%"],
-            ['like' => "%{$search}%"]
+            ['in' => $orderIds]
         ])
         ->getSelect()->group('main_table.entity_id');
     }

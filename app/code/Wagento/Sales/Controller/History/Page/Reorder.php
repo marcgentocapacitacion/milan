@@ -47,10 +47,14 @@ class Reorder implements HttpGetActionInterface
             \Wagento\Sales\Block\Order\History\ReorderProducts::class,
             'sales.order.history.reorders.products.items'
         )->setTemplate('Wagento_Sales::order/history/reorder/items.phtml');
-        if ($block->getOrdersItems()->getLastPageNumber() < $block->getCurrentPage()) {
-            $output = '';
+        if ($block->getOrdersItems()) {
+            if ($block->getOrdersItems()->getLastPageNumber() < $block->getCurrentPage()) {
+                $output = '';
+            } else {
+                $output = $block->toHtml();
+            }
         } else {
-            $output = $block->toHtml();
+            $output = '';
         }
 
         /** @var Json $result */

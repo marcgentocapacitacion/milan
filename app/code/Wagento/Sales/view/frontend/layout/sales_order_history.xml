@@ -23,12 +23,12 @@
                            template="Wagento_Sales::order/history/orders/items.phtml"
                            name="sales.order.history.orders.cancelled.items"/>
                 </block>
-                <block template="Wagento_Sales::order/history/reorder_products.phtml"
-                       name="sales.order.history.reorders.products">
-                    <block class="Wagento\Sales\Block\Order\History\ReorderProducts"
-                           template="Wagento_Sales::order/history/reorder/items.phtml"
-                           name="sales.order.history.reorders.products.items"/>
-                </block>
+<!--                <block template="Wagento_Sales::order/history/reorder_products.phtml"-->
+<!--                       name="sales.order.history.reorders.products">-->
+<!--                    <block class="Wagento\Sales\Block\Order\History\ReorderProducts"-->
+<!--                           template="Wagento_Sales::order/history/reorder/items.phtml"-->
+<!--                           name="sales.order.history.reorders.products.items"/>-->
+<!--                </block>-->
                 <container name="sales.order.history.info" as="info" label="Order History Info"/>
                 <container name="sales.order.history.extra.column.header" as="extra.column.header" label="Order History Extra Column Header"/>
                 <block class="Magento\Sales\Block\Order\History\Container"

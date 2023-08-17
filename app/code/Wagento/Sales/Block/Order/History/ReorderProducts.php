@@ -6,11 +6,14 @@ use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Catalog\Helper\Output as OutputHelper;
 use Magento\Catalog\Model\Layer\Resolver;
 use Magento\Catalog\Model\Product;
+use Magento\Framework\Api\FilterBuilder;
+use Magento\Framework\Api\Search\SearchCriteriaBuilder;
 use Magento\Framework\App\ActionInterface;
 use Magento\Framework\Data\Form\FormKey;
 use Magento\Framework\Data\Helper\PostHelper;
 use Magento\Framework\Url\Helper\Data;
-use Wagento\Sales\Model\ResourceModel\Order\Item\CollectionFactory as CollectionItemFactory;
+use Magento\Sales\Api\OrderRepositoryInterface;
+use Magento\Sales\Model\ResourceModel\Order\Item\CollectionFactory as CollectionItemFactory;
 use Magento\Customer\Model\Session;
 use Magento\Catalog\Block\Product\Context;
 use Magento\Sales\Model\Order\Item;
@@ -48,15 +51,35 @@ class ReorderProducts extends \Magento\Catalog\Block\Product\ListProduct
     protected FormKey $formKey;
 
     /**
-     * @param Context                     $context
-     * @param CollectionItemFactory       $collectionFactory
-     * @param Session                     $customerSession
-     * @param PostHelper                  $postDataHelper
-     * @param Resolver                    $layerResolver
+     * @var SearchCriteriaBuilder
+     */
+    private SearchCriteriaBuilder $searchCriteriaBuilder;
+
+    /**
+     * @var OrderRepositoryInterface
+     */
+    private OrderRepositoryInterface $orderRepository;
+
+    /**
+     * @var FilterBuilder
+     */
+    private FilterBuilder $filterBuilder;
+
+    /**
+     * @param Context $context
+     * @param CollectionItemFactory $collectionFactory
+     * @param Session $customerSession
+     * @param PostHelper $postDataHelper
+     * @param Resolver $layerResolver
      * @param CategoryRepositoryInterface $categoryRepository
-     * @param Data                        $urlHelper
-     * @param array                       $data
-     * @param OutputHelper|null           $outputHelper
+     * @param Data $urlHelper
+     * @param EncoderInterface $urlEncoder
+     * @param FormKey $formKey
+     * @param SearchCriteriaBuilder $searchCriteriaBuilder
+     * @param OrderRepositoryInterface $orderRepository
+     * @param FilterBuilder $filterBuilder
+     * @param array $data
+     * @param OutputHelper|null $outputHelper
      */
     public function __construct(
         Context $context,
@@ -68,6 +91,9 @@ class ReorderProducts extends \Magento\Catalog\Block\Product\ListProduct
         Data $urlHelper,
         EncoderInterface $urlEncoder,
         FormKey $formKey,
+        SearchCriteriaBuilder $searchCriteriaBuilder,
+        OrderRepositoryInterface $orderRepository,
+        FilterBuilder $filterBuilder,
         array $data = [],
         ?OutputHelper $outputHelper = null
     ) {
@@ -75,6 +101,9 @@ class ReorderProducts extends \Magento\Catalog\Block\Product\ListProduct
         $this->customerSession = $customerSession;
         $this->urlEncoder = $urlEncoder;
         $this->formKey = $formKey;
+        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
+        $this->orderRepository = $orderRepository;
+        $this->filterBuilder = $filterBuilder;
         parent::__construct(
             $context,
             $postDataHelper,
@@ -101,7 +130,7 @@ class ReorderProducts extends \Magento\Catalog\Block\Product\ListProduct
      */
     protected function _prepareLayout()
     {
-        $this->setData('size', $this->getOrdersItems()->getSize());
+        $this->setData('size', $this->getOrdersItems() ? $this->getOrdersItems()->getSize() : 0);
         if ($this->getOrdersItems()) {
             $this->getOrdersItems()->setCurPage($this->getCurrentPage());
             $this->getOrdersItems()->setPageSize($this->getPageLimite());
@@ -173,13 +202,32 @@ class ReorderProducts extends \Magento\Catalog\Block\Product\ListProduct
         }
 
         if (!$this->orderItems) {
-            $this->orderItems = $this->collectionFactory->create()
-                ->getProductDistinctPerCustomer($customerId)
-                ->setOrder(
-                    'sales.created_at',
-                    'desc'
-                );
-            $this->addFilterSearchText();
+            // get ordeer by customer
+            $customerFilter = $this->filterBuilder
+                ->setField('customer_id')
+                ->setValue($customerId)
+                ->setConditionType('eq')
+                ->create();
+
+            $searchCriteria = $this->searchCriteriaBuilder
+                ->addFilter($customerFilter)
+                ->create();
+            $orders = $this->orderRepository->getList($searchCriteria)->getItems();
+            $orderIds = [];
+            foreach ($orders as $order) {
+                $orderIds[] = $order->getEntityId();
+            }
+
+            // get order items
+            // TODO: confirm 502 bad gate way issue due to LiveSearch
+//            $this->orderItems = $this->collectionFactory->create();
+//                //->getProductDistinctPerCustomer($customerId)
+//                ->addFieldToFilter('order_id', ['in' => $orderIds]);
+//                ->setOrder(
+//                    'created_at',
+//                    'desc'
+//                );
+//            $this->addFilterSearchText();
         }
 
         return $this->orderItems;
@@ -195,17 +243,33 @@ class ReorderProducts extends \Magento\Catalog\Block\Product\ListProduct
             return $this;
         }
 
+        $incrementFilter = $this->filterBuilder
+            ->setField('increment_id')
+            ->setValue("%{$search}%")
+            ->setConditionType('like')
+            ->create();
+
+        $searchCriteria = $this->searchCriteriaBuilder
+            ->addFilter($incrementFilter)
+            ->create();
+        $orders = $this->orderRepository->getList($searchCriteria)->getItems();
+
+        $orderIds = [];
+        foreach ($orders as $order) {
+            $orderIds[] = $order->getEntityId();
+        }
+
         $this->orderItems
             ->addFieldToFilter([
-                'sales.increment_id',
-                'main_table.sku',
-                'main_table.name'
+                'order_id',
+                'sku',
+                'name'
             ], [
-                ['like' => "%{$search}%"],
+                ['in' => $orderIds],
                 ['like' => "%{$search}%"],
                 ['like' => "%{$search}%"]
             ])
-            ->getSelect()->group('main_table.item_id');
+            ->getSelect()->group('item_id');
     }
 
     /**
