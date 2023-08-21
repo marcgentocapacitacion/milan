@@ -150,7 +150,7 @@ class TableratePlugin
             // Get subtotal exclude tax before calculate shipping rate
             $subtotal = 0;
             foreach ($request->getAllItems() as $item) {
-                $subtotal += $item->getPrice();
+                $subtotal += $item->getPrice() * $item->getQty();
             }
             $result['price'] = $subtotal;
             // Disable subtotal include tax
