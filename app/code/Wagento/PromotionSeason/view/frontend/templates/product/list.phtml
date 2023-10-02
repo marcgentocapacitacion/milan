@@ -92,15 +92,15 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                                     <?php if ($block->getRequest()->isAjax()):?>
                                         <?php echo $blockHtml;?>
                                     <?php else:?>
-                                        <div class="add-cart-without-login" data-bind="scope: 'add-cart-without-login'">
+                                        <div class="add-cart-without-login" id="add-cart-without-login-<?= $_product->getId()?>" data-bind="scope: 'add-cart-without-login-<?= $_product->getId()?>'">
                                             <div data-bind="html: getBlockHtml()"></div>
                                         </div>
                                         <script type="text/x-magento-init">
                                             {
-                                                ".add-cart-without-login": {
+                                                "#add-cart-without-login-<?= $_product->getId()?>": {
                                                     "Magento_Ui/js/core/app": {
                                                         "components":{
-                                                            "add-cart-without-login": {
+                                                            "add-cart-without-login-<?= $_product->getId()?>": {
                                                                 "component":"Wagento_Catalog\/js\/view\/add-cart-without-login",
                                                                 "blockAddToCart": "<?=str_replace("\n", "", str_replace("\"", "\\\"", $blockHtml));?>"
                                                             }
