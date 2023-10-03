@@ -10,7 +10,14 @@
         <span class="text"><?php /* @escapeNotVerified */ echo __('My Cart'); ?></span>
         <span class="counter qty empty"
               data-bind="css: { empty: !!getCartParam('summary_count') == false }, blockLoader: isLoading">
-            <span class="counter-number"><!-- ko text: getCartParam('summary_count') --><!-- /ko --></span>
+            <span class="counter-number">
+                <!-- ko if: getCartParam('summary_count') > 199 -->
+                <!-- ko text: '+99' --><!-- /ko -->
+                <!-- /ko -->
+                <!-- ko ifnot: getCartParam('summary_count') > 199 -->
+                <!-- ko text: getCartParam('summary_count') --><!-- /ko -->
+                <!-- /ko -->
+            </span>
             <span class="counter-label">
             <!-- ko if: getCartParam('summary_count') -->
                 <!-- ko text: getCartParam('summary_count') --><!-- /ko -->

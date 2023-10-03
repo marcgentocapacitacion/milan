@@ -1,9 +1,10 @@
 <?php
 /** @var \Magento\Customer\Block\Account\AuthenticationPopup $block */
 ?>
-<div id="login-form-popup" class="login-form" data-bind="scope:'authenticationAjax'">
+<form id="login-form-popup" class="login-form" onsubmit="login"
+      method="post" data-bind="scope:'authenticationAjax'">
     <!-- ko template: getTemplate() --><!-- /ko -->
-</div>
+</form>
 <script type="text/x-magento-init">
     {
         "#login-form-popup": {

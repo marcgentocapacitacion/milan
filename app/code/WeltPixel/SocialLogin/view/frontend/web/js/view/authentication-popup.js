@@ -86,6 +86,7 @@ define([
                 formDataArray = formElement.serializeArray();
 
             event.stopPropagation();
+            event.preventDefault();
             formDataArray.forEach(function (entry) {
                 loginData[entry.name] = entry.value;
             });
