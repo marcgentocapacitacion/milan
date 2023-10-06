@@ -8,8 +8,6 @@
         .row {
             display: flex;
             margin: 10px 10px;
-            border-radius: 200px;
-            max-width: 60%;
             max-height: 10em;
             .image {
                 position: relative;
@@ -57,6 +55,15 @@
             position: relative;
             display: flex;
 
+            &:last-child {
+                &.active {
+                    transform: translateX(-80px);
+                }
+                &.active-invert {
+                    transform: translateX(80px);
+                }
+            }
+
             > .row-affiliate-info {
                 display: none;
             }
@@ -67,14 +74,15 @@
                 }
 
                 > .row-affiliate-info {
-                    min-width: 85vw;
+                    width: 300px;
+                    max-width: 300px;
                     position: absolute;
                     z-index: 1;
                     right: 0;
                     display: block;
                     > .info {
                         display: flex;
-                        margin: 3vh 40vw 0px 0px;
+                        margin: 30px 160px 0px 0px;
                         > div {
                             text-align: end;
                         }
@@ -88,13 +96,14 @@
                 }
 
                 > .row-affiliate-info {
-                    min-width: 85vw;
+                    width: 300px;
+                    max-width: 300px;
                     position: absolute;
                     z-index: 1;
                     display: block;
                     > .info {
                         display: flex;
-                        margin: 3vh 0px 0px 40vw;
+                        margin: 30px 0px 0px 160px;
                     }
                 }
             }
