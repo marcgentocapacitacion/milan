@@ -106,6 +106,7 @@ class Config
                             case 'top_rated':
                             case 'most_reviewed':
                             case 'relevance':
+                            case 'quantity_and_stock_status':
                                 $direction = '~desc';
                                 break;
                             default:

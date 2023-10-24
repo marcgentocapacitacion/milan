@@ -12,12 +12,11 @@
         .columns {
             .column {
                 .toolbar-products {
-                    display: none;
-                    position: absolute;
+                    //position: absolute;
                     top: 0;
                     left: 0;
                     width: 100%;
-                    background: @color-background-toolbar 0% 0% no-repeat padding-box;
+                    //background: @color-background-toolbar 0% 0% no-repeat padding-box;
                     padding: 15px 25px;
                     font-size: 14px;
                     line-height: 35px;
@@ -35,7 +34,7 @@
                     }
 
                     .modes {
-                        float: right;
+                        display: none;
                         margin-right: 0;
 
                         .modes-label {
@@ -61,13 +60,15 @@
                         }
                     }
 
+                    .field.limiter,
+                    .title-toolbar,
                     .toolbar-amount {
-                        display: inline-block;
-                        float: none;
+                        display: none;
+                        float: left;
                     }
 
                     .toolbar-sorter {
-                        float: left;
+                        float: right;
                     }
                 }
 
