@@ -2,7 +2,7 @@
 
 namespace Wagento\Catalog\Plugin;
 
-use Magento\Customer\Model\Session as CustomerSession;
+use Magento\Customer\Model\SessionFactory as CustomerSession;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Catalog\Model\Product;
 use Magento\Framework\App\RequestInterface;
@@ -56,7 +56,8 @@ class ProductPlugin
 //        }
 
         if (!$this->isShowAddToCart()) {
-            if (!$this->customerSession->isLoggedIn()) {
+            $customer = $this->customerSession->create();
+            if (!$customer->getCustomer()->getId()) {
                 return false;
             }
         }
