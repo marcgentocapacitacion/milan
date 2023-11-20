@@ -23,6 +23,10 @@
             <block class="Magento\Catalog\Block\Product\View\Details" name="product.info.share" template="Magento_Catalog::product/view/share.phtml" after="-" />
         </referenceContainer>
 
+        <referenceContainer name="product.info.form.content">
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.addtocart" as="addtocart" template="Magento_Catalog::product/view/addtocart.phtml" cacheable="false"/>
+        </referenceContainer>
+
         <referenceBlock name="product.info.product_additional_data.wrapper">
             <arguments>
                 <argument name="hide_title" xsi:type="boolean">false</argument>
