@@ -154,6 +154,13 @@ class Toolbar
                             }
                             $this->filtered = true;
                             break;
+                        case 'quantity_and_stock_status':
+                            if (!$this->filtered) {
+                                $collection->setOrder($this->_getRealCurrentOrder($subject));
+                            }
+                            $collection->setOrder('entity_id', 'DESC');
+                            $this->filtered = true;
+                            break;
 
                         default:
                             if (!$this->filtered) {
@@ -255,6 +262,7 @@ class Toolbar
             case 'top_rated':
             case 'most_reviewed':
             case 'relevance':
+            case 'quantity_and_stock_status':
                 $direction = 'desc';
                 break;
             default:
