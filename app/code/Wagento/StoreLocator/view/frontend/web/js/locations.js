@@ -39,8 +39,8 @@ define([
          */
         centerStoreInMap: function (latitude, longitude) {
             let pos = {
-                lat: parseFloat(latitude),
-                lng:  parseFloat(longitude),
+                lat: parseFloat(latitude.replace(",", ".")),
+                lng:  parseFloat(longitude.replace(",", ".")),
             };
             this.map.setCenter(pos);
             this.map.setZoom(16);
@@ -57,6 +57,14 @@ define([
                 self.load();
                 self._googleMaps();
                 self.isLoading(false);
+            });
+            $(self.elementSearchText).keyup(function(e){
+                if (e.keyCode == 13) {
+                    self.isLoading(true);
+                    self.load();
+                    self._googleMaps();
+                    self.isLoading(false);
+                }
             });
 
             $(self.buttonPage).click(function () {
@@ -119,13 +127,13 @@ define([
                 navigator.geolocation.getCurrentPosition(
                     (position) => {
                         const pos = {
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude,
+                            lat: position.coords.latitude.replace(",", "."),
+                            lng: position.coords.longitude.replace(",", "."),
                         };
 
                         self.radius = new google.maps.Circle({
                             map: self.map,
-                            center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+                            center: new google.maps.LatLng(position.coords.latitude.replace(",", "."), position.coords.longitude.replace(",", ".")),
                             radius: 0,
                             strokeColor: "#818c99",
                             fillColor: "#ffffff",
@@ -138,12 +146,12 @@ define([
                         map.setCenter(pos);
                     },
                     () => {
-                        handleLocationError(true, infoWindow, map.getCenter());
+                        //handleLocationError(true, infoWindow, map.getCenter());
                     }
                 );
             } else {
                 // Browser doesn't support Geolocation
-                handleLocationError(false, infoWindow, map.getCenter());
+                // handleLocationError(false, infoWindow, map.getCenter());
             }
         },
 
@@ -175,7 +183,7 @@ define([
             let marker,
                 infoWindow = new google.maps.InfoWindow();
             for (var i in response) {
-                let position = {lat: parseFloat(response[i].latitude), lng: parseFloat(response[i].longitude)};
+                let position = {lat: parseFloat(response[i].latitude.replace(",", ".")), lng: parseFloat(response[i].longitude.replace(",", "."))};
                 let title = response[i].name,
                     address = response[i].full_address,
                     fone = response[i].fone ?? ''
