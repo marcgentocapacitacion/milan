@@ -21,18 +21,21 @@
             <?= $block->getPagerHtml() ?>
             <?= $block->fetchView($block->getTemplateFile('Magento_Catalog::product/list/toolbar/limiter.phtml')) ?>
         <?php else: ?>
-            <?php if ($block->isExpanded()): ?>
-                <?= $block->fetchView($block->getTemplateFile('Magento_Catalog::product/list/toolbar/viewmode.phtml')) ?>
-            <?php endif ?>
             <?= $block->fetchView($block->getTemplateFile('Magento_Catalog::product/list/toolbar/limiter.phtml')) ?>
             <?= $block->fetchView($block->getTemplateFile('Magento_Catalog::product/list/toolbar/amount.phtml')) ?>
-            <?php if ($block->isExpanded()): ?>
-                <?= $block->fetchView($block->getTemplateFile('Magento_Catalog::product/list/toolbar/sorter.phtml')) ?>
-            <?php endif ?>
             <?= $block->getPagerHtml() ?>
         <?php endif ?>
     </div>
+    <div class="toolbar-view-mode" data-mage-init='{"productListToolbarForm":<?= /* @noEscape */ $widgetOptions ?>}'>
+        <?php if ($block->isExpanded()): ?>
+            <?= $block->fetchView($block->getTemplateFile('Magento_Catalog::product/list/toolbar/sorter.phtml')) ?>
+        <?php endif ?>
+        <?php if ($block->isExpanded()): ?>
+            <?= $block->fetchView($block->getTemplateFile('Magento_Catalog::product/list/toolbar/viewmode.phtml')) ?>
+        <?php endif ?>
+    </div>
 <?php endif ?>
+
 <script type="text/javascript">
     require(['jquery', 'select2'], function($) {
         $('#sorter, #limiter').select2();

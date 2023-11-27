@@ -11,6 +11,19 @@
 
         .columns {
             .column {
+                .toolbar-view-mode {
+                    height: 30px;
+                    margin-top: 15px;
+                    > .modes {
+                        float: right;
+                    }
+                    > .toolbar-sorter {
+                        float: left;
+                    }
+                }
+                .toolbar-view-mode:last-of-type {
+                    display: none;
+                }
                 .toolbar-products {
                     //position: absolute;
                     top: 0;
@@ -80,12 +93,12 @@
                 }
 
                 .products {
-                    margin-top: 115px;
+                    margin-top: 30px;
                 }
             }
 
             .sidebar-main {
-                margin-top: 115px;
+                margin-top: 30px;
             }
         }
     }
