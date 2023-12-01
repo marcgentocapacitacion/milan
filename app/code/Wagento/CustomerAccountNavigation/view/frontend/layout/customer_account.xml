@@ -19,13 +19,13 @@
             <referenceBlock name="company-customer-account-navigation-orders-link">
                 <arguments>
                     <argument name="sortOrder" xsi:type="number">232</argument>
-                    <argument name="label" xsi:type="string" translate="true">Web Orders</argument>
+                    <argument name="label" xsi:type="string" translate="true">My Orders</argument>
                 </arguments>
             </referenceBlock>
             <referenceBlock name="customer-account-navigation-orders-link">
                 <arguments>
                     <argument name="sortOrder" xsi:type="number">231</argument>
-                    <argument name="label" xsi:type="string" translate="true">Web Orders</argument>
+                    <argument name="label" xsi:type="string" translate="true">My Orders</argument>
                 </arguments>
             </referenceBlock>
             <block class="Wagento\CustomerAccountNavigation\Block\AllOrdersLink" name="itm_magb1_customer-account-navigation-account-allorderslink">

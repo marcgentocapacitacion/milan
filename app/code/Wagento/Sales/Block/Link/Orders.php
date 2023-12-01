@@ -26,7 +26,7 @@ class Orders extends Link implements \Magento\Customer\Block\Account\SortLinkInt
      */
     public function getLabel()
     {
-        return __('Web Orders');
+        return __('My Orders');
     }
 
     /**
