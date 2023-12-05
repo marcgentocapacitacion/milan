@@ -539,6 +539,8 @@ return [
         'ITM_Pricing' => 1,
         'Mageplaza_Core' => 1,
         'Mageplaza_Blog' => 1,
+        'Nexius_Base' => 1,
+        'Nexius_OutOfStockNotifications' => 1,
         'PayPal_Braintree' => 1,
         'PayPal_BraintreeGraphQl' => 1,
         'Temando_ShippingRemover' => 1,
