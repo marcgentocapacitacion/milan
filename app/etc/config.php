@@ -570,6 +570,7 @@ return [
         'WeltPixel_SearchAutoComplete' => 0,
         'Wagento_SelectCustom' => 1,
         'WeltPixel_SocialLogin' => 0,
+        'Wagento_SocialMedia' => 1,
         'Wagento_StoreLocator' => 1,
         'Wagento_Theme' => 1,
         'WeSupply_Toolbox' => 1,

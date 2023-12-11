@@ -116,7 +116,14 @@
                                 display: inline;
                                 padding: 8%;
                                 font-size: 44px;
-                                color: #797878;
+
+                                a {
+                                    color: #797878;
+                                }
+
+                                a:visited {
+                                    color: #797878;
+                                }
 
                                 i.fa-facebook:hover {
                                     color: @color-rutavity-facebook;
@@ -131,6 +138,19 @@
                                 i.fa-linkedin:hover {
                                     color: @color-rutavity-linkedin;
                                     cursor: pointer;
+                                }
+
+                                i.fa-square-x-twitter:hover {
+                                    color: #ffffff;
+                                    cursor: pointer;
+                                }
+
+                                i.fa-instagram:hover {
+                                    cursor: pointer;
+                                    background: #d6249f;
+                                    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+                                    -webkit-background-clip: text;
+                                    -webkit-text-fill-color: transparent;
                                 }
                             }
                         }
