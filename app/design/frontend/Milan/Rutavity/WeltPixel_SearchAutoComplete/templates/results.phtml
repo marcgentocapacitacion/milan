@@ -59,6 +59,7 @@ $displayResults = $helper->getTemplateResultsContainer();
                                     <?php endif; ?>
                                     <?php if($isShowDescription) : ?> <?php echo $helper->limitText($_product->getDescription(), $MaxWordsProductDescription)?><?php endif; ?>
                                 </div>
+                                <?php if (false):?>
                                 <div class="actions-primary">
                                     <?php if ($block->getAddToCompareUrl()) :?>
                                         <?php $compareHelper = $this->helper(Magento\Catalog\Helper\Product\Compare::class); ?>
@@ -108,6 +109,7 @@ $displayResults = $helper->getTemplateResultsContainer();
                                         <?php endif;?>
                                     <?php endif;?>
                                 </div>
+                                <?php endif ?>
                             </div>
                             <div class="clear"></div>
                         </div>

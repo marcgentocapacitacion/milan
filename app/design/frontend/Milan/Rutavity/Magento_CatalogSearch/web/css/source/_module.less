@@ -110,12 +110,17 @@
             display: none;
         }
 
+        .minisearch.active {
+            .searchautocomplete {
+                display: block !important;
+            }
+        }
+
         .block .searchautocomplete {
             .container-autocomplete {
                 padding: 0;
 
-                .search-results-items,
-                .more-results {
+                .search-results-items {
                     display: none;
                 }
 
@@ -123,10 +128,6 @@
                     li {
                         padding: 15px 40px;
                         margin: 0;
-
-                        &:first-child {
-                            border-top: solid 1px #000;
-                        }
                     }
 
                     .block-flex {
@@ -173,6 +174,20 @@
                             }
                         }
                     }
+                }
+            }
+
+            .more-results {
+                background: linear-gradient(90deg, #633093 0%, #1e73bb 100%);
+                color: #fff;
+                font-weight: bold;
+                font-size: 17px;
+                padding: 5px;
+                text-align: center;
+
+                .advanced_search {
+                    color: #fff;
+                    font-size: 17px;
                 }
             }
         }
@@ -564,11 +579,9 @@
 
         .block {
             .searchautocomplete {
-                right: 24px;
-                top: 35px;
-                max-width: ~"calc(100% - 50px)";
-                font-size: 18px;
-                box-shadow: inset 0px 9px 11px #00000069;
+                border-radius: 10px;
+                width: 100% !important;
+                top: 45px;
 
                 .separator {
                     display: none;
@@ -581,6 +594,11 @@
                     ul li {
                         margin: 15px 0;
                     }
+                }
+
+                ul li {
+                    width: 49%;
+                    display: inline-block;
                 }
             }
         }
