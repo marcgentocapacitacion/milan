@@ -757,12 +757,17 @@
 
     .product-addto-links {
         display: flex;
-        width: 320px;
-        padding: 10px 20px;
+        justify-content: flex-start;
+        padding: 10px 0px;
 
         .action {
             position: relative;
             padding-left: 40px;
+
+            &.towishlist,
+            &.tocompare {
+                max-width: 180px;
+            }
 
             &:before {
                 position: absolute;

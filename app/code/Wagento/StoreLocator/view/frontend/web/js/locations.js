@@ -100,7 +100,7 @@ define([
          * @private
          */
         _googleMaps: function () {
-            let lat = 34.84555, lng = -111.8035;
+            let lat = 7.119206, lng = -73.132978;
             this.map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 12,
                 center: { lat: lat, lng: lng},
