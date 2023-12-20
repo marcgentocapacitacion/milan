@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2317e63791215b5bee3312ad1063ef80",
+    "content-hash": "5ffcee242174631553d9bb4226b932d9",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -26659,6 +26659,73 @@
                 }
             ],
             "time": "2023-05-25T22:09:47+00:00"
+        },
+        {
+            "name": "nexius/module-base",
+            "version": "1.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/nexius/module-base/nexius-module-base-1.0.0.0.zip",
+                "shasum": "d30a682c715a81b065a0593bfb755b6e1100eb5b"
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Nexius\\Base\\": ""
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Support",
+                    "email": "techsupport@nexius.ai",
+                    "homepage": "https://www.nexius.ai",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Nexius Base module containing Base Menu and Configuration tab."
+        },
+        {
+            "name": "nexius/module-out-of-stock-notifications",
+            "version": "1.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/nexius/module-out-of-stock-notifications/nexius-module-out-of-stock-notifications-1.0.0.0.zip",
+                "shasum": "8ebb149a4c25cd62d41378063b55710009c4f628"
+            },
+            "require": {
+                "nexius/module-base": "1.0.*",
+                "php": ">=7.1.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Nexius\\OutOfStockNotifications\\": ""
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Support",
+                    "email": "techsupport@nexius.ai",
+                    "homepage": "https://www.nexius.ai",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Using this extension, the customers can subscribe to an out-of-stock product and get a notification when it is restocked."
         },
         {
             "name": "nikic/php-parser",

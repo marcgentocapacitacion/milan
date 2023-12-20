@@ -31,7 +31,8 @@
         "magento/magento-cloud-metapackage": ">2.4.4 <2.4.7",
         "magento/product-enterprise-edition": "2.4.6-p1",
         "magento/saas-export": "^102.0",
-        "mageplaza/magento-2-blog-extension": "^4.1"
+        "mageplaza/magento-2-blog-extension": "^4.1",
+        "nexius/module-out-of-stock-notifications": "^1.0"
     },
     "suggest": {
         "ext-pcntl": "Need for run processes in parallel mode"
