@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Customer account page customization
+ * @package Wagento_Customer
+ * @author Rudie Wang <rudi.wang@wagento.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="customer_account_dashboard_info" template="Wagento_Customer::account/dashboard/info.phtml">
+            <arguments>
+                <argument name="viewModel" xsi:type="object">Wagento\Customer\ViewModel\EditPermission</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="customer_account_dashboard_address" template="Wagento_Customer::account/dashboard/address.phtml">
+            <arguments>
+                <argument name="viewModel" xsi:type="object">Wagento\Customer\ViewModel\EditPermission</argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>
