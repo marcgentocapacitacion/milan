@@ -1,0 +1,103 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+
+<?php
+$idSuffix = $block->getIdSuffix() ? $block->getIdSuffix() : '';
+/** @var \Magento\Bundle\Pricing\Render\FinalPriceBox $block */
+
+/** @var \Magento\Bundle\Pricing\Price\FinalPrice $finalPriceModel */
+$finalPriceModel = $block->getPrice();
+$minimalPrice = $finalPriceModel->getMinimalPrice();
+$maximalPrice = $finalPriceModel->getMaximalPrice();
+/** ex: \Magento\Bundle\Pricing\Price\BundleRegularPrice */
+/** @var \Magento\Framework\Pricing\Price\PriceInterface $regularPriceModel */
+$regularPriceModel = $block->getPriceType('regular_price');
+$maximalRegularPrice = $regularPriceModel->getMaximalPrice();
+$minimalRegularPrice = $regularPriceModel->getMinimalPrice();
+$regularPriceAttributes = [
+    'display_label'     => __('Regular Price'),
+    'price_id'          => $block->getPriceId('old-price-' . $idSuffix),
+    'include_container' => true,
+    'skip_adjustments'  => true
+];
+$renderMinimalRegularPrice = $block->renderAmount($minimalRegularPrice, $regularPriceAttributes);
+$blockHtml = '';
+?>
+<?php if ($block->getSaleableItem()->getPriceView()) : ?>
+    <?php $blockHtml .= '<p class="minimal-price">';?>
+        <?php $blockHtml .= /* @noEscape */ $block->renderAmount($minimalPrice, [
+            'display_label'     => __('As low as'),
+            'price_id'          => $block->getPriceId('from-'),
+            'include_container' => true
+        ]); ?>
+        <?php if ($minimalPrice < $minimalRegularPrice) : ?>
+            <?php $blockHtml .= '<span class="old-price">';?>
+                <?php $blockHtml .= /* @noEscape */ $renderMinimalRegularPrice ?>
+            <?php $blockHtml .= '</span>';?>
+        <?php endif ?>
+    <?php $blockHtml .= '</p>';?>
+<?php else : ?>
+    <?php if ($block->showRangePrice()) : ?>
+        <?php $blockHtml .= '<p class="price-from">';?>
+            <?php $blockHtml .= /* @noEscape */ $block->renderAmount($minimalPrice, [
+                'display_label'     => __('From'),
+                'price_id'          => $block->getPriceId('from-'),
+                'price_type'        => 'minPrice',
+                'include_container' => true
+            ]); ?>
+            <?php if ($minimalPrice < $minimalRegularPrice) : ?>
+                <?php $blockHtml .= '<span class="old-price">'?>
+                    <?php $blockHtml .= /* @noEscape */ $renderMinimalRegularPrice ?>
+                <?php $blockHtml .= '</span>';?>
+            <?php endif ?>
+        <?php $blockHtml .= '</p>';?>
+        <?php $blockHtml .= '<p class="price-to">';?>
+            <?php $blockHtml .= /* @noEscape */ $block->renderAmount($maximalPrice, [
+                'display_label'     => __('To'),
+                'price_id'          => $block->getPriceId('to-'),
+                'price_type'        => 'maxPrice',
+                'include_container' => true
+            ]); ?>
+            <?php if ($maximalPrice < $maximalRegularPrice) : ?>
+                <?php $blockHtml .= '<span class="old-price">';?>
+                    <?php $blockHtml .= /* @noEscape */ $block->renderAmount($maximalRegularPrice, $regularPriceAttributes); ?>
+                <?php $blockHtml .= '</span>';?>
+            <?php endif ?>
+        <?php $blockHtml .= '</p>';?>
+    <?php else : ?>
+        <?php $blockHtml .= /* @noEscape */ $block->renderAmount($minimalPrice, [
+            'price_id'          => $block->getPriceId('product-price-'),
+            'include_container' => true
+        ]); ?>
+        <?php if ($minimalPrice < $minimalRegularPrice) : ?>
+            <?php $blockHtml .= '<span class="old-price">';?>
+                <?php $blockHtml .= /* @noEscape */ $renderMinimalRegularPrice;?>
+            <?php $blockHtml .= '</span>';?>
+        <?php endif ?>
+    <?php endif ?>
+<?php endif ?>
+<?php if ($block->getRequest()->isAjax()):?>
+    <?php echo $blockHtml;?>
+<?php else:?>
+    <div id="<?= $block->getPriceId('show-price-without-login-' . $idSuffix) ?>" data-bind="scope: '<?= $block->getPriceId('show-price-without-login-' . $idSuffix) ?>'">
+        <div data-bind="html: getBlockHtml()"></div>
+    </div>
+    <script type="text/x-magento-init">
+        {
+            "#<?= $block->getPriceId('show-price-without-login-' . $idSuffix) ?>": {
+                "Magento_Ui/js/core/app": {
+                    "components":{
+                        "<?= $block->getPriceId('show-price-without-login-' . $idSuffix) ?>": {
+                            "component":"Wagento_Catalog\/js\/view\/show-price-without-login",
+                            "blockPrice": "<?=str_replace("\n", "", str_replace("\"", "\\\"", $blockHtml));?>"
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+<?php endif;?>
