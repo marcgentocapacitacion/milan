@@ -3,4 +3,14 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Magento\Company\Block\Company\Account\Create" type="Wagento\Company\Block\Company\Account\Create"/>
     <preference for="Magento\Company\Block\Company\Register\Profile" type="Wagento\Company\Block\Company\Register\Profile"/>
+
+    <!-- Check if company profile edit is enabled in Admin -->
+    <type name="Magento\Company\Block\Company\CompanyProfile">
+        <plugin name="company_profile_edit_link_permission_check"
+                type="Wagento\Company\Plugin\Block\Company\CompanyProfilePlugin" sortOrder="10" />
+    </type>
+    <type name="Magento\Company\Controller\Profile\Edit">
+        <plugin name="company_profile_edit_page_permission_check"
+                type="Wagento\Company\Plugin\Controller\Profile\EditPlugin" sortOrder="10" />
+    </type>
 </config>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Customer address page customization
+ * @package Wagento_Customer
+ * @author Rudie Wang <rudi.wang@wagento.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="address_book">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Wagento_Customer::address/book.phtml</argument>
+            </action>
+            <arguments>
+                <argument name="viewModel" xsi:type="object">Wagento\Customer\ViewModel\EditPermission</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="address_grid">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Wagento_Customer::address/grid.phtml</argument>
+            </action>
+            <arguments>
+                <argument name="viewModel" xsi:type="object">Wagento\Customer\ViewModel\EditPermission</argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>
