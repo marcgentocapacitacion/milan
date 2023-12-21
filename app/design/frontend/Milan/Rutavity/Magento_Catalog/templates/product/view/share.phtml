@@ -9,7 +9,29 @@
 ?>
 <?php $_product = $block->getProduct(); ?>
 <div class="product-share">
-    <a class="product-share-link" href="#" title="">
+    <a class="product-share-link" href="#" title=""
+       data-mage-init='{
+            "Magento_Catalog/js/dialog-share-network": {}
+       }'
+    >
         <span><?= __('Share product') ?></span>
     </a>
+    <div id="dialog-share-network" class="buttons-dialog-share-network" style="display: none;">
+        <div class="fb-share-button facebook"
+             data-href="<?php echo $_product->getProductUrl();?>"
+             data-layout=""
+             data-size="">
+            <a target="_blank"
+               href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $_product->getProductUrl();?>"
+               class="fb-xfbml-parse-ignore">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+        </div>
+        <div class="fb-share-button twitter">
+            <a class="twitter-mention-button"
+               href="https://twitter.com/intent/tweet?url=<?php echo $_product->getProductUrl();?>">
+                <i class="fa-brands fa-square-x-twitter"></i>
+            </a>
+        </div>
+    </div>
 </div>

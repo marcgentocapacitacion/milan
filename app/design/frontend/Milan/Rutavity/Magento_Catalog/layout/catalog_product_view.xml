@@ -20,7 +20,7 @@
         </referenceContainer>
 
         <referenceContainer name="product.info.stock.sku">
-            <block class="Magento\Catalog\Block\Product\View\Details" name="product.info.share" template="Magento_Catalog::product/view/share.phtml" after="-" />
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.share" template="Magento_Catalog::product/view/share.phtml" after="-" />
         </referenceContainer>
 
         <referenceContainer name="product.info.form.content">
