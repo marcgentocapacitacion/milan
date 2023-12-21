@@ -170,9 +170,15 @@
     .product-info-main {
         padding-top: 15px;
 
-        .page-title-wrapper h1 {
-            font-size: 28px;
-            font-family: 'Avenir Black';
+        .page-title-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+
+            h1 {
+                font-size: 28px;
+                font-family: 'Avenir Black';
+            }
         }
 
         .product-info-price {
@@ -330,7 +336,8 @@
         }
 
         .product-share {
-            float: right;
+            margin-left: 10px;
+            margin-bottom: 10px;
 
             &-link {
                 display: inline-block;

@@ -19,7 +19,7 @@
             <block class="Magento\Catalog\Block\Product\View" name="product.info.brand" template="Magento_Catalog::product/view/brand.phtml" before="-" />
         </referenceContainer>
 
-        <referenceContainer name="product.info.stock.sku">
+        <referenceContainer name="page.main.title">
             <block class="Magento\Catalog\Block\Product\View" name="product.info.share" template="Magento_Catalog::product/view/share.phtml" after="-" />
         </referenceContainer>
 
