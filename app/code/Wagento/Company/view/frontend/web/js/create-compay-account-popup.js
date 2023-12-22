@@ -12,9 +12,10 @@ define([
     'use strict';
 
     $.widget('mage.createCompanyAccountPopup', {
+        modalWindow: null,
         options: {
-            modalWindow: null,
-            formSubmit: ''
+            formSubmit: '',
+            elementLinkCreateAccount: ''
         },
 
         /**
@@ -26,20 +27,24 @@ define([
             var options = {
                 'type': 'popup',
                 'modalClass': 'popup-create-company-account',
-                'focus': '#email',
+                'focus': '#company_name',
                 'responsive': true,
                 'innerScroll': true,
                 'trigger': '.create-account',
                 'buttons': []
             };
 
-            this.options.modalWindow = element;
-            modal(options, $(this.options.modalWindow));
+            this.modalWindow = element;
+            try {
+                modal(options, $(this.modalWindow));
+            } catch (error) {
+                console.log(error)
+            }
         },
 
         /** Show login popup window */
         showModal: function () {
-            $(this.options.modalWindow).modal('openModal').trigger('contentUpdated');
+            $(this.modalWindow).modal('openModal').trigger('contentUpdated');
         },
 
         /**
@@ -56,14 +61,16 @@ define([
 
         _create: function () {
             var self = this;
-
             this.createPopUp($(self.options.formSubmit));
             this.isLoading(false);
 
             if (self.options.elementLinkCreateAccount) {
-                $(self.options.elementLinkCreateAccount).off('click').on('click', function (e) {
-                    e.preventDefault();
-                    self.showModal();
+                $(document).ready(function () {
+                    $(self.options.elementLinkCreateAccount).on('click', function (e) {
+                        console.log(this)
+                        e.preventDefault();
+                        self.showModal();
+                    });
                 });
              }
         }

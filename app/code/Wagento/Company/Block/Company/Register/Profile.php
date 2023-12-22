@@ -99,6 +99,18 @@ class Profile extends MagentoProfile
     {
         $adminInformation = parent::getAdminInformation();
         $companyAdmin = $this->getCompanyAdmin();
+        if (!$companyAdmin) {
+            return $adminInformation;
+        }
+
+        if (!method_exists($companyAdmin, 'getAlmacen')) {
+            return $adminInformation;
+        }
+
+        if (!$companyAdmin->getAlmacen()) {
+            return $adminInformation;
+        }
+
         $adminInformation[] = $this->createField(
             __('Almacen:'),
             $companyAdmin->getAlmacen()

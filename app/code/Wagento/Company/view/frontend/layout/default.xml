@@ -4,41 +4,37 @@
         <referenceContainer name="header.container">
             <block name="company.account.create.wrapper.popup"
                    template="Wagento_Company::company/account/create_popup.phtml">
-                <block class="Magento\Framework\View\Element\Template"
-                       ifconfig="company/general/allow_company_registration"
-                       template="Magento_Theme::template.phtml"
-                       name="company.account.create.wrapper">
-                    <block class="Magento\Company\Block\Company\Account\Create" name="company_account_create"
-                           ifconfig="btob/website_configuration/company_active"
-                           template="Wagento_Company::company/account/create.phtml">
+                <block class="Magento\Company\Block\Company\Account\Create"
+                       name="wagento_company_account_create"
+                       ifconfig="btob/website_configuration/company_active"
+                       template="Wagento_Company::company/account/create.phtml">
+                    <arguments>
+                        <argument name="region_provider" xsi:type="object">Magento\Company\ViewModel\Address\RegionProvider</argument>
+                    </arguments>
+                    <block class="Magento\CustomerCustomAttributes\Block\Form" template="Magento_CustomerCustomAttributes::form/userattributes.phtml" name="customer_form_user_attributes">
+                        <action method="setFormCode">
+                            <argument name="code" xsi:type="string">customer_account_create</argument>
+                        </action>
+                        <action method="setEntityModelClass">
+                            <argument name="code" xsi:type="string">Magento\Customer\Model\Customer</argument>
+                        </action>
                         <arguments>
-                            <argument name="region_provider" xsi:type="object">Magento\Company\ViewModel\Address\RegionProvider</argument>
+                            <argument name="view_model" xsi:type="object">CustomerFileAttribute</argument>
                         </arguments>
-                        <block class="Magento\CustomerCustomAttributes\Block\Form" template="Magento_CustomerCustomAttributes::form/userattributes.phtml" name="customer_form_user_attributes">
-                            <action method="setFormCode">
-                                <argument name="code" xsi:type="string">customer_account_create</argument>
-                            </action>
-                            <action method="setEntityModelClass">
-                                <argument name="code" xsi:type="string">Magento\Customer\Model\Customer</argument>
-                            </action>
-                            <arguments>
-                                <argument name="view_model" xsi:type="object">CustomerFileAttribute</argument>
-                            </arguments>
-                        </block>
-                        <container name="form.additional.info">
-                            <block class="Magento\Captcha\Block\Captcha" name="captcha" after="-">
-                                <action method="setFormId">
-                                    <argument name="formId" xsi:type="string">company_create</argument>
-                                </action>
-                                <action method="setImgWidth">
-                                    <argument name="width" xsi:type="string">230</argument>
-                                </action>
-                                <action method="setImgHeight">
-                                    <argument name="width" xsi:type="string">50</argument>
-                                </action>
-                            </block>
-                        </container>
                     </block>
+                    <container name="form.additional.info">
+                        <block class="Magento\Captcha\Block\Captcha" name="captcha" after="-">
+                            <action method="setFormId">
+                                <argument name="formId" xsi:type="string">company_create</argument>
+                            </action>
+                            <action method="setImgWidth">
+                                <argument name="width" xsi:type="string">230</argument>
+                            </action>
+                            <action method="setImgHeight">
+                                <argument name="width" xsi:type="string">50</argument>
+                            </action>
+                        </block>
+                    </container>
                 </block>
             </block>
         </referenceContainer>
