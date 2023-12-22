@@ -6,7 +6,7 @@
                    template="Wagento_Company::company/account/create_popup.phtml">
                 <block class="Magento\Company\Block\Company\Account\Create"
                        name="wagento_company_account_create"
-                       ifconfig="btob/website_configuration/company_active"
+                       ifconfig="company/general/allow_company_registration"
                        template="Wagento_Company::company/account/create.phtml">
                     <arguments>
                         <argument name="region_provider" xsi:type="object">Magento\Company\ViewModel\Address\RegionProvider</argument>
