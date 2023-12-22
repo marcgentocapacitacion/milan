@@ -82,6 +82,18 @@ class Profile extends MagentoProfile
         $companyInformation = parent::getCompanyInformation();
         $company = $this->getCompany();
 
+        if (!$company) {
+            return $companyInformation;
+        }
+
+        if (!method_exists($company, 'getAlmacen')) {
+            return $companyInformation;
+        }
+
+        if (!$company->getAlmacen()) {
+            return $companyInformation;
+        }
+
         $companyInformation[] = $this->createField(
             __('Almacen:'),
             $company->getAlmacen()
