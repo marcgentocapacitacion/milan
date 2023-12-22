@@ -8,8 +8,9 @@ define([
     'Magento_Customer/js/action/login',
     'Magento_Ui/js/modal/alert',
     'mage/translate',
-    'Magento_Customer/js/create-account-popup'
-], function ($, ko, Component, messageContainer, authenticationPopup, loginAction, alert, $t, createAccountAjax) {
+    'Magento_Customer/js/create-account-popup',
+    'Wagento_Company/js/create-compay-account-popup'
+], function ($, ko, Component, messageContainer, authenticationPopup, loginAction, alert, $t, createAccountAjax, createAccountCompanyAjax) {
     'use strict';
 
     return Component.extend({
@@ -42,6 +43,8 @@ define([
             loginAction.registerLoginCallback(function () {
                 self.isLoading(false);
             });
+
+            self.registerCompany();
         },
 
         /**
@@ -73,6 +76,16 @@ define([
             createAccountAjax({
                 "form": "#create-accout-form"
             }).showModal();
+        },
+
+        /**
+         * Open popup Create account
+         */
+        registerCompany: function () {
+            createAccountCompanyAjax({
+                "formSubmit": "#form-create-company-account-popup",
+                "elementLinkCreateAccount": "#create_company_link"
+            });
         },
 
         /**

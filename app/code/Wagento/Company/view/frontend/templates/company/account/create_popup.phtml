@@ -15,13 +15,6 @@ use Magento\Framework\View\Helper\SecureHtmlRenderer;
 
 <div class="form-create-account-popup"
      id="form-create-company-account-popup"
-     style="display: none;"
-     data-mage-init='{
-        "Wagento_Company/js/create-compay-account-popup": {
-            "formSubmit": "#form-validate.form-create-account",
-            "elementLinkCreateAccount": "[id^=create_company_link]"
-        }
-     }'
->
-    <?=$block->getBlockHtml('company.account.create.wrapper');?>
+     style="display: none;">
+    <?php echo $block->getBlockHtml('wagento_company_account_create');?>
 </div>
